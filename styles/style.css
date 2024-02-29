@@ -3,21 +3,63 @@ body {
     margin: 0;
 }
 
-
-.d-none {
-    display: none;
-}
-.posAbsolute {
-    position: absolute;
-}
-
 .cursorPointer {
     cursor: pointer;
 }
 
+.posAbsolute {
+    position: absolute;
+}
+
+/* ---------- DISPLAY ---------- */
+
+.d-none {
+    display: none;
+}
+
+.dFlex {
+    display: flex;
+}
+
+.directionColumn {
+    flex-direction: column;
+}
+
+.alignCenter {
+    align-items: center;
+}
+
+.justCenter {
+    justify-content: center;
+}
+
+.justBetween {
+    justify-content: space-between;
+}
+
+/* ---------- FONTS ---------- */
+
+.fontLightGrey {
+    color: #CDCDCD;
+}
+
+.hoverFontLightBlue:hover {
+    color: #29ABE2;
+}   
+
 .fontBold {
     font-weight: bold;
 }
+
+.hoverFontBold:hover {
+    font-weight: bold;
+}
+
+.noDecoration {
+    text-decoration: none;
+}
+
+/* ---------- BUTTONS ---------- */
 
 .darkBtn {
     background-color: #2A3647;
