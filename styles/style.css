@@ -43,6 +43,10 @@ body {
     color: #CDCDCD;
 }
 
+.fontDarkBlue {
+    color: #2A3647;
+}
+
 .hoverFontLightBlue:hover {
     color: #29ABE2;
 }   
@@ -73,4 +77,22 @@ body {
 .darkBtn:hover {
     background-color: #29ABE2;
     box-shadow: 0px 4px 4px 0px #00000040;
+}
+
+.transparentBtn {
+    padding: 12px 15px 12px 15px;
+    border: 1px solid #2A3647;
+    border-radius: 7px;
+    transition: all 225ms ease-in-out;
+}
+
+.transparentBtn:hover {
+    box-shadow: 0px 4px 4px 0px #00000040;
+    border: 2px solid #29ABE2;
+    color: #29ABE2;
+}
+
+.overDivGuestLogInBtn {
+    width: 134px;
+    height: 46px;/
 }
