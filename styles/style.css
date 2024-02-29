@@ -13,6 +13,10 @@ body {
 
 /* ---------- DISPLAY ---------- */
 
+.d-none {
+    display: none;
+}
+
 .dFlex {
     display: flex;
 }
