@@ -11,6 +11,10 @@ body {
     position: absolute;
 }
 
+.posRelative {
+    position: relative;
+}
+
 /* ---------- DISPLAY ---------- */
 
 .d-none {

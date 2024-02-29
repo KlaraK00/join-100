@@ -7,6 +7,16 @@ h1 {
     margin: 16px;
 }
 
+/* ---------- HEIGHT AND WIDTH ---------- */
+
+.height13 {
+    height: 13px;
+}
+
+.height15 {
+    height: 18px;
+}
+
 /* ---------- PADDING AND MARGIN ---------- */
 
 .padTop60 {
@@ -60,16 +70,54 @@ h1 {
     left: calc(50vw - 110px);
 }
 
+.logInInputBorder {
+    border-radius: 9px;
+    border: 1px solid #D1D1D1;
+    width: 330px;
+    padding: 8px 15px;
+    outline: none;
+}
+
+.top9 {
+    top: 9px;
+}
+
+.top11 {
+    top: 11px;
+}
+
 .right0 {
     right: 0;
 }
 
+.right11 {
+    right: 11px;
+}
+
 /* ---------- ANIMATIONS ---------- */
+
+.opacity0to1 {
+    animation-name: opacity0to1;
+    animation-duration: 1.5s;
+    animation-fill-mode: forwards;
+}
 
 .logoSlideIn {
     animation-name: logoSlideIn;
-    animation-duration: 2s;
+    animation-duration: 1s;
     animation-fill-mode: forwards;
+}
+
+@keyframes opacity0to1 {
+    0% {
+        opacity: 0;
+    }
+    25% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 @keyframes logoSlideIn {
