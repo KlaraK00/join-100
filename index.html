@@ -6,12 +6,13 @@
     <title>Log in</title>
     <link rel="stylesheet" href="./styles/style.css">
     <link rel="stylesheet" href="./styles/index.css">
+    <script src="./js/index.js" defer></script>
 </head>
 <body>
     <img class="posAbsolute logoSlideIn" src="./img/joinLogoBig.png" alt="Join-Logo">
     <section class="posAbsolute right0 padTop60 padRight60 opacity0to1">
         <span class="fontSize16 padRight30">Not a Join user?</span>
-        <button class="cursorPointer darkBtn fontBold fontSize16">Sign up</button>
+        <a href="./register.html" class="cursorPointer darkBtn fontBold fontSize16 noDecoration">Sign up</a>
     </section>
     <section class="overDivFormLogIn opacity0to1">
         <form class="formLogIn dFlex directionColumn alignCenter">
@@ -20,28 +21,29 @@
             </h1>
             <div class="blueLine"></div>
             <div class="posRelative">
-                <input class="cursorPointer marBot16px fontSize16 logInInputBorder" type="email" required>
-                <img class="posAbsolute logInInputPicture height13 right11 top11" src="./img/logInMail.png" alt="E-Mail-picture">
+                <input class="cursorPointer marBot20 fontSize16 logInInputBorder" type="email" required>
+                <img class="posAbsolute logInInputPicture height13 right11 top11 pointerEventsNone" src="./img/logInMail.png" alt="E-Mail-picture">
             </div>
             <div class="posRelative">
-                <input class="cursorPointer marBot16px fontSize16 logInInputBorder" type="password" required>
-                <img class="posAbsolute logInInputPicture height15 right11 top9" src="./img/logInLock.png" alt="Password-picture">
+                <input id="logInPassword" oninput="logInShowEyeOrLock()" onfocusout="logInShowLock()" class="cursorPointer marBot20 fontSize16 logInInputBorder" type="password" required>
+                <img id="logInLock" class="posAbsolute logInInputPicture height18 right11 top9 pointerEventsNone" src="./img/logInLock.png" alt="Password-picture">
+                <img id="logInVisibilityOff" class="posAbsolute right11 height15 top11 pointerEventsNone d-none" src="./img/logInVisibilityOff.png" alt="visibility-off-picture">
             </div>
-            <div>
+            <div class="marBot20">
                 <input id="logInRememberMe" type="checkbox">
                 <label for="logInRememberMe">Remember me</label>
             </div>
-            <div>
+            <div class="dFlex">
                 <button class="cursorPointer darkBtn fontBold fontSize16">Log in</button>
-                <div class="overDivGuestLogInBtn">
+                <div class="overDivGuestLogInBtn marLeft30">
                     <div class="cursorPointer fontDarkBlue fontBold fontSize16 transparentBtn">Guest Log in</div>
                 </div>
             </div>
         </form>
     </section>
     <section class="posAbsolute bot60LeftCenter opacity0to1">
-        <a class="noDecoration fontLightGrey hoverFontLightBlue hoverFontBold padRight30" href="#">Privacy Policy</a>
-        <a class="noDecoration fontLightGrey hoverFontLightBlue hoverFontBold" href="#">Legal notice</a>
+        <a class="fontSize14 noDecoration fontLightGrey hoverFontLightBlue hoverFontBold padRight30" href="#">Privacy Policy</a>
+        <a class="fontSize14 noDecoration fontLightGrey hoverFontLightBlue hoverFontBold" href="#">Legal notice</a>
     </section>
 </body>
 </html>

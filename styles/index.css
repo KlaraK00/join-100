@@ -14,6 +14,10 @@ h1 {
 }
 
 .height15 {
+    height: 15px;
+}
+
+.height18 {
     height: 18px;
 }
 
@@ -31,17 +35,36 @@ h1 {
     padding-right: 60px;
 }
 
-.marBot16px {
+.marBot20 {
     margin-bottom: 20px;
 }
 
+.marLeft30{
+    margin-left: 30px;
+}
+
 /* ---------- FONTS ---------- */
+
+.fontSize14 {
+    font-size: 14px;
+}
 
 .fontSize16 {
     font-size: 16px;
 }
 
+.hoverBlueUnderline:hover {
+    text-decoration: underline;
+    text-decoration-color: #29ABE2;
+}
+
 /* ---------- OTHERS ---------- */
+
+.registerJoinLogo {
+    width: 100px;
+    left: 60px;
+    top: 60px;
+}
 
 .overDivFormLogIn {
     width: 100%;
@@ -49,13 +72,15 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: absolute;
+    z-index: -1;
 }
 
 .formLogIn {
     box-shadow: 0px 0px 14px 3px #0000000A;
     background-color: white;
     padding: 40px 60px;
-    border-radius: 10px;
+    border-radius: 25px;
 }
 
 .blueLine {
@@ -76,6 +101,14 @@ h1 {
     width: 330px;
     padding: 8px 15px;
     outline: none;
+}
+
+.logInInputBorder:focus {
+    border: 1px solid #29ABE2;
+}
+
+.pointerEventsNone {
+    pointer-events: none;
 }
 
 .top9 {
@@ -121,12 +154,17 @@ h1 {
 }
 
 @keyframes logoSlideIn {
-    from {
+    0% {
         width: 274px;
         left: calc(50vw - 137px);
         top: calc(50vh - 167px);
     }
-    to {
+    25% {
+        width: 274px;
+        left: calc(50vw - 137px);
+        top: calc(50vh - 167px);
+    }
+    100% {
         width: 100px;
         left: 60px;
         top: 60px;

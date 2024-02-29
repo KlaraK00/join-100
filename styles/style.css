@@ -51,6 +51,10 @@ body {
     color: #2A3647;
 }
 
+.fontLightBlue {
+    color: #29ABE2;
+}
+
 .hoverFontLightBlue:hover {
     color: #29ABE2;
 }   
