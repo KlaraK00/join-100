@@ -1,6 +1,12 @@
 body {
     margin: 0;
     display: flex;
+    font-family: Inter, sans-serif;
+}
+
+@font-face {
+    font-family: Inter, sans-serif;
+    src: url(/fonts/inter-v13-latin-regular.woff2);
 }
 
 .contact-container {
@@ -25,7 +31,7 @@ body {
 }
 
 button {
-    background-image: url(./img/person_add.png);
+    background-image: url(/img/person_add.png);
     background-repeat: no-repeat;
     background-position: 90%;
     background-color: rgba(42, 54, 71);
@@ -39,6 +45,10 @@ button {
     font-size: 21px;
     margin-right: 20px;
     margin-top: 22.5px;
+}
+
+button:hover {
+    background-color: rgb(41,171,226);
 }
 
 .contact-headline {
