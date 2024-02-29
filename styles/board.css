@@ -1,0 +1,62 @@
+.menubar {
+    display: flex;
+   align-items: center;
+   justify-content: space-between;
+   margin-left: 50px;
+   margin-right: 50px;
+   
+}
+
+.menubar h2 {
+    font-size: 52px;
+}
+
+#searchTask{
+    font-size: 32px;
+    height:200px;
+    
+} 
+.menubar input{
+    height: 48px;
+    width: 312px; 
+    border-radius: 10px;
+    border: 1px; 
+    padding: 8px, 16px, 8px, 16px; 
+    gap: 10px;
+    font-size: 20px;
+    font-weight: 400;
+}
+.menubar button {
+    border: 1px;
+    display: flex;
+    gap: 4px;
+    padding: 8px, 16px, 8px, 16px;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 21px;
+    height: 48px;
+    width: 160px;
+    border-radius: 10px;
+    background-color: black;
+    color:white;
+}
+
+.fakeInput {
+    display: flex; 
+    align-items: center;
+    gap: 16px;
+}
+
+.fakeInput img {
+width: 48px; 
+height: 32px;
+}
+
+.searchAdd {
+    display: flex;
+    gap: 10px;
+    
+}
+
+
