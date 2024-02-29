@@ -3,6 +3,32 @@ body {
     margin: 0;
 }
 
+
 .d-none {
     display: none;
+}
+.posAbsolute {
+    position: absolute;
+}
+
+.cursorPointer {
+    cursor: pointer;
+}
+
+.fontBold {
+    font-weight: bold;
+}
+
+.darkBtn {
+    background-color: #2A3647;
+    color: white;
+    padding: 12px 15px 12px 15px;
+    border: none;
+    border-radius: 7px;
+    transition: all 225ms ease-in-out;
+}
+
+.darkBtn:hover {
+    background-color: #29ABE2;
+    box-shadow: 0px 4px 4px 0px #00000040;
 }
