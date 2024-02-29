@@ -1,3 +1,11 @@
+
+.menuwrapper {
+    display: flex; 
+    flex-direction: column;
+    position: absolute;
+    top: 96px;
+    left: 232px;
+}
 .menubar {
     display: flex;
    align-items: center;
@@ -59,4 +67,19 @@ height: 32px;
     
 }
 
+.progressBar {
+    width: 1208px; 
+    height: 24px; 
+    display: flex; 
+    justify-content: space-between;
+    padding: 0px, 64px, 0px, 64px;
+    margin-left: 64px;
+}
 
+
+.lineUp {
+    width: 244px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
