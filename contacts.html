@@ -5,11 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacts</title>
     <link rel="stylesheet" href="./styles/contacts.css">
+    <script src="/js/navBar.js"></script>
 </head>
-<body>
+<body onload="includeHTML()">
+    <div w3-include-html="/templates/navBar.html"></div>
+    <div w3-include-html="/templates/header.html"></div>
     <div class="contact-container">
         <div class="left-side">
-            <button>Add new contact</button>
+            <div class="add-button"><button>Add new contact</button></div>
             <div class="letter">
                 A
             </div>
@@ -37,7 +40,7 @@
             </div>
             <h4>Contact Information</h4>
             <h5>Email</h5>
-            antom@gmail.com
+            <a href="">antom@gmail.com</a>
             <h5>Phone</h5>
             +49 1111 111 11 1
         </div>

@@ -2,6 +2,7 @@ body {
     margin: 0;
     display: flex;
     font-family: Inter, sans-serif;
+    background-color: white !important;
 }
 
 @font-face {
@@ -11,18 +12,19 @@ body {
 
 .contact-container {
     display: flex;
-    margin-left: 232px;
+    width: 100%;
 }
 
 .left-side {
-    width: 40%;
+    width: 35%;
     height: 100vh;
     margin-top: 96px;
     padding-left: 40px;
+    padding-right: 40px;
 }
 
 .right-side {
-    width: 60%;
+    width: 65%;
     background-color: rgb(246,247,248);
     height: 100vh;
     margin-top: 96px;
@@ -38,12 +40,10 @@ button {
     color: white;
     border-radius: 10px;
     border: 1px;
-    padding: 12px;
-    width: 352px;
+    width: 100%;
     height: 56px;
     cursor: pointer;
     font-size: 21px;
-    margin-right: 20px;
     margin-top: 22.5px;
 }
 
@@ -60,16 +60,19 @@ button:hover {
 
 h1 {
     font-size: 61px;
+    font-weight: 700;
 }
 
 h2 {
     font-size: 27px;
+    font-weight: 400;
 }
 
 h3 {
     font-size: 47px;
     margin-block-start: 0;
     margin-block-end: 0;
+    font-weight: 500;
 }
 
 h4 {
@@ -164,7 +167,6 @@ h5 {
     margin-top: 5px;
     padding: 15px;
     cursor: pointer;
-    margin-right: 20px;
 }
 
 .informations:hover {
@@ -173,7 +175,7 @@ h5 {
 }
 
 .line-contacts {
-    width: 352px;
+    width: 100%;
     border: 1px;
     background-color: rgb(231,231,231);
     height: 1px;
@@ -181,4 +183,9 @@ h5 {
 
 a {
     color: rgb(32,140,240);
+}
+
+.add-button {
+    display: flex;
+    align-items: center;
 }
