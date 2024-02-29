@@ -1,0 +1,55 @@
+h1 {
+    font-size: 64px;
+}
+
+.logoSlideIn {
+    animation-name: logoSlideIn;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+.overDivFormLogIn {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.right0 {
+    right: 0;
+}
+
+.bot60LeftCenter {
+    bottom: 60px;
+    left: calc(50vw - 110px);
+}
+
+.padTop60 {
+    padding-top: 60px;
+}
+
+.padRight30 {
+    padding-right: 30px;
+}
+
+.padRight60 {
+    padding-right: 60px;
+}
+
+.fontSize16 {
+    font-size: 16px;
+}
+
+@keyframes logoSlideIn {
+    from {
+        width: 274px;
+        left: calc(50vw - 137px);
+        top: calc(50vh - 167px);
+    }
+    to {
+        width: 100px;
+        left: 60px;
+        top: 60px;
+    }
+}

@@ -1,0 +1,76 @@
+body {
+    font-family: "inter", sans-serif;
+    margin: 0;
+}
+
+.cursorPointer {
+    cursor: pointer;
+}
+
+.posAbsolute {
+    position: absolute;
+}
+
+/* ---------- DISPLAY ---------- */
+
+.d-none {
+    display: none;
+}
+
+.dFlex {
+    display: flex;
+}
+
+.directionColumn {
+    flex-direction: column;
+}
+
+.alignCenter {
+    align-items: center;
+}
+
+.justCenter {
+    justify-content: center;
+}
+
+.justBetween {
+    justify-content: space-between;
+}
+
+/* ---------- FONTS ---------- */
+
+.fontLightGrey {
+    color: #CDCDCD;
+}
+
+.hoverFontLightBlue:hover {
+    color: #29ABE2;
+}   
+
+.fontBold {
+    font-weight: bold;
+}
+
+.hoverFontBold:hover {
+    font-weight: bold;
+}
+
+.noDecoration {
+    text-decoration: none;
+}
+
+/* ---------- BUTTONS ---------- */
+
+.darkBtn {
+    background-color: #2A3647;
+    color: white;
+    padding: 12px 15px 12px 15px;
+    border: none;
+    border-radius: 7px;
+    transition: all 225ms ease-in-out;
+}
+
+.darkBtn:hover {
+    background-color: #29ABE2;
+    box-shadow: 0px 4px 4px 0px #00000040;
+}
