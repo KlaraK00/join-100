@@ -2,3 +2,7 @@ body {
     font-family: "inter", sans-serif;
     margin: 0;
 }
+
+.d-none {
+    display: none;
+}
