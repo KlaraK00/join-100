@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../styles/navBar.css">
+</head>
+<body>
+    <div id="menu" class="menu">
+        <div class="menuLogo">
+          <img src="../img/join_logo_white.png" alt="join_logo">
+        </div>
+        <div class="menuButtonContainer" id="menuButtonContainer">
+          <div class="selectedMenuButton" id="summaryButton" onclick="openPage('summary')">
+            <img src="../img/summary_icon.png" alt="summary_icon">
+            <p>Summary</p>
+          </div>
+          <div class="menuButton" id="addTaskButton" onclick="openPage('add_task')">
+            <img src="../img/add_task_icon.png" alt="add_task_icon">
+            <p>Add Task</p>
+          </div>
+          <div class="menuButton" id="boardButton" onclick="openPage('board')">
+            <img src="../img/board_icon.png" alt="board_icon">
+            <p>Board</p>
+          </div>
+          <div class="menuButton" id="contactButton" onclick="openPage('contacts')">
+            <img src="../img/contact_icon.png" alt="contact_icon">
+            <p>Contacts</p>
+          </div>
+        </div>
+        <div class="menuFooter">
+          <p id="privacyPolicyButton" class="menuFooterButton" onclick="openPage('policy')">Privacy Policy</p>
+          <p id="legalNoticeButton" class="menuFooterButton" onclick="openPage('legality')">Legal notice</p>
+        </div>
+      </div>
+</body>
+</html>
