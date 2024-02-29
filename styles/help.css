@@ -1,0 +1,43 @@
+body {
+    margin: 0;
+    display: flex;
+    font-family: Inter, sans-serif;
+}
+
+@font-face {
+    font-family: Inter, sans-serif;
+    src: url(/fonts/inter-v13-latin-regular.woff2);
+}
+
+.main-help-container {
+    margin-top: 206px;
+    margin-left: 96px;
+    margin-right: 40px;
+}
+
+h1 {
+    font-size: 61px;
+}
+
+h3 {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    font-size: 20px;
+}
+
+p {
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+
+.how-to-use {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.number {
+    font-size: 27px;
+}
