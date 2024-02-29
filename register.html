@@ -6,33 +6,42 @@
     <title>Register</title>
     <link rel="stylesheet" href="./styles/style.css">
     <link rel="stylesheet" href="./styles/index.css">
+    <script src="./js/register.js" defer></script>
 </head>
 <body>
     <img class="posAbsolute registerJoinLogo" src="./img/joinLogoBig.png" alt="Join-Logo">
     <div class="overDivFormLogIn">
-        <form class="formLogIn dFlex directionColumn alignCenter">
+        <form class="formLogIn dFlex directionColumn alignCenter posRelative">
+            <div onclick="history.back()" class="parentRegisterArrowBack">
+                <img src="./img/registerArrowBack.png" class="registerArrowBack cursorPointer">
+            </div>
             <h1>Sign up</h1>
             <div class="blueLine"></div>
-            <div>
-                <input minlength="3" type="text">
+            <div class="marBot20">
+                <input class="cursorPointer logInInputBorder fontSize16" placeholder="Name" minlength="3" type="text">
                 <img src="" alt="">
             </div>
-            <div>
-                <input minlength="4" type="email">
+            <div class="marBot20">
+                <input class="cursorPointer logInInputBorder fontSize16" placeholder="Email" minlength="4" type="email">
                 <img src="" alt="">
             </div>
-            <div>
-                <input minlength="7" type="password">
+            <div class="marBot20">
+                <input class="cursorPointer logInInputBorder fontSize16" placeholder="Password" minlength="7" type="password">
                 <img src="" alt="">
             </div>
-            <div>
-                <input minlength="7" type="password">
+            <div class="marBot20">
+                <input class="cursorPointer logInInputBorder fontSize16" placeholder="Confirm Password" minlength="7" type="password">
                 <img src="" alt="">
             </div>
-            <div>
-                <input id="registerAcceptPrivacy" type="checkbox">
-                <div class="fontSize14"><label class="fontLightGrey" for="registerAcceptPrivacy">I accept the </label><a class="noDecoration fontLightBlue hoverBlueUnderline" href="./privacyPolicy.html">Privacy Policy</a></div>
+            <div class="dFlex alignCenter marBot20">
+                <label class="fontLightGrey cursorPointer posRelative">
+                    <img id="registerCheckedCheckbox" class="registerCheckedCheckbox d-none" src="./img/registerCheckedCheckbox.png" alt="checked checkbox">
+                    <input id="registerCheckbox" class="cursorPointer registerAcceptPrivacy"  type="checkbox">
+                    <span id="registerSpanAccept" class="padLeft8">I accept the</span>   
+                </label>
+                <a class="noDecoration fontLightBlue hoverBlueUnderline padLeft8" href="./privacyPolicy.html">Privacy Policy</a>
             </div>
+            <button class="darkBtn cursorPointer fontSize16 fontBold">Sign up</button>
         </form>
     </div>
     <section class="posAbsolute bot60LeftCenter opacity0to1">

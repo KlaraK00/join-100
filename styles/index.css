@@ -5,6 +5,7 @@ body {
 h1 {
     font-size: 64px;
     margin: 16px;
+    margin-top: 0;
 }
 
 /* ---------- HEIGHT AND WIDTH ---------- */
@@ -35,8 +36,16 @@ h1 {
     padding-right: 60px;
 }
 
+.padLeft8 {
+    padding-left: 8px;
+}
+
 .marBot20 {
     margin-bottom: 20px;
+}
+
+.marLeft23 {
+    margin-left: 23px;
 }
 
 .marLeft30{
@@ -60,6 +69,41 @@ h1 {
 
 /* ---------- OTHERS ---------- */
 
+.registerCheckedCheckbox {
+    top: -2px;
+    position: absolute;
+    height: 19px;
+}
+
+.parentRegisterArrowBack {
+    position: absolute;
+    left: 50px;
+    top: 60px;
+    height: 20px;
+    padding: 6px;
+    transition: all 125ms ease-in-out;
+}
+
+.parentRegisterArrowBack:hover {
+    padding: 5px;
+    background-color: #f4f4f4;
+    border-radius: 100%;
+}
+
+.registerArrowBack {
+    height: 18px;
+    transition: all 125ms ease-in-out;
+}
+
+.registerArrowBack:hover {
+    height: 20px;
+}
+
+.overDivGuestLogInBtn {
+    width: 134px;
+    height: 46px;
+}
+
 .registerJoinLogo {
     width: 100px;
     left: 60px;
@@ -79,7 +123,7 @@ h1 {
 .formLogIn {
     box-shadow: 0px 0px 14px 3px #0000000A;
     background-color: white;
-    padding: 40px 60px;
+    padding: 40px 80px;
     border-radius: 25px;
 }
 
@@ -105,6 +149,10 @@ h1 {
 
 .logInInputBorder:focus {
     border: 1px solid #29ABE2;
+}
+
+.logInInputBorder::placeholder {
+    color: #CDCDCD;
 }
 
 .pointerEventsNone {
