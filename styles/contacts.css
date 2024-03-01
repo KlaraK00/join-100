@@ -1,12 +1,11 @@
 body {
     margin: 0;
-    display: flex;
-    font-family: Inter, sans-serif;
+    font-family: "Inter", sans-serif;
     background-color: white !important;
 }
 
 @font-face {
-    font-family: Inter, sans-serif;
+    font-family: "Inter", sans-serif;
     src: url(/fonts/inter-v13-latin-regular.woff2);
 }
 
@@ -16,21 +15,29 @@ body {
 }
 
 .left-side {
-    width: 35%;
-    height: 100vh;
+    height: calc(100vh - 96px);
+    margin-top: 96px;
+    padding-left: 40px;
+    padding-right: 40px;
+    background-color: white;
+    margin-left: 232px;
+    width: 35vw;
+}
+
+.right-side-infos {
+    position: sticky;
+    top: 96px;
+}
+
+.right-side {
+    width: 65vw;
+    background-color: rgb(246,247,248);
     margin-top: 96px;
     padding-left: 40px;
     padding-right: 40px;
 }
 
-.right-side {
-    width: 65%;
-    background-color: rgb(246,247,248);
-    height: 100vh;
-    margin-top: 96px;
-    padding-left: 40px;
-    padding-right: 40px;
-}
+
 
 button {
     background-image: url(/img/person_add.png);
@@ -187,6 +194,12 @@ a {
 }
 
 .add-button {
-    display: flex;
-    align-items: center;
+    position: sticky;
+    top: 96px;
+    background-color: white;
+}
+
+.contact-area {
+    overflow-y: scroll;
+    height: calc(100vh - 174.5px);
 }
