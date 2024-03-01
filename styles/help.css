@@ -41,3 +41,13 @@ p {
 .number {
     font-size: 27px;
 }
+
+.arrow {
+    position: fixed;
+    top: 225px;
+    right: 40px;
+}
+
+.blue {
+    color: #29ABE2;
+}
