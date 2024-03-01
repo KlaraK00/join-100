@@ -161,6 +161,7 @@ h5 {
 
 .informations {
     display: flex;
+    align-items: center;
     gap: 35px;
     padding-left: 20px;
     border-radius: 10px;
