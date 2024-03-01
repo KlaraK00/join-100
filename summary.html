@@ -6,10 +6,12 @@
     <title>Summary</title>
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="./styles/summary.css">
+    <script src="js/navBar.js"></script>
   </head>
-  <body>
+  <body onload="includeHTML()">
     <!--  -->
-
+    <div w3-include-html="/templates/navBar.html"></div>
+    <div w3-include-html="/templates/header.html"></div>
     <div class="summary-container" id="summaryContainer">
       <div class="headline">
         <span class="fs-61 fw-700">Join 100</span>
@@ -67,14 +69,14 @@
                     <div class="flex-container flex-column center">
                       <img
                         class="arrow-icon"
-                        src="./img/arrow.png"
+                        src="./img/arrow-icon.png"
                         alt=""
                       />
-                      <img
+                      <!-- <img
                         class="arrow-icon mt-minus-5"
                         src="./assets/img/arrow.svg"
                         alt=""
-                      />
+                      /> -->
                     </div>
                   </div>
                   <div>
