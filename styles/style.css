@@ -43,6 +43,10 @@ body {
 
 /* ---------- FONTS ---------- */
 
+.fontRed {
+    color: rgba(255, 0, 0, 0.6);
+}
+
 .fontLightGrey {
     color: #CDCDCD;
 }

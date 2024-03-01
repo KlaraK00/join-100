@@ -10,9 +10,13 @@
     <script src="./js/index.js" defer></script>
 </head>
 <body>
+    <dialog></dialog>
+    <dialog class="fontSize16 registerDialog">
+        <span class="darkBtn">You Signed Up successfully</span>
+    </dialog>
     <img class="posAbsolute registerJoinLogo" src="./img/joinLogoBig.png" alt="Join-Logo">
     <div class="overDivFormLogIn">
-        <form class="formLogIn dFlex directionColumn alignCenter posRelative">
+        <form onsubmit="register(event)" class="formLogIn dFlex directionColumn alignCenter posRelative">
             <div onclick="history.back()" class="parentRegisterArrowBack">
                 <img src="./img/registerArrowBack.png" class="registerArrowBack cursorPointer">
             </div>
@@ -32,11 +36,12 @@
                 <img id="registerFirstVisibilityOnOrOff" onclick="visibilityOnOff('registerFirstVisibilityOnOrOff', 'registerFirstLock', 'registerFirstPassword')" class="posAbsolute right15 height15 top11 d-none cursorPointer" src="./img/logInVisibilityOff.png" alt="visibility-off-picture">
             </div>
             <div class="marBot20 posRelative">
-                <input id="registerSecondPassword" oninput="showEyeOrLock('registerSecondPassword', 'registerSecondLock', 'registerSecondVisibilityOnOrOff')" class="cursorPointer logInInputBorder fontSize16" placeholder="Confirm Password" minlength="7" type="password">
+                <input id="registerSecondPassword" oninput="showEyeOrLock('registerSecondPassword', 'registerSecondLock', 'registerSecondVisibilityOnOrOff'), removeRedBorder('registerSecondPassword'), removeDiv('informNotTheSamePassword')" class="cursorPointer logInInputBorder fontSize16" placeholder="Confirm Password" minlength="7" type="password">
                 <img id="registerSecondLock" onclick="focusOn('registerSecondPassword')" class="posAbsolute logInInputPicture height18 right15 top9 cursorPointer" src="./img/logInLock.png" alt="lock-img">
                 <img id="registerSecondVisibilityOnOrOff" onclick="visibilityOnOff('registerSecondVisibilityOnOrOff', 'registerSecondLock', 'registerSecondPassword')" class="posAbsolute right15 height15 top11 d-none cursorPointer" src="./img/logInVisibilityOff.png" alt="visibility-off-picture">
+                <div id="informNotTheSamePassword" class="fontRed fontSize11 posAbsolute bottomMinus18 d-none">Ups! your password don't match</div>
             </div>
-            <div class="dFlex alignCenter marBot20">
+            <div class="dFlex alignCenter marBot20 marTop10">
                 <img onclick="changeCheckbox('registerCheckbox')" id="registerCheckbox" class="registerCheckbox cursorPointer" src="./img/checkboxNotChecked.png" alt="checkbox">
                 <span id="registerSpanAccept" class="fontSize14 padLeft8 fontLightGrey">I accept the</span>   
                 <a class="noDecoration fontSize14 fontLightBlue hoverBlueUnderline padLeft8" href="./privacyPolicy.html">Privacy Policy</a>
