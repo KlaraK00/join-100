@@ -1,101 +1,77 @@
-/* ---------- checkbox ---------- */
-
-let logInRememberMe = document.getElementById('logInRememberMe');
-
-if(logInRememberMe) {
-    logInRememberMe.addEventListener('change', () => {
-        if (logInRememberMe.checked) {
-            registerShowCheckedCheckbox();
-        } else {
-            registerShowNoCheckedCheckbox();
-        }
-    })
-}
-
-function registerShowCheckedCheckbox() {
-
-    console.log('checked');
-}
-
-function registerShowNoCheckedCheckbox() {
-
-    console.log('not checked');
-}
-
 /* ---------- password-visibility and lock-img ---------- */
 
-function logInShowEyeOrLock() {
-    if(logInPasswordIsEmpty()) {
-        logInShowLock();
-        console.log('input is empty');
+function showEyeOrLock(input, lock, eye) {
+    if(passwordIsEmpty(input)) {
+        showLock(lock, eye);
     } else {
-        logInShowEye();
-        console.log('input is not empty');
+        showEye(eye, lock);
     }
 }
 
-function logInPasswordIsEmpty() {
-    let logInPassword = document.getElementById('logInPassword').value;
-    return logInPassword == '';
+function passwordIsEmpty(input) {
+    let password = document.getElementById(input).value;
+    return password == '';
 }
 
-function logInShowLock() {
-    appearLogInLock();
-    disappearLogInEye();
+function showLock(lock, eye) {
+    appearLock(lock);
+    disappearEye(eye);
 }
 
-function appearLogInLock() {
-    let logInLock = document.getElementById('logInLock');
-    logInLock.classList.remove('d-none');
+function appearLock(lock) {
+    let lockImg = document.getElementById(lock);
+    lockImg.classList.remove('d-none');
 }
 
-function disappearLogInEye() {
-    let logInVisibilityOnOff = document.getElementById('logInVisibilityOnOrOff');
-    logInVisibilityOnOff.classList.add('d-none');
+function disappearEye(eye) {
+    let eyeImg = document.getElementById(eye);
+    eyeImg.classList.add('d-none');
 }
 
-function logInShowEye() {
-    disappearLogInLock();
-    appearLogInEye();
+function showEye(eye, lock) {
+    disappearLock(lock);
+    appearLogInEye(eye);
 }
 
-function disappearLogInLock() {
-    let logInLock = document.getElementById('logInLock');
-    logInLock.classList.add('d-none');
+function disappearLock(lock) {
+    let lockImg = document.getElementById(lock);
+    lockImg.classList.add('d-none');
 }
 
-function appearLogInEye() {
-    let logInVisibilityOnOff = document.getElementById('logInVisibilityOnOrOff');
-    logInVisibilityOnOff.classList.remove('d-none');
+function appearLogInEye(eye) {
+    let eyeImg = document.getElementById(eye);
+    eyeImg.classList.remove('d-none');
 }
 
-function logInVisibilityOnOff() { // not functioning without devTools in chrome
-    showRightVisibility();
-    disappearLogInLock();
-    console.log('you clicked on the eye');
+function visibilityOnOff(id, lock, input) {
+    showRightVisibility(id, input);
+    disappearLock(lock);
 }
 
-function showRightVisibility() {
-    let logInVisibilityOnOff = document.getElementById('logInVisibilityOnOrOff');
-    if (logInVisibilityOnOff.src.includes('logInVisibilityOff.png')) {
-        visibilityOn();
+function showRightVisibility(id, input) {
+    let visibility = document.getElementById(id);
+    if (visibility.src.includes('logInVisibilityOff.png')) {
+        visibilityOn(id, input);
     } else {
-        visibilityOff();
+        visibilityOff(id, input);
     }
 }
 
-function visibilityOn() {
-    let logInVisibilityOnOff = document.getElementById('logInVisibilityOnOrOff');
-    let logInPassword = document.getElementById('logInPassword');
-    logInVisibilityOnOff.src = './img/registerOpenEye.png';
-    logInPassword.type = "text";
+function visibilityOn(id, input) {
+    let visibilityOnOrOff = document.getElementById(id);
+    let password = document.getElementById(input);
+    visibilityOnOrOff.src = './img/registerOpenEye.png';
+    visibilityOnOrOff.style.height = '13.5px';
+    visibilityOnOrOff.style.width = '17px';
+    password.type = "text";
 }
 
-function visibilityOff() {
-    let logInVisibilityOnOff = document.getElementById('logInVisibilityOnOrOff');
-    let logInPassword = document.getElementById('logInPassword');
-    logInVisibilityOnOff.src = './img/logInVisibilityOff.png';
-    logInPassword.type = "password";
+function visibilityOff(id, input) {
+    let visibilityOnOrOff = document.getElementById(id);
+    let password = document.getElementById(input);
+    visibilityOnOrOff.src = './img/logInVisibilityOff.png';
+    visibilityOnOrOff.style.height = '15px';
+    password.type = "password";
 }
 
 /* ---------- focus on element ---------- */
