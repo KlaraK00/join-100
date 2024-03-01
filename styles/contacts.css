@@ -37,9 +37,14 @@ body {
     padding-right: 40px;
 }
 
-
-
 button {
+    color: white;
+    border-radius: 10px;
+    border: 1px;
+    cursor: pointer;
+}
+
+.button1 {
     background-image: url(/img/person_add.png);
     background-repeat: no-repeat;
     background-position: 90%;
@@ -54,7 +59,7 @@ button {
     margin-top: 22.5px;
 }
 
-button:hover {
+.button1:hover {
     background-color: rgb(41,171,226);
 }
 
@@ -146,11 +151,23 @@ h5 {
 .edit {
     display: flex;
     align-items: center;
+    cursor: pointer;
+}
+
+.edit:hover {
+    color:#29ABE2;
+    filter: brightness(0) saturate(100%) invert(52%) sepia(98%) saturate(407%) hue-rotate(155deg) brightness(93%) contrast(90%);
 }
 
 .delete {
     display: flex;
     align-items: center;
+    cursor: pointer;
+}
+
+.delete:hover {
+    color: #29ABE2;
+    filter: brightness(0) saturate(100%) invert(52%) sepia(98%) saturate(407%) hue-rotate(155deg) brightness(93%) contrast(90%);
 }
 
 .letter {
@@ -202,4 +219,194 @@ a {
 .contact-area {
     overflow-y: scroll;
     height: calc(100vh - 174.5px);
+}
+
+.overlay-add-contact {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.overlay-contact {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    border-radius: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    height: 70%;
+    width: 90%;
+    position: relative;
+    animation: slideIn 0.5s ease-in-out;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.d-none {
+    display: none;
+}
+
+.blue-container {
+    background-color: #2b3647;
+    width: 40%;
+    height: 100%;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    padding-left: 40px;
+    color: white;
+}
+
+.blue-container h1 {
+    margin-block-end: 0;
+    margin-block-start: 10px;
+}
+
+.close-button {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    right: 32px;
+    top: 48px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.close-button:hover {
+    filter: brightness(0) saturate(100%) invert(52%) sepia(98%) saturate(407%) hue-rotate(155deg) brightness(93%) contrast(90%);
+}
+
+.profile-logo {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+}
+
+.input-new-contact {
+    width: 40%;
+    margin-right: 20px;
+}
+
+.input-fields {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+}
+
+.add-contact-button {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.button2 {
+    padding-top: 16px;
+    padding-bottom: 16px;
+    padding-left: 16px;
+    background-color: white;
+    color: black;
+    border: solid 1px;
+    border-color: #2A3647;
+    width: 30%;
+    font-size: 21px;
+    background-image: url(/img/cancel-button.png);
+    background-repeat: no-repeat;
+    background-position: 80%;
+    text-align: left;
+}
+
+.button2:hover {
+    border-color: rgb(41,171,226);
+    color: rgb(41,171,226);
+}
+
+.button3 {
+    background-color: rgba(42, 54, 71);
+    width: 45%;
+    font-size: 21px;
+    background-image: url(/img/check.png);
+    background-repeat: no-repeat;
+    background-position: 90%;
+    text-align: left;
+    padding-left: 16px;
+}
+
+.button3:hover {
+    background-color: rgb(41,171,226); 
+}
+
+.input {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #d1d1d1;
+    border-radius: 10px;
+    padding: 13px 21px 13px 21px;
+    width: 80%;
+}
+
+.background-img-profile {
+    background-image: url(/img/person.png);
+    background-repeat: no-repeat;
+    background-position: 95%;
+}
+
+.background-img-mail {
+    background-image: url(/img/mail.png);
+    background-repeat: no-repeat;
+    background-position: 95%;
+}
+
+.background-img-phone {
+    background-image: url(/img/call.png);
+    background-repeat: no-repeat;
+    background-position: 95%;
+}
+
+.button4 {
+    padding: 16px;
+    background-color: white;
+    color: black;
+    border: solid 1px;
+    border-color: #2A3647;
+    width: 25%;
+    font-size: 21px;
+    text-align: center;
+}
+
+.button4:hover {
+    border-color: rgb(41,171,226);
+    color: rgb(41,171,226);
+}
+
+.button5 {
+    background-color: rgba(42, 54, 71);
+    width: 25%;
+    font-size: 21px;
+    background-image: url(/img/check.png);
+    background-repeat: no-repeat;
+    background-position: 80%;
+    text-align: left;
+    padding-left: 16px;
+}
+
+.button5:hover {
+    background-color: rgb(41,171,226); 
 }

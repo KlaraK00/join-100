@@ -27,12 +27,14 @@
                 <img onclick="focusOn('registerEmail')" class="posAbsolute logInInputPicture height13 right15 top11 cursorPointer" src="./img/logInMail.png" alt="email-img">
             </div>
             <div class="marBot20 posRelative">
-                <input id="registerFirstPassword" class="cursorPointer logInInputBorder fontSize16" placeholder="Password" minlength="7" type="password">
-                <img onclick="focusOn('registerFirstPassword')" class="posAbsolute logInInputPicture height18 right15 top9 cursorPointer" src="./img/logInLock.png" alt="lock-img">
+                <input id="registerFirstPassword" oninput="showEyeOrLock('registerFirstPassword', 'registerFirstLock', 'registerFirstVisibilityOnOrOff')" class="cursorPointer logInInputBorder fontSize16" placeholder="Password" minlength="7" type="password">
+                <img id="registerFirstLock" onclick="focusOn('registerFirstPassword')" class="posAbsolute logInInputPicture height18 right15 top9 cursorPointer" src="./img/logInLock.png" alt="lock-img">
+                <img id="registerFirstVisibilityOnOrOff" onclick="visibilityOnOff('registerFirstVisibilityOnOrOff', 'registerFirstLock', 'registerFirstPassword')" class="posAbsolute right15 height15 top11 d-none cursorPointer" src="./img/logInVisibilityOff.png" alt="visibility-off-picture">
             </div>
             <div class="marBot20 posRelative">
-                <input id="registerSecondPassword" class="cursorPointer logInInputBorder fontSize16" placeholder="Confirm Password" minlength="7" type="password">
-                <img onclick="focusOn('registerSecondPassword')" class="posAbsolute logInInputPicture height18 right15 top9 cursorPointer" src="./img/logInLock.png" alt="lock-img">
+                <input id="registerSecondPassword" oninput="showEyeOrLock('registerSecondPassword', 'registerSecondLock', 'registerSecondVisibilityOnOrOff')" class="cursorPointer logInInputBorder fontSize16" placeholder="Confirm Password" minlength="7" type="password">
+                <img id="registerSecondLock" onclick="focusOn('registerSecondPassword')" class="posAbsolute logInInputPicture height18 right15 top9 cursorPointer" src="./img/logInLock.png" alt="lock-img">
+                <img id="registerSecondVisibilityOnOrOff" onclick="visibilityOnOff('registerSecondVisibilityOnOrOff', 'registerSecondLock', 'registerSecondPassword')" class="posAbsolute right15 height15 top11 d-none cursorPointer" src="./img/logInVisibilityOff.png" alt="visibility-off-picture">
             </div>
             <div class="dFlex alignCenter marBot20">
                 <img onclick="changeCheckbox('registerCheckbox')" id="registerCheckbox" class="registerCheckbox cursorPointer" src="./img/checkboxNotChecked.png" alt="checkbox">

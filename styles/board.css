@@ -83,14 +83,68 @@ height: 32px;
     height: 24px; 
     display: flex; 
     justify-content: space-between;
-    padding: 0px, 64px, 0px, 64px;
-    margin-left: 64px;
+    padding: 0px 64px 0px 64px;
+    top: 200.5px; 
+    position: absolute;
 }
 
+.progressHead {
+    display: flex; 
+    justify-content: space-between;
+    align-items: center;
+    width: 244px; 
+    height: 24px; 
+}
 
+.progressDone {
+    display: flex; 
+    align-items: center;
+    width: 244px; 
+    height: 24px; 
+    gap: 35px;
+}
 .lineUp {
     width: 244px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.taskWrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 26px;
+    width: 1208px; 
+    height: 688px; 
+    padding: 0px 6px 0px 64px; 
+    position: absolute; 
+    top: 336px; 
+    left: 232px;
+}
+
+.toDoColumn {
+    display: flex; 
+    flex-direction: column;
+    gap: 24px; 
+    width: 246px; 
+    height: 688px; 
+}
+
+.column {
+    display: flex; 
+    flex-direction: column;
+    width: 252px; 
+    height: 668px; 
+    gap: 16px; 
+}
+
+.card {
+    width: 252px; 
+    height: 263px; 
+    border-radius: 24px; 
+    padding: 16px; 
+    gap: 10px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.08)
+    ;
 }
