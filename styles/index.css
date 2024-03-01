@@ -69,10 +69,8 @@ h1 {
 
 /* ---------- OTHERS ---------- */
 
-.registerCheckedCheckbox {
-    top: -2px;
-    position: absolute;
-    height: 19px;
+.registerCheckbox {
+    height: 20px;
 }
 
 .parentRegisterArrowBack {
@@ -173,6 +171,10 @@ h1 {
 
 .right11 {
     right: 11px;
+}
+
+.right15 {
+    right: 15px;
 }
 
 /* ---------- ANIMATIONS ---------- */

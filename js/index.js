@@ -1,12 +1,16 @@
+/* ---------- checkbox ---------- */
+
 let logInRememberMe = document.getElementById('logInRememberMe');
 
-logInRememberMe.addEventListener('change', () => {
-    if (logInRememberMe.checked) {
-        registerShowCheckedCheckbox();
-    } else {
-        registerShowNoCheckedCheckbox();
-    }
-})
+if(logInRememberMe) {
+    logInRememberMe.addEventListener('change', () => {
+        if (logInRememberMe.checked) {
+            registerShowCheckedCheckbox();
+        } else {
+            registerShowNoCheckedCheckbox();
+        }
+    })
+}
 
 function registerShowCheckedCheckbox() {
 
@@ -17,6 +21,8 @@ function registerShowNoCheckedCheckbox() {
 
     console.log('not checked');
 }
+
+/* ---------- password-visibility and lock-img ---------- */
 
 function logInShowEyeOrLock() {
     if(logInPasswordIsEmpty()) {
@@ -63,7 +69,7 @@ function appearLogInEye() {
     logInVisibilityOnOff.classList.remove('d-none');
 }
 
-function logInVisibilityOnOff() {
+function logInVisibilityOnOff() { // not functioning without devTools in chrome
     showRightVisibility();
     disappearLogInLock();
     console.log('you clicked on the eye');
@@ -92,12 +98,9 @@ function visibilityOff() {
     logInPassword.type = "password";
 }
 
-function focusOnPswInput() {
-    let logInPassword = document.getElementById('logInPassword');
-    logInPassword.focus();
-}
+/* ---------- focus on element ---------- */
 
-function focusOnEmailInput() {
-    let logInEmail = document.getElementById('logInEmail');
-    logInEmail.focus();
+function focusOn(id) {
+    let element = document.getElementById(id);
+    element.focus();
 }

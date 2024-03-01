@@ -6,6 +6,7 @@
     <title>Log in</title>
     <link rel="stylesheet" href="./styles/style.css">
     <link rel="stylesheet" href="./styles/index.css">
+    <script src="./js/register.js" defer></script>
     <script src="./js/index.js" defer></script>
 </head>
 <body>
@@ -22,18 +23,18 @@
             <div class="blueLine"></div>
             <div class="posRelative">
                 <input placeholder="Email" id="logInEmail" class="cursorPointer marBot20 fontSize16 logInInputBorder" type="email" required>
-                <img onclick="focusOnEmailInput()" class="posAbsolute logInInputPicture height13 right11 top11 cursorPointer" src="./img/logInMail.png" alt="E-Mail-picture">
+                <img onclick="focusOn('logInEmail')" class="posAbsolute logInInputPicture height13 right15 top11 cursorPointer" src="./img/logInMail.png" alt="E-Mail-picture">
             </div>
             <div class="posRelative">
                 <input placeholder="Password" id="logInPassword" oninput="logInShowEyeOrLock()" onfocusout="logInShowLock()" class="cursorPointer marBot20 fontSize16 logInInputBorder" type="password" required>
-                <img id="logInLock" onclick="focusOnPswInput()" class="posAbsolute logInInputPicture height18 right11 top9 cursorPointer" src="./img/logInLock.png" alt="Password-picture">
-                <img id="logInVisibilityOnOrOff" onclick="logInVisibilityOnOff()" class="posAbsolute right11 height15 top11 d-none cursorPointer" src="./img/logInVisibilityOff.png" alt="visibility-off-picture">
-                <!-- <img id="logInVisibilityOn" onclick="logInVisibilityOff()" class="posAbsolute right11 height15 top11 d-none" src="./img/registerOpenEye.png" alt="visibility-on-picture"> -->
+                <img id="logInLock" onclick="focusOn('logInPassword')" class="posAbsolute logInInputPicture height18 right15 top9 cursorPointer" src="./img/logInLock.png" alt="Password-picture">
+                <img id="logInVisibilityOnOrOff" onclick="logInVisibilityOnOff()" class="posAbsolute right15 height15 top11 d-none cursorPointer" src="./img/logInVisibilityOff.png" alt="visibility-off-picture">
             </div>
             <div class="marBot20 fontSize14 dFlex alignCenter">
-                <img id="logInCheckedCheckbox" class="registerCheckedCheckbox d-none" src="./img/registerCheckedCheckbox.png" alt="checked checkbox">
-                <input id="logInRememberMe" class="cursorPointer" type="checkbox">
-                <label for="logInRememberMe" class="padLeft8">Remember me</label>
+                <img onclick="changeCheckbox('logInCheckbox')" id="logInCheckbox" class="registerCheckbox cursorPointer" src="./img/checkboxNotChecked.png" alt="checkbox">
+                <!-- <img id="logInCheckedCheckbox" class="registerCheckedCheckbox d-none" src="./img/registerCheckedCheckbox.png" alt="checked checkbox"> -->
+                <!-- <input id="logInRememberMe" class="cursorPointer" type="checkbox"> -->
+                <span for="logInRememberMe" class="padLeft8">Remember me</span>
             </div>
             <div class="dFlex">
                 <button class="cursorPointer darkBtn fontBold fontSize16">Log in</button>
