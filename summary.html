@@ -4,126 +4,123 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Summary</title>
-    <link rel="stylesheet" href="styles/style.css">
-    <link rel="stylesheet" href="./styles/summary.css">
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="./styles/summary.css" />
     <script src="js/navBar.js"></script>
   </head>
   <body onload="includeHTML()">
     <!--  -->
     <div w3-include-html="/templates/navBar.html"></div>
     <div w3-include-html="/templates/header.html"></div>
-    <div class="summary-container" id="summaryContainer">
-      <div class="headline">
-        <span class="fs-61 fw-700">Join 100</span>
-        <span class="seperator"></span>
-        <span class="fs-27 fw-400">Key Metrics at a Glance</span>
-        <span class="seperator-mobile"></span>
-      </div>
-      <div class="flex-container">
-        <div class="main-task-container">
-          <div class="check-rectangle">
-            <div>
+    <div class="summary-container-wrapper">
+      <div class="summary-container" id="summaryContainer">
+        <div class="headline">
+          <span class="fs-50 fw-700">Join 100</span>
+          <span class="seperator"></span>
+          <span class="fs-27 fw-400">Key Metrics at a Glance</span>
+          <span class="seperator-mobile"></span>
+        </div>
+        <div class="flex-container">
+          <div class="main-task-container">
+            <div class="check-rectangle">
+              <div>
+                <a href="board.html">
+                  <div class="button-container gap-18">
+                    <div class="elipse">
+                      <div>
+                        <img class="edit-icon" src="./img/edit.png" alt="" />
+                      </div>
+                    </div>
+                    <div>
+                      <div class="fs-64 fw-600 center-text" id="toDo">0</div>
+                      <div class="fs-20">To-do</div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div>
+                <a href="board.html#done">
+                  <div class="button-container gap-18">
+                    <div class="elipse">
+                      <div>
+                        <img
+                          class="vector-icon"
+                          src="./img/vector.png"
+                          alt=""
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <div class="fs-64 fw-600 center-text" id="done">0</div>
+                      <div class="fs-20">Done</div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="urgency-summary">
               <a href="board.html">
-                <div class="button-container gap-18">
-                  <div class="elipse">
-                    <div>
-                      <img
-                        class="edit-icon"
-                        src="./img/edit.png"
-                        alt=""
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <div class="fs-64 fw-600 center-text" id="toDo">0</div>
-                    <div class="fs-20">To-do</div>
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div>
-              <a href="board.html#done">
-                <div class="button-container gap-18">
-                  <div class="elipse">
-                    <div>
-                      <img
-                        class="vector-icon"
-                        src="./img/vector.png"
-                        alt=""
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <div class="fs-64 fw-600 center-text" id="done">0</div>
-                    <div class="fs-20">Done</div>
-                  </div>
-                </div>
-              </a>
-            </div>
-          </div>
-          <div class="urgency-summary">
-            <a href="board.html">
-              <div class="urgency-container">
-                <div class="flex-container center gap-18">
-                  <div class="elipse-urgency">
-                    <div class="flex-container flex-column center">
-                      <img
-                        class="arrow-icon"
-                        src="./img/arrow-icon.png"
-                        alt=""
-                      />
-                      <!-- <img
+                <div class="urgency-container">
+                  <div class="flex-container center gap-18">
+                    <div class="elipse-urgency">
+                      <div class="flex-container flex-column center">
+                        <img
+                          class="arrow-icon"
+                          src="./img/arrow-icon.png"
+                          alt=""
+                        />
+                        <!-- <img
                         class="arrow-icon mt-minus-5"
                         src="./assets/img/arrow.svg"
                         alt=""
                       /> -->
+                      </div>
+                    </div>
+                    <div>
+                      <div class="fs-64 fw-600 center-text" id="high">2</div>
+                      <div class="fs-16">Urgent</div>
                     </div>
                   </div>
+                  <div class="line"></div>
                   <div>
-                    <div class="fs-64 fw-600 center-text" id="high">2</div>
-                    <div class="fs-16">Urgent</div>
+                    <div class="fw-700 fs-2 pb-13" id="deadline">
+                      29. Februar 2024
+                    </div>
+                    <div class="fs-16">Upcoming Deadline</div>
                   </div>
                 </div>
-                <div class="line"></div>
-                <div>
-                  <div class="fw-700 fs-2 pb-13" id="deadline">
-                    29. Februar 2024
-                  </div>
-                  <div class="fs-16">Upcoming Deadline</div>
+              </a>
+            </div>
+            <div class="overview-container">
+              <a href="board.html">
+                <div class="task-container">
+                  <div class="fs-64 fw-600" id="boardTasks">2</div>
+                  <div class="fs-20 fw-400">Tasks in Board</div>
                 </div>
-              </div>
-            </a>
+              </a>
+              <a href="board.html">
+                <div class="task-container">
+                  <div class="fs-64 fw-600" id="progress">0</div>
+                  <div class="fs-20 fw-400">Tasks in Progress</div>
+                </div>
+              </a>
+              <a href="board.html#feedback">
+                <div class="task-container">
+                  <div class="fs-64 fw-600" id="await">0</div>
+                  <div class="fs-20 fw-400">Awaiting Feedback</div>
+                </div>
+              </a>
+            </div>
           </div>
-          <div class="overview-container">
-            <a href="board.html">
-              <div class="task-container">
-                <div class="fs-64 fw-600" id="boardTasks">2</div>
-                <div class="fs-20 fw-400">Tasks in Board</div>
-              </div>
-            </a>
-            <a href="board.html">
-              <div class="task-container">
-                <div class="fs-64 fw-600" id="progress">0</div>
-                <div class="fs-20 fw-400">Tasks in Progress</div>
-              </div>
-            </a>
-            <a href="board.html#feedback">
-              <div class="task-container">
-                <div class="fs-64 fw-600" id="await">0</div>
-                <div class="fs-20 fw-400">Awaiting Feedback</div>
-              </div>
-            </a>
+          <div class="greet-container">
+            <div class="fs-47 fw-500 greeting greeting-content" id="greeting">
+              Good afternoon
+            </div>
+            <div class="name-container name" id="name"></div>
           </div>
-        </div>
-        <div class="greet-container">
-          <div class="fs-47 fw-500 greeting greeting-content" id="greeting">
-            Good afternoon
-          </div>
-          <div class="name-container name" id="name"></div>
         </div>
       </div>
     </div>
-
     <!--  -->
   </body>
 </html>
