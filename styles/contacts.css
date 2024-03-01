@@ -151,11 +151,23 @@ h5 {
 .edit {
     display: flex;
     align-items: center;
+    cursor: pointer;
+}
+
+.edit:hover {
+    color:#29ABE2;
+    filter: brightness(0) saturate(100%) invert(52%) sepia(98%) saturate(407%) hue-rotate(155deg) brightness(93%) contrast(90%);
 }
 
 .delete {
     display: flex;
     align-items: center;
+    cursor: pointer;
+}
+
+.delete:hover {
+    color: #29ABE2;
+    filter: brightness(0) saturate(100%) invert(52%) sepia(98%) saturate(407%) hue-rotate(155deg) brightness(93%) contrast(90%);
 }
 
 .letter {
@@ -366,4 +378,35 @@ a {
     background-image: url(/img/call.png);
     background-repeat: no-repeat;
     background-position: 95%;
+}
+
+.button4 {
+    padding: 16px;
+    background-color: white;
+    color: black;
+    border: solid 1px;
+    border-color: #2A3647;
+    width: 25%;
+    font-size: 21px;
+    text-align: center;
+}
+
+.button4:hover {
+    border-color: rgb(41,171,226);
+    color: rgb(41,171,226);
+}
+
+.button5 {
+    background-color: rgba(42, 54, 71);
+    width: 25%;
+    font-size: 21px;
+    background-image: url(/img/check.png);
+    background-repeat: no-repeat;
+    background-position: 80%;
+    text-align: left;
+    padding-left: 16px;
+}
+
+.button5:hover {
+    background-color: rgb(41,171,226); 
 }
