@@ -18,9 +18,34 @@ let colors = [
     'rgba(255,70,70,255)'
 ]
 
-function initRegister() {
+/* ---------- init ---------- */
 
+async function initRegister() {
+    await loadUsers();
+    await loadContacts();
 }
+
+async function loadUsers() {
+    if(await usersExist()) {
+        users = JSON.parse(await getItem('users'));
+    }
+}
+
+async function usersExist() {
+    return getItem('users');
+}
+
+async function loadContacts() {
+    if(await contatcsExist()) {
+        contacts = JSON.parse(await getItem('contacts'));
+    }
+}
+
+async function contatcsExist() {
+    return getItem('contacts');
+}
+
+/* ---------- register ---------- */
 
 async function register(event) {
     noReload(event);
@@ -31,29 +56,27 @@ function noReload(event) {
     event.preventDefault();
 }
 
-async function showOverlaySignedUpSuccessfully() {
-    dialog.showModal();
-    setTimeout(() => {
-        dialog.close();
-    }, 1000);
-}
-
 async function checkPassword() {
     let firstPassword = document.getElementById('registerFirstPassword').value;
     let secondPassoword = document.getElementById('registerSecondPassword').value;
     if(firstPassword == secondPassoword) {
-        signUpSuccessfully();
+        await signUpSuccessfully();
     } else {
         showNoPasswordMatch();
     }
 }
 
-function signUpSuccessfully() {
+async function signUpSuccessfully() {
     let createdAt = new Date().getTime();
-    newUser(createdAt);
-    newContact(createdAt);
+    await createUser(createdAt);
+    await createContact(createdAt);
+    // await showOverlaySignedUpSuccessfully(); // ERROR: DIALOG IS NOT DEFINED!
+    redirectToLogIn();
+}
 
-    // await showOverlaySignedUpSuccessfully(); // DIALOG IS NOT DEFINED
+async function createUser(createdAt) {
+    newUser(createdAt);
+    await setItem('users', users);
 }
 
 function newUser(createdAt) {
@@ -69,7 +92,6 @@ function newUser(createdAt) {
         password: password,
     }
     users.push(user);
-    console.log(users);
 }
 
 function getFirstName() {
@@ -82,6 +104,11 @@ function getLastName() {
     let name = document.getElementById('registerName');
     let nameArray = name.value.split(' ');
     return nameArray[nameArray.length -1];
+}
+
+async function createContact(createdAt) {
+    newContact(createdAt);
+    await setItem('contacts', contacts);
 }
 
 function newContact(createdAt) {
@@ -97,12 +124,19 @@ function newContact(createdAt) {
         phone: ''
     }
     contacts.push(contact);
-    console.log(contacts);
 }
 
 function selectColor() {
     let randomNumber = Math.round(Math.random() * 15);
     return colors[randomNumber];
+}
+
+// the function below is not functioning!
+async function showOverlaySignedUpSuccessfully() {
+    dialog.showModal();
+    setTimeout(() => {
+        dialog.close();
+    }, 1000);
 }
 
 function showNoPasswordMatch() {
@@ -216,4 +250,8 @@ function removeRedBorder(id) {
 function removeDiv(id) {
     let element = document.getElementById(id);
     element.classList.add('d-none');
+}
+
+function redirectToLogIn() {
+    window.location.href = "./index.html";
 }

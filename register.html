@@ -6,10 +6,12 @@
     <title>Register</title>
     <link rel="stylesheet" href="./styles/style.css">
     <link rel="stylesheet" href="./styles/index.css">
+    <script src="./js/storageToken.js" defer></script>
+    <script src="./js/storage.js" defer></script>
     <script src="./js/register.js" defer></script>
     <script src="./js/index.js" defer></script>
 </head>
-<body>
+<body onload="initRegister()">
     <dialog></dialog>
     <dialog class="fontSize16 registerDialog">
         <span class="darkBtn">You Signed Up successfully</span>
@@ -17,7 +19,7 @@
     <img class="posAbsolute registerJoinLogo" src="./img/joinLogoBig.png" alt="Join-Logo">
     <div class="overDivFormLogIn">
         <form onsubmit="register(event)" class="formLogIn dFlex directionColumn alignCenter posRelative">
-            <div onclick="history.back()" class="parentRegisterArrowBack">
+            <div onclick="redirectToLogIn()" class="parentRegisterArrowBack cursorPointer">
                 <img src="./img/registerArrowBack.png" class="registerArrowBack cursorPointer">
             </div>
             <h1>Sign up</h1>

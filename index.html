@@ -6,17 +6,19 @@
     <title>Log in</title>
     <link rel="stylesheet" href="./styles/style.css">
     <link rel="stylesheet" href="./styles/index.css">
+    <script src="./js/storageToken.js" defer></script>
+    <script src="./js/storage.js" defer></script>
     <script src="./js/register.js" defer></script>
     <script src="./js/index.js" defer></script>
 </head>
-<body>
+<body onload="initLogIn()">
     <img class="posAbsolute logoSlideIn" src="./img/joinLogoBig.png" alt="Join-Logo">
     <section class="posAbsolute right0 padTop60 padRight60 opacity0to1">
         <span class="fontSize16 padRight30">Not a Join user?</span>
         <a href="./register.html" class="cursorPointer darkBtn fontBold fontSize16 noDecoration">Sign up</a>
     </section>
     <section class="overDivFormLogIn opacity0to1">
-        <form class="formLogIn dFlex directionColumn alignCenter">
+        <form onsubmit="logIn()" class="formLogIn dFlex directionColumn alignCenter">
             <h1>
                 Log in
             </h1>
