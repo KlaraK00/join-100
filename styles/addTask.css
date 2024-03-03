@@ -155,6 +155,7 @@ select#assign {
     gap: 8px;
    font-size: 20px;
    font-weight: 400;
+   cursor: pointer;
 }
 
 .prioOrange {
@@ -217,6 +218,7 @@ select#assign {
     left: 995.25px; 
     display: flex; 
     gap: 16px;
+    
 }
 
 .clear {
@@ -231,6 +233,7 @@ select#assign {
     background-color: rgba(246, 247, 248, 1);
     font-size: 21px; 
     font-weight: 400;
+    cursor: pointer;
 }
 
 .createTask {
@@ -247,6 +250,6 @@ select#assign {
     color: rgba(255, 255, 255, 1);
     font-size: 21px; 
     font-weight: 700;
-
+    cursor: pointer;
 
 }
