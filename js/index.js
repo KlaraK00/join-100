@@ -1,9 +1,34 @@
+// PROBLEMS:
+// 1. Overlay when registration is successful not functioning (register.html)
+// CURRENT USER: guest-login = firstName: Guest, lastName: '' / user-login = users[i] => both cases in LOCAL STORAGE!
+// guest-login = G / user-login = first letters of names
+
 let currentUser;
 
 /* ---------- init ---------- */
 
 async function initLogIn() {
     await loadUsers();
+}
+
+/* ---------- guest log in ---------- */
+
+function guestLogIn() {
+    currentUserIsGuest();
+    redirectToSummary();
+}
+
+function currentUserIsGuest() {
+    let guest = {
+        firstName: 'Guest', 
+        lastName: ''
+    }
+    currentUser = guest;
+    setLocalStorageItem('currentUser', currentUser);
+}
+
+function redirectToSummary() {
+    window.location.href = "./summary.html";
 }
 
 /* ---------- log in ---------- */
@@ -19,11 +44,8 @@ function logIn(event) {
         currentUser = users[indexOfEmail];
         setLocalStorageItem('currentUser', currentUser);
         redirectToSummary();
-        // CURRENT USER: guest-login = firstName: Guest, lastName: '' / user-login = users[i] => both cases in LOCAL STORAGE!
-        // guest-login = G / user-login = first letters of names
     } else {
         showLogInFailed();
-        console.log('user is not found!');
     }
 }
 
@@ -35,13 +57,7 @@ function userIsFound(email, password) {
     }
 }
 
-function redirectToSummary() {
-    window.location.href = "./summary.html";
-}
-
 function showLogInFailed() {
-    let password = document.getElementById('logInPassword');
-    password.classList.add('redBorder');
-    let logInFailed = document.getElementById('logInFailed');
-    logInFailed.classList.remove('d-none');
+    addRedBorder('logInPassword');
+    addDiv('logInFailed');
 }

@@ -140,18 +140,30 @@ async function saveContact() {
 }
 
 // the function below is not functioning!
-async function showOverlaySignedUpSuccessfully() {
-    dialog.showModal();
-    setTimeout(() => {
-        dialog.close();
-    }, 1000);
+// async function showOverlaySignedUpSuccessfully() {
+//     dialog.showModal();
+//     setTimeout(() => {
+//         dialog.close();
+//     }, 1000);
+// }
+
+function redirectToLogIn() {
+    window.location.href = "./index.html";
 }
 
 function showNoPasswordMatch() {
-    let secondPassoword = document.getElementById('registerSecondPassword');
-    secondPassoword.classList.add('redBorder');
-    let informNotTheSamePassword = document.getElementById('informNotTheSamePassword');
-    informNotTheSamePassword.classList.remove('d-none');
+    addRedBorder('registerSecondPassword');
+    addDiv('informNotTheSamePassword');
+}
+
+function addRedBorder(id) {
+    let element = document.getElementById(id);
+    element.classList.add('redBorder');
+}
+
+function addDiv(id) {
+    let element = document.getElementById(id);
+    element.classList.remove('d-none');
 }
 
 /* ---------- password-visibility ---------- */
@@ -258,8 +270,4 @@ function removeRedBorder(id) {
 function removeDiv(id) {
     let element = document.getElementById(id);
     element.classList.add('d-none');
-}
-
-function redirectToLogIn() {
-    window.location.href = "./index.html";
 }
