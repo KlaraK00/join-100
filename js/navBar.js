@@ -58,5 +58,5 @@ function getFirstTwoLetters(element) {
 }
 
 function lastNameExists(element) {
-  return element.lastName !== '';
+  return element.lastName && element.lastName !== '';
 }
