@@ -75,11 +75,11 @@ async function signUpSuccessfully() {
 }
 
 async function createUser(createdAt) {
-    newUser(createdAt);
-    await setItem('users', users);
+    addUser(createdAt);
+    await saveUsers();
 }
 
-function newUser(createdAt) {
+function addUser(createdAt) {
     let firstName = getFirstName();
     let lastName = getLastName();
     let email = document.getElementById('registerEmail').value;
@@ -106,12 +106,16 @@ function getLastName() {
     return nameArray[nameArray.length -1];
 }
 
-async function createContact(createdAt) {
-    newContact(createdAt);
-    await setItem('contacts', contacts);
+async function saveUsers() {
+    await setItem('users', users);
 }
 
-function newContact(createdAt) {
+async function createContact(createdAt) {
+    addContact(createdAt);
+    await saveContact();
+}
+
+function addContact(createdAt) {
     let firstName = getFirstName();
     let lastName = getLastName();
     let email = document.getElementById('registerEmail').value;
@@ -129,6 +133,10 @@ function newContact(createdAt) {
 function selectColor() {
     let randomNumber = Math.round(Math.random() * 15);
     return colors[randomNumber];
+}
+
+async function saveContact() {
+    await setItem('contacts', contacts);
 }
 
 // the function below is not functioning!

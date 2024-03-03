@@ -31,3 +31,7 @@ async function getItem(key) {
 function getValueFromJson(json) {
     return json.data.value;
 }
+
+// function setLocalStorageItem(key, value) {
+//     localStorage.setItem(key, value)
+// }
