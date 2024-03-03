@@ -1,8 +1,23 @@
 // 1. Overlay when registration is successful not functioning (register.html)
 // 2. input auto fill in background is lightBlue. Can't change it to transparent.(register.html & index.html)
 // 3. NavBar id "userNavar"
-// 4. contact needs createdAt as an ID and as same as contacts / push in contacts
-// guest-login = G / user-login = first letters of names
+// 4. contact.html: need the key "createdAt" as an ID; new contact as same as contacts / push in contacts
+// 5. href="contacts.html" for the arrow back in privacyPolicy.html instead of onclick="history.back()"
+// "tasks" also in remote storage
+// instead of "alert('Sorry for loading error!');" a better way, more costumized, better words
+
+// https://jsdoc.app/tags-returns FOR JSDOC!
+// /**
+//  * Returns the sum of a and b
+//  * @param {number} a
+//  * @param {number} b
+//  * @returns {Promise<number>} Promise object represents the sum of a and b
+//  */
+// function sumAsync(a, b) {
+//     return new Promise(function(resolve, reject) {
+//         resolve(a + b);
+//     });
+// } ???
 
 let currentUser;
 
@@ -16,7 +31,7 @@ async function initLogIn() {
 }
 
 function currentUserExists() {
-    return currentUser && currentUser !== "";
+    return getCurrentUser() && getCurrentUser()!== "";
 }
 
 function getCurrentUser() {
@@ -27,6 +42,7 @@ function getCurrentUser() {
 
 function guestLogIn() {
     currentUserIsGuest();
+    clearLogInForm();
     redirectToSummary();
 }
 
@@ -35,8 +51,19 @@ function currentUserIsGuest() {
         firstName: 'Guest', 
         lastName: ''
     }
-    currentUser = guest;
+    setCurrentUser(guest);
+}
+
+function setCurrentUser(user) {
+    currentUser = user;
     setLocalStorageItem('currentUser', currentUser);
+}
+
+function clearLogInForm() {
+    let logInEmail = document.getElementById('logInEmail');
+    let logInPassword = document.getElementById('logInPassword');
+    logInEmail.value = '';
+    logInPassword.value = '';
 }
 
 function redirectToSummary() {
@@ -52,21 +79,20 @@ function logIn(event) {
     let indexOfEmail = users.findIndex(user => user.email == logInEmail);
     let indexOfPassword = users.findIndex(user => user.password == logInPassword);
     if(userIsFound(indexOfEmail, indexOfPassword)) {
-        console.log('user is found!', users[indexOfEmail]);
-        currentUser = users[indexOfEmail];
-        setLocalStorageItem('currentUser', currentUser);
-        redirectToSummary();
+        showLogInSucceed(indexOfEmail);
     } else {
         showLogInFailed();
     }
 }
 
 function userIsFound(email, password) {
-    if(email == password && email !== -1) {
-        return true;
-    } else {
-        return false;
-    }
+    return email == password && email !== -1;
+}
+
+function showLogInSucceed(index) {
+    setCurrentUser(users[index]);
+    clearLogInForm();
+    redirectToSummary();
 }
 
 function showLogInFailed() {
