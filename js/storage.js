@@ -32,6 +32,10 @@ function getValueFromJson(json) {
     return json.data.value;
 }
 
-// function setLocalStorageItem(key, value) {
-//     localStorage.setItem(key, value)
-// }
+function setLocalStorageItem(key, value) {
+    return localStorage.setItem(key, JSON.stringify(value));
+}
+
+function getLocalStorageItem(key) {
+    return JSON.parse(localStorage.getItem(key));
+}

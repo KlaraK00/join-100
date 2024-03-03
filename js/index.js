@@ -17,19 +17,31 @@ function logIn(event) {
     if(userIsFound(indexOfEmail, indexOfPassword)) {
         console.log('user is found!', users[indexOfEmail]);
         currentUser = users[indexOfEmail];
-        // setLocalStorageItem('currentUser', currentUser); // in storage.js
+        setLocalStorageItem('currentUser', currentUser);
+        redirectToSummary();
         // CURRENT USER: guest-login = firstName: Guest, lastName: '' / user-login = users[i] => both cases in LOCAL STORAGE!
         // guest-login = G / user-login = first letters of names
     } else {
+        showLogInFailed();
         console.log('user is not found!');
     }
 }
 
-//-1 or '-1'?
 function userIsFound(email, password) {
     if(email == password && email !== -1) {
         return true;
     } else {
         return false;
     }
+}
+
+function redirectToSummary() {
+    window.location.href = "./summary.html";
+}
+
+function showLogInFailed() {
+    let password = document.getElementById('logInPassword');
+    password.classList.add('redBorder');
+    let logInFailed = document.getElementById('logInFailed');
+    logInFailed.classList.remove('d-none');
 }

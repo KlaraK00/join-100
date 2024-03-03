@@ -105,6 +105,17 @@ dialog::backdrop {
 
 /* ---------- OTHERS ---------- */
 
+/* input:-webkit-autofill {
+    appearance: none;
+} */
+
+/* input:-internal-autofill-selected {
+    appearance: auto;
+    background-image: none !important;
+    background-color: transparent !important;
+    color: white !important;
+} */
+
 .informNotTheSamePassword {
     position: absolute;
 }
@@ -219,6 +230,10 @@ dialog::backdrop {
 
 .right15 {
     right: 15px;
+}
+
+.bot0 {
+    bottom: 0;
 }
 
 .bottomMinus18 {

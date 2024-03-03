@@ -28,11 +28,12 @@
                 <img onclick="focusOn('logInEmail')" class="posAbsolute logInInputPicture height13 right15 top11 cursorPointer" src="./img/logInMail.png" alt="E-Mail-picture">
             </div>
             <div class="posRelative">
-                <input placeholder="Password" id="logInPassword" oninput="showEyeOrLock('logInPassword', 'logInLock', 'logInVisibilityOnOrOff'), removeRedBorder('logInPassword')" class="cursorPointer marBot20 fontSize16 logInInputBorder" type="password" required>
+                <input placeholder="Password" id="logInPassword" oninput="showEyeOrLock('logInPassword', 'logInLock', 'logInVisibilityOnOrOff'), removeRedBorder('logInPassword'), removeDiv('logInFailed')" class="cursorPointer marBot20 fontSize16 logInInputBorder" type="password" required>
                 <img id="logInLock" onclick="focusOn('logInPassword')" class="posAbsolute logInInputPicture height18 right15 top9 cursorPointer" src="./img/logInLock.png" alt="Password-picture">
                 <img id="logInVisibilityOnOrOff" onclick="visibilityOnOff('logInVisibilityOnOrOff', 'logInLock', 'logInPassword')" class="posAbsolute right15 height15 top11 d-none cursorPointer" src="./img/logInVisibilityOff.png" alt="visibility-off-picture">
+                <div id="logInFailed" class="fontRed fontSize11 posAbsolute bot0 d-none">Wrong password Ups! Try again.</div>
             </div>
-            <div class="marBot20 fontSize14 dFlex alignCenter">
+            <div class="marBot20 fontSize14 dFlex alignCenter marTop10">
                 <img onclick="changeCheckbox('logInCheckbox')" id="logInCheckbox" class="registerCheckbox cursorPointer" src="./img/checkboxNotChecked.png" alt="checkbox">
                 <span for="logInRememberMe" class="padLeft8">Remember me</span>
             </div>
