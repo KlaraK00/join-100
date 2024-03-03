@@ -25,7 +25,7 @@ body {
     left: 328px; 
 }
 
-.title {
+.taskTitle {
     display: flex; 
     flex-direction: column;
     width: 440px;
@@ -33,7 +33,7 @@ body {
     gap: 8px;
 }
 
-.title input {
+.taskTitle input {
     padding: 12px 21px 12px 21px; 
     border-radius: 10px;
     border: 1px solid rgba(168, 168, 168, 1);
@@ -91,12 +91,12 @@ body {
 }
 
 select#assign {
-    appearance: none; /* Remove default appearance */
-    -webkit-appearance: none; /* Remove default appearance for WebKit browsers */
-    -moz-appearance: none; /* Remove default appearance for Firefox */
+    appearance: none; 
+    -webkit-appearance: none; 
+    -moz-appearance: none; 
     background-image: url('../img/arrow_drop_down.png'); 
     background-position: right 8.39px top 20px;
-    background-repeat: no-repeat; /* Prevent arrow image from repeating */
+    background-repeat: no-repeat; 
     
 }
 
