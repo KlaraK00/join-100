@@ -1,82 +1,28 @@
-/* ---------- password-visibility and lock-img ---------- */
+/* ---------- init ---------- */
 
-function showEyeOrLock(input, lock, eye) {
-    if(passwordIsEmpty(input)) {
-        showLock(lock, eye);
-    } else {
-        showEye(eye, lock);
+async function initLogIn() {
+    await loadUsers();
+}
+
+/* ---------- log in ---------- */
+
+function logIn(event) {
+    noReload(event);
+    let logInEmail = document.getElementById('logInEmail').value;
+    let logInPassword = document.getElementById('logInPassword').value;
+    let indexOfEmail = users.findIndex(user => user.email == logInEmail);
+    let indexOfPassword = users.findIndex(user => user.password == logInPassword);
+    if(userIsFound(indexOfEmail, indexOfPassword)) {
+        console.log('user is found!', users[indexOfEmail]);
+        // CURRENT USER: guest-login = firstName: Guest, lastName: '' / user-login = users[i] => both cases in LOCAL STORAGE!
+        // guest-login = G / user-login = first letters of names
     }
 }
 
-function passwordIsEmpty(input) {
-    let password = document.getElementById(input).value;
-    return password == '';
-}
-
-function showLock(lock, eye) {
-    appearLock(lock);
-    disappearEye(eye);
-}
-
-function appearLock(lock) {
-    let lockImg = document.getElementById(lock);
-    lockImg.classList.remove('d-none');
-}
-
-function disappearEye(eye) {
-    let eyeImg = document.getElementById(eye);
-    eyeImg.classList.add('d-none');
-}
-
-function showEye(eye, lock) {
-    disappearLock(lock);
-    appearLogInEye(eye);
-}
-
-function disappearLock(lock) {
-    let lockImg = document.getElementById(lock);
-    lockImg.classList.add('d-none');
-}
-
-function appearLogInEye(eye) {
-    let eyeImg = document.getElementById(eye);
-    eyeImg.classList.remove('d-none');
-}
-
-function visibilityOnOff(id, lock, input) {
-    showRightVisibility(id, input);
-    disappearLock(lock);
-}
-
-function showRightVisibility(id, input) {
-    let visibility = document.getElementById(id);
-    if (visibility.src.includes('logInVisibilityOff.png')) {
-        visibilityOn(id, input);
+function userIsFound(email, password) {
+    if(email == password) {
+        return true;
     } else {
-        visibilityOff(id, input);
+        return false;
     }
-}
-
-function visibilityOn(id, input) {
-    let visibilityOnOrOff = document.getElementById(id);
-    let password = document.getElementById(input);
-    visibilityOnOrOff.src = './img/registerOpenEye.png';
-    visibilityOnOrOff.style.height = '13.5px';
-    visibilityOnOrOff.style.width = '17px';
-    password.type = "text";
-}
-
-function visibilityOff(id, input) {
-    let visibilityOnOrOff = document.getElementById(id);
-    let password = document.getElementById(input);
-    visibilityOnOrOff.src = './img/logInVisibilityOff.png';
-    visibilityOnOrOff.style.height = '15px';
-    password.type = "password";
-}
-
-/* ---------- focus on element ---------- */
-
-function focusOn(id) {
-    let element = document.getElementById(id);
-    element.focus();
 }

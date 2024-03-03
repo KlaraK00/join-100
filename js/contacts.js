@@ -1,3 +1,10 @@
+const STORAGE_TOKEN = '';
+const STORAGE_URL = 'https://remote-storage.developerakademie.org/item';
+
+let contactNames = [];
+let contactMails = [];
+let contactNumbers = [];
+
 function addNewContact(){
     document.getElementById('overlay-add-contact').classList.remove('d-none');
     document.getElementById('overlay-add-contact').classList.add('d-flex');
@@ -24,6 +31,36 @@ function closeEditContactWindow(){
     document.getElementById('overlay-edit-contact').classList.remove('overlay-add-contact');
 }
 
+function createContact(){
+    let contactName = document.getElementById('contactName');
+    let contactMail = document.getElementById('contactMail');
+    let contactNumber = document.getElementById('contactNumber');
+    contactNames.push(contactName.value);
+    contactMails.push(contactMail.value);
+    contactNumbers.push(contactNumber.value);
+    renderContact();
+    closeNewContactWindow();
+}
+
+function renderContact(){
+    document.getElementById('informations').innerHTML = '';
+    for (let i = 0; i < contactNames.length; i++) {
+        document.getElementById('informations').innerHTML += createContactHTML(i);
+    }
+}
+
+function createContactHTML(i){
+    return `
+    <div class="informations" id="contact-infos${i}">
+        <div class="user-small">AS</div>
+            <div>
+            ${contactNames[i]} <br>
+            <a href="">${contactMails[i]}</a>
+        </div>
+    </div>
+    `;
+}
+
 function createNewContactHTML() {
     return `
     <div class="overlay-contact">
@@ -42,13 +79,13 @@ function createNewContactHTML() {
         <div class="input-new-contact">
             <form>
                 <div class="input-fields">
-                    <input class="input background-img-profile" placeholder="Name">
-                    <input class="input background-img-mail" placeholder="Email">
-                    <input class="input background-img-phone" placeholder="Phone">
+                    <input id="contactName" class="input background-img-profile" placeholder="Name" required>
+                    <input id="contactMail" class="input background-img-mail" placeholder="Email" required>
+                    <input id="contactNumber" class="input background-img-phone" placeholder="Phone" required>
                 </div>
                 <div class="add-contact-button">
-                    <button class="button2">Cancel</button>
-                    <button class="button3">Create contact</button>
+                    <button type="button" onclick="closeNewContactWindow()" class="button2">Cancel</button>
+                    <button onclick="createContact()" type="button" class="button3">Create contact</button>
                 </div>
             </form>
     </div>
@@ -72,9 +109,9 @@ function createEditContactHTML() {
         <div class="input-new-contact">
             <form>
                 <div class="input-fields">
-                    <input class="input background-img-profile" placeholder="Name">
-                    <input class="input background-img-mail" placeholder="Email">
-                    <input class="input background-img-phone" placeholder="Phone">
+                    <input class="input background-img-profile" placeholder="Name" required>
+                    <input class="input background-img-mail" placeholder="Email" required>
+                    <input class="input background-img-phone" placeholder="Phone" required>
                 </div>
                 <div class="add-contact-button">
                     <button class="button4">Delete</button>

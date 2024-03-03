@@ -44,6 +44,10 @@ h1 {
     margin-bottom: 20px;
 }
 
+.marTop10 {
+    margin-top: 10px;
+}
+
 .marLeft23 {
     margin-left: 23px;
 }
@@ -53,6 +57,38 @@ h1 {
 }
 
 /* ---------- FONTS ---------- */
+
+.registerDialog span {
+    padding: 18px 20px 18px 20px !important;
+    border-radius: 12px !important;
+}
+
+/* .registerBgDark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.2);
+} */
+
+.registerDialog {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: none;
+    background-color: transparent;
+}
+
+dialog::backdrop {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.fontSize11 {
+    font-size: 11px;
+}
 
 .fontSize14 {
     font-size: 14px;
@@ -68,6 +104,14 @@ h1 {
 }
 
 /* ---------- OTHERS ---------- */
+
+.informNotTheSamePassword {
+    position: absolute;
+}
+
+.redBorder {
+    border-color: red !important;
+}
 
 .registerCheckbox {
     height: 20px;
@@ -175,6 +219,10 @@ h1 {
 
 .right15 {
     right: 15px;
+}
+
+.bottomMinus18 {
+    bottom: -18px;
 }
 
 /* ---------- ANIMATIONS ---------- */

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="./styles/summary.css" />
     <script src="js/navBar.js"></script>
   </head>
-  <body onload="includeHTML()">
+  <body onload="init()">
     <!--  -->
     <div w3-include-html="/templates/navBar.html"></div>
     <div w3-include-html="/templates/header.html"></div>
@@ -112,13 +112,14 @@
               </a>
             </div>
           </div>
-          <div class="greet-container">
-            <div class="fs-47 fw-500 greeting greeting-content" id="greeting">
-              Good afternoon
-            </div>
-            <div class="name-container name" id="name"></div>
-          </div>
+
         </div>
+      </div>
+      <div class="greet-container">
+        <div class="fs-47 fw-500 greeting greeting-content" id="greeting">
+          Good afternoon
+        </div>
+        <div class="name-container name" id="name"></div>
       </div>
     </div>
     <!--  -->

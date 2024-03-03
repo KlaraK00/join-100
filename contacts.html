@@ -8,7 +8,7 @@
     <script src="/js/navBar.js"></script>
     <script src="/js/contacts.js"></script>
 </head>
-<body onload="includeHTML()">
+<body onload="includeHTML(), init()">
     <div w3-include-html="/templates/navBar.html"></div>
     <div w3-include-html="/templates/header.html"></div>
     <div class="contact-container">
@@ -21,28 +21,14 @@
                     A
                 </div>
                 <div class="line-contacts"></div>
-                <div class="informations">
-                    <div class="user-small">AM</div>
-                    <div>
-                        Anton Mayer <br>
-                    <a href="">antom@gmail.com</a>
-                    </div>
+                <div id="informations">
+                    
                 </div>
                 <div class="informations">
                     <div class="user-small">AS</div>
                     <div>
                         Anja Schulz <br>
                     <a href="">schulz@hotmail.com</a>
-                    </div>
-                </div><div class="letter">
-                    B
-                </div>
-                <div class="line-contacts"></div>
-                <div class="informations">
-                    <div class="user-small">BZ</div>
-                    <div>
-                        Benedikt Ziegler <br>
-                    <a href="">benedikt@gmail.com</a>
                     </div>
                 </div>
             </div>

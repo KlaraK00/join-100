@@ -1,13 +1,40 @@
+async function init() {
+  await includeHTML();
+  highlightActiveSideButton();
+}
+
 async function includeHTML() {
-    let includeElements = document.querySelectorAll('[w3-include-html]');
-    for (let i = 0; i < includeElements.length; i++) {
-        const element = includeElements[i];
-        file = element.getAttribute("w3-include-html");
-        let resp = await fetch(file);
-        if (resp.ok) {
-            element.innerHTML = await resp.text();
-        } else {
-            element.innerHTML = 'Page not found';
-        }
+  let includeElements = document.querySelectorAll("[w3-include-html]");
+  for (let i = 0; i < includeElements.length; i++) {
+    const element = includeElements[i];
+    file = element.getAttribute("w3-include-html");
+    let resp = await fetch(file);
+    if (resp.ok) {
+      element.innerHTML = await resp.text();
+    } else {
+      element.innerHTML = "Page not found";
     }
+  }
+}
+
+function highlightActiveSideButton() {
+  let activeButtonName = getCurrentPage() + "Button";
+  let activeButton = document.getElementById(activeButtonName);
+  console.log('buttoname =', activeButton);
+
+  if (activeButton) {
+    activeButton.classList.remove("menuButton");
+    activeButton.classList.add("selectedMenuButton");
+  }
+}
+
+function getCurrentPage() {
+  let path = window.location.pathname;
+  let currentPage = path.split("/").pop();
+  currentPage = currentPage.split(".")[0];
+  return currentPage;
+}
+
+function openPage(page) {
+    window.location.href = page + '.html';
 }

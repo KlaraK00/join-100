@@ -6,17 +6,19 @@
     <title>Log in</title>
     <link rel="stylesheet" href="./styles/style.css">
     <link rel="stylesheet" href="./styles/index.css">
+    <script src="./js/storageToken.js" defer></script>
+    <script src="./js/storage.js" defer></script>
     <script src="./js/register.js" defer></script>
     <script src="./js/index.js" defer></script>
 </head>
-<body>
+<body onload="initLogIn()">
     <img class="posAbsolute logoSlideIn" src="./img/joinLogoBig.png" alt="Join-Logo">
     <section class="posAbsolute right0 padTop60 padRight60 opacity0to1">
         <span class="fontSize16 padRight30">Not a Join user?</span>
         <a href="./register.html" class="cursorPointer darkBtn fontBold fontSize16 noDecoration">Sign up</a>
     </section>
     <section class="overDivFormLogIn opacity0to1">
-        <form class="formLogIn dFlex directionColumn alignCenter">
+        <form onsubmit="logIn(event)" class="formLogIn dFlex directionColumn alignCenter">
             <h1>
                 Log in
             </h1>
@@ -26,7 +28,7 @@
                 <img onclick="focusOn('logInEmail')" class="posAbsolute logInInputPicture height13 right15 top11 cursorPointer" src="./img/logInMail.png" alt="E-Mail-picture">
             </div>
             <div class="posRelative">
-                <input placeholder="Password" id="logInPassword" oninput="showEyeOrLock('logInPassword', 'logInLock', 'logInVisibilityOnOrOff')" class="cursorPointer marBot20 fontSize16 logInInputBorder" type="password" required>
+                <input placeholder="Password" id="logInPassword" oninput="showEyeOrLock('logInPassword', 'logInLock', 'logInVisibilityOnOrOff'), removeRedBorder('logInPassword')" class="cursorPointer marBot20 fontSize16 logInInputBorder" type="password" required>
                 <img id="logInLock" onclick="focusOn('logInPassword')" class="posAbsolute logInInputPicture height18 right15 top9 cursorPointer" src="./img/logInLock.png" alt="Password-picture">
                 <img id="logInVisibilityOnOrOff" onclick="visibilityOnOff('logInVisibilityOnOrOff', 'logInLock', 'logInPassword')" class="posAbsolute right15 height15 top11 d-none cursorPointer" src="./img/logInVisibilityOff.png" alt="visibility-off-picture">
             </div>
