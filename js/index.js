@@ -5,6 +5,8 @@
 // 5. href="contacts.html" for the arrow back in privacyPolicy.html instead of onclick="history.back()"
 // "tasks" also in remote storage
 // instead of "alert('Sorry for loading error!');" a better way, more costumized, better words
+// responsive log in und register html
+// privacy policy and legal notice another navbar if not logged in
 
 // https://jsdoc.app/tags-returns FOR JSDOC!
 // /**
@@ -28,6 +30,7 @@ async function initLogIn() {
     if (currentUserExists()) {
         currentUser = getCurrentUser();
     }
+    clearLogInForm();
 }
 
 function currentUserExists() {

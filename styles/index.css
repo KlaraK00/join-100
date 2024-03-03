@@ -195,9 +195,10 @@ dialog::backdrop {
 .logInInputBorder {
     border-radius: 9px;
     border: 1px solid #D1D1D1;
-    width: 330px;
     padding: 8px 15px;
     outline: none;
+    padding-right: 40px;
+    width: 305px;
 }
 
 .logInInputBorder:focus {
