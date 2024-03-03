@@ -1,6 +1,8 @@
 async function init() {
   await includeHTML();
   highlightActiveSideButton();
+  currentUser = getCurrentUser();
+  showUserNavBar();
 }
 
 async function includeHTML() {
@@ -37,4 +39,24 @@ function getCurrentPage() {
 
 function openPage(page) {
     window.location.href = page + '.html';
+}
+
+/* ---------- show User ---------- */
+
+function showUserNavBar() {
+  let iconElipse = document.getElementById('iconElipse');
+  iconElipse.innerHTML = getFirstTwoLetters(currentUser);
+}
+
+function getFirstTwoLetters(element) {
+  let firstLetterOfFirstName = element.firstName.charAt(0);
+  let firstLetterOfLastName = '';
+  if(lastNameExists(element)) {
+    firstLetterOfLastName = element.lastName.charAt(0);
+  }
+  return `${firstLetterOfFirstName}${firstLetterOfLastName}`;
+}
+
+function lastNameExists(element) {
+  return element.lastName !== '';
 }

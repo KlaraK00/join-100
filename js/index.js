@@ -1,6 +1,7 @@
-// PROBLEMS:
 // 1. Overlay when registration is successful not functioning (register.html)
-// CURRENT USER: guest-login = firstName: Guest, lastName: '' / user-login = users[i] => both cases in LOCAL STORAGE!
+// 2. input auto fill in background is lightBlue. Can't change it to transparent.(register.html & index.html)
+// 3. NavBar id "userNavar"
+// 4. contact needs createdAt as an ID and as same as contacts / push in contacts
 // guest-login = G / user-login = first letters of names
 
 let currentUser;
@@ -9,7 +10,18 @@ let currentUser;
 
 async function initLogIn() {
     await loadUsers();
+    if (currentUserExists()) {
+        currentUser = getCurrentUser();
+    }
 }
+
+function currentUserExists() {
+    return currentUser && currentUser !== "";
+}
+
+function getCurrentUser() {
+    return getLocalStorageItem('currentUser');
+  }
 
 /* ---------- guest log in ---------- */
 
