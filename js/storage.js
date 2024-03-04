@@ -1,9 +1,9 @@
 /**
- * This function is used set an Item in the remote storage.
+ * This function is used set an Item in the remote storage. // genauer! umgewandelt in Text etc
  * 
  * @param {string} key - This is the key of the item you want to save in the remote storage.
  * @param {object} value - This is the value of the item you want to save in the remote storage.
- * @returns {object} - Returns a JSON.
+ * @returns {object || error} - returns a JSON or an error
  */
 async function setItem(key, value) {
     let payload = {key, value, token: STORAGE_TOKEN};
@@ -30,9 +30,8 @@ async function getItem(key) {
         } else {
             throw response.status;
         }
-    } catch(e) {
-        debugger;
-        alert('Sorry for loading error!', e);
+    } catch {
+        alert('Sorry for loading error!');
     }
 }
 

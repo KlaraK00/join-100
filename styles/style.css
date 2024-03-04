@@ -29,6 +29,10 @@ body {
     flex-direction: column;
 }
 
+.alignStart {
+    align-items: start;
+}
+
 .alignCenter {
     align-items: center;
 }

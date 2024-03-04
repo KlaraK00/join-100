@@ -11,6 +11,7 @@
     <script src="./js/register.js" defer></script>
     <script src="./js/index.js" defer></script>
     <script src="./js/navBar.js" defer></script>
+    <script src="./templates/HTMLTemplatesBoard.js" defer></script>
     <script src="./js/board.js" defer></script>
 
 </head>
@@ -35,14 +36,39 @@
       </div>
       </div>
     </div>
-    <div class="taskWrapper" >
-        <div class="toDoColumn">
-            <div class="noTask">No Tasks to do</div>
-            <div class="card d-none">Progress</div></div>
-        <div class="column"><div class="card">
-            <div class="cardInsideFrame">Progress</div></div></div>
-        <div class="column"><div class="card">Progress</div></div>
-        <div class="column"><div class="card">Progress</div></div>
+    <!-- <div class="taskWrapper">
+        <div id="divToDo" class="toDoColumn">
+            <div class="noTask">
+                No Tasks to do
+            </div>
+            <div class="card d-none">
+                Progress
+            </div>
+        </div>
+        <div class="column">
+            <div class="card">
+                <div class="cardInsideFrame">
+                    Progress
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="card">
+                Progress
+            </div>
+        </div>
+        <div class="column">
+            <div class="card">
+                Progress
+            </div>
+        </div>
+    </div> -->
+
+    <div class="taskWrapper">
+        <div id="divToDo" class="column"></div>
+        <div id="divInProgress" class="column"></div>
+        <div id="divAwaitFeedback" class="column"></div>
+        <div id="divDone" class="column"></div>
     </div>
   </body>
 </html>
