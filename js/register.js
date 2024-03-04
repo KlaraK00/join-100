@@ -39,7 +39,6 @@ async function loadContacts() {
     if(await contactsExist()) {
         contacts = JSON.parse(await getItem('contacts'));
     }
-    renderContact();
 }
 
 async function contactsExist() {

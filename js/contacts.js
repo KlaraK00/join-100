@@ -5,6 +5,13 @@ function addNewContact(){
     document.getElementById('overlay-add-contact').innerHTML = createNewContactHTML();
 }
 
+async function loadContacts2() {
+    if(await contactsExist()) {
+        contacts = JSON.parse(await getItem('contacts'));
+    }
+    renderContact();
+}
+
 function editContact(){
     document.getElementById('overlay-edit-contact').classList.remove('d-none');
     document.getElementById('overlay-edit-contact').classList.add('d-flex');

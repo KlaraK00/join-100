@@ -1,6 +1,5 @@
 async function init() {
   await includeHTML();
-  await loadContacts();
   highlightActiveSideButton();
   currentUser = getCurrentUser();
   showUserNavBar();
