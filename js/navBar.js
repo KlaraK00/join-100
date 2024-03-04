@@ -1,4 +1,5 @@
 async function init() {
+  await loadContacts();
   await includeHTML();
   highlightActiveSideButton();
   currentUser = getCurrentUser();

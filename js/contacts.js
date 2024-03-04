@@ -1,10 +1,3 @@
-const STORAGE_TOKEN = '';
-const STORAGE_URL = 'https://remote-storage.developerakademie.org/item';
-
-let contactNames = [];
-let contactMails = [];
-let contactNumbers = [];
-
 function addNewContact(){
     document.getElementById('overlay-add-contact').classList.remove('d-none');
     document.getElementById('overlay-add-contact').classList.add('d-flex');
@@ -31,20 +24,24 @@ function closeEditContactWindow(){
     document.getElementById('overlay-edit-contact').classList.remove('overlay-add-contact');
 }
 
-function createContact(){
-    let contactName = document.getElementById('contactName');
-    let contactMail = document.getElementById('contactMail');
-    let contactNumber = document.getElementById('contactNumber');
-    contactNames.push(contactName.value);
-    contactMails.push(contactMail.value);
-    contactNumbers.push(contactNumber.value);
+ async function createAContact(){
+    let name = document.getElementById('contactName');
+    let mail = document.getElementById('contactMail');
+    let number = document.getElementById('contactNumber');
+    let contactInfo = {
+        "name" : name.value,
+        "mail" : mail.value,
+        "number" : number.value,
+    }
+    contacts.push(contactInfo);
+    await saveContact();
     renderContact();
     closeNewContactWindow();
 }
 
 function renderContact(){
     document.getElementById('informations').innerHTML = '';
-    for (let i = 0; i < contactNames.length; i++) {
+    for (let i = 0; i < contacts.length; i++) {
         document.getElementById('informations').innerHTML += createContactHTML(i);
     }
 }
@@ -52,10 +49,10 @@ function renderContact(){
 function createContactHTML(i){
     return `
     <div class="informations" id="contact-infos${i}">
-        <div class="user-small">AS</div>
+        <div class="user-small">AM</div>
             <div>
-            ${contactNames[i]} <br>
-            <a href="">${contactMails[i]}</a>
+            ${contacts[i]['name']} <br>
+            <a href="">${contacts[i]['mail']}</a>
         </div>
     </div>
     `;
@@ -85,7 +82,7 @@ function createNewContactHTML() {
                 </div>
                 <div class="add-contact-button">
                     <button type="button" onclick="closeNewContactWindow()" class="button2">Cancel</button>
-                    <button onclick="createContact()" type="button" class="button3">Create contact</button>
+                    <button onclick="createAContact()" type="button" class="button3">Create contact</button>
                 </div>
             </form>
     </div>

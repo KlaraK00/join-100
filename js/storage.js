@@ -16,7 +16,7 @@ async function setItem(key, value) {
             throw response.status;
         }
     } catch {
-        alert('Sorry for loading error!');
+        alert('Sorry for saving error!');
     }
 }
 

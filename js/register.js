@@ -36,12 +36,13 @@ async function usersExist() {
 }
 
 async function loadContacts() {
-    if(await contatcsExist()) {
+    if(await contactsExist()) {
         contacts = JSON.parse(await getItem('contacts'));
     }
+    renderContact();
 }
 
-async function contatcsExist() {
+async function contactsExist() {
     return getItem('contacts');
 }
 

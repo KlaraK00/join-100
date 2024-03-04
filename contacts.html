@@ -5,10 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacts</title>
     <link rel="stylesheet" href="./styles/contacts.css">
+    <script src="./js/storageToken.js" defer></script>
+    <script src="./js/storage.js" defer></script>
+    <script src="./js/register.js" defer></script>
+    <script src="./js/index.js" defer></script>
     <script src="/js/navBar.js"></script>
     <script src="/js/contacts.js"></script>
 </head>
-<body onload="includeHTML(), init()">
+<body onload="init(), includeHTML()">
     <div w3-include-html="/templates/navBar.html"></div>
     <div w3-include-html="/templates/header.html"></div>
     <div class="contact-container">
@@ -21,16 +25,7 @@
                     A
                 </div>
                 <div class="line-contacts"></div>
-                <div id="informations">
-                    
-                </div>
-                <div class="informations">
-                    <div class="user-small">AS</div>
-                    <div>
-                        Anja Schulz <br>
-                    <a href="">schulz@hotmail.com</a>
-                    </div>
-                </div>
+                <div id="informations"></div>
             </div>
         </div>
 
