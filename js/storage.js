@@ -30,9 +30,8 @@ async function getItem(key) {
         } else {
             throw response.status;
         }
-    } catch(e) {
-        debugger;
-        alert('Sorry for loading error!', e);
+    } catch {
+        alert('Sorry for loading error!');
     }
 }
 
