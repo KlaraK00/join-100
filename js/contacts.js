@@ -12,11 +12,11 @@ async function loadContacts2() {
     renderContact();
 }
 
-function editContact(){
+function editContact(i){
     document.getElementById('overlay-edit-contact').classList.remove('d-none');
     document.getElementById('overlay-edit-contact').classList.add('d-flex');
     document.getElementById('overlay-edit-contact').classList.add('overlay-add-contact');
-    document.getElementById('overlay-edit-contact').innerHTML = createEditContactHTML();
+    document.getElementById('overlay-edit-contact').innerHTML = createEditContactHTML(i);
 }
 
 function closeNewContactWindow(){
@@ -35,10 +35,12 @@ function closeEditContactWindow(){
     let name = document.getElementById('contactName');
     let mail = document.getElementById('contactMail');
     let number = document.getElementById('contactNumber');
+    let createdAt = new Date().getTime();
     let contactInfo = {
         "name" : name.value,
         "mail" : mail.value,
         "number" : number.value,
+        "id" : createdAt,
     }
     contacts.push(contactInfo);
     await saveContact();
@@ -53,15 +55,47 @@ function renderContact(){
     }
 }
 
+async function deleteContact(i){
+    contacts.splice(i, 1);
+    saveContact();
+    loadContacts2();
+    document.getElementById('show-contact-infos').innerHTML = '';
+}
+
+function showContact(i){
+    document.getElementById('show-contact-infos').innerHTML = '';
+    document.getElementById('show-contact-infos').innerHTML += createShowContactHTML(i);
+}
+
 function createContactHTML(i){
     return `
-    <div class="informations" id="contact-infos${i}">
+    <div onclick="showContact(${i})" class="informations" id="contact-infos${i}">
         <div class="user-small">AM</div>
             <div>
             ${contacts[i]['name']} <br>
             <a href="">${contacts[i]['mail']}</a>
         </div>
     </div>
+    `;
+}
+
+function createShowContactHTML(i){
+    return`
+    <div class="contact-info">
+        <div class="user">AM</div> 
+        <div class="name-logos">
+        <h3>${contacts[i]['name']}</h3>
+        <div class="logos">
+        <div onclick="editContact(${i})" class="edit"><img src="./img/edit-black.png">Edit</div>
+        <div onclick="deleteContact(${i})" class="delete"><img src="./img/delete.png">Delete</div>
+        </div>
+    </div>
+    </div>
+    <h4>Contact Information</h4>
+    <h5>Email</h5>
+    <a href=""><a href="">${contacts[i]['mail']}</a>
+    <h5>Phone</h5>
+    ${contacts[i]['number']}
     `;
 }
 
@@ -96,7 +130,7 @@ function createNewContactHTML() {
     `;
 }
 
-function createEditContactHTML() {
+function createEditContactHTML(i) {
     return `
     <div class="overlay-contact">
         <div class="close-button">
@@ -113,12 +147,12 @@ function createEditContactHTML() {
         <div class="input-new-contact">
             <form>
                 <div class="input-fields">
-                    <input class="input background-img-profile" placeholder="Name" required>
-                    <input class="input background-img-mail" placeholder="Email" required>
-                    <input class="input background-img-phone" placeholder="Phone" required>
+                    <input class="input background-img-profile" placeholder="Name">
+                    <input class="input background-img-mail" placeholder="Email">
+                    <input class="input background-img-phone" placeholder="Phone">
                 </div>
                 <div class="add-contact-button">
-                    <button class="button4">Delete</button>
+                    <button onclick="deleteContact(${i})" class="button4">Delete</button>
                     <button class="button5">Save</button>
                 </div>
             </form>
