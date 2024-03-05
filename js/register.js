@@ -88,6 +88,7 @@ function addUser(createdAt) {
         createdAt: createdAt,
         firstName: firstName,
         lastName: lastName,
+        initials: firstName.charAt(0) + lastName.charAt(0),
         email: email,
         password: password,
     }
@@ -120,12 +121,13 @@ function addContact(createdAt) {
     let lastName = getLastName();
     let email = document.getElementById('registerEmail').value;
     let contact = {
-        createdAt: createdAt,
-        color: selectColor(),
         firstName: firstName,
         lastName: lastName,
-        email: email,
-        phone: ''
+        initials: firstName.charAt(0) + lastName.charAt(0),
+        mail: email,
+        number: '',
+        createdAt: createdAt,
+        color: selectColor()
     }
     contacts.push(contact);
 }
