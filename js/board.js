@@ -3,7 +3,7 @@ let tasks = [
         createdAt: '0990790667',
         title: 'title1',
         description: 'description1',
-        contacts: ['contact1', 'contact2'],
+        contacts: ['1709644729688', '1709648960084'],
         date: '04.03.2024',
         prio: 'medium',
         category: 'User Story',
@@ -23,7 +23,7 @@ let tasks = [
         createdAt: '0990790669',
         title: 'title2',
         description: 'description2',
-        contacts: ['contact1', 'contact2'],
+        contacts: ['1709644729688', '1709645149516', '1709648960084'],
         date: '04.03.2024',
         prio: 'urgent',
         category: 'Technical Task',
@@ -43,7 +43,7 @@ let tasks = [
         createdAt: '0990798667',
         title: 'title3',
         description: 'description3',
-        contacts: ['contact1', 'contact2'],
+        contacts: ['1709645149516', '1709644729688'],
         date: '04.03.2024',
         prio: 'urgent',
         category: 'Technical Task',
@@ -63,7 +63,7 @@ let tasks = [
         createdAt: '0999790667',
         title: 'title4',
         description: 'description4',
-        contacts: ['contact1', 'contact2'],
+        contacts: ['1709645149516'],
         date: '04.03.2024',
         prio: 'low',
         category: 'User Story',
@@ -83,7 +83,7 @@ let tasks = [
         createdAt: '9990790667',
         title: 'title5',
         description: 'description5',
-        contacts: ['contact1', 'contact2'],
+        contacts: [],
         date: '04.03.2024',
         prio: 'medium',
         category: 'Technical Task',
@@ -128,6 +128,7 @@ function renderToDo() {
         divToDo.innerHTML += HTMLTemplateTask(task);
         categoryBackground(task, `boardCategory${task.createdAt}`);
         renderSubtasks(task);
+        renderContactsBoard(task);
     }
 }
 
@@ -163,6 +164,15 @@ function createProgressBarForSubtasks(task, subtasksDone) {
     progressBarDiv.style.width = percentage;
 }
 
+function renderContactsBoard(task) {
+    let div = document.getElementById(`contacts${task.createdAt}`);
+    div.innerHTML = '';
+    for (let i = 0; i < task.contacts.length; i++) {
+        let contact = contacts.find(c => c.createdAt == task.contacts[i]);
+        div.innerHTML += /*html*/`<div class="initialsBoard" style="background-color:${contact.color}">${contact.initials}</div>`;
+    }
+}
+
 function renderInProgress() {
     let allTasksInProgress = tasks.filter(task => task.status == 'inProgress');
     let divInProgress = document.getElementById('divInProgress');
@@ -172,6 +182,7 @@ function renderInProgress() {
         divInProgress.innerHTML += HTMLTemplateTask(task);
         categoryBackground(task, `boardCategory${task.createdAt}`);
         renderSubtasks(task);
+        renderContactsBoard(task);
     }
 }
 
@@ -184,6 +195,7 @@ function renderAwaitFeedback() {
         divAwaitFeedback.innerHTML += HTMLTemplateTask(task);
         categoryBackground(task, `boardCategory${task.createdAt}`);
         renderSubtasks(task);
+        renderContactsBoard(task);
     }
 }
 
@@ -196,6 +208,7 @@ function renderDone() {
         divDone.innerHTML += HTMLTemplateTask(task);
         categoryBackground(task, `boardCategory${task.createdAt}`);
         renderSubtasks(task);
+        renderContactsBoard(task);
     }
 }
 
