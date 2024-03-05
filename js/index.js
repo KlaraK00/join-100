@@ -7,6 +7,7 @@
 // instead of "alert('Sorry for loading error!');" a better way, more costumized, better words
 // responsive log in und register html
 // privacy policy and legal notice another navbar if not logged in
+// sign up only able when privacy policy is marked
 
 // https://jsdoc.app/tags-returns FOR JSDOC!
 // /**

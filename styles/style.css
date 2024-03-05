@@ -41,12 +41,20 @@ body {
     align-items: center;
 }
 
+.alignEnd {
+    align-items: end;
+}
+
 .justCenter {
     justify-content: center;
 }
 
 .justBetween {
     justify-content: space-between;
+}
+
+.justEnd {
+    justify-content: end;
 }
 
 /* ---------- FONTS ---------- */

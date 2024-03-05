@@ -282,6 +282,9 @@ function renderSearchedToDo(search) {
         let task = allSearchedTasksToDo[i];
         divToDo.innerHTML += HTMLTemplateTask(task);
         categoryBackground(task, `boardCategory${task.createdAt}`);
+        renderSubtasks(task);
+        renderContactsBoard(task);
+        renderPriorityAtBoard(task);
     }
 }
 
@@ -294,6 +297,9 @@ function renderSearchedInProgress(search) {
         let task = allSearchedTasksInProgress[i];
         divInProgress.innerHTML += HTMLTemplateTask(task);
         categoryBackground(task, `boardCategory${task.createdAt}`);
+        renderSubtasks(task);
+        renderContactsBoard(task);
+        renderPriorityAtBoard(task);
     }
 }
 
@@ -306,6 +312,9 @@ function renderSearchedAwaitFeedback(search) {
         let task = allSearchedTasksAwaitFeedback[i];
         divAwaitFeedback.innerHTML += HTMLTemplateTask(task);
         categoryBackground(task, `boardCategory${task.createdAt}`);
+        renderSubtasks(task);
+        renderContactsBoard(task);
+        renderPriorityAtBoard(task);
     }
 }
 
@@ -318,5 +327,79 @@ function rendeSearchedDone(search) {
         let task = allSearchedTasksDone[i];
         divDone.innerHTML += HTMLTemplateTask(task);
         categoryBackground(task, `boardCategory${task.createdAt}`);
+        renderSubtasks(task);
+        renderContactsBoard(task);
+        renderPriorityAtBoard(task);
     }
+}
+
+/* ---------- open task ---------- */
+
+function openTask(taskCreatedAt) {
+    let task = tasks.find(t => t.createdAt == taskCreatedAt);
+    let boardTaskOverlay = document.getElementById('boardTaskOverlay');
+    boardTaskOverlay.innerHTML = '';
+    boardTaskOverlay.innerHTML = HTMLTemplatePopUpTask(task);
+    categoryBackground(task, `boardPopUpCategory${task.createdAt}`);
+    renderContactsPopUpBoard(task);
+    renderSubtasksPopUpBoard(task);
+}
+
+function closeTask() {
+    let boardTaskOverlay = document.getElementById('boardTaskOverlay');
+    boardTaskOverlay.innerHTML = '';
+}
+
+function renderContactsPopUpBoard(task) {
+    let div = document.getElementById(`popUpContacts${task.createdAt}`);
+    div.innerHTML = '';
+    for (let i = 0; i < task.contacts.length; i++) {
+        let contact = contacts.find(c => c.createdAt == task.contacts[i]);
+        div.innerHTML += HTMLTemplatePopUpContact(contact);
+    }
+}
+
+function renderSubtasksPopUpBoard(task) {
+    let div = document.getElementById(`popUpSubtasks${task.createdAt}`);
+    div.innerHTML = '';
+    for (let i = 0; i < task.subtasks.length; i++) {
+        let subtask = task.subtasks[i];
+        div.innerHTML += HTMLTemplatePopUpSubtask(subtask);
+    }
+}
+
+// checkbox.src = './img/checkboxNotChecked.png';
+// } else {
+//     checkbox.src = './img/registerCheckedCheckbox.png';
+
+function changeBoardTaskPopUpEditToBlue() {
+    let img = document.getElementById('boardTaskPopUpEditImg');
+    let span = document.getElementById('boardTaskPopUpEditSpan');
+    img.src = "./img/edit-blue.png";
+    span.style.color = "#29ABE2";
+    span.style.fontWeight = "bold";
+}
+
+function changeBoardTaskPopUpEditToBlack() {
+    let img = document.getElementById('boardTaskPopUpEditImg');
+    let span = document.getElementById('boardTaskPopUpEditSpan');
+    img.src = "./img/edit-black.png";
+    span.style.color = "#000000";
+    span.style.fontWeight = "400";
+}
+
+function changeBoardTaskPopUpDeleteToBlue() {
+    let img = document.getElementById('boardTaskPopUpDeleteImg');
+    let span = document.getElementById('boardTaskPopUpDeleteSpan');
+    img.src = "./img/delete-blue.png";
+    span.style.color = "#29ABE2";
+    span.style.fontWeight = "bold";
+}
+
+function changeBoardTaskPopUpDeleteToBlack() {
+    let img = document.getElementById('boardTaskPopUpDeleteImg');
+    let span = document.getElementById('boardTaskPopUpDeleteSpan');
+    img.src = "./img/delete.png";
+    span.style.color = "#000000";
+    span.style.fontWeight = "400";
 }

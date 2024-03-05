@@ -22,6 +22,14 @@ h1 {
     height: 18px;
 }
 
+.height20 {
+    height: 20px;
+}
+
+.width50 {
+    width: 50px;
+}
+
 .width100Perc {
     width: 100%;
 }
@@ -40,12 +48,24 @@ h1 {
     padding-right: 60px;
 }
 
+.padLeft6 {
+    padding-left: 6px;
+}
+
 .padLeft8 {
     padding-left: 8px;
 }
 
+.padLeft16 {
+    padding-left: 16px;
+}
+
 .marBot20 {
     margin-bottom: 20px;
+}
+
+.marTopMinus10 {
+    margin-top: -10px;
 }
 
 .marTop10 {
@@ -58,6 +78,18 @@ h1 {
 
 .marLeft30{
     margin-left: 30px;
+}
+
+.gap6 {
+    gap: 6px;
+}
+
+.gap10 {
+    gap: 10px;
+}
+
+.gap20 {
+    gap: 20px;
 }
 
 /* ---------- FONTS ---------- */
