@@ -111,7 +111,6 @@ h5 {
     height: 120px;
     width: 120px;
     border-radius: 70px;
-    background-color: rgb(255,122,1);
     color: white;
     display: flex;
     align-items: center;
@@ -123,7 +122,6 @@ h5 {
     height: 42px;
     width: 42px;
     border-radius: 70px;
-    background-color: rgb(255,122,1);
     color: white;
     display: flex;
     align-items: center;

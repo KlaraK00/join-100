@@ -32,20 +32,55 @@ function closeEditContactWindow(){
 }
 
  async function createAContact(){
-    let name = document.getElementById('contactName');
     let mail = document.getElementById('contactMail');
     let number = document.getElementById('contactNumber');
     let createdAt = new Date().getTime();
+    let firstName = getFirstName1();
+    let lastName = getLastName1();
     let contactInfo = {
-        "name" : name.value,
+        "firstName" : firstName,
+        "lastName" : lastName,
+        "initials" : firstName.charAt(0) + lastName.charAt(0),
         "mail" : mail.value,
         "number" : number.value,
-        "id" : createdAt,
+        "createdAt" : createdAt,
+        "color": selectColor(),
     }
     contacts.push(contactInfo);
     await saveContact();
     renderContact();
     closeNewContactWindow();
+}
+
+function getFirstName1() {
+    let name = document.getElementById('contactName');
+    let nameArray = name.value.split(' ');
+    return nameArray[0];
+}
+
+function getLastName1() {
+    let name = document.getElementById('contactName');
+    let nameArray = name.value.split(' ');
+    return nameArray[nameArray.length -1];
+}
+
+function getFirstName2() {
+    let name = document.getElementById('editName');
+    let nameArray = name.value.split(' ');
+    return nameArray[0];
+}
+
+function getLastName2() {
+    let name = document.getElementById('editName');
+    let nameArray = name.value.split(' ');
+    return nameArray[nameArray.length -1];
+}
+
+function showInitials(){
+    let firstName = getFirstName1();
+    let lastName = getLastName1();
+    let initials = firstName.charAt(0) + lastName.charAt(0);
+    document.getElementById('initials').innerHTML = initials;
 }
 
 function renderContact(){
@@ -67,12 +102,34 @@ function showContact(i){
     document.getElementById('show-contact-infos').innerHTML += createShowContactHTML(i);
 }
 
+async function editAContact(i){
+    contacts.splice(i, 1);
+    let mail = document.getElementById('editMail');
+    let number = document.getElementById('editNumber');
+    let createdAt = new Date().getTime();
+    let firstName = getFirstName1();
+    let lastName = getLastName1();
+    let contactInfo = {
+        "firstName" : firstName,
+        "lastName" : lastName,
+        "initials" : firstName.charAt(0) + lastName.charAt(0),
+        "mail" : mail.value,
+        "number" : number.value,
+        "createdAt" : createdAt,
+        "color": selectColor(),
+    }
+    contacts.push(contactInfo);
+    await saveContact();
+    renderContact();
+    closeNewContactWindow();
+}
+
 function createContactHTML(i){
     return `
     <div onclick="showContact(${i})" class="informations" id="contact-infos${i}">
-        <div class="user-small">AM</div>
+        <div class="user-small" style="background-color: ${contacts[i]['color']}">${contacts[i]['initials']}</div>
             <div>
-            ${contacts[i]['name']} <br>
+            ${contacts[i]['firstName']} ${contacts[i]['lastName']} <br>
             <a href="">${contacts[i]['mail']}</a>
         </div>
     </div>
@@ -82,9 +139,9 @@ function createContactHTML(i){
 function createShowContactHTML(i){
     return`
     <div class="contact-info">
-        <div class="user">AM</div> 
+        <div class="user" style="background-color: ${contacts[i]['color']}">${contacts[i]['initials']}</div> 
         <div class="name-logos">
-        <h3>${contacts[i]['name']}</h3>
+        <h3>${contacts[i]['firstName']} ${contacts[i]['lastName']}</h3>
         <div class="logos">
         <div onclick="editContact(${i})" class="edit"><img src="./img/edit-black.png">Edit</div>
         <div onclick="deleteContact(${i})" class="delete"><img src="./img/delete.png">Delete</div>
@@ -147,13 +204,13 @@ function createEditContactHTML(i) {
         <div class="input-new-contact">
             <form>
                 <div class="input-fields">
-                    <input class="input background-img-profile" placeholder="Name">
-                    <input class="input background-img-mail" placeholder="Email">
-                    <input class="input background-img-phone" placeholder="Phone">
+                    <input id="editName" class="input background-img-profile" value="${contacts[i]['firstName']} ${contacts[i]['lastName']}">
+                    <input id="editMail" class="input background-img-mail" value="${contacts[i]['mail']}">
+                    <input id="editNumber" class="input background-img-phone" value="${contacts[i]['number']}">
                 </div>
                 <div class="add-contact-button">
                     <button onclick="deleteContact(${i})" class="button4">Delete</button>
-                    <button class="button5">Save</button>
+                    <button onclick="editAContact(${i})" class="button5">Save</button>
                 </div>
             </form>
     </div>
