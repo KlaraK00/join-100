@@ -1,6 +1,6 @@
 let tasks = [
     {   
-        createdAt: '099079066',
+        createdAt: '0990790667',
         title: 'title1',
         description: 'description1',
         contacts: ['contact1', 'contact2'],
@@ -11,7 +11,7 @@ let tasks = [
         status: 'done'
     },
     {
-        createdAt: '099079064',
+        createdAt: '0990790669',
         title: 'title2',
         description: 'description2',
         contacts: ['contact1', 'contact2'],
@@ -22,7 +22,7 @@ let tasks = [
         status: 'toDo'
     },
     {
-        createdAt: '099079067',
+        createdAt: '0990798667',
         title: 'title3',
         description: 'description3',
         contacts: ['contact1', 'contact2'],
@@ -33,7 +33,7 @@ let tasks = [
         status: 'done'
     },
     {
-        createdAt: '0990790668',
+        createdAt: '0999790667',
         title: 'title4',
         description: 'description4',
         contacts: ['contact1', 'contact2'],
@@ -44,7 +44,7 @@ let tasks = [
         status: 'inProgress'
     },
     {
-        createdAt: '099079069',
+        createdAt: '9990790667',
         title: 'title5',
         description: 'description5',
         contacts: ['contact1', 'contact2'],
@@ -55,6 +55,7 @@ let tasks = [
         status: 'awaitFeedback'
     }
 ]
+let currentDraggedElement;
 
 async function initBoard() {
     await includeHTML();
@@ -121,6 +122,94 @@ function renderDone() {
     divDone.innerHTML = '';
     for (let i = 0; i < allTasksDone.length; i++) {
         let task = allTasksDone[i];
+        divDone.innerHTML += HTMLTemplateTask(task);
+        categoryBackground(task, `boardCategory${task.createdAt}`);
+    }
+}
+
+/* ---------- drag and drop ---------- */
+
+
+function startDragging(id) {
+    currentDraggedElement = id;
+}
+
+function allowDrop(event) {
+    event.preventDefault();
+}
+
+function moveTo(newStatus) { 
+    let id = currentDraggedElement.slice(currentDraggedElement.length -10);
+    let element = tasks.find(task => task.createdAt == id);
+    element.status = newStatus;
+    renderAllTasks();
+}
+
+/* ---------- search ---------- */
+
+function searchAllTasks() {
+    let search = document.getElementById('boardSearchInput').value;
+    if(boardInputIsEmpty(search)) {
+        renderAllTasks();
+    } else {
+        renderAllSearchedTasks(search);
+    }
+}
+
+function boardInputIsEmpty(search) {
+    return search == '';
+}
+
+function renderAllSearchedTasks(search) {
+    renderSearchedToDo(search);
+    renderSearchedInProgress(search);
+    renderSearchedAwaitFeedback(search);
+    rendeSearchedDone(search);
+}
+
+function renderSearchedToDo(search) {
+    let allTasksToDo = tasks.filter(task => task.status == 'toDo');
+    let allSearchedTasksToDo = allTasksToDo.filter(task => task.title.toLowerCase().includes(search) || task.description.toLowerCase().includes(search));
+    let divToDo = document.getElementById('divToDo');
+    divToDo.innerHTML = '';
+    for (let i = 0; i < allSearchedTasksToDo.length; i++) {
+        let task = allSearchedTasksToDo[i];
+        divToDo.innerHTML += HTMLTemplateTask(task);
+        categoryBackground(task, `boardCategory${task.createdAt}`);
+    }
+}
+
+function renderSearchedInProgress(search) {
+    let allTasksInProgress = tasks.filter(task => task.status == 'inProgress');
+    let allSearchedTasksInProgress = allTasksInProgress.filter(task => task.title.toLowerCase().includes(search) || task.description.toLowerCase().includes(search));
+    let divInProgress = document.getElementById('divInProgress');
+    divInProgress.innerHTML = '';
+    for (let i = 0; i < allSearchedTasksInProgress.length; i++) {
+        let task = allSearchedTasksInProgress[i];
+        divInProgress.innerHTML += HTMLTemplateTask(task);
+        categoryBackground(task, `boardCategory${task.createdAt}`);
+    }
+}
+
+function renderSearchedAwaitFeedback(search) {
+    let allTasksAwaitFeedback = tasks.filter(task => task.status == 'awaitFeedback');
+    let allSearchedTasksAwaitFeedback = allTasksAwaitFeedback.filter(task => task.title.toLowerCase().includes(search) || task.description.toLowerCase().includes(search));
+    let divAwaitFeedback = document.getElementById('divAwaitFeedback');
+    divAwaitFeedback.innerHTML = '';
+    for (let i = 0; i < allSearchedTasksAwaitFeedback.length; i++) {
+        let task = allSearchedTasksAwaitFeedback[i];
+        divAwaitFeedback.innerHTML += HTMLTemplateTask(task);
+        categoryBackground(task, `boardCategory${task.createdAt}`);
+    }
+}
+
+function rendeSearchedDone(search) {
+    let allTasksDone = tasks.filter(task => task.status == 'done');
+    let allSearchedTasksDone = allTasksDone.filter(task => task.title.toLowerCase().includes(search) || task.description.toLowerCase().includes(search));
+    let divDone = document.getElementById('divDone');
+    divDone.innerHTML = '';
+    for (let i = 0; i < allSearchedTasksDone.length; i++) {
+        let task = allSearchedTasksDone[i];
         divDone.innerHTML += HTMLTemplateTask(task);
         categoryBackground(task, `boardCategory${task.createdAt}`);
     }

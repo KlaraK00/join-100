@@ -1,5 +1,5 @@
 function HTMLTemplateTask(task) {
-    return /*html*/`<div class="card dFlex directionColumn alignStart">
+    return /*html*/`<div id="task${task.createdAt}" draggable="true" ondragstart="startDragging('task${task.createdAt}')" class="card dFlex directionColumn alignStart">
             <div id="boardCategory${task.createdAt}">${task.category}</div>
             <div>${task.title}</div>
             <div>${task.description}</div>

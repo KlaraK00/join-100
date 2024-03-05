@@ -22,7 +22,7 @@
       <div class="menubar">
        <div class="headline">Board</div>
         <div class="searchAdd">
-            <div class="fakeInput"> <input type="text" placeholder="Find Task" /> <img src="img/search.png"></div>
+            <div class="fakeInput"> <input id="boardSearchInput" onkeyup="searchAllTasks()" type="text" placeholder="Find Task" /> <img src="img/search.png"></div>
          
           <div class ="addTask"><button>Add Task <img src="img/add.png"></button></div>
         </div>
@@ -65,10 +65,10 @@
     </div> -->
 
     <div class="taskWrapper">
-        <div id="divToDo" class="column"></div>
-        <div id="divInProgress" class="column"></div>
-        <div id="divAwaitFeedback" class="column"></div>
-        <div id="divDone" class="column"></div>
+        <div ondragover="allowDrop(event)" ondrop="moveTo('toDo')" id="divToDo" class="column"></div>
+        <div ondragover="allowDrop(event)" ondrop="moveTo('inProgress')" id="divInProgress" class="column"></div>
+        <div ondragover="allowDrop(event)" ondrop="moveTo('awaitFeedback')" id="divAwaitFeedback" class="column"></div>
+        <div ondragover="allowDrop(event)" ondrop="moveTo('done')" id="divDone" class="column"></div>
     </div>
   </body>
 </html>
