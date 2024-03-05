@@ -1,3 +1,12 @@
+let letters = [];
+
+async function initContacts(){
+    await loadContacts2();
+    fillLetter();
+    loadLetters();
+    renderContact();
+}
+
 function addNewContact(){
     document.getElementById('overlay-add-contact').classList.remove('d-none');
     document.getElementById('overlay-add-contact').classList.add('d-flex');
@@ -9,7 +18,6 @@ async function loadContacts2() {
     if(await contactsExist()) {
         contacts = JSON.parse(await getItem('contacts'));
     }
-    renderContact();
 }
 
 function editContact(i){
@@ -48,8 +56,8 @@ function closeEditContactWindow(){
     }
     contacts.push(contactInfo);
     await saveContact();
-    renderContact();
     closeNewContactWindow();
+    initContacts();
 }
 
 function getFirstName1() {
@@ -84,9 +92,10 @@ function showInitials(){
 }
 
 function renderContact(){
-    document.getElementById('informations').innerHTML = '';
     for (let i = 0; i < contacts.length; i++) {
-        document.getElementById('informations').innerHTML += createContactHTML(i);
+        const contact = contacts[i]['firstName'];
+        let firstLetterName = contact.charAt(0);
+        document.getElementById(firstLetterName).innerHTML += createContactHTML(contact, firstLetterName, i);
     }
 }
 
@@ -95,6 +104,7 @@ async function deleteContact(i){
     saveContact();
     loadContacts2();
     document.getElementById('show-contact-infos').innerHTML = '';
+    initContacts();
 }
 
 function showContact(i){
@@ -120,13 +130,41 @@ async function editAContact(i){
     }
     contacts.push(contactInfo);
     await saveContact();
-    renderContact();
     closeNewContactWindow();
 }
 
-function createContactHTML(i){
+function fillLetter() {
+    letters = [];
+    for (let i = 0; i < contacts.length; i++) {
+        let name = contacts[i]['firstName'];
+        let letter = name.charAt(0);
+        if (!letters.includes(letter)) {
+            letters.push(letter);
+        }
+    }
+    letters.sort();
+}
+
+function loadLetters() {
+    let container = document.getElementById('contact-area');
+    container.innerHTML = '';
+    for (let i = 0; i < letters.length; i++) {
+        const element = letters[i];
+        container.innerHTML += createLetterHTML(element, i);
+    };
+}
+
+function createLetterHTML(letter, i){
     return `
-    <div onclick="showContact(${i})" class="informations" id="contact-infos${i}">
+        <div class="letter">${letter}</div>
+        <div class="line-contacts"></div>
+        <div id="${letter}" class="show-contact">
+    `;
+}
+
+function createContactHTML(contact, firstLetterName, i){
+    return `
+    <div onclick="showContact(${i})" class="informations" id='contact-info${i}'>
         <div class="user-small" style="background-color: ${contacts[i]['color']}">${contacts[i]['initials']}</div>
             <div>
             ${contacts[i]['firstName']} ${contacts[i]['lastName']} <br>

@@ -192,6 +192,12 @@ h5 {
     cursor: pointer;
 }
 
+.show-contact {
+    display: flex;
+    flex-direction: column;
+
+}
+
 .informations:hover {
     background-color: rgba(42, 54, 71);
     color: white;

@@ -12,7 +12,7 @@
     <script src="/js/navBar.js"></script>
     <script src="/js/contacts.js"></script>
 </head>
-<body onload="init(), includeHTML(), loadContacts2()">
+<body onload="init(), initContacts()">
     <div w3-include-html="/templates/navBar.html"></div>
     <div w3-include-html="/templates/header.html"></div>
     <div class="contact-container">
@@ -20,13 +20,7 @@
         <div class="d-none" id="overlay-edit-contact"></div>
         <div class="left-side">
             <div class="add-button"><button class="button1" onclick="addNewContact()">Add new contact</button></div>
-            <div class="contact-area">
-                <div class="letter">
-                    A
-                </div>
-                <div class="line-contacts"></div>
-                <div id="informations"></div>
-            </div>
+            <div id="contact-area" class="contact-area"></div>
         </div>
 
         <div class="right-side">
