@@ -95,6 +95,10 @@ let tasks = [
             {
             subtask: 'subtask2',
             done: false 
+            },
+            {
+            subtask: 'subtask3',
+            done: true 
             }
         ],
         status: 'awaitFeedback'
@@ -129,6 +133,7 @@ function renderToDo() {
         categoryBackground(task, `boardCategory${task.createdAt}`);
         renderSubtasks(task);
         renderContactsBoard(task);
+        renderPriorityAtBoard(task);
     }
 }
 
@@ -173,6 +178,19 @@ function renderContactsBoard(task) {
     }
 }
 
+function renderPriorityAtBoard(task) {
+    let div = document.getElementById(`priority${task.createdAt}`);
+    div.innerHTML = '';
+    if (priorityExistsAtBoard(task)) {
+        let priority = task.prio;
+        div.innerHTML = /*html*/`<img src="./img/${priority}Prio.png">`;
+    }
+}
+
+function priorityExistsAtBoard(task) {
+    return task.prio !== '';
+}
+
 function renderInProgress() {
     let allTasksInProgress = tasks.filter(task => task.status == 'inProgress');
     let divInProgress = document.getElementById('divInProgress');
@@ -183,6 +201,7 @@ function renderInProgress() {
         categoryBackground(task, `boardCategory${task.createdAt}`);
         renderSubtasks(task);
         renderContactsBoard(task);
+        renderPriorityAtBoard(task);
     }
 }
 
@@ -196,6 +215,7 @@ function renderAwaitFeedback() {
         categoryBackground(task, `boardCategory${task.createdAt}`);
         renderSubtasks(task);
         renderContactsBoard(task);
+        renderPriorityAtBoard(task);
     }
 }
 
@@ -209,6 +229,7 @@ function renderDone() {
         categoryBackground(task, `boardCategory${task.createdAt}`);
         renderSubtasks(task);
         renderContactsBoard(task);
+        renderPriorityAtBoard(task);
     }
 }
 

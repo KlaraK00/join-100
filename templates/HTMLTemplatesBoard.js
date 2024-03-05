@@ -10,7 +10,7 @@ function HTMLTemplateTask(task, subtasksDone) {
                 </div>
                 <div class="padLeft8 fontSize12" id="subtasksBoard${task.createdAt}"></div>
             </div>
-            <div class="dFlex justBetween width100Perc">
+            <div class="dFlex justBetween width100Perc alignCenter">
                 <div class="dFlex" id="contacts${task.createdAt}"></div>
                 <div id="priority${task.createdAt}"></div>
             </div>
