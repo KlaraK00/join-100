@@ -22,6 +22,10 @@ h1 {
     height: 18px;
 }
 
+.width100Perc {
+    width: 100%;
+}
+
 /* ---------- PADDING AND MARGIN ---------- */
 
 .padTop60 {
@@ -88,6 +92,10 @@ dialog::backdrop {
 
 .fontSize11 {
     font-size: 11px;
+}
+
+.fontSize12 {
+    font-size: 12px;
 }
 
 .fontSize14 {

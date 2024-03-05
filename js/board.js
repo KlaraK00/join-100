@@ -7,7 +7,16 @@ let tasks = [
         date: '04.03.2024',
         prio: 'medium',
         category: 'User Story',
-        subtasks: ['subtask1', 'subtask2'],
+        subtasks: [
+            {
+            subtask: 'subtask1',
+            done: false
+            },
+            {
+            subtask: 'subtask2',
+            done: false 
+            }
+        ],
         status: 'done'
     },
     {
@@ -18,7 +27,16 @@ let tasks = [
         date: '04.03.2024',
         prio: 'urgent',
         category: 'Technical Task',
-        subtasks: ['subtask1', 'subtask2'],
+        subtasks: [
+            {
+            subtask: 'subtask1',
+            done: false
+            },
+            {
+            subtask: 'subtask2',
+            done: true 
+            }
+        ],
         status: 'toDo'
     },
     {
@@ -29,7 +47,16 @@ let tasks = [
         date: '04.03.2024',
         prio: 'urgent',
         category: 'Technical Task',
-        subtasks: ['subtask1', 'subtask2'],
+        subtasks: [
+            {
+            subtask: 'subtask1',
+            done: true
+            },
+            {
+            subtask: 'subtask2',
+            done: true 
+            }
+        ],
         status: 'done'
     },
     {
@@ -40,7 +67,16 @@ let tasks = [
         date: '04.03.2024',
         prio: 'low',
         category: 'User Story',
-        subtasks: ['subtask1', 'subtask2'],
+        subtasks: [
+            {
+            subtask: 'subtask1',
+            done: false
+            },
+            {
+            subtask: 'subtask2',
+            done: false 
+            }
+        ],
         status: 'inProgress'
     },
     {
@@ -51,7 +87,16 @@ let tasks = [
         date: '04.03.2024',
         prio: 'medium',
         category: 'Technical Task',
-        subtasks: ['subtask1', 'subtask2'],
+        subtasks: [
+            {
+            subtask: 'subtask1',
+            done: false
+            },
+            {
+            subtask: 'subtask2',
+            done: false 
+            }
+        ],
         status: 'awaitFeedback'
     }
 ]
@@ -82,6 +127,7 @@ function renderToDo() {
         let task = allTasksToDo[i];
         divToDo.innerHTML += HTMLTemplateTask(task);
         categoryBackground(task, `boardCategory${task.createdAt}`);
+        renderSubtasks(task);
     }
 }
 
@@ -94,6 +140,29 @@ function categoryBackground(task, id) {
     }
 }
 
+function renderSubtasks(task) {
+    let subtasksDone = getSubtasksDone(task);
+    createNumbersForSubtasks(task, subtasksDone);
+    createProgressBarForSubtasks(task, subtasksDone);
+}
+
+function getSubtasksDone(task) {
+    let subtasksDone = task.subtasks.filter(subtask => subtask.done);
+    return subtasksDone.length;
+}
+
+function createNumbersForSubtasks(task, subtasksDone) {
+    let howManySubtasksDoneDiv = document.getElementById(`subtasksBoard${task.createdAt}`);
+    howManySubtasksDoneDiv.innerHTML = '';
+    howManySubtasksDoneDiv.innerHTML = `${subtasksDone}/${task.subtasks.length} Subtasks`;
+}
+
+function createProgressBarForSubtasks(task, subtasksDone) {
+    let percentage = subtasksDone / task.subtasks.length * 100 + '%';
+    let progressBarDiv = document.getElementById(`blueProgressBar${task.createdAt}`); 
+    progressBarDiv.style.width = percentage;
+}
+
 function renderInProgress() {
     let allTasksInProgress = tasks.filter(task => task.status == 'inProgress');
     let divInProgress = document.getElementById('divInProgress');
@@ -102,6 +171,7 @@ function renderInProgress() {
         let task = allTasksInProgress[i];
         divInProgress.innerHTML += HTMLTemplateTask(task);
         categoryBackground(task, `boardCategory${task.createdAt}`);
+        renderSubtasks(task);
     }
 }
 
@@ -113,6 +183,7 @@ function renderAwaitFeedback() {
         let task = allTasksAwaitFeedback[i];
         divAwaitFeedback.innerHTML += HTMLTemplateTask(task);
         categoryBackground(task, `boardCategory${task.createdAt}`);
+        renderSubtasks(task);
     }
 }
 
@@ -124,6 +195,7 @@ function renderDone() {
         let task = allTasksDone[i];
         divDone.innerHTML += HTMLTemplateTask(task);
         categoryBackground(task, `boardCategory${task.createdAt}`);
+        renderSubtasks(task);
     }
 }
 

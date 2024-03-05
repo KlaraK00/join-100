@@ -25,6 +25,10 @@ body {
     display: flex;
 }
 
+.flex1 {
+    flex-grow: 1;
+}
+
 .directionColumn {
     flex-direction: column;
 }
@@ -49,6 +53,10 @@ body {
 
 .fontRed {
     color: rgba(255, 0, 0, 0.6);
+}
+
+.fontGrey {
+    color: #A8A8A8;
 }
 
 .fontLightGrey {

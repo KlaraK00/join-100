@@ -184,3 +184,17 @@ height: 32px;
     padding: 4px 16px 4px 16px;
     color: white;
 }
+
+.greyProgressBarBoard {
+    top: 4px;
+    background-color: #F4F4F4;
+    height: 6.5px;
+    border-radius: 10px;
+}
+
+.blueProgressBarBoard {
+    top: 4px;
+    background-color: #4589FF;
+    height: 6.5px;
+    border-radius: 10px;
+}
