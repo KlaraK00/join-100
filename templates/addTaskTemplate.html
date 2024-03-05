@@ -40,13 +40,15 @@
             <div>Due Date <span class="red">*</span></div>
             <input id="due" type="date" value="dd//mm//yyyy" />
         </div>
-        <div class="priority">
-            Priority 
+        <div id="priority" class="priority">
+            Priority
             <div class="prio">
-                <div><button>Urgent <img src="../img/prio alta.png"></button></div>
-                <div><button class="active">Medium <img src="../img/Capa 2.png"></button></div>
-                <div"><button>Low <img src="../img/Capa 1.png"></button></div>
+                <div><button onclick="activateButton('urgent')" id="urgent">Urgent <img src="../img/prio alta.png"></button></div>
+                <div><button onclick="activateButton('medium')" id="medium">Medium <img src="../img/Capa 2.png"></button></div>
+                <div><button onclick="activateButton('low')" id="low">Low <img src="../img/Capa 1.png"></button></div>
             </div>
+        </div>
+        
             
             <div class="category">
                 <div>Category</div>
@@ -75,5 +77,6 @@
     </div>
 </div>        
 </div>
+
 </body>
 </html>
