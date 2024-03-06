@@ -1,100 +1,100 @@
-// let tasks = [
-//     {   
-//         createdAt: '0990790667',
-//         title: 'title1',
-//         description: 'description1',
-//         contacts: ['1709724388780', '1709724616946'],
-//         date: '04.03.2024',
-//         prio: 'medium',
-//         category: 'User Story',
-//         subtasks: [
-//             {
-//             subtask: 'subtask1',
-//             done: false
-//             },
-//             {
-//             subtask: 'subtask2',
-//             done: false 
-//             }
-//         ],
-//         status: 'done'
-//     },
-//     {
-//         createdAt: '0990790669',
-//         title: 'title2',
-//         description: 'description2',
-//         contacts: ['1709724616946'],
-//         date: '04.03.2024',
-//         prio: 'urgent',
-//         category: 'Technical Task',
-//         subtasks: [
-//             {
-//             subtask: 'subtask1',
-//             done: false
-//             },
-//             {
-//             subtask: 'subtask2',
-//             done: true 
-//             }
-//         ],
-//         status: 'toDo'
-//     },
-//     {
-//         createdAt: '0990798667',
-//         title: 'title3',
-//         description: 'description3',
-//         contacts: ['1709724616946', '1709724388780'],
-//         date: '04.03.2024',
-//         prio: 'urgent',
-//         category: 'Technical Task',
-//         subtasks: [
-//             {
-//             subtask: 'subtask1',
-//             done: true
-//             },
-//             {
-//             subtask: 'subtask2',
-//             done: true 
-//             }
-//         ],
-//         status: 'done'
-//     },
-//     {
-//         createdAt: '0999790667',
-//         title: 'title4',
-//         description: 'description4',
-//         contacts: [],
-//         date: '04.03.2024',
-//         prio: '',
-//         category: 'User Story',
-//         subtasks: [],
-//         status: 'inProgress'
-//     },
-//     {
-//         createdAt: '9990790667',
-//         title: 'title5',
-//         description: 'description5',
-//         contacts: [],
-//         date: '04.03.2024',
-//         prio: 'medium',
-//         category: 'Technical Task',
-//         subtasks: [
-//             {
-//             subtask: 'subtask1',
-//             done: false
-//             },
-//             {
-//             subtask: 'subtask2',
-//             done: false 
-//             },
-//             {
-//             subtask: 'subtask3',
-//             done: true 
-//             }
-//         ],
-//         status: 'awaitFeedback'
-//     }
-// ]
+tasks = [
+    {   
+        createdAt: '0990790667',
+        title: 'title1',
+        description: 'description1',
+        contacts: ['1709724388780', '1709724616946'],
+        date: '04.03.2024',
+        prio: 'medium',
+        category: 'User Story',
+        subtasks: [
+            {
+            subtask: 'subtask1',
+            done: false
+            },
+            {
+            subtask: 'subtask2',
+            done: false 
+            }
+        ],
+        status: 'done'
+    },
+    {
+        createdAt: '0990790669',
+        title: 'title2',
+        description: 'description2',
+        contacts: ['1709724616946'],
+        date: '04.03.2024',
+        prio: 'urgent',
+        category: 'Technical Task',
+        subtasks: [
+            {
+            subtask: 'subtask1',
+            done: false
+            },
+            {
+            subtask: 'subtask2',
+            done: true 
+            }
+        ],
+        status: 'toDo'
+    },
+    {
+        createdAt: '0990798667',
+        title: 'title3',
+        description: 'description3',
+        contacts: ['1709724616946', '1709724388780'],
+        date: '04.03.2024',
+        prio: 'urgent',
+        category: 'Technical Task',
+        subtasks: [
+            {
+            subtask: 'subtask1',
+            done: true
+            },
+            {
+            subtask: 'subtask2',
+            done: true 
+            }
+        ],
+        status: 'done'
+    },
+    {
+        createdAt: '0999790667',
+        title: 'title4',
+        description: 'description4',
+        contacts: [],
+        date: '04.03.2024',
+        prio: '',
+        category: 'User Story',
+        subtasks: [],
+        status: 'inProgress'
+    },
+    {
+        createdAt: '9990790667',
+        title: 'title5',
+        description: 'description5',
+        contacts: [],
+        date: '04.03.2024',
+        prio: 'medium',
+        category: 'Technical Task',
+        subtasks: [
+            {
+            subtask: 'subtask1',
+            done: false
+            },
+            {
+            subtask: 'subtask2',
+            done: false 
+            },
+            {
+            subtask: 'subtask3',
+            done: true 
+            }
+        ],
+        status: 'awaitFeedback'
+    }
+]
 let currentDraggedElement;
 
 async function initBoard() {
@@ -102,7 +102,7 @@ async function initBoard() {
     // if(loggedIn) {
         await includeHTML();
         await loadContacts();
-        await loadTasks();
+        // await loadTasks();
         highlightActiveSideButton();
         currentUser = getCurrentUser();
         showUserNavBar();
@@ -128,8 +128,7 @@ function renderToDo() {
         divToDo.innerHTML += HTMLTemplateTask(task);
         categoryBackground(task, `boardCategory${task.createdAt}`);
         renderSubtasks(task);
-        renderContactsBoard(task);
-        renderPriorityAtBoard(task);
+        renderContactsAndPriorityBoard(task);
     }
 }
 
@@ -143,9 +142,14 @@ function categoryBackground(task, id) {
 }
 
 function renderSubtasks(task) {
-    let subtasksDone = getSubtasksDone(task);
-    createNumbersForSubtasks(task, subtasksDone);
-    createProgressBarForSubtasks(task, subtasksDone);
+    if (task.subtasks.length > 0) {
+        let subtasksDone = getSubtasksDone(task);
+        createNumbersForSubtasks(task, subtasksDone);
+        createProgressBarForSubtasks(task, subtasksDone);
+    } else {
+        let subtaskDiv = document.getElementById(`subtasksBoardOverDiv${task.createdAt}`);
+        subtaskDiv.remove();
+    }
 }
 
 function getSubtasksDone(task) {
@@ -161,8 +165,24 @@ function createNumbersForSubtasks(task, subtasksDone) {
 
 function createProgressBarForSubtasks(task, subtasksDone) {
     let percentage = subtasksDone / task.subtasks.length * 100 + '%';
-    let progressBarDiv = document.getElementById(`blueProgressBar${task.createdAt}`); 
-    progressBarDiv.style.width = percentage;
+    let blueProgressBarDiv = document.getElementById(`blueProgressBar${task.createdAt}`); 
+    let greyProgressBarDiv = document.getElementById(`greyProgressBar${task.createdAt}`); 
+    blueProgressBarDiv.style.width = percentage;
+    greyProgressBarDiv.style.width = "100%";
+}
+
+function renderContactsAndPriorityBoard(task) {
+    if((!task.contacts || task.contacts == "") && (!task.prio || task.prio == "")) {
+        removeContactsAndPriorityDiv(task);
+    } else {
+        renderContactsBoard(task);
+        renderPriorityAtBoard(task);
+    }
+}
+
+function removeContactsAndPriorityDiv(task) {
+    let divOfContactsAnPriority = document.getElementById(`contacts${task.createdAt}`).parentElement;
+    divOfContactsAnPriority.remove();
 }
 
 function renderContactsBoard(task) {
@@ -196,8 +216,7 @@ function renderInProgress() {
         divInProgress.innerHTML += HTMLTemplateTask(task);
         categoryBackground(task, `boardCategory${task.createdAt}`);
         renderSubtasks(task);
-        renderContactsBoard(task);
-        renderPriorityAtBoard(task);
+        renderContactsAndPriorityBoard(task);
     }
 }
 
@@ -210,8 +229,7 @@ function renderAwaitFeedback() {
         divAwaitFeedback.innerHTML += HTMLTemplateTask(task);
         categoryBackground(task, `boardCategory${task.createdAt}`);
         renderSubtasks(task);
-        renderContactsBoard(task);
-        renderPriorityAtBoard(task);
+        renderContactsAndPriorityBoard(task);
     }
 }
 
@@ -224,8 +242,7 @@ function renderDone() {
         divDone.innerHTML += HTMLTemplateTask(task);
         categoryBackground(task, `boardCategory${task.createdAt}`);
         renderSubtasks(task);
-        renderContactsBoard(task);
-        renderPriorityAtBoard(task);
+        renderContactsAndPriorityBoard(task);
     }
 }
 
