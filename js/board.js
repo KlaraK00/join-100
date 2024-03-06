@@ -3,7 +3,7 @@ tasks = [
         createdAt: '0990790667',
         title: 'title1',
         description: 'description1',
-        contacts: ['1709724388780', '1709724616946'],
+        contacts: ['1709724388780', '1709742196208'],
         date: '04.03.2024',
         prio: 'medium',
         category: 'User Story',
@@ -23,9 +23,9 @@ tasks = [
         createdAt: '0990790669',
         title: 'title2',
         description: 'description2',
-        contacts: ['1709724616946'],
+        contacts: [],
         date: '04.03.2024',
-        prio: 'urgent',
+        prio: '',
         category: 'Technical Task',
         subtasks: [
             {
@@ -43,20 +43,11 @@ tasks = [
         createdAt: '0990798667',
         title: 'title3',
         description: 'description3',
-        contacts: ['1709724616946', '1709724388780'],
+        contacts: ['1709742196208', '1709742212979'],
         date: '04.03.2024',
         prio: 'urgent',
         category: 'Technical Task',
-        subtasks: [
-            {
-            subtask: 'subtask1',
-            done: true
-            },
-            {
-            subtask: 'subtask2',
-            done: true 
-            }
-        ],
+        subtasks: [],
         status: 'done'
     },
     {
@@ -356,6 +347,7 @@ function openTask(taskCreatedAt) {
     categoryBackground(task, `boardPopUpCategory${task.createdAt}`);
     renderContactsPopUpBoard(task);
     renderSubtasksPopUpBoard(task);
+    renderPriorityPopUpBoard(task);
 }
 
 function closeTask() {
@@ -364,21 +356,49 @@ function closeTask() {
 }
 
 function renderContactsPopUpBoard(task) {
-    let div = document.getElementById(`popUpContacts${task.createdAt}`);
-    div.innerHTML = '';
-    for (let i = 0; i < task.contacts.length; i++) {
-        let contact = contacts.find(c => c.createdAt == task.contacts[i]);
-        div.innerHTML += HTMLTemplatePopUpContact(contact);
+    if(task.contacts == "") {
+        removeContactsPopUpBoard(task);
+    } else {
+        let div = document.getElementById(`popUpContacts${task.createdAt}`);
+        div.innerHTML = '';
+        for (let i = 0; i < task.contacts.length; i++) {
+            let contact = contacts.find(c => c.createdAt == task.contacts[i]);
+            div.innerHTML += HTMLTemplatePopUpContact(contact);
+        }
     }
 }
 
+function removeContactsPopUpBoard(task) {
+    let divOfContacts = document.getElementById(`popUpContacts${task.createdAt}`).parentElement;
+    divOfContacts.remove();
+}
+
 function renderSubtasksPopUpBoard(task) {
-    let div = document.getElementById(`popUpSubtasks${task.createdAt}`);
-    div.innerHTML = '';
-    for (let i = 0; i < task.subtasks.length; i++) {
-        let subtask = task.subtasks[i];
-        div.innerHTML += HTMLTemplatePopUpSubtask(subtask);
+    if(task.subtasks == "") {
+        let popUpSubtasksParent = document.getElementById(`popUpSubtasks${task.createdAt}`).parentElement;
+        popUpSubtasksParent.remove();
+    } else {
+        let popUpSubtasks = document.getElementById(`popUpSubtasks${task.createdAt}`);
+        popUpSubtasks.innerHTML = '';
+        for (let i = 0; i < task.subtasks.length; i++) {
+            let subtask = task.subtasks[i];
+            popUpSubtasks.innerHTML += HTMLTemplatePopUpSubtask(subtask);
+        }
     }
+}
+
+function renderPriorityPopUpBoard(task) {
+    if(task.prio == '') {
+        removePopUpPrioDiv(task);
+    } else {
+        let popUpBoardPriorityDiv = document.getElementById(`boardPopUpPriority${task.createdAt}`);
+        popUpBoardPriorityDiv.innerHTML = HTMLTemplatePopUpPriority(task);
+    }
+}
+
+function removePopUpPrioDiv(task) {
+    let popUpBoardPriorityDiv = document.getElementById(`boardPopUpPriority${task.createdAt}`);
+    popUpBoardPriorityDiv.remove();
 }
 
 // checkbox.src = './img/checkboxNotChecked.png';
@@ -415,4 +435,13 @@ function changeBoardTaskPopUpDeleteToBlack() {
     img.src = "./img/delete.png";
     span.style.color = "#000000";
     span.style.fontWeight = "400";
+}
+
+/* ---------- edit task ---------- */
+
+function boardPopUpEdit(id) {
+    let task = tasks.find(t => t.createdAt == id);
+    let boardTaskOverlay = document.getElementById('boardTaskOverlay');
+    boardTaskOverlay.innerHTML = '';
+    boardTaskOverlay.innerHTML = HTMLTemplatePopUpBoardEdit(task);
 }
