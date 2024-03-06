@@ -3,7 +3,7 @@ let tasks = [
         createdAt: '0990790667',
         title: 'title1',
         description: 'description1',
-        contacts: ['1709644729688', '1709648960084'],
+        contacts: ['1709724388780', '1709724616946'],
         date: '04.03.2024',
         prio: 'medium',
         category: 'User Story',
@@ -23,7 +23,7 @@ let tasks = [
         createdAt: '0990790669',
         title: 'title2',
         description: 'description2',
-        contacts: ['1709644729688', '1709645149516', '1709648960084'],
+        contacts: ['1709724616946'],
         date: '04.03.2024',
         prio: 'urgent',
         category: 'Technical Task',
@@ -43,7 +43,7 @@ let tasks = [
         createdAt: '0990798667',
         title: 'title3',
         description: 'description3',
-        contacts: ['1709645149516', '1709644729688'],
+        contacts: ['1709724616946', '1709724388780'],
         date: '04.03.2024',
         prio: 'urgent',
         category: 'Technical Task',
@@ -63,20 +63,11 @@ let tasks = [
         createdAt: '0999790667',
         title: 'title4',
         description: 'description4',
-        contacts: ['1709645149516'],
+        contacts: [],
         date: '04.03.2024',
-        prio: 'low',
+        prio: '',
         category: 'User Story',
-        subtasks: [
-            {
-            subtask: 'subtask1',
-            done: false
-            },
-            {
-            subtask: 'subtask2',
-            done: false 
-            }
-        ],
+        subtasks: [],
         status: 'inProgress'
     },
     {

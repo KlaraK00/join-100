@@ -103,3 +103,9 @@ function showLogInFailed() {
     addRedBorder('logInPassword');
     addDiv('logInFailed');
 }
+
+/* ---------- log out ---------- */
+
+function logOut() {
+    window.location.replace("./index.html");
+}
