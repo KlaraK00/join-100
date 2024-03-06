@@ -11,8 +11,10 @@
     <script src="./js/register.js" defer></script>
     <script src="./js/index.js" defer></script>
     <script src="js/navBar.js" defer></script>
+    <script src="js/summary.js"></script>
+    <script src="js/header.js"></script>
   </head>
-  <body onload="init()">
+  <body onload="init(), start()">
     <!--  -->
     <div w3-include-html="/templates/navBar.html"></div>
     <div w3-include-html="/templates/header.html"></div>
@@ -121,7 +123,7 @@
       </div>
       <div class="greet-container">
         <div class="fs-47 fw-500 greeting greeting-content" id="greeting">
-          Good afternoon
+          Good afternoon <span id="greetingNameContainer" class="greetingName"></span>
         </div>
         <div class="name-container name" id="name"></div>
       </div>

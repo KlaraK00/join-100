@@ -6,6 +6,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="../styles/style.css" />
     <link rel="stylesheet" href="../styles/header.css" />
+    <script src="../js/header.js"></script>
   </head>
   <body>
     <!-- hier beginnt die html des header -->
@@ -24,22 +25,25 @@
               onclick="openPage('help')"
             />
           </div>
-          <div class="user-icon" id="userNavar" onclick="userNavbar()">
+          <div class="user-icon" id="userNavar" onclick="togglePopUpMenu()">
             <span class="Icon-elipse" id="iconElipse"></span>
           </div>
         </div>
       </div>
       <div class="popUp-container" id="popUpUser">
         <div>
-          <div class="popUp-button" onclick="openPage('legality')">
+          <div class="popUp-button" onclick="openPage('legalNotice')">
             Legal Notice
           </div>
-          <div class="popUp-button" onclick="openPage('policy')">
+          <div class="popUp-button" onclick="openPage('privacyPolicy')">
             Privacy Policy
           </div>
           <div class="popUp-button" onclick="logoutUser()">Log out</div>
         </div>
       </div>
+    </div>
+    <div class="close-popup-by-click" id="closePopUpContentContainer" onclick="togglePopUpMenu()">
+
     </div>
     <!-- hier endet die html des header -->
   </body>

@@ -304,3 +304,6 @@ a {
     display: flex;
   }
 
+.greetingName {
+    color: rgb(41,171,226);
+}
