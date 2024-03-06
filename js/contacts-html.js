@@ -46,8 +46,11 @@ function createNewContactHTML() {
         <div class="close-button">
             <img onclick="closeNewContactWindow()" src="./img/Close.png">
         </div>
+        <div class="close-button2">
+            <img onclick="closeNewContactWindow()" src="./img/Close-white.png">
+        </div>
         <div class="blue-container">
-            <img src="./img/popup-join-logo.png">
+            <img class="logo" src="./img/popup-join-logo.png">
             <h1>Add contact</h1>
             <h2>Taks are better with a team!</h2>
             <img src="./img/blue-underline.png">
@@ -77,14 +80,15 @@ function createEditContactHTML(i) {
         <div class="close-button">
             <img onclick="closeEditContactWindow()" src="./img/Close.png">
         </div>
+        <div class="close-button2">
+            <img onclick="closeEditContactWindow()" src="./img/Close-white.png">
+        </div>
         <div class="blue-container">
-            <img src="./img/popup-join-logo.png">
+            <img class="logo2" src="./img/popup-join-logo.png">
             <h1>Edit contact</h1>
             <img src="./img/blue-underline.png">
         </div>
-        <div class="profile-logo">
-            <img src="./img/profile-logo.png">
-        </div>
+        <div class="width"><div class="profile-logo-edit" style="background-color: ${contacts[i]['color']}">${contacts[i]['initials']}</div></div>
         <div class="input-new-contact">
             <form onsubmit="editAContact(${i}); return false">
                 <div class="input-fields">

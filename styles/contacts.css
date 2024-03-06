@@ -33,9 +33,9 @@ body {
 .right-side {
     width: 65vw;
     background-color: rgb(246,247,248);
-    margin-top: 96px;
     padding-left: 40px;
     padding-right: 40px;
+    height: 100vh;
     overflow-y: scroll;
     overflow-x: hidden;
 }
@@ -238,14 +238,15 @@ a {
 
 .overlay-add-contact {
     position: fixed;
+    z-index: 999;
     top: 0;
+    bottom: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 999;
 }
 
 .overlay-contact {
@@ -301,6 +302,17 @@ a {
     cursor: pointer;
 }
 
+.close-button2 {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    right: 32px;
+    top: 48px;
+    border: none;
+    display: none;
+    cursor: pointer;
+}
+
 .close-button:hover {
     filter: brightness(0) saturate(100%) invert(52%) sepia(98%) saturate(407%) hue-rotate(155deg) brightness(93%) contrast(90%);
 }
@@ -309,6 +321,22 @@ a {
     width: 20%;
     display: flex;
     justify-content: center;
+}
+
+.width {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+}
+
+.profile-logo-edit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 120px;
+    width: 120px;
+    border-radius: 70px;
+    font-size: 47px;
 }
 
 .input-new-contact {
@@ -487,4 +515,112 @@ a {
 .show-successfully-saved {
     transform: translateX(0px);
     transition: all 500ms ease-in-out;
+}
+
+.add-button-mobile {
+    background-color: rgba(42, 54, 71);
+    border-radius: 100%;
+    height: 56px;
+    width: 56px;
+    display: none;
+    margin-left: 90%;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+@media(max-width: 1090px) {
+    .right-side {
+        display: none;
+    }
+
+    .left-side {
+        width: 100%;
+    }
+
+    .button1 {
+        display: none;
+    }
+
+    .add-button-mobile {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+
+    .add-button-mobile:hover {
+        background-color: rgb(41,171,226);
+    }
+
+    .overlay-add-contact {
+        height: 100vh;
+    }
+
+    .overlay-contact {
+        flex-direction: column;
+        width: 100%;
+        height: 100vh;
+    }
+
+    .blue-container {
+        width: 100%;
+        height: 40%;
+        border-top-left-radius: 30px;
+        border-top-right-radius: 30px;
+        border-bottom-left-radius: 0px;
+        display: flex;
+        align-items: center;
+        padding-left: 0px;
+    }
+
+    .logo {
+        display: none;
+    }
+
+    .logo2 {
+        display: none;
+    }
+
+    .input-new-contact {
+        margin-bottom: 40px;
+        width: 100%;
+        margin-right: 0;
+        height: 60%;
+        margin-top: 100px;
+    }
+
+    .profile-logo-edit {
+        width: 120px;
+        height: 120px;
+        position: absolute;
+        top: 28%;
+    }
+
+    .profile-logo img {
+        width: 120px;
+        height: 120px;
+        position: absolute;
+        top: 28%;
+    }
+
+    .button2 {
+        display: none;
+    }
+
+    .button3{
+        height: 42px;
+        text-align: center;
+    }
+
+    .close-button {
+        display: none;
+    }
+
+    .close-button2 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }
