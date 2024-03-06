@@ -2,12 +2,16 @@ let tasks = [];
 
 async function initAddTask() {
   await includeHTML();
-  if (await tasksExist()) {
-    tasks = JSON.parse(await getItem('tasks'));
-  }
+  await loadTasks();
   highlightActiveSideButton();
   currentUser = getCurrentUser();
   showUserNavBar();
+}
+
+async function loadTasks() {
+  if (await tasksExist()) {
+    tasks = JSON.parse(await getItem('tasks'));
+  }
 }
 
 async function tasksExist() {

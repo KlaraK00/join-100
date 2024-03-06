@@ -98,14 +98,11 @@
 let currentDraggedElement;
 
 async function initBoard() {
-    if (await tasksExist()) {
-        tasks = JSON.parse(await getItem('tasks'));
-    }
     loggedIn = getLoggedIn();
     // if(loggedIn) {
         await includeHTML();
         await loadContacts();
-        // await loadTasks(); => "tasks" vom remoteStorage
+        await loadTasks();
         highlightActiveSideButton();
         currentUser = getCurrentUser();
         showUserNavBar();
