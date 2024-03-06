@@ -35,6 +35,8 @@ body {
     margin-top: 96px;
     padding-left: 40px;
     padding-right: 40px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 button {
@@ -67,7 +69,6 @@ button {
     display: flex;
     gap: 30px;
     align-items: center;
-    padding-top: 110px;
 }
 
 h1 {
@@ -195,12 +196,21 @@ h5 {
 .show-contact {
     display: flex;
     flex-direction: column;
-
 }
 
 .informations:hover {
-    background-color: rgba(42, 54, 71);
-    color: white;
+    background-color: rgba(0, 0, 0, 0.4) !important;
+    color: black;
+}
+
+.hide-contact-infos {
+    transform: translateX(4000px);
+    transition: all 225ms ease-in-out; 
+}
+
+.show-contact-infos {
+    transform: translateX(0px);
+    transition: all 225ms ease-in-out;
 }
 
 .line-contacts {
@@ -413,4 +423,67 @@ a {
 
 .button5:hover {
     background-color: rgb(41,171,226); 
+}
+
+.successfully-created {
+    transform: translateX(4000px);
+    transition: all 500ms ease-in-out;
+    text-align: center;
+    height: 74px;
+    background-color: #2a3647;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    width: 50%;
+    position: absolute;
+    margin-top: 40px;
+}
+
+.successfully-deleted {
+    transform: translateX(4000px);
+    transition: all 500ms ease-in-out;
+    text-align: center;
+    height: 74px;
+    background-color: #2a3647;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    width: 50%;
+    position: absolute;
+    margin-top: 40px;
+}
+
+.successfully-saved {
+    transform: translateX(4000px);
+    transition: all 500ms ease-in-out;
+    text-align: center;
+    height: 74px;
+    background-color: #2a3647;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    width: 50%;
+    position: absolute;
+    margin-top: 40px;
+}
+
+.show-successfully-created {
+    transform: translateX(0px);
+    transition: all 500ms ease-in-out;
+}
+
+.show-successfully-deleted {
+    transform: translateX(0px);
+    transition: all 500ms ease-in-out;
+}
+
+.show-successfully-saved {
+    transform: translateX(0px);
+    transition: all 500ms ease-in-out;
 }

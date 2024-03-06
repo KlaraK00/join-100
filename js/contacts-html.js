@@ -1,3 +1,5 @@
+let previousContact = null;
+
 function createLetterHTML(letter, i){
     return `
         <div class="letter">${letter}</div>
@@ -12,7 +14,7 @@ function createContactHTML(contact, firstLetterName, i){
         <div class="user-small" style="background-color: ${contacts[i]['color']}">${contacts[i]['initials']}</div>
             <div>
             ${contacts[i]['firstName']} ${contacts[i]['lastName']} <br>
-            <a href="">${contacts[i]['mail']}</a>
+            <a href="mailto:${contacts[i]['mail']}">${contacts[i]['mail']}</a>
         </div>
     </div>
     `;
@@ -32,7 +34,7 @@ function createShowContactHTML(i){
     </div>
     <h4>Contact Information</h4>
     <h5>Email</h5>
-    <a href=""><a href="">${contacts[i]['mail']}</a>
+    <a href="mailto:${contacts[i]['mail']}">${contacts[i]['mail']}</a>
     <h5>Phone</h5>
     ${contacts[i]['number']}
     `;
@@ -54,7 +56,7 @@ function createNewContactHTML() {
             <img src="./img/profile-logo.png">
         </div>
         <div class="input-new-contact">
-            <form>
+            <form onsubmit="createAContact(); return false">
                 <div class="input-fields">
                     <input id="contactName" class="input background-img-profile" placeholder="Name" required>
                     <input id="contactMail" class="input background-img-mail" placeholder="Email" required>
@@ -62,7 +64,7 @@ function createNewContactHTML() {
                 </div>
                 <div class="add-contact-button">
                     <button type="button" onclick="closeNewContactWindow()" class="button2">Cancel</button>
-                    <button onclick="createAContact()" type="button" class="button3">Create contact</button>
+                    <button type="submit" class="button3">Create contact</button>
                 </div>
             </form>
     </div>
@@ -84,15 +86,15 @@ function createEditContactHTML(i) {
             <img src="./img/profile-logo.png">
         </div>
         <div class="input-new-contact">
-            <form>
+            <form onsubmit="editAContact(${i}); return false">
                 <div class="input-fields">
-                    <input id="editName" class="input background-img-profile" value="${contacts[i]['firstName']} ${contacts[i]['lastName']}">
-                    <input id="editMail" class="input background-img-mail" value="${contacts[i]['mail']}">
-                    <input id="editNumber" class="input background-img-phone" value="${contacts[i]['number']}">
+                    <input id="editName" class="input background-img-profile" value="${contacts[i]['firstName']} ${contacts[i]['lastName']}" required>
+                    <input id="editMail" class="input background-img-mail" value="${contacts[i]['mail']}" required>
+                    <input id="editNumber" class="input background-img-phone" value="${contacts[i]['number']}" required>
                 </div>
                 <div class="add-contact-button">
                     <button onclick="deleteEditContact(${i})" type="button" class="button4">Delete</button>
-                    <button onclick="editAContact(${i})" type="button" class="button5">Save</button>
+                    <button type="submit" class="button5">Save</button>
                 </div>
             </form>
     </div>

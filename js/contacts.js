@@ -1,8 +1,8 @@
 let letters = [];
 
 async function initContacts(){
-    await loadContacts2();
-    fillLetter();
+    await loadContacts();
+    fillLetters();
     loadLetters();
     renderContact();
 }
@@ -12,12 +12,6 @@ function addNewContact(){
     document.getElementById('overlay-add-contact').classList.add('d-flex');
     document.getElementById('overlay-add-contact').classList.add('overlay-add-contact');
     document.getElementById('overlay-add-contact').innerHTML = createNewContactHTML();
-}
-
-async function loadContacts2() {
-    if(await contactsExist()) {
-        contacts = JSON.parse(await getItem('contacts'));
-    }
 }
 
 function editContact(i){
@@ -58,6 +52,7 @@ function closeEditContactWindow(){
     await saveContact();
     closeNewContactWindow();
     initContacts();
+    showOverlayCreated();
 }
 
 function getFirstName1() {
@@ -102,23 +97,61 @@ function renderContact(){
 async function deleteContact(i){
     contacts.splice(i, 1);
     await saveContact();
-    loadContacts2();
+    loadContacts();
     document.getElementById('show-contact-infos').innerHTML = '';
     initContacts();
+    showOverlayDeleted();
 }
 
 async function deleteEditContact(i){
     contacts.splice(i, 1);
     await saveContact();
-    loadContacts2();
-    closeEditContactWindow();
+    loadContacts();
     document.getElementById('show-contact-infos').innerHTML = '';
+    closeEditContactWindow();
     initContacts();
+    showOverlayDeleted();
 }
 
 function showContact(i){
     document.getElementById('show-contact-infos').innerHTML = '';
     document.getElementById('show-contact-infos').innerHTML += createShowContactHTML(i);
+    document.getElementById('show-contact-infos').classList.remove('show-contact-infos');
+    showOverlayContact();
+    if (previousContact !== null) {
+        document.getElementById(`contact-info${previousContact}`).style.backgroundColor = 'white';
+        document.getElementById(`contact-info${previousContact}`).style.color = 'black';
+    }
+    document.getElementById(`contact-info${i}`).style.backgroundColor = 'rgb(42,54,71)';
+    document.getElementById(`contact-info${i}`).style.color = 'white';
+    previousContact = i;
+}
+
+function showOverlayContact() {
+    setTimeout(() => {
+      document.getElementById('show-contact-infos').classList.add('show-contact-infos');
+    }, 225);
+}
+
+function showOverlayCreated() {
+    document.getElementById('successfully-created').classList.add('show-successfully-created');
+    setTimeout(() => {
+      document.getElementById('successfully-created').classList.remove('show-successfully-created');
+    }, 2000);
+}
+
+function showOverlayDeleted() {
+    document.getElementById('successfully-deleted').classList.add('show-successfully-deleted');
+    setTimeout(() => {
+      document.getElementById('successfully-deleted').classList.remove('show-successfully-deleted');
+    }, 2000);
+}
+
+function showOverlaySaved() {
+    document.getElementById('successfully-saved').classList.add('show-successfully-saved');
+    setTimeout(() => {
+      document.getElementById('successfully-saved').classList.remove('show-successfully-saved');
+    }, 2000);
 }
 
 async function editAContact(i){
@@ -142,9 +175,10 @@ async function editAContact(i){
     closeEditContactWindow();
     document.getElementById('show-contact-infos').innerHTML = '';
     initContacts();
+    showOverlaySaved();
 }
 
-function fillLetter() {
+function fillLetters() {
     letters = [];
     for (let i = 0; i < contacts.length; i++) {
         let name = contacts[i]['firstName'];
