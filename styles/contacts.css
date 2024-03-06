@@ -1,7 +1,7 @@
 body {
     margin: 0;
     font-family: "Inter", sans-serif;
-    background-color: white !important;
+    background-color: rgb(246,247,248);
 }
 
 @font-face {
@@ -12,6 +12,7 @@ body {
 .contact-container {
     display: flex;
     width: 100%;
+    max-width: 1440px;
 }
 
 .left-side {
@@ -57,7 +58,7 @@ button {
     width: 100%;
     height: 56px;
     cursor: pointer;
-    font-size: 21px;
+    font-size: 18px;
     margin-top: 22.5px;
 }
 
@@ -257,7 +258,7 @@ a {
     height: 70%;
     width: 90%;
     position: relative;
-    animation: slideIn 0.5s ease-in-out;
+    max-width: 1020px;
 }
 
 .d-flex {
@@ -339,7 +340,7 @@ a {
     border: solid 1px;
     border-color: #2A3647;
     width: 30%;
-    font-size: 21px;
+    font-size: 16px;
     background-image: url(/img/cancel-button.png);
     background-repeat: no-repeat;
     background-position: 80%;
@@ -354,7 +355,7 @@ a {
 .button3 {
     background-color: rgba(42, 54, 71);
     width: 45%;
-    font-size: 21px;
+    font-size: 16px;
     background-image: url(/img/check.png);
     background-repeat: no-repeat;
     background-position: 90%;
