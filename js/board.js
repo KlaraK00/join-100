@@ -1,110 +1,118 @@
-let tasks = [
-    {   
-        createdAt: '0990790667',
-        title: 'title1',
-        description: 'description1',
-        contacts: ['1709724388780', '1709724616946'],
-        date: '04.03.2024',
-        prio: 'medium',
-        category: 'User Story',
-        subtasks: [
-            {
-            subtask: 'subtask1',
-            done: false
-            },
-            {
-            subtask: 'subtask2',
-            done: false 
-            }
-        ],
-        status: 'done'
-    },
-    {
-        createdAt: '0990790669',
-        title: 'title2',
-        description: 'description2',
-        contacts: ['1709724616946'],
-        date: '04.03.2024',
-        prio: 'urgent',
-        category: 'Technical Task',
-        subtasks: [
-            {
-            subtask: 'subtask1',
-            done: false
-            },
-            {
-            subtask: 'subtask2',
-            done: true 
-            }
-        ],
-        status: 'toDo'
-    },
-    {
-        createdAt: '0990798667',
-        title: 'title3',
-        description: 'description3',
-        contacts: ['1709724616946', '1709724388780'],
-        date: '04.03.2024',
-        prio: 'urgent',
-        category: 'Technical Task',
-        subtasks: [
-            {
-            subtask: 'subtask1',
-            done: true
-            },
-            {
-            subtask: 'subtask2',
-            done: true 
-            }
-        ],
-        status: 'done'
-    },
-    {
-        createdAt: '0999790667',
-        title: 'title4',
-        description: 'description4',
-        contacts: [],
-        date: '04.03.2024',
-        prio: '',
-        category: 'User Story',
-        subtasks: [],
-        status: 'inProgress'
-    },
-    {
-        createdAt: '9990790667',
-        title: 'title5',
-        description: 'description5',
-        contacts: [],
-        date: '04.03.2024',
-        prio: 'medium',
-        category: 'Technical Task',
-        subtasks: [
-            {
-            subtask: 'subtask1',
-            done: false
-            },
-            {
-            subtask: 'subtask2',
-            done: false 
-            },
-            {
-            subtask: 'subtask3',
-            done: true 
-            }
-        ],
-        status: 'awaitFeedback'
-    }
-]
+// let tasks = [
+//     {   
+//         createdAt: '0990790667',
+//         title: 'title1',
+//         description: 'description1',
+//         contacts: ['1709724388780', '1709724616946'],
+//         date: '04.03.2024',
+//         prio: 'medium',
+//         category: 'User Story',
+//         subtasks: [
+//             {
+//             subtask: 'subtask1',
+//             done: false
+//             },
+//             {
+//             subtask: 'subtask2',
+//             done: false 
+//             }
+//         ],
+//         status: 'done'
+//     },
+//     {
+//         createdAt: '0990790669',
+//         title: 'title2',
+//         description: 'description2',
+//         contacts: ['1709724616946'],
+//         date: '04.03.2024',
+//         prio: 'urgent',
+//         category: 'Technical Task',
+//         subtasks: [
+//             {
+//             subtask: 'subtask1',
+//             done: false
+//             },
+//             {
+//             subtask: 'subtask2',
+//             done: true 
+//             }
+//         ],
+//         status: 'toDo'
+//     },
+//     {
+//         createdAt: '0990798667',
+//         title: 'title3',
+//         description: 'description3',
+//         contacts: ['1709724616946', '1709724388780'],
+//         date: '04.03.2024',
+//         prio: 'urgent',
+//         category: 'Technical Task',
+//         subtasks: [
+//             {
+//             subtask: 'subtask1',
+//             done: true
+//             },
+//             {
+//             subtask: 'subtask2',
+//             done: true 
+//             }
+//         ],
+//         status: 'done'
+//     },
+//     {
+//         createdAt: '0999790667',
+//         title: 'title4',
+//         description: 'description4',
+//         contacts: [],
+//         date: '04.03.2024',
+//         prio: '',
+//         category: 'User Story',
+//         subtasks: [],
+//         status: 'inProgress'
+//     },
+//     {
+//         createdAt: '9990790667',
+//         title: 'title5',
+//         description: 'description5',
+//         contacts: [],
+//         date: '04.03.2024',
+//         prio: 'medium',
+//         category: 'Technical Task',
+//         subtasks: [
+//             {
+//             subtask: 'subtask1',
+//             done: false
+//             },
+//             {
+//             subtask: 'subtask2',
+//             done: false 
+//             },
+//             {
+//             subtask: 'subtask3',
+//             done: true 
+//             }
+//         ],
+//         status: 'awaitFeedback'
+//     }
+// ]
 let currentDraggedElement;
 
 async function initBoard() {
-    await includeHTML();
-    await loadContacts();
-    // await loadTasks(); => "tasks" vom remoteStorage
-    highlightActiveSideButton();
-    currentUser = getCurrentUser();
-    showUserNavBar();
-    renderAllTasks();
+    if (await tasksExist()) {
+        tasks = JSON.parse(await getItem('tasks'));
+    }
+    loggedIn = getLoggedIn();
+    // if(loggedIn) {
+        await includeHTML();
+        await loadContacts();
+        // await loadTasks(); => "tasks" vom remoteStorage
+        highlightActiveSideButton();
+        currentUser = getCurrentUser();
+        showUserNavBar();
+        renderAllTasks();
+    // } else {
+    //     console.log("no");
+    // }
 }
 
 function renderAllTasks() {

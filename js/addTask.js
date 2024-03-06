@@ -1,5 +1,19 @@
 let tasks = [];
 
+async function initAddTask() {
+  await includeHTML();
+  if (await tasksExist()) {
+    tasks = JSON.parse(await getItem('tasks'));
+  }
+  highlightActiveSideButton();
+  currentUser = getCurrentUser();
+  showUserNavBar();
+}
+
+async function tasksExist() {
+  return await getItem('tasks');
+}
+
 function getInputValue(id) {
   return document.getElementById(id).value;
 }
@@ -50,6 +64,7 @@ function createTask() {
   );
 
   pushTask(task);
+  setItem('tasks', tasks);
 }
 
 function getPriority() {

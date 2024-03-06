@@ -8,6 +8,7 @@
 // responsive log in und register html
 // privacy policy and legal notice another navbar if not logged in
 // sign up only able when privacy policy is marked
+// https://www.w3schools.com/howto/howto_js_redirect_webpage.asp ==> replace() kann man td noch zurück beim logOut
 
 // https://jsdoc.app/tags-returns FOR JSDOC!
 // /**
@@ -23,15 +24,27 @@
 // } ???
 
 let currentUser;
+let loggedIn;
 
 /* ---------- init ---------- */
 
 async function initLogIn() {
-    await loadUsers();
+    if (loggedInExists()) {
+        loggedIn = getLoggedIn();
+    }
     if (currentUserExists()) {
         currentUser = getCurrentUser();
     }
+    await loadUsers();
     clearLogInForm();
+}
+
+function loggedInExists() {
+    return getLoggedIn() && getLoggedIn() !== "";
+}
+
+function getLoggedIn() {
+    return getLocalStorageItem('loggedIn');
 }
 
 function currentUserExists() {
@@ -45,9 +58,15 @@ function getCurrentUser() {
 /* ---------- guest log in ---------- */
 
 function guestLogIn() {
+    setLoggedInTrue();
     currentUserIsGuest();
     clearLogInForm();
     redirectToSummary();
+}
+
+function setLoggedInTrue() {
+    loggedIn = true;
+    setLocalStorageItem('loggedIn', loggedIn);
 }
 
 function currentUserIsGuest() {
@@ -77,6 +96,7 @@ function redirectToSummary() {
 /* ---------- log in ---------- */
 
 function logIn(event) {
+    setLoggedInTrue();
     noReload(event);
     let logInEmail = document.getElementById('logInEmail').value;
     let logInPassword = document.getElementById('logInPassword').value;
@@ -107,5 +127,11 @@ function showLogInFailed() {
 /* ---------- log out ---------- */
 
 function logOut() {
-    window.location.replace("./index.html");
+    setLoggedInFalse();
+    document.location.replace("./index.html");
+}
+
+function setLoggedInFalse() {
+    loggedIn = false;
+    setLocalStorageItem('loggedIn', loggedIn);
 }

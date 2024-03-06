@@ -10,6 +10,8 @@ async function init() {
   showUserNavBar();
 }
 
+
+
 /**
  * Includes HTML files dynamically into the DOM.
  * @returns {Promise<void>} A Promise that resolves when HTML files are included.
