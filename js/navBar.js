@@ -1,3 +1,8 @@
+/**
+ * Initializes the application.
+ * This function includes HTML files, highlights the active side button,
+ * gets the current user, and shows the user navigation bar.
+ */
 async function init() {
   await includeHTML();
   highlightActiveSideButton();
@@ -5,6 +10,10 @@ async function init() {
   showUserNavBar();
 }
 
+/**
+ * Includes HTML files dynamically into the DOM.
+ * @returns {Promise<void>} A Promise that resolves when HTML files are included.
+ */
 async function includeHTML() {
   let includeElements = document.querySelectorAll("[w3-include-html]");
   for (let i = 0; i < includeElements.length; i++) {
@@ -19,10 +28,12 @@ async function includeHTML() {
   }
 }
 
+/**
+ * Highlights the active side button based on the current page.
+ */
 function highlightActiveSideButton() {
   let activeButtonName = getCurrentPage() + "Button";
   let activeButton = document.getElementById(activeButtonName);
-  console.log('buttoname =', activeButton);
 
   if (activeButton) {
     activeButton.classList.remove("menuButton");
@@ -30,6 +41,10 @@ function highlightActiveSideButton() {
   }
 }
 
+/**
+ * Retrieves the current page name.
+ * @returns {string} The name of the current page.
+ */
 function getCurrentPage() {
   let path = window.location.pathname;
   let currentPage = path.split("/").pop();
@@ -37,6 +52,10 @@ function getCurrentPage() {
   return currentPage;
 }
 
+/**
+ * Opens the specified page.
+ * @param {string} page - The name of the page to be opened.
+ */
 function openPage(page) {
     window.location.href = page + '.html';
 }

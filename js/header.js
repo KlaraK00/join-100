@@ -42,14 +42,30 @@ function closePopUpMenu(popUpMenu, closePopUpContentContainer) {
 
 
 /* ---------- show User ---------- */
-
+/**
+ * Displays the user navigation bar icon.
+ */
 function showUserNavBar() {
+  /**
+   * @type {HTMLElement} iconElipse - The HTML element representing the icon.
+   */
   let iconElipse = document.getElementById('iconElipse');
   iconElipse.innerHTML = getFirstTwoLetters(currentUser);
 }
 
+/**
+ * Returns the first two letters of the user's first and last name.
+ * @param {Object} element - The user element from which initials are to be taken.
+ * @returns {string} The first two letters of the user's first and last name.
+ */
 function getFirstTwoLetters(element) {
+  /**
+   * @type {string} firstLetterOfFirstName - The first letter of the user's first name.
+   */
   let firstLetterOfFirstName = element.firstName.charAt(0);
+  /**
+   * @type {string} firstLetterOfLastName - The first letter of the user's last name, if present.
+   */
   let firstLetterOfLastName = '';
   if(lastNameExists(element)) {
     firstLetterOfLastName = element.lastName.charAt(0);
@@ -57,6 +73,11 @@ function getFirstTwoLetters(element) {
   return `${firstLetterOfFirstName}${firstLetterOfLastName}`;
 }
 
+/**
+ * Checks if a last name exists in the user element.
+ * @param {Object} element - The user element to be checked.
+ * @returns {boolean} True if a last name exists, otherwise false.
+ */
 function lastNameExists(element) {
   return element.lastName && element.lastName !== '';
 }
