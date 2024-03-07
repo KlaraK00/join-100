@@ -9,7 +9,6 @@ async function initAddTask() {
   highlightActiveSideButton();
   currentUser = getCurrentUser();
   showUserNavBar();
-  
 }
 
 async function loadTasks() {
@@ -27,22 +26,26 @@ function getInputValue(id) {
 }
 
 function createTaskObject(
+  createdAt,
   title,
   description,
-  assignedTo,
-  dueDate,
-  priority,
+  contacts,
+  date,
+  prio,
   category,
-  subtasks
+  subtasks,
+  status
 ) {
   return {
+    createdAt,
     title,
     description,
-    assignedTo,
-    dueDate,
-    priority,
+    contacts, // Supports both single and multiple contact IDs
+    date,
+    prio,
     category,
     subtasks,
+    status,
   };
 }
 
@@ -56,17 +59,24 @@ function createTask() {
   let title = getInputValue("title");
   let description = getInputValue("description");
   let assignedToDropdown = document.getElementById("assign");
-  let assignedTo =
-    assignedToDropdown.options[assignedToDropdown.selectedIndex].text;
+  let contacts = Array.from(assignedToDropdown.selectedOptions).map(
+    (option) => option.value
+  );
   let dueDate = getInputValue("due");
   let priority = getPriority();
   let category = getInputValue("category");
-  let subtasks = getInputValue("subtasks");
+  let subtasksInput = getInputValue("subtasks");
+  let subtasks = subtasksInput
+    .split(",")
+    .filter((subtask) => subtask.trim() !== "") // Remove any empty entries
+    .map((subtask) => ({ subtask: subtask.trim(), done: false })); // Map to objects
 
+  let createdAt = new Date().getTime();
   let task = createTaskObject(
+    createdAt,
     title,
     description,
-    assignedTo,
+    contacts,
     dueDate,
     priority,
     category,
@@ -114,7 +124,7 @@ function updateContactsDropdown(contacts) {
   // Iterate over the contacts array to add each contact as an option
   contacts.forEach((contact, index) => {
     const optionElement = document.createElement("option");
-    optionElement.value = `contact${index}`; // Or use a unique identifier from the contact
+    optionElement.value = `contact${index}`;
     optionElement.textContent = `${contact.firstName} ${contact.lastName}`;
     assignDropdown.appendChild(optionElement);
   });
