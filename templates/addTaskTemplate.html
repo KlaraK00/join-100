@@ -14,7 +14,7 @@
     <script src ="../js/addTask.js" defer></script>
     <script src="js/header.js" defer></script>
 </head>
-<body onload="initAddTask()">
+<body onload="init(), includeHTML()">
     <div w3-include-html="/templates/navBar.html"></div>
     <div w3-include-html="/templates/header.html"></div>
     <div class="addTask">Add Task</div>
@@ -37,6 +37,7 @@
                           <option value="contact2">Heinz Schmidt</option>
                           <option value="contact3">Edeltraud Schneider</option>
                         </select>
+                        </form>
                 </div>
                </div>
     </div>
@@ -48,9 +49,9 @@
         <div id="priority" class="priority">
             Priority
             <div class="prio">
-                <div><button onclick="activateButton('urgent')" id="urgent">Urgent <img src="../img/prio alta.png"></button></div>
-                <div><button onclick="activateButton('medium')" id="medium">Medium <img src="../img/Capa 2.png"></button></div>
-                <div><button onclick="activateButton('low')" id="low">Low <img src="../img/Capa 1.png"></button></div>
+                <div><button onclick="activateButton('urgent')" id="urgent">urgent <img src="../img/prio alta.png"></button></div>
+                <div><button onclick="activateButton('medium')" id="medium">medium <img src="../img/Capa 2.png"></button></div>
+                <div><button onclick="activateButton('low')" id="low">low <img src="../img/Capa 1.png"></button></div>
             </div>
         </div>
         
@@ -59,12 +60,13 @@
                 <div>Category</div>
                 <div class="dropdown">
                     <form>
-                        <select name="contacts" id="category">
+                        <select name="ccategory" id="category">
                           <option value="preview">Select task category</option>
                           <option value="UserStory">User Story</option>
                           <option value="TechnicalTask">Technical Task</option>
                           
                         </select>
+                        </form>
                 </div>
         </div>
         <div class="subtasks">

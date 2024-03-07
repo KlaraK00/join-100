@@ -3,19 +3,23 @@ let tasks = [];
 async function initAddTask() {
   await includeHTML();
   await loadTasks();
+  await loadContacts();
+  await loadUsers();
+  updateContactsDropdown(contacts);
   highlightActiveSideButton();
   currentUser = getCurrentUser();
   showUserNavBar();
+  
 }
 
 async function loadTasks() {
   if (await tasksExist()) {
-    tasks = JSON.parse(await getItem('tasks'));
+    tasks = JSON.parse(await getItem("tasks"));
   }
 }
 
 async function tasksExist() {
-  return await getItem('tasks');
+  return await getItem("tasks");
 }
 
 function getInputValue(id) {
@@ -51,7 +55,9 @@ function pushTask(task) {
 function createTask() {
   let title = getInputValue("title");
   let description = getInputValue("description");
-  let assignedTo = getInputValue("assign");
+  let assignedToDropdown = document.getElementById("assign");
+  let assignedTo =
+    assignedToDropdown.options[assignedToDropdown.selectedIndex].text;
   let dueDate = getInputValue("due");
   let priority = getPriority();
   let category = getInputValue("category");
@@ -68,7 +74,7 @@ function createTask() {
   );
 
   pushTask(task);
-  setItem('tasks', tasks);
+  setItem("tasks", tasks);
 }
 
 function getPriority() {
@@ -96,5 +102,20 @@ function activateButton(buttonId) {
 }
 
 function clearInput() {
-    location.reload();
+  location.reload();
+}
+
+function updateContactsDropdown(contacts) {
+  const assignDropdown = document.getElementById("assign");
+  // Clear existing options except the first preview option
+  assignDropdown.innerHTML =
+    '<option value="preview">Select contacts to assign</option>';
+
+  // Iterate over the contacts array to add each contact as an option
+  contacts.forEach((contact, index) => {
+    const optionElement = document.createElement("option");
+    optionElement.value = `contact${index}`; // Or use a unique identifier from the contact
+    optionElement.textContent = `${contact.firstName} ${contact.lastName}`;
+    assignDropdown.appendChild(optionElement);
+  });
 }
