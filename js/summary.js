@@ -2,8 +2,10 @@
  * Starts the application.
  * This function greets the current user.
  */
-function start() {
+async function start() {
   greetCurrentUser();
+
+  addTasksStatusLengthToSummary();
 }
 
 /**
@@ -39,3 +41,30 @@ function generateGreeting() {
 
   return greeting;
 }
+
+function countTasksByStatus() {
+  const doneTasksCount = tasks.filter(task => task.status === 'done').length;
+  const inProgressTasksCount = tasks.filter(task => task.status === 'inProgress').length;
+  const toDoTasksCount = tasks.filter(task => task.status === 'toDo').length;
+  console.log(inProgressTasksCount);
+  return {
+    done: doneTasksCount,
+    inProgress: inProgressTasksCount,
+    toDo: toDoTasksCount
+  };
+}
+
+
+function addTasksStatusLengthToSummary() {
+  const taskCounts = countTasksByStatus();
+  let doneTaskCountContainer = document.getElementById('done');
+  let inProgressTaskCountContainer = document.getElementById('progress');
+  let toDoTaskCountContainer = document.getElementById('toDoContainer');
+console.log('hier', taskCounts.inProgress);
+  doneTaskCountContainer.innerHTML = taskCounts.done;
+  inProgressTaskCountContainer.innerHTML = taskCounts.inProgress;
+  toDoTaskCountContainer.innerHTML = taskCounts.toDo;
+}
+
+
+
