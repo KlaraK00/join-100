@@ -46,11 +46,14 @@ function countTasksByStatus() {
   const doneTasksCount = tasks.filter(task => task.status === 'done').length;
   const inProgressTasksCount = tasks.filter(task => task.status === 'inProgress').length;
   const toDoTasksCount = tasks.filter(task => task.status === 'toDo').length;
-  console.log(inProgressTasksCount);
+  const awaitingFeedbackTasksCount = tasks.filter(task => task.status === 'awaitFeedback').length;
+  const urgentFeedbackTasksCount = tasks.filter(task => task.status === 'urgent').length;
   return {
     done: doneTasksCount,
     inProgress: inProgressTasksCount,
-    toDo: toDoTasksCount
+    toDo: toDoTasksCount,
+    awaitingFeedback: awaitingFeedbackTasksCount,
+    urgent: urgentFeedbackTasksCount
   };
 }
 
@@ -60,10 +63,17 @@ function addTasksStatusLengthToSummary() {
   let doneTaskCountContainer = document.getElementById('done');
   let inProgressTaskCountContainer = document.getElementById('progress');
   let toDoTaskCountContainer = document.getElementById('toDoContainer');
-console.log('hier', taskCounts.inProgress);
+  let awaitingFeedbackTaskCountContainer = document.getElementById('await');
+  let urgentFeedbackTaskCountContainer = document.getElementById('urgent');
+  let tasksInBoardTaskContainer = document.getElementById('boardTasks');
+  let allOpenTasks = taskCounts.done + taskCounts.inProgress + taskCounts.toDo + taskCounts.awaitingFeedback + taskCounts.urgent;
   doneTaskCountContainer.innerHTML = taskCounts.done;
   inProgressTaskCountContainer.innerHTML = taskCounts.inProgress;
   toDoTaskCountContainer.innerHTML = taskCounts.toDo;
+  awaitingFeedbackTaskCountContainer.innerHTML = taskCounts.awaitingFeedback;
+  urgentFeedbackTaskCountContainer.innerHTML = taskCounts.urgent;
+  tasksInBoardTaskContainer.innerHTML = allOpenTasks;
+  
 }
 
 
