@@ -3,7 +3,7 @@ tasks = [
         createdAt: '0990790667',
         title: 'title1',
         description: 'description1',
-        contacts: ['1709724388780', '1709742196208'],
+        contacts: ['1709742165910', '1709742196208'],
         date: '04.03.2024',
         prio: 'medium',
         category: 'User Story',
@@ -180,8 +180,10 @@ function renderContactsBoard(task) {
     let div = document.getElementById(`contacts${task.createdAt}`);
     div.innerHTML = '';
     for (let i = 0; i < task.contacts.length; i++) {
-        let contact = contacts.find(c => c.createdAt == task.contacts[i]);
-        div.innerHTML += /*html*/`<div class="initialsBoard" style="background-color:${contact.color}">${contact.initials}</div>`;
+        if(contacts.find(c => c.createdAt == task.contacts[i])){
+            let contact = contacts.find(c => c.createdAt == task.contacts[i]);
+            div.innerHTML += /*html*/`<div class="initialsBoard" style="background-color:${contact.color}">${contact.initials}</div>`;
+        }
     }
 }
 
@@ -362,8 +364,10 @@ function renderContactsPopUpBoard(task) {
         let div = document.getElementById(`popUpContacts${task.createdAt}`);
         div.innerHTML = '';
         for (let i = 0; i < task.contacts.length; i++) {
-            let contact = contacts.find(c => c.createdAt == task.contacts[i]);
-            div.innerHTML += HTMLTemplatePopUpContact(contact);
+            if(contacts.find(c => c.createdAt == task.contacts[i])){
+                let contact = contacts.find(c => c.createdAt == task.contacts[i]);
+                div.innerHTML += HTMLTemplatePopUpContact(contact);
+            }
         }
     }
 }
@@ -444,4 +448,26 @@ function boardPopUpEdit(id) {
     let boardTaskOverlay = document.getElementById('boardTaskOverlay');
     boardTaskOverlay.innerHTML = '';
     boardTaskOverlay.innerHTML = HTMLTemplatePopUpBoardEdit(task);
+    renderBoardPopUpEditContacts(task);
+    renderBoardPopUpEditSubtasks(task);
+}
+
+function renderBoardPopUpEditContacts(task) {
+    let div = document.getElementById(`boardPopUpEditColorfulContacts${task.createdAt}`);
+    div.innerHTML = '';
+    for (let i = 0; i < task.contacts.length; i++) {
+        if(contacts.find(c => c.createdAt == task.contacts[i])) {
+            let contact = contacts.find(c => c.createdAt == task.contacts[i]);
+            div.innerHTML += /*html*/`<div class="initialsBoard" style="background-color: ${contact.color}; margin:0">${contact.initials}</div>`;
+        }
+    }
+}
+
+function renderBoardPopUpEditSubtasks(task) {
+    let div = document.getElementById(`boardPopUpAllSubtasks`);
+    div.innerHTML = '';
+    for (let i = 0; i < task.subtasks.length; i++) {
+        let subtask = task.subtasks[i];
+        div.innerHTML += /*html*/`<li class="fontSize12">${subtask.subtask}</li>`;
+    }
 }

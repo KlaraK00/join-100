@@ -82,24 +82,43 @@ function HTMLTemplatePopUpBoardEdit(task){
     return /*html*/`<div class="dFlex alignCenter justCenter">
         <div class="card posRelative alignStart">
             <img onclick="closeTask()" class="posAbsolute cursorPointer closeImgBoard" src="./img/Close.png" alt="close">
-            <label for="boardPopUpInputTitle">Title</label>
-            <input id="boardPopUpInputTitle" type="text">
-            <label for="boardPopUpInputDescription">Description</label>
-            <input id="boardPopUpInputDescription" type="text">
-            <label for="boardPopUpInputDate">Due date</label>
-            <input id="boardPopUpInputDate" type="date">
-            <div>
-                <div>Urgent</div>
-                <div>Medium</div>
-                <div>Low</div>
+            <div class="dFlex directionColumn padTop35 width100Perc">
+                <label for="boardPopUpInputTitle" class="padBot5">Title</label>
+                <input id="boardPopUpInputTitle" class="inputBoardEdit" value="${task.title}" type="text">
             </div>
-            <label for="boardPopUpSelectContacts">Assigned to</label>
-            <select name="" id="boardPopUpSelectContacts">
-                <option value="">Select contacts to assign</option>
-            </select>
-            <label for="boardPopUpInputSubtasks">Subtasks</label>
-            <input id="boardPopUpInputSubtasks" type="text">
-            <button>Ok</button>
+            <div class="dFlex directionColumn width100Perc">
+                <label for="boardPopUpInputDescription" class="padBot5">Description</label>
+                <textarea id="boardPopUpInputDescription" class="inputBoardEdit" type="text" cols="10" rows="3">${task.description}</textarea>
+            </div>
+            <div class="dFlex directionColumn width100Perc">
+                <label for="boardPopUpInputDate" class="padBot5">Due date</label>
+                <input id="boardPopUpInputDate" class="inputBoardEdit" value=${task.date} type="date">
+            </div>
+            <div class="dFlex directionColumn width100Perc">
+                <div class="padBot5">Priority</div>
+                <div class="dFlex">
+                    <div>Urgent</div>
+                    <div>Medium</div>
+                    <div>Low</div>
+                </div>
+            </div>
+            <div class="dFlex directionColumn width100Perc">
+                <label for="boardPopUpSelectContacts" class="padBot5">Assigned to</label>
+                <input class="inputBoardEdit" type="text" value="Select contacts to assign">
+                <div id="boardPopUpSelectContacts${task.createdAt}" class="d-none"></div>
+                <div class="dFlex padTop5" id="boardPopUpEditColorfulContacts${task.createdAt}"></div>
+            </div>
+            <div class="dFlex directionColumn width100Perc">
+                <label for="boardPopUpInputSubtasks" class="padBot5">Subtasks</label>
+                <div class="posRelative marRight28">
+                    <input placeholder="Add new subtask" id="boardPopUpInputSubtasks" class="inputBoardEdit width100Perc" type="text">
+                    <div id="boardPopUpInputSubtasksImg" class="posAbsolute"></div>
+                </div>
+                <ul class="dFlex directionColumn gap10" id="boardPopUpAllSubtasks"></ul>
+            </div>
+            <div class="dFlex justEnd width100Perc">
+                <button class="darkBtn cursorPointer fontBold">Ok <img class="padLeft2 height10" src="./img/check.png" alt="check"></button>
+            </div>
         </div>
     </div>
     `;
