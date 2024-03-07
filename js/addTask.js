@@ -122,10 +122,14 @@ function updateContactsDropdown(contacts) {
     '<option value="preview">Select contacts to assign</option>';
 
   // Iterate over the contacts array to add each contact as an option
-  contacts.forEach((contact, index) => {
+  contacts.forEach((contact) => {
     const optionElement = document.createElement("option");
-    optionElement.value = `contact${index}`;
+    optionElement.value = contact.createdAt;
     optionElement.textContent = `${contact.firstName} ${contact.lastName}`;
     assignDropdown.appendChild(optionElement);
   });
+}
+
+function createSubtask() {
+
 }
