@@ -96,16 +96,20 @@ function HTMLTemplatePopUpBoardEdit(task){
             </div>
             <div class="dFlex directionColumn width100Perc">
                 <div class="padBot5">Priority</div>
-                <div class="dFlex">
-                    <div>Urgent</div>
-                    <div>Medium</div>
-                    <div>Low</div>
+                <div class="dFlex gap5">
+                    <div id="boardPopUpEditUrgentBtn" class="cursorPointer boardPrioBtn" onclick="changePrioBtn('urgent')">Urgent <img src="./img/urgentPrio.png" alt="urgent"></div>
+                    <div id="boardPopUpEditMediumBtn" class="cursorPointer boardPrioBtn marLeft15" onclick="changePrioBtn('medium')">Medium <img class="marBot2" src="./img/mediumPrio.png" alt="medium"></div>
+                    <div id="boardPopUpEditLowBtn" class="cursorPointer boardPrioBtn marLeft15" onclick="changePrioBtn('low')">Low <img src="./img/lowPrio.png" alt="low"></div>
                 </div>
             </div>
             <div class="dFlex directionColumn width100Perc">
                 <label for="boardPopUpSelectContacts" class="padBot5">Assigned to</label>
-                <input class="inputBoardEdit" type="text" value="Select contacts to assign">
-                <div id="boardPopUpSelectContacts${task.createdAt}" class="d-none"></div>
+                <div onclick="boardEditTaskAssignContacts()" id="boardPopUpSelectContactsToAssignDiv" class="inputBoardEdit cursorPointer">Select contacts to assign</div>
+                <div class="marRight28">
+                    <input id="boardPopUpSelectContactsInput" class="inputBoardEdit d-none width100Perc" type="text">
+                    <img src="./img/selectionToOpen.png" alt="open selection">
+                </div>
+                <div class="dFlex directionColumn gap10 padBot5 padTop5" id="boardPopUpSelectContacts" class="d-none"></div>
                 <div class="dFlex padTop5" id="boardPopUpEditColorfulContacts${task.createdAt}"></div>
             </div>
             <div class="dFlex directionColumn width100Perc">

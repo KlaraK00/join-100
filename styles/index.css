@@ -96,6 +96,14 @@ h1 {
     margin-top: 10px;
 }
 
+.marLeft10 {
+    margin-left: 10px !important;
+}
+
+.marLeft15 {
+    margin-left: 15px;
+}
+
 .marLeft23 {
     margin-left: 23px;
 }
@@ -104,8 +112,16 @@ h1 {
     margin-left: 30px;
 }
 
+.marRight10 {
+    margin-right: 10px !important;
+}
+
 .marRight28 {
     margin-right: 28px;
+}
+
+.marBot2 {
+    margin-bottom: 2px;
 }
 
 .gap6 {

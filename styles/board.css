@@ -224,7 +224,7 @@ height: 32px;
 }
 
 #boardTaskOverlay>div>div {
-    width: 350px;
+    width: 400px;
 }
 
 .closeImgBoard {
@@ -252,4 +252,34 @@ height: 32px;
 
 .inputBoardEdit::placeholder {
     color: #CDCDCD;
+}
+
+.boardPrioBtn {
+    width: 30%;
+    height: 40px;
+    box-shadow: 0px 0px 4px 0px #0000001A;
+    border-radius: 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.boardPrioBtn img {
+    width: 16px;
+    margin-left: 5px;
+}
+
+.boardPrioBtn:hover {
+    box-shadow: 0px 4px 4px 0px #00000040;
+}
+
+#boardPopUpSelectContacts {
+    max-height: 100px;
+    overflow-y: auto;
+}
+
+.hoverGrey:hover {
+    background-color: #eeeeee;
+    border-radius: 5px;
+    cursor: pointer;
 }

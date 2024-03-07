@@ -103,6 +103,8 @@ async function initBoard() {
     // }
 }
 
+let boardCurrentPrio = '';
+
 function renderAllTasks() {
     renderToDo();
     renderInProgress();
@@ -448,8 +450,89 @@ function boardPopUpEdit(id) {
     let boardTaskOverlay = document.getElementById('boardTaskOverlay');
     boardTaskOverlay.innerHTML = '';
     boardTaskOverlay.innerHTML = HTMLTemplatePopUpBoardEdit(task);
+    renderBoardPopUpEditPrio(task);
     renderBoardPopUpEditContacts(task);
     renderBoardPopUpEditSubtasks(task);
+}
+
+function renderBoardPopUpEditPrio(task) {
+    boardCurrentPrio = task.prio;
+    changePrioBtn(boardCurrentPrio);
+}
+
+function changePrioBtn(priority) {
+    if(priority == 'urgent') {
+        changePrioBtnUrgent();
+    } else if (priority == 'medium') {
+        changePrioBtnMedium();
+    } else if (priority == 'low') {
+        changePrioBtnLow();
+    } else {
+        cleanAllPrioBtns();
+    }
+}
+
+function changePrioBtnUrgent() {
+    boardCurrentPrio = 'urgent';
+    let btnUrgent = document.getElementById('boardPopUpEditUrgentBtn');
+    btnUrgent.style.background = '#FF3D00';
+    btnUrgent.style.color = 'white';
+    btnUrgent.firstElementChild.src = './img/urgentPrioWhite.png';
+    let btnMedium = document.getElementById('boardPopUpEditMediumBtn');
+    btnMedium.style.background = 'white';
+    btnMedium.style.color = 'black';
+    btnMedium.firstElementChild.src = './img/mediumPrio.png';
+    let btnLow = document.getElementById('boardPopUpEditLowBtn');
+    btnLow.style.background = 'white';
+    btnLow.style.color = 'black';
+    btnLow.firstElementChild.src = './img/lowPrio.png';
+}
+
+function changePrioBtnMedium() {
+    boardCurrentPrio = 'medium';
+    let btnMedium = document.getElementById('boardPopUpEditMediumBtn');
+    btnMedium.style.background = '#FFA800';
+    btnMedium.style.color = 'white';
+    btnMedium.firstElementChild.src = './img/mediumPrioWhite.png';
+    let btnUrgent = document.getElementById('boardPopUpEditUrgentBtn');
+    btnUrgent.style.background = 'white';
+    btnUrgent.style.color = 'black';
+    btnUrgent.firstElementChild.src = './img/urgentPrio.png';
+    let btnLow = document.getElementById('boardPopUpEditLowBtn');
+    btnLow.style.background = 'white';
+    btnLow.style.color = 'black';
+    btnLow.firstElementChild.src = './img/lowPrio.png';
+}
+
+function changePrioBtnLow() {
+    boardCurrentPrio = 'low';
+    let btnLow = document.getElementById('boardPopUpEditLowBtn');
+    btnLow.style.background = '#7AE229';
+    btnLow.style.color = 'white';
+    btnLow.firstElementChild.src = './img/lowPrioWhite.png';
+    let btnUrgent = document.getElementById('boardPopUpEditUrgentBtn');
+    btnUrgent.style.background = 'white';
+    btnUrgent.style.color = 'black';
+    btnUrgent.firstElementChild.src = './img/urgentPrio.png';
+    let btnMedium = document.getElementById('boardPopUpEditMediumBtn');
+    btnMedium.style.background = 'white';
+    btnMedium.style.color = 'black';
+    btnMedium.firstElementChild.src = './img/mediumPrio.png';
+}
+
+function cleanAllPrioBtns() {
+    let btnUrgent = document.getElementById('boardPopUpEditUrgentBtn');
+    btnUrgent.style.background = 'white';
+    btnUrgent.style.color = 'black';
+    btnUrgent.firstElementChild.src = './img/urgentPrio.png';
+    let btnMedium = document.getElementById('boardPopUpEditMediumBtn');
+    btnMedium.style.background = 'white';
+    btnMedium.style.color = 'black';
+    btnMedium.firstElementChild.src = './img/mediumPrio.png';
+    let btnLow = document.getElementById('boardPopUpEditLowBtn');
+    btnLow.style.background = 'white';
+    btnLow.style.color = 'black';
+    btnLow.firstElementChild.src = './img/lowPrio.png';
 }
 
 function renderBoardPopUpEditContacts(task) {
@@ -469,5 +552,33 @@ function renderBoardPopUpEditSubtasks(task) {
     for (let i = 0; i < task.subtasks.length; i++) {
         let subtask = task.subtasks[i];
         div.innerHTML += /*html*/`<li class="fontSize12">${subtask.subtask}</li>`;
+    }
+}
+
+function boardEditTaskAssignContacts() {
+    let div = document.getElementById('boardPopUpSelectContactsToAssignDiv');
+    let input = document.getElementById('boardPopUpSelectContactsInput');
+
+    div.classList.add('d-none');
+    input.classList.remove('d-none');
+    input.focus();
+
+    renderContactsForSearch("");
+}
+
+function renderContactsForSearch(search) {
+    let contactsDiv = document.getElementById('boardPopUpSelectContacts');
+    contactsDiv.classList.remove('d-none');
+    contactsDiv.innerHTML = '';
+    let contactsSearched = contacts.filter(contact => contact.firstName.toLowerCase().includes(search) || contact.lastName.toLowerCase().includes(search));
+    for (let i = 0; i < contactsSearched.length; i++) {
+        let contact = contactsSearched[i];
+        contactsDiv.innerHTML += /*html*/`<div class="dFlex justBetween alignCenter hoverGrey">
+            <div class="dFlex alginCenter">
+                <div style="background: ${contact.color}" class="initialsBoard marLeft10 marRight10">${contact.initials}</div> 
+                <div class="dFlex alignCenter">${contact.firstName} ${contact.lastName}</div> 
+            </div>
+            <img class="height20 marRight10" src="./img/checkboxNotChecked.png" alt="checkbox">
+        </div>`;
     }
 }
