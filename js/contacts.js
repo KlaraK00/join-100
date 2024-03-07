@@ -113,9 +113,10 @@ async function deleteEditContact(i){
     showOverlayDeleted();
 }
 
-function showContact(i){
+function showContactDesktop(i){
     document.getElementById('show-contact-infos').innerHTML = '';
     document.getElementById('show-contact-infos').innerHTML += createShowContactHTML(i);
+    document.getElementById('show-contact-infos').classList.add('hide-contact-infos');
     document.getElementById('show-contact-infos').classList.remove('show-contact-infos');
     showOverlayContact();
     if (previousContact !== null) {
@@ -125,6 +126,45 @@ function showContact(i){
     document.getElementById(`contact-info${i}`).style.backgroundColor = 'rgb(42,54,71)';
     document.getElementById(`contact-info${i}`).style.color = 'white';
     previousContact = i;
+}
+
+function showContact(i){
+    if (window.innerWidth < 1090){
+        showContactMobile(i);
+    } else {
+        showContactDesktop(i);
+    }
+}
+
+function showContactMobile(i){
+    document.getElementById('show-contact-infos').innerHTML = '';
+    document.getElementById('show-contact-infos').innerHTML += createShowContactHTML(i);
+    document.getElementById('right-side').classList.add('z-index');
+    document.getElementById('show-contact-infos').classList.remove('hide-contact-infos');
+    document.getElementById('mobile-menu').classList.remove('d-none');
+    if (previousContact !== null) {
+        document.getElementById(`contact-info${previousContact}`).style.backgroundColor = 'white';
+        document.getElementById(`contact-info${previousContact}`).style.color = 'black';
+    }
+    document.getElementById(`contact-info${i}`).style.backgroundColor = 'rgb(42,54,71)';
+    document.getElementById(`contact-info${i}`).style.color = 'white';
+    previousContact = i;
+}
+
+function backToList(){
+    document.getElementById('right-side').classList.remove('z-index');
+    document.getElementById('mobile-menu').classList.add('d-none');
+    document.getElementById('blue-underline').classList.add('d-none');
+}
+
+function openMobileMenu(){
+    document.getElementById('mobile-menu').classList.add('d-none');
+    document.getElementById('edit-delete-mobile').classList.remove('d-none');
+    document.getElementById('edit-delete-mobile').classList.add('edit-delete-mobile');
+    document.getElementById('show-contact-infos').addEventListener("click", function(){
+        document.getElementById('edit-delete-mobile').classList.add('d-none');
+        document.getElementById('mobile-menu').classList.remove('d-none');
+    }) 
 }
 
 function showOverlayContact() {

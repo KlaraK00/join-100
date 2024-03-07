@@ -37,6 +37,10 @@ function createShowContactHTML(i){
     <a href="mailto:${contacts[i]['mail']}">${contacts[i]['mail']}</a>
     <h5>Phone</h5>
     ${contacts[i]['number']}
+    <div id="edit-delete-mobile" class="d-none">
+        <div onclick="editContact(${i})" class="edit"><img src="./img/edit-black.png">Edit</div>
+        <div onclick="deleteContact(${i})" class="delete"><img src="./img/delete.png">Delete</div>
+    </div>
     `;
 }
 

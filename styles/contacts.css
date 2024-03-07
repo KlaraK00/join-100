@@ -530,13 +530,95 @@ a {
     overflow: hidden;
 }
 
+.z-index {
+    z-index: 3;
+}
+
+.arrow {
+    position: absolute;
+    top: 20%;
+    left: 60%;
+    display: none;
+}
+
+.mobile-menu {
+    display: none;
+    background-color: #2A3647;
+    border-radius: 100%;
+    padding: 16px;
+    height: 20px;
+    width: 20px;
+}
+
+.mobile-menu:hover {
+    background-color: #29ABE2;
+}
+
+.edit-delete-mobile {
+    position: absolute;
+    top: 90%;
+    left: 55%;
+    padding: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+    border-radius: 20px 20px 0px 20px;
+    background: #fff;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    z-index: 999;
+}
+
 @media(max-width: 1090px) {
+    .left-side {
+        width: 100vw;
+        z-index: 2;
+    }
+
     .right-side {
+        width: 100vw;
+        position: fixed;
+        left: 232px;
+    }
+
+    .arrow {
+        display: block;
+        cursor: pointer;
+        z-index: 2;
+    }
+
+    #blue-underline {
+        display: block;
+    }
+
+    .logos {
         display: none;
     }
 
-    .left-side {
-        width: 100%;
+    .contact-info {
+        gap: 16px;
+    }
+
+    .name-logos {
+       height: auto;
+       padding-left: 0;
+    }
+
+    .right-side h1 {
+        margin-block-end: 0;
+        margin-block-start: 0;
+    }
+
+    .right-side h2 {
+        margin-block-start: 0;
+        margin-block-end: 0;
+    }
+
+    .line {
+        display: none;
+    }
+
+    .contact-headline {
+        display: block;
+        padding-top: 40px;
     }
 
     .button1 {
@@ -622,5 +704,19 @@ a {
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+
+    .mobile-menu {
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        position: absolute;
+        top: 90%;
+        left: 55%;
+        cursor: pointer;
+    }
+
+    #show-contact-infos {
+        margin-top: 40px;
     }
 }

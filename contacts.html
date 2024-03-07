@@ -27,13 +27,16 @@
             <div class="add-button-mobile"><img onclick="addNewContact()" src="/img/person_add.png" alt=""></div>
         </div>
 
-        <div class="right-side">
+        <div class="right-side" id="right-side">
+            <img onclick="backToList()" class="arrow" src="/img/arrow-left-line.png" alt="">
             <div class="right-side-infos">
                 <div class="contact-headline"><h1>Contacts</h1> <div class="line"></div> <h2>Better with a team</h2></div>
+                <div id="blue-underline" class="d-none"><img src="./img/blue-underline.png"></div>
                 <div id="show-contact-infos" class="hide-contact-infos"></div>
                 <div id="successfully-created" class="successfully-created">Contact successfully created</div>
                 <div id="successfully-deleted" class="successfully-deleted">Contact successfully deleted</div>
                 <div id="successfully-saved" class="successfully-saved">Contact successfully saved</div>
+                <div onclick="openMobileMenu()" class="mobile-menu d-none" id="mobile-menu"><img src="/img/points.png" alt=""></div>
             </div>
         </div>
     </div> 
