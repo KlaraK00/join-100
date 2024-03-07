@@ -96,6 +96,10 @@ function renderContact(){
 }
 
 async function deleteContact(i){
+    document.getElementById(`contact-info${i}`).remove();
+    if (previousContact === i) {
+        previousContact = null;
+    }
     contacts.splice(i, 1);
     await saveContact();
     loadContacts();
@@ -126,7 +130,7 @@ function showContactDesktop(i){
     }
     document.getElementById(`contact-info${i}`).style.backgroundColor = 'rgb(42,54,71)';
     document.getElementById(`contact-info${i}`).style.color = 'white';
-    previousContact = i;
+    previousContact = i
 }
 
 function showContact(i){
