@@ -52,6 +52,7 @@ function closeEditContactWindow(){
     await saveContact();
     closeNewContactWindow();
     initContacts();
+    document.getElementById('right-side').classList.add('z-index');
     showOverlayCreated();
 }
 

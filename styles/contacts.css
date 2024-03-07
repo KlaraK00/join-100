@@ -28,6 +28,7 @@ body {
 .right-side-infos {
     position: sticky;
     top: 96px;
+    height: calc(100vh - 96px);
 }
 
 .right-side {
@@ -204,6 +205,10 @@ h5 {
     color: black;
 }
 
+#show-contact-infos {
+    height: calc(100vh - 340px);
+}
+
 .hide-contact-infos {
     transform: translateX(4000px);
     transition: all 225ms ease-in-out; 
@@ -233,7 +238,7 @@ a {
 
 .contact-area {
     overflow-y: scroll;
-    height: calc(100vh - 174.5px);
+    height: calc(100vh - 175.5px);
 }
 
 .overlay-add-contact {
@@ -467,7 +472,6 @@ a {
     color: white;
     width: 50%;
     position: absolute;
-    margin-top: 40px;
 }
 
 .successfully-deleted {
@@ -483,7 +487,6 @@ a {
     color: white;
     width: 50%;
     position: absolute;
-    margin-top: 40px;
 }
 
 .successfully-saved {
@@ -499,7 +502,6 @@ a {
     color: white;
     width: 50%;
     position: absolute;
-    margin-top: 40px;
 }
 
 .show-successfully-created {
@@ -718,5 +720,17 @@ a {
 
     #show-contact-infos {
         margin-top: 40px;
+    }
+
+    .successfully-deleted {
+        top: 180px;
+    }
+
+    .successfully-saved {
+        top: 180px;
+    }
+
+    .successfully-created {
+        top: 180px;
     }
 }
