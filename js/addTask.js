@@ -1,4 +1,10 @@
 let tasks = [];
+const TaskStatus = {
+    TODO: "toDo",
+    IN_PROGRESS: "inProgress",
+    AWAIT_FEEDBACK: "awaitFeedback",
+    DONE: "done"
+  };
 
 async function initAddTask() {
   await includeHTML();
@@ -80,7 +86,8 @@ function createTask() {
     dueDate,
     priority,
     category,
-    subtasks
+    subtasks,
+    TaskStatus.TODO
   );
 
   pushTask(task);
