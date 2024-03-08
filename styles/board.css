@@ -278,8 +278,11 @@ height: 32px;
     overflow-y: auto;
 }
 
+.borderRadius5 {
+    border-radius: 5px;
+}
+
 .hoverGrey:hover {
     background-color: #eeeeee;
-    border-radius: 5px;
     cursor: pointer;
 }

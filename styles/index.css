@@ -30,6 +30,14 @@ h1 {
     height: 20px;
 }
 
+.height33 {
+    height: 33px;
+}
+
+.width33 {
+    width: 33px;
+}
+
 .width50 {
     width: 50px;
 }
@@ -122,6 +130,10 @@ h1 {
 
 .marBot2 {
     margin-bottom: 2px;
+}
+
+.gap1 {
+    gap: 1px;
 }
 
 .gap6 {
@@ -297,12 +309,28 @@ dialog::backdrop {
     pointer-events: none;
 }
 
+.top0 {
+    top: 0;
+}
+
+.top5 {
+    top: 5px;
+}
+
 .top9 {
     top: 9px;
 }
 
 .top11 {
     top: 11px;
+}
+
+.top15 {
+    top: 15px;
+}
+
+.rightMinus26 {
+    right: -26px;
 }
 
 .right0 {

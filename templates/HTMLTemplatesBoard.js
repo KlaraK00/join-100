@@ -92,7 +92,7 @@ function HTMLTemplatePopUpBoardEdit(task){
             </div>
             <div class="dFlex directionColumn width100Perc">
                 <label for="boardPopUpInputDate" class="padBot5">Due date</label>
-                <input id="boardPopUpInputDate" class="inputBoardEdit" value=${task.date} type="date">
+                <input id="boardPopUpInputDate" class="inputBoardEdit" value="${task.date}" type="date">
             </div>
             <div class="dFlex directionColumn width100Perc">
                 <div class="padBot5">Priority</div>
@@ -104,12 +104,17 @@ function HTMLTemplatePopUpBoardEdit(task){
             </div>
             <div class="dFlex directionColumn width100Perc">
                 <label for="boardPopUpSelectContacts" class="padBot5">Assigned to</label>
-                <div onclick="boardEditTaskAssignContacts()" id="boardPopUpSelectContactsToAssignDiv" class="inputBoardEdit cursorPointer">Select contacts to assign</div>
-                <div class="marRight28">
-                    <input id="boardPopUpSelectContactsInput" class="inputBoardEdit d-none width100Perc" type="text">
-                    <img src="./img/selectionToOpen.png" alt="open selection">
+                <div id="boardPopUpSelectContactsToAssignDiv" class="posRelative">
+                    <div onclick="boardEditTaskAssignContacts(${task.createdAt})" class="inputBoardEdit cursorPointer">Select contacts to assign</div>
+                    <img class="posAbsolute top15 right15" src="./img/selectionToOpen.png" alt="close selection">
                 </div>
-                <div class="dFlex directionColumn gap10 padBot5 padTop5" id="boardPopUpSelectContacts" class="d-none"></div>
+                <div class="marRight28 d-none posRelative">
+                    <input onkeyup="boardEditTaskSearchContacts(${task.createdAt})" id="boardPopUpSelectContactsInput" class="inputBoardEdit width100Perc" type="text">
+                    <div onclick="closeBoardEditTaskContacts()" class="dFlex justCenter alignCenter posAbsolute top0 rightMinus26 height33 width33 cursorPointer">
+                        <img src="./img/selectionToClose.png" alt="open selection">
+                    </div>
+                </div>
+                <div class="dFlex directionColumn padBot5 padTop5 gap1 d-none" id="boardPopUpSelectContacts"></div>
                 <div class="dFlex padTop5" id="boardPopUpEditColorfulContacts${task.createdAt}"></div>
             </div>
             <div class="dFlex directionColumn width100Perc">
@@ -125,5 +130,16 @@ function HTMLTemplatePopUpBoardEdit(task){
             </div>
         </div>
     </div>
+    `;
+}
+
+function HTMLTemplatePopUpBoardEditSelectContacts(contact, task, search) {
+    return /*html*/`<div onclick="boardEditTaskAddOrRemoveContact(${contact.createdAt}, ${task.createdAt}, ${search})" class="dFlex justBetween alignCenter hoverGrey borderRadius5 padTop5 padBot5">
+            <div class="dFlex alginCenter">
+                <div style="background: ${contact.color}" class="initialsBoard marLeft10 marRight10">${contact.initials}</div> 
+                <div class="dFlex alignCenter">${contact.firstName} ${contact.lastName}</div> 
+            </div>
+            <img id="boardEditTaskContactsCheckbox${contact.createdAt}" class="height20 marRight10" src="./img/checkboxNotChecked.png" alt="checkbox">
+        </div>
     `;
 }

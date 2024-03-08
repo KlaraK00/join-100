@@ -4,7 +4,7 @@ tasks = [
         title: 'title1',
         description: 'description1',
         contacts: ['1709742165910', '1709742196208'],
-        date: '04.03.2024',
+        date: '2014-03-04',
         prio: 'medium',
         category: 'User Story',
         subtasks: [
@@ -24,7 +24,7 @@ tasks = [
         title: 'title2',
         description: 'description2',
         contacts: [],
-        date: '04.03.2024',
+        date: '2014-03-04',
         prio: '',
         category: 'Technical Task',
         subtasks: [
@@ -44,7 +44,7 @@ tasks = [
         title: 'title3',
         description: 'description3',
         contacts: ['1709742196208', '1709742212979'],
-        date: '04.03.2024',
+        date: '2014-03-04',
         prio: 'urgent',
         category: 'Technical Task',
         subtasks: [],
@@ -55,7 +55,7 @@ tasks = [
         title: 'title4',
         description: 'description4',
         contacts: [],
-        date: '04.03.2024',
+        date: '2014-03-04',
         prio: '',
         category: 'User Story',
         subtasks: [],
@@ -66,7 +66,7 @@ tasks = [
         title: 'title5',
         description: 'description5',
         contacts: [],
-        date: '04.03.2024',
+        date: '2014-03-04',
         prio: 'medium',
         category: 'Technical Task',
         subtasks: [
@@ -555,30 +555,59 @@ function renderBoardPopUpEditSubtasks(task) {
     }
 }
 
-function boardEditTaskAssignContacts() {
+function boardEditTaskAssignContacts(taskCreatedAt) {
     let div = document.getElementById('boardPopUpSelectContactsToAssignDiv');
     let input = document.getElementById('boardPopUpSelectContactsInput');
 
     div.classList.add('d-none');
-    input.classList.remove('d-none');
+    input.parentElement.classList.remove('d-none');
     input.focus();
 
-    renderContactsForSearch("");
+    renderContactsForSearch("", taskCreatedAt);
 }
 
-function renderContactsForSearch(search) {
+function renderContactsForSearch(search, taskCreatedAt) {
     let contactsDiv = document.getElementById('boardPopUpSelectContacts');
+    let task = tasks.find(t => t.createdAt == taskCreatedAt);
+    let contactsSearched = contacts.filter(contact => contact.firstName.toLowerCase().includes(search) || contact.lastName.toLowerCase().includes(search));
     contactsDiv.classList.remove('d-none');
     contactsDiv.innerHTML = '';
-    let contactsSearched = contacts.filter(contact => contact.firstName.toLowerCase().includes(search) || contact.lastName.toLowerCase().includes(search));
     for (let i = 0; i < contactsSearched.length; i++) {
         let contact = contactsSearched[i];
-        contactsDiv.innerHTML += /*html*/`<div class="dFlex justBetween alignCenter hoverGrey">
-            <div class="dFlex alginCenter">
-                <div style="background: ${contact.color}" class="initialsBoard marLeft10 marRight10">${contact.initials}</div> 
-                <div class="dFlex alignCenter">${contact.firstName} ${contact.lastName}</div> 
-            </div>
-            <img class="height20 marRight10" src="./img/checkboxNotChecked.png" alt="checkbox">
-        </div>`;
+        contactsDiv.innerHTML += HTMLTemplatePopUpBoardEditSelectContacts(contact, task, search);
+        if (task.contacts.find(c => c == contact.createdAt + '')) {
+            let checkboxImg = document.getElementById(`boardEditTaskContactsCheckbox${contact.createdAt}`);
+            checkboxImg.src = './img/checkedCheckboxWhite.png';
+            checkboxImg.parentElement.style.color= "white";
+            checkboxImg.parentElement.style.background= "#2A3647";
+        }
+    }
+}
+
+function boardEditTaskSearchContacts(taskCreatedAt) {
+    let input = document.getElementById('boardPopUpSelectContactsInput');
+    let search = input.value.toLowerCase();
+    renderContactsForSearch(search, taskCreatedAt);
+}
+
+function closeBoardEditTaskContacts() {
+    let input = document.getElementById('boardPopUpSelectContactsInput');
+    let contactsDiv = document.getElementById('boardPopUpSelectContacts');
+    let div = document.getElementById('boardPopUpSelectContactsToAssignDiv');
+    input.parentElement.classList.add('d-none');
+    contactsDiv.classList.add('d-none');
+    div.classList.remove('d-none');
+}
+
+function boardEditTaskAddOrRemoveContact(contactCreatedAt, taskCreatedAt, search) {
+    let checkboxImg = document.getElementById(`boardEditTaskContactsCheckbox${contactCreatedAt}`);
+    let task = tasks.find(t => t.createdAt == taskCreatedAt);
+    let searchTranslated = search;
+    if(!search) {
+        searchTranslated = "";
+    }
+    if (checkboxImg.src.toLowerCase().includes('notchecked')) {
+        task.contacts.push(contactCreatedAt);
+        renderContactsForSearch(searchTranslated, taskCreatedAt);
     }
 }
