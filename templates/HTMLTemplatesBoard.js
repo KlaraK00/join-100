@@ -84,11 +84,11 @@ function HTMLTemplatePopUpBoardEdit(task){
                 <img onclick="closeTask()" class="posAbsolute cursorPointer closeImgBoard" src="./img/Close.png" alt="close">
                 <div class="dFlex directionColumn padTop35 width100Perc">
                     <label for="boardPopUpInputTitle" class="padBot5">Title</label>
-                    <input required id="boardPopUpInputTitle" class="inputBoardEdit" value="${task.title}" type="text">
+                    <input onkeyup="changeValueOfTitle('${task.createdAt}')" required id="boardPopUpInputTitle" class="inputBoardEdit" value="${task.title}" type="text">
                 </div>
                 <div class="dFlex directionColumn width100Perc">
                     <label for="boardPopUpInputDescription" class="padBot5">Description</label>
-                    <textarea required id="boardPopUpInputDescription" class="inputBoardEdit" type="text" cols="10" rows="3">${task.description}</textarea>
+                    <textarea onkeyup="changeValueOfDescription('${task.createdAt}')" required id="boardPopUpInputDescription" class="inputBoardEdit" type="text" cols="10" rows="3">${task.description}</textarea>
                 </div>
                 <div class="dFlex directionColumn width100Perc">
                     <label for="boardPopUpInputDate" class="padBot5">Due date</label>

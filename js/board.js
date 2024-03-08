@@ -638,13 +638,13 @@ function boardEditTaskAddOrRemoveContact(contactCreatedAt, taskCreatedAt, search
         task.contacts.push(contactCreatedAt);
         renderContactsForSearch(searchTranslated, taskCreatedAt);
         renderBoardPopUpEditContacts(task);
-        renderContactsAndPriorityBoard(task);
+        renderAllTasks();
     } else {
         let index = task.contacts.indexOf(contactCreatedAt);
         task.contacts.splice(index, 1);
         renderContactsForSearch(searchTranslated, taskCreatedAt);
         renderBoardPopUpEditContacts(task);
-        renderContactsAndPriorityBoard(task)
+        renderAllTasks();
     }
 }
 
@@ -733,4 +733,18 @@ function saveEditedTask(taskCreatedAt, event) {
     task.date = date;
     task.prio = boardCurrentPrio; //funkioniert nicht?
     openTask(taskCreatedAt);
+}
+
+function changeValueOfTitle(taskCreatedAt) {
+    let task = tasks.find(t => t.createdAt == taskCreatedAt);
+    let input = document.getElementById('boardPopUpInputTitle');
+    task.title = input.value;
+    renderAllTasks();
+}
+
+function changeValueOfDescription(taskCreatedAt) {
+    let task = tasks.find(t => t.createdAt == taskCreatedAt);
+    let input = document.getElementById('boardPopUpInputDescription');
+    task.description = input.value;
+    renderAllTasks();
 }
