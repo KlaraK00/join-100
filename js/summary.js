@@ -4,7 +4,6 @@
  */
 async function start() {
   greetCurrentUser();
-
   addTasksStatusLengthToSummary();
 }
 

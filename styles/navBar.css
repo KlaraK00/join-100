@@ -113,3 +113,168 @@ body {
     padding-left: 52px;
     background-color: #091931;
 }
+
+@media screen and (max-width: 1100px) {
+
+    .greet-container {
+        display: none;
+    }
+
+    .summary-container-wrapper {
+        justify-content: center;
+    }
+
+    .summary-container {
+        margin: 0;
+        padding: 1%;
+        padding-top: 100px;
+        padding-bottom: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: auto;
+    }
+
+    .headline {
+        padding-top: 0;
+    }
+
+    .menu {
+        height: 80px;
+        width: 100%;
+        margin-top: 0;
+        top: auto;
+        bottom: 0;
+        left: 0;
+        flex-direction: row;
+        position: fixed;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .menuFooter {
+        display: none;
+    }
+
+    .menuLogo {
+        display: none;
+    }
+
+    .menuButtonContainer {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .menuButton {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        width: auto;
+        padding: 0;
+    }
+
+    .selectedMenuButton {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        width: auto;
+        padding: 10px;
+        border-radius: 20px;
+    }
+}
+
+@media screen and (max-width: 650px) {
+
+    .headline {
+        flex-direction: column;
+        gap: 0;
+        align-items: flex-start;
+        width: 90%;
+    }
+
+    .seperator {
+        display: none;
+    }
+
+    .seperator-mobile {
+        display: flex;
+    }
+
+    .main-task-container {
+        justify-content: center;
+        align-items: center;
+    }
+
+    .check-rectangle {
+        width: 90%;
+    }
+
+    .button-container {
+        gap: 0;
+        padding: 20px;
+        padding-left: 45px;
+        padding-right: 45px;
+    }
+
+    .urgency-container {
+        justify-content: space-between;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .urgency-summary {
+        width: 90%;
+        text-wrap: nowrap;
+    }
+
+    .overview-container {
+        width: 90%;
+
+    }
+
+    .task-container {
+        padding: 15px;
+        height: auto;
+    }
+}
+
+@media screen and (max-width: 502px) {
+
+    .fs-64 {
+        font-size: 50px;
+    }
+
+    .fs-20 {
+        font-size: 15px;
+    }
+
+    .button-container {
+        padding-left: 20px;
+        padding-right: 20px;
+
+    }
+
+    .urgency-container {
+
+    }
+
+    .line {
+        margin: 5px;
+    }
+
+    .task-container {
+        min-width: 100px;
+        min-height: 100px;
+
+    }
+
+    .overview-container {
+        gap: 10px;
+    }
+}
