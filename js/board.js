@@ -87,6 +87,7 @@ tasks = [
     }
 ]
 let currentDraggedElement;
+let boardCurrentPrio = '';
 
 async function initBoard() {
     loggedIn = getLoggedIn();
@@ -102,8 +103,6 @@ async function initBoard() {
     //     console.log("no");
     // }
 }
-
-let boardCurrentPrio = '';
 
 function renderAllTasks() {
     renderToDo();
@@ -468,20 +467,25 @@ function renderBoardPopUpEditPrio(task) {
     changePrioBtn(boardCurrentPrio);
 }
 
-function changePrioBtn(priority) {
+function changePrioBtn(priority, taskCreatedAt) {
     if(priority == 'urgent') {
-        changePrioBtnUrgent();
+        changePrioBtnUrgent(taskCreatedAt);
     } else if (priority == 'medium') {
-        changePrioBtnMedium();
+        changePrioBtnMedium(taskCreatedAt);
     } else if (priority == 'low') {
-        changePrioBtnLow();
+        changePrioBtnLow(taskCreatedAt);
     } else {
-        cleanAllPrioBtns();
+        cleanAllPrioBtns(taskCreatedAt);
     }
 }
 
-function changePrioBtnUrgent() {
-    boardCurrentPrio = 'urgent';
+function changePrioBtnUrgent(taskCreatedAt) {
+    if(taskCreatedAt){
+        let task = tasks.find(t => t.createdAt == taskCreatedAt);
+        task.prio = 'urgent';
+        renderContactsAndPriorityBoard(task);
+    }
+    boardCurrentPrio = 'urgent'; // brauch ich das?
     let btnUrgent = document.getElementById('boardPopUpEditUrgentBtn');
     btnUrgent.style.background = '#FF3D00';
     btnUrgent.style.color = 'white';
@@ -496,7 +500,12 @@ function changePrioBtnUrgent() {
     btnLow.firstElementChild.src = './img/lowPrio.png';
 }
 
-function changePrioBtnMedium() {
+function changePrioBtnMedium(taskCreatedAt) {
+    if(taskCreatedAt){
+        let task = tasks.find(t => t.createdAt == taskCreatedAt);
+        task.prio = 'medium';
+        renderContactsAndPriorityBoard(task);
+    }
     boardCurrentPrio = 'medium';
     let btnMedium = document.getElementById('boardPopUpEditMediumBtn');
     btnMedium.style.background = '#FFA800';
@@ -512,7 +521,12 @@ function changePrioBtnMedium() {
     btnLow.firstElementChild.src = './img/lowPrio.png';
 }
 
-function changePrioBtnLow() {
+function changePrioBtnLow(taskCreatedAt) {
+    if(taskCreatedAt){
+        let task = tasks.find(t => t.createdAt == taskCreatedAt);
+        task.prio = 'low';
+        renderContactsAndPriorityBoard(task);
+    }
     boardCurrentPrio = 'low';
     let btnLow = document.getElementById('boardPopUpEditLowBtn');
     btnLow.style.background = '#7AE229';
@@ -528,7 +542,13 @@ function changePrioBtnLow() {
     btnMedium.firstElementChild.src = './img/mediumPrio.png';
 }
 
-function cleanAllPrioBtns() {
+function cleanAllPrioBtns(taskCreatedAt) { // wo wird das eingesetzt?
+    if(taskCreatedAt){
+        let task = tasks.find(t => t.createdAt == taskCreatedAt);
+        task.prio = '';
+        renderContactsAndPriorityBoard(task);
+    }
+    boardCurrentPrio = '';
     let btnUrgent = document.getElementById('boardPopUpEditUrgentBtn');
     btnUrgent.style.background = 'white';
     btnUrgent.style.color = 'black';
@@ -618,11 +638,13 @@ function boardEditTaskAddOrRemoveContact(contactCreatedAt, taskCreatedAt, search
         task.contacts.push(contactCreatedAt);
         renderContactsForSearch(searchTranslated, taskCreatedAt);
         renderBoardPopUpEditContacts(task);
+        renderContactsAndPriorityBoard(task);
     } else {
         let index = task.contacts.indexOf(contactCreatedAt);
         task.contacts.splice(index, 1);
         renderContactsForSearch(searchTranslated, taskCreatedAt);
         renderBoardPopUpEditContacts(task);
+        renderContactsAndPriorityBoard(task)
     }
 }
 
@@ -648,15 +670,67 @@ function boardDeleteTask(taskCreatedAt) {
     renderAllTasks();
 }
 
-function changeImageOnSubtaskInput() {
+function focusOnInputOrAddSubtask(taskCreatedAt) {
+    let input = document.getElementById('boardPopUpInputSubtasks');
+    let search = input.value;
+    if(search == '') {
+        let boardPopUpInputSubtasksImg = document.getElementById('boardPopUpInputSubtasksImg');
+        boardPopUpInputSubtasksImg.style.width = "40px";
+        boardPopUpInputSubtasksImg.style.justifyContent = "space-between";
+        boardPopUpInputSubtasksImg.style.paddingRight = "8px";
+        boardPopUpInputSubtasksImg.innerHTML = '';
+        boardPopUpInputSubtasksImg.innerHTML = /*html*/`<img onclick="changeImageOnSubtaskInputToPlus(${taskCreatedAt})" class="width12" src="./img/boardClose.png" alt="close">
+            <div class="greyVerticalLineSubtasks"></div>
+            <img onclick="boardEditTaskAddSubtask(${taskCreatedAt})" class="width14" src="./img/checkBlack.png" alt="check">
+        `;
+        focusOn('boardPopUpInputSubtasks');
+    } else {
+        boardEditTaskAddSubtask(taskCreatedAt);
+    }
+}
+
+function changeImageOnSubtaskInputToPlus(taskCreatedAt) {
+    let boardPopUpInputSubtasks = document.getElementById('boardPopUpInputSubtasks');
     let boardPopUpInputSubtasksImg = document.getElementById('boardPopUpInputSubtasksImg');
-    boardPopUpInputSubtasksImg.style.width = "40px";
-    boardPopUpInputSubtasksImg.style.justifyContent = "space-between";
-    boardPopUpInputSubtasksImg.style.paddingRight = "8px";
+    boardPopUpInputSubtasks.value = '';
+    boardPopUpInputSubtasksImg.style.width = "33px";
+    boardPopUpInputSubtasksImg.style.justifyContent = "center";
+    boardPopUpInputSubtasksImg.style.paddingRight = "0";
     boardPopUpInputSubtasksImg.innerHTML = '';
-    boardPopUpInputSubtasksImg.innerHTML = /*html*/`<img class="width12" src="./img/boardClose.png" alt="close">
-        <div class="greyVerticalLineSubtasks"></div>
-        <img class="width14" src="./img/checkBlack.png" alt="check">
-    `;
-    focusOn('boardPopUpInputSubtasks');
+    boardPopUpInputSubtasksImg.innerHTML = /*html*/`<img onclick="focusOnInputOrAddSubtask('${taskCreatedAt}')" class="height10" src="./img/add-2.png" alt="plus">`;
+}
+
+function boardEditTaskAddSubtask(taskCreatedAt) {
+    let boardPopUpInputSubtasks = document.getElementById('boardPopUpInputSubtasks');
+    if(boardPopUpInputSubtasks.value !== '') {
+        let task = tasks.find(t => t.createdAt == taskCreatedAt);
+        task.subtasks.push({
+            subtask: boardPopUpInputSubtasks.value,
+            done: false
+        });
+        boardPopUpInputSubtasks.value = '';
+        changeImageOnSubtaskInputToPlus(taskCreatedAt);
+        renderBoardPopUpEditSubtasks(task);
+        // renderSubtasksPopUpBoard(task);FUNKTIONIERT NICHT ---> popUp Nicht edit-version?
+        renderSubtasks(task);
+    }
+}
+
+function saveEditedTask(taskCreatedAt, event) {
+    event.preventDefault();
+    let task = tasks.find(t => t.createdAt == taskCreatedAt);
+    let title = document.getElementById('boardPopUpInputTitle').value;
+    let description = document.getElementById('boardPopUpInputDescription').value;
+    let date = document.getElementById('boardPopUpInputDate').value;
+    // let priority = boardCurrentPrio;
+    // let assignedTo = task.contacts;
+    // let subtasks = task.subtasks;
+    // console.log(
+    //     'title:', title, 'description', description,'date', date, 'priority', priority,'contacts', assignedTo, 'subtasks', subtasks
+    // )
+    task.title = title;
+    task.description = description;
+    task.date = date;
+    task.prio = boardCurrentPrio; //funkioniert nicht?
+    openTask(taskCreatedAt);
 }
