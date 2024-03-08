@@ -647,3 +647,16 @@ function boardDeleteTask(taskCreatedAt) {
     boardTaskOverlay.innerHTML = '';
     renderAllTasks();
 }
+
+function changeImageOnSubtaskInput() {
+    let boardPopUpInputSubtasksImg = document.getElementById('boardPopUpInputSubtasksImg');
+    boardPopUpInputSubtasksImg.style.width = "40px";
+    boardPopUpInputSubtasksImg.style.justifyContent = "space-between";
+    boardPopUpInputSubtasksImg.style.paddingRight = "8px";
+    boardPopUpInputSubtasksImg.innerHTML = '';
+    boardPopUpInputSubtasksImg.innerHTML = /*html*/`<img class="width12" src="./img/boardClose.png" alt="close">
+        <div class="greyVerticalLineSubtasks"></div>
+        <img class="width14" src="./img/checkBlack.png" alt="check">
+    `;
+    focusOn('boardPopUpInputSubtasks');
+}

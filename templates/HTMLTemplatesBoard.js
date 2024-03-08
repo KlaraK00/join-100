@@ -119,9 +119,11 @@ function HTMLTemplatePopUpBoardEdit(task){
             </div>
             <div class="dFlex directionColumn width100Perc">
                 <label for="boardPopUpInputSubtasks" class="padBot5">Subtasks</label>
-                <div class="posRelative marRight28">
+                <div class="posRelative marRight28 cursorPointer">
                     <input placeholder="Add new subtask" id="boardPopUpInputSubtasks" class="inputBoardEdit width100Perc" type="text">
-                    <div id="boardPopUpInputSubtasksImg" class="posAbsolute"></div>
+                    <div onclick="changeImageOnSubtaskInput()" id="boardPopUpInputSubtasksImg" class="posAbsolute dFlex justCenter alignCenter height33 width33 rightMinus26 top0">
+                        <img class="height10" src="./img/add-2.png" alt="plus">
+                    </div>
                 </div>
                 <ul class="dFlex directionColumn gap10" id="boardPopUpAllSubtasks"></ul>
             </div>
