@@ -92,7 +92,7 @@ function HTMLTemplatePopUpBoardEdit(task){
                 </div>
                 <div class="dFlex directionColumn width100Perc">
                     <label for="boardPopUpInputDate" class="padBot5">Due date</label>
-                    <input required id="boardPopUpInputDate" class="inputBoardEdit" value="${task.date}" type="date">
+                    <input required id="boardPopUpInputDate" class="inputBoardEdit" value="${task.date}" type="date" min="${today}">
                 </div>
                 <div class="dFlex directionColumn width100Perc">
                     <div class="padBot5">Priority</div>

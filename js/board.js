@@ -88,6 +88,22 @@ tasks = [
 ]
 let currentDraggedElement;
 let boardCurrentPrio = '';
+let today;
+
+setToday();
+
+function setToday() {
+    let month = new Date().getMonth() + 1 + "";
+    let day = new Date().getDate() + "";
+    if (month.length == 1) {
+        month = "0" + month;
+    }
+    if (day.length == 1) {
+        day = "0" + day;
+    }
+    today = new Date().getFullYear() + '-' + month + '-' + day;
+}
+
 
 async function initBoard() {
     loggedIn = getLoggedIn();
