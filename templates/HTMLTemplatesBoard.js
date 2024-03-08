@@ -62,9 +62,9 @@ function HTMLTemplatePopUpContact(contact) {
     `;
 }
 
-function HTMLTemplatePopUpSubtask(subtask) {
+function HTMLTemplatePopUpSubtask(task, subtask, i) {
     return /*html*/`<div class="dFlex alignCenter">
-            <img class="cursorPointer height20" src="./img/checkboxNotChecked.png" alt="checkbox">
+            <img onclick="boardChangeSubtasksDoneOrNot('${task.createdAt}', ${i})" id="boardPopUpSubtask${task.createdAt}${i}" class="cursorPointer height20" src="./img/checkboxNotChecked.png" alt="checkbox">
             <span class="padLeft16 fontSize14">${subtask.subtask}</span>
         </div>
     `;
@@ -103,7 +103,7 @@ function HTMLTemplatePopUpBoardEdit(task){
                 </div>
             </div>
             <div class="dFlex directionColumn width100Perc">
-                <label for="boardPopUpSelectContacts" class="padBot5">Assigned to</label>
+                <div class="padBot5">Assigned to</div>
                 <div id="boardPopUpSelectContactsToAssignDiv" class="posRelative">
                     <div onclick="boardEditTaskAssignContacts(${task.createdAt})" class="inputBoardEdit cursorPointer">Select contacts to assign</div>
                     <img class="posAbsolute top15 right15" src="./img/selectionToOpen.png" alt="close selection">

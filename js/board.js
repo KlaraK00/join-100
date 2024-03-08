@@ -3,7 +3,7 @@ tasks = [
         createdAt: '0990790667',
         title: 'title1',
         description: 'description1',
-        contacts: ['1709742165910', '1709742196208'],
+        contacts: [1709742165910, 1709742196208],
         date: '2014-03-04',
         prio: 'medium',
         category: 'User Story',
@@ -43,7 +43,7 @@ tasks = [
         createdAt: '0990798667',
         title: 'title3',
         description: 'description3',
-        contacts: ['1709742196208', '1709742212979'],
+        contacts: [1709742196208, 1709742212979],
         date: '2014-03-04',
         prio: 'urgent',
         category: 'Technical Task',
@@ -388,8 +388,16 @@ function renderSubtasksPopUpBoard(task) {
         popUpSubtasks.innerHTML = '';
         for (let i = 0; i < task.subtasks.length; i++) {
             let subtask = task.subtasks[i];
-            popUpSubtasks.innerHTML += HTMLTemplatePopUpSubtask(subtask);
+            popUpSubtasks.innerHTML += HTMLTemplatePopUpSubtask(task, subtask, i);
+            renderSubtasksPopUpBoardCheckbox(task, i);
         }
+    }
+}
+
+function renderSubtasksPopUpBoardCheckbox(task, i) {
+    let subtaskCheckboxImg = document.getElementById(`boardPopUpSubtask${task.createdAt}${i}`);
+    if(task.subtasks[i].done) {
+        subtaskCheckboxImg.src = "./img/registerCheckedCheckbox.png";
     }
 }
 
@@ -575,7 +583,7 @@ function renderContactsForSearch(search, taskCreatedAt) {
     for (let i = 0; i < contactsSearched.length; i++) {
         let contact = contactsSearched[i];
         contactsDiv.innerHTML += HTMLTemplatePopUpBoardEditSelectContacts(contact, task, search);
-        if (task.contacts.find(c => c == contact.createdAt + '')) {
+        if (task.contacts.find(c => c == contact.createdAt)) {
             let checkboxImg = document.getElementById(`boardEditTaskContactsCheckbox${contact.createdAt}`);
             checkboxImg.src = './img/checkedCheckboxWhite.png';
             checkboxImg.parentElement.style.color= "white";
@@ -611,9 +619,23 @@ function boardEditTaskAddOrRemoveContact(contactCreatedAt, taskCreatedAt, search
         renderContactsForSearch(searchTranslated, taskCreatedAt);
         renderBoardPopUpEditContacts(task);
     } else {
-        let index = task.contacts.indexOf(contactCreatedAt + "");
+        let index = task.contacts.indexOf(contactCreatedAt);
         task.contacts.splice(index, 1);
         renderContactsForSearch(searchTranslated, taskCreatedAt);
         renderBoardPopUpEditContacts(task);
+    }
+}
+
+function boardChangeSubtasksDoneOrNot(taskCreatedAt, i) {
+    let subtaskCheckboxImg = document.getElementById(`boardPopUpSubtask${taskCreatedAt}${i}`);
+    let task = tasks.find(t => t.createdAt == taskCreatedAt);
+    if(subtaskCheckboxImg.src.toLowerCase().includes('notchecked')) {
+        task.subtasks[i].done = true;
+        renderSubtasksPopUpBoard(task);
+        renderAllTasks();
+    } else {
+        task.subtasks[i].done = false;
+        renderSubtasksPopUpBoard(task);
+        renderAllTasks();
     }
 }
