@@ -639,3 +639,11 @@ function boardChangeSubtasksDoneOrNot(taskCreatedAt, i) {
         renderAllTasks();
     }
 }
+
+function boardDeleteTask(taskCreatedAt) {
+    let index = tasks.findIndex(t => t.createdAt == taskCreatedAt);
+    tasks.splice(index, 1);
+    let boardTaskOverlay = document.getElementById('boardTaskOverlay');
+    boardTaskOverlay.innerHTML = '';
+    renderAllTasks();
+}

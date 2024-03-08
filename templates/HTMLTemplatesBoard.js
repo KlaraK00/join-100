@@ -39,7 +39,7 @@ function HTMLTemplatePopUpTask(task) {
                     <div class="padLeft16 gap10 dFlex directionColumn marTopMinus10 padTop20" id="popUpSubtasks${task.createdAt}"></div>
                 </div>
                 <div class="dFlex justEnd alignCenter width100Perc fontSize14 gap6">
-                    <div class="dFlex cursorPointer" onmouseover="changeBoardTaskPopUpDeleteToBlue()" onmouseout="changeBoardTaskPopUpDeleteToBlack()">
+                    <div onclick="boardDeleteTask(${task.createdAt})" class="dFlex cursorPointer" onmouseover="changeBoardTaskPopUpDeleteToBlue()" onmouseout="changeBoardTaskPopUpDeleteToBlack()">
                         <img id="boardTaskPopUpDeleteImg" class="height18" src="./img/delete.png" alt="dustbin">
                         <span id="boardTaskPopUpDeleteSpan" class="padLeft6">Delete</span>
                     </div>
