@@ -65,9 +65,9 @@ function createTask() {
   let title = getInputValue("title");
   let description = getInputValue("description");
   let assignedToDropdown = document.getElementById("assign");
-  let contacts = Array.from(assignedToDropdown.selectedOptions).map(
-    (option) => option.value
-  );
+  let contacts = Array.from(assignedToDropdown.selectedOptions)
+  .map(option => Number(option.value)) // Convert to Number
+  .filter(value => !isNaN(value) && value !== "preview"); //exlude preview from NaN 
   let dueDate = getInputValue("due");
   let priority = getPriority();
   let category = getInputValue("category");
@@ -124,13 +124,14 @@ function clearInput() {
 
 function updateContactsDropdown(contacts) {
   const assignDropdown = document.getElementById("assign");
-  // Clear existing options except the first preview option
+  // Clear existing options but keep preview
   assignDropdown.innerHTML =
     '<option value="preview">Select contacts to assign</option>';
 
   // Iterate over the contacts array to add each contact as an option
   contacts.forEach((contact) => {
     const optionElement = document.createElement("option");
+    //use createdAt as a Unique ID to access contacts 
     optionElement.value = contact.createdAt;
     optionElement.textContent = `${contact.firstName} ${contact.lastName}`;
     assignDropdown.appendChild(optionElement);
