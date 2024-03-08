@@ -3,6 +3,10 @@ body {
     margin: 0;
 }
 
+.opacity0 {
+    opacity: 0;
+}
+
 .cursorPointer {
     cursor: pointer;
 }

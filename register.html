@@ -44,7 +44,8 @@
                 <img id="registerSecondVisibilityOnOrOff" onclick="visibilityOnOff('registerSecondVisibilityOnOrOff', 'registerSecondLock', 'registerSecondPassword')" class="posAbsolute right15 height15 top11 d-none cursorPointer" src="./img/logInVisibilityOff.png" alt="visibility-off-picture">
                 <div id="informNotTheSamePassword" class="fontRed fontSize11 posAbsolute bottomMinus18 d-none">Ups! your password don't match</div>
             </div>
-            <div class="dFlex alignCenter marBot20 marTop10">
+            <div class="dFlex alignCenter marBot20 marTop10 posRelative">
+                <input onclick="changeCheckbox('registerCheckbox')" required id="registerRealCheckbox" name="checkbox" type="checkbox" class="posAbsolute opacity0">
                 <img onclick="changeCheckbox('registerCheckbox')" id="registerCheckbox" class="registerCheckbox cursorPointer" src="./img/checkboxNotChecked.png" alt="checkbox">
                 <span id="registerSpanAccept" class="fontSize14 padLeft8 fontLightGrey">I accept the</span>   
                 <a class="noDecoration fontSize14 fontLightBlue hoverBlueUnderline padLeft8" href="./privacyPolicy.html">Privacy Policy</a>

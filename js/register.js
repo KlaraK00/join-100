@@ -49,13 +49,27 @@ async function contactsExist() {
 
 async function register(event) {
     noReload(event);
-    await checkPassword();
+    await checkPassword()
+    // checkPrivacyPolicy();
 }
 
 function noReload(event) {
     event.preventDefault();
 }
 
+async function checkPrivacyPolicy() {
+    if (privacyPolicyCheckboxIsChecked()) {
+        await checkPassword();
+    } else {
+        console.log('NO');
+    }
+}
+
+function privacyPolicyCheckboxIsChecked() {
+    let checkbox = document.getElementById('registerCheckbox');
+    return checkbox.src.toLowerCase().includes('checkedCheckbox');
+}
+ 
 async function checkPassword() {
     let firstPassword = document.getElementById('registerFirstPassword').value;
     let secondPassoword = document.getElementById('registerSecondPassword').value;
