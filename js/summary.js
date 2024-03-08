@@ -3,8 +3,10 @@
  * This function greets the current user.
  */
 async function start() {
+  await loadTasks()
   greetCurrentUser();
   addTasksStatusLengthToSummary();
+
 }
 
 /**

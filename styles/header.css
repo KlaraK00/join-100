@@ -135,7 +135,7 @@
     }
 
     .logo-mobile {
-        display: unset;
+        display: unset !important;
     }
 
     .title {
