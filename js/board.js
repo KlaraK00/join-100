@@ -609,5 +609,11 @@ function boardEditTaskAddOrRemoveContact(contactCreatedAt, taskCreatedAt, search
     if (checkboxImg.src.toLowerCase().includes('notchecked')) {
         task.contacts.push(contactCreatedAt);
         renderContactsForSearch(searchTranslated, taskCreatedAt);
+        renderBoardPopUpEditContacts(task);
+    } else {
+        let index = task.contacts.indexOf(contactCreatedAt + "");
+        task.contacts.splice(index, 1);
+        renderContactsForSearch(searchTranslated, taskCreatedAt);
+        renderBoardPopUpEditContacts(task);
     }
 }
