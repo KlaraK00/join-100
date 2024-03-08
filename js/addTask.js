@@ -1,10 +1,10 @@
 let tasks = [];
 const TaskStatus = {
-    TODO: "toDo",
-    IN_PROGRESS: "inProgress",
-    AWAIT_FEEDBACK: "awaitFeedback",
-    DONE: "done"
-  };
+  TODO: "toDo",
+  IN_PROGRESS: "inProgress",
+  AWAIT_FEEDBACK: "awaitFeedback",
+  DONE: "done",
+};
 
 async function initAddTask() {
   await includeHTML();
@@ -63,12 +63,17 @@ function pushTask(task) {
 
 function createTask() {
   let title = getInputValue("title");
+  let dueDate = getInputValue("due");
+  // Check required fields 
+  if (!title.trim() || !dueDate.trim()) {
+    alert("Please fill in all required fields.");
+    return; // Exit the function 
+  }
   let description = getInputValue("description");
   let assignedToDropdown = document.getElementById("assign");
   let contacts = Array.from(assignedToDropdown.selectedOptions)
-  .map(option => Number(option.value)) // Convert to Number
-  .filter(value => !isNaN(value) && value !== "preview"); //exlude preview from NaN 
-  let dueDate = getInputValue("due");
+    .map((option) => Number(option.value)) // Convert to Number
+    .filter((value) => !isNaN(value) && value !== "preview"); //exlude preview from NaN
   let priority = getPriority();
   let category = getInputValue("category");
   let subtasksInput = getInputValue("subtasks");
@@ -131,13 +136,12 @@ function updateContactsDropdown(contacts) {
   // Iterate over the contacts array to add each contact as an option
   contacts.forEach((contact) => {
     const optionElement = document.createElement("option");
-    //use createdAt as a Unique ID to access contacts 
+    //use createdAt as a Unique ID to access contacts
     optionElement.value = contact.createdAt;
     optionElement.textContent = `${contact.firstName} ${contact.lastName}`;
     assignDropdown.appendChild(optionElement);
   });
 }
 
-function createSubtask() {
 
-}
+function createSubtask() {}

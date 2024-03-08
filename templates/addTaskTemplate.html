@@ -22,7 +22,7 @@
     <div class="taskFrame">
         <div class="taskTitle">
             <div>Title<span class="red">*</span></div>
-            <input id="title" type="text" placeholder="Enter a Title" />
+            <input id="title" type="text" placeholder="Enter a Title" required />
         </div>
             <div class="description">
                 <div>Description</div>
@@ -44,7 +44,8 @@
     <div class="taskFrame2">
         <div class="deadline">
             <div>Due Date <span class="red">*</span></div>
-            <input id="due" type="date" value="dd//mm//yyyy" />
+            <!-- Added required attribute -->
+            <input id="due" type="date" required />
         </div>
         <div id="priority" class="priority">
             Priority
@@ -60,7 +61,7 @@
                 <div>Category</div>
                 <div class="dropdown">
                     <form>
-                        <select name="ccategory" id="category">
+                        <select name="category" id="category">
                           <option value="preview">Select task category</option>
                           <option value="UserStory">User Story</option>
                           <option value="TechnicalTask">Technical Task</option>
@@ -86,4 +87,3 @@
 </div>
 
 </body>
-</html>
