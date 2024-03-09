@@ -45,8 +45,10 @@ function setLocalStorageItem(key, value) {
 
 function getLocalStorageItem(key) {
     try {
+        console.log('local storage returned ', JSON.parse(localStorage.getItem(key)));
         return JSON.parse(localStorage.getItem(key));
-    } catch {
+    } catch(e) {
+        console.log('load local storage, but there is error ', e);
         return false;
     }
 }

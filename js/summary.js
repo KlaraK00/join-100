@@ -3,7 +3,9 @@
  * This function greets the current user.
  */
 async function start() {
-  loadCurrentUser();
+  console.log('currentUser =', currentUser);
+  loadCurrentUser(); //wenn remember me true, dann log in, dann summary schließen und index.html öffnen, dann currentUser = undefined
+  console.log('currentUser2 =', currentUser);
   loadLoggedIn();
   if(loggedIn) {
     await init();
