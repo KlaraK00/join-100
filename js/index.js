@@ -142,6 +142,7 @@ function logIn(event) {
     let indexOfPassword = users.findIndex(user => user.password == logInPassword);
     if(userIsFound(indexOfEmail, indexOfPassword)) {
         showLogInSucceed(indexOfEmail);
+        setFirstVisitSummaryTrue();
     } else {
         showLogInFailed();
     }
