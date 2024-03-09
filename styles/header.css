@@ -150,4 +150,9 @@
         height: 45px;
         width: 45px;
     }
+    .popUp-container {
+        top: 80px;
+        right: 20px;
+
+    }
 }

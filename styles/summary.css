@@ -1,6 +1,7 @@
 body {
     background-color: rgb(246, 247, 248) !important;
 }
+
 a {
     text-decoration: none;
     color: black;
@@ -9,6 +10,7 @@ a {
 .flex-container {
     display: flex;
 }
+
 .summary-container-wrapper {
     display: flex;
     justify-content: space-between;
@@ -16,6 +18,7 @@ a {
     height: 100vh;
     width: 100%;
 }
+
 .summary-container {
     flex-direction: column;
     margin-top: 96px;
@@ -25,7 +28,7 @@ a {
     height: auto;
 }
 
-.headline{ 
+.headline {
     display: flex;
     align-items: center;
     padding-top: 30px;
@@ -49,6 +52,7 @@ a {
 .fs-50 {
     font-size: 50px;
 }
+
 .fs-64 {
     font-size: 64px;
 }
@@ -160,8 +164,8 @@ a {
     transform: scale(1.05);
 }
 
-.button-container:hover .elipse{
-    background-color: white;    
+.button-container:hover .elipse {
+    background-color: white;
 }
 
 .button-container:hover .edit-icon {
@@ -240,6 +244,7 @@ a {
     margin-left: 50px;
     padding-right: 10%;
 }
+
 .greeting-content {
     /* width: 400px; */
 
@@ -252,15 +257,15 @@ a {
     color: #29ABE2;
 }
 
-.overview-container{
+.overview-container {
     display: flex;
     justify-content: space-between;
     gap: 28px;
 }
 
 .task-container {
-    box-sizing: border-box;  
-    max-width: 172px; 
+    box-sizing: border-box;
+    max-width: 172px;
     height: 168px;
     padding: 38px 19px 38px 19px;
     text-align: center;
@@ -279,33 +284,162 @@ a {
 
 @keyframes fadeOut {
     0% {
-      opacity: 1;
+        opacity: 1;
     }
-    100% {
-      opacity: 0;
-      display: none;
-    }
-  }
-  
-  .hidden {
-    animation: fadeOut 500ms ease-out 500ms forwards;
-  }
 
-  .hidden-overlay {
+    100% {
+        opacity: 0;
+        display: none;
+    }
+}
+
+.hidden {
+    animation: fadeOut 500ms ease-out 500ms forwards;
+}
+
+.hidden-overlay {
     position: fixed;
     top: 80px;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #f6f7f8; /* Hintergrundfarbe mit Transparenz */
-    z-index: 999; /* Damit das Div Ã¼ber anderen Elementen liegt */
-  }
+    background-color: #f6f7f8;
+    /* Hintergrundfarbe mit Transparenz */
+    z-index: 999;
+    /* Damit das Div Ã¼ber anderen Elementen liegt */
+}
 
-
-  .d-flex {
+.p-absolut {
+    position: absolute;
+}
+.d-flex {
     display: flex;
-  }
+}
 
 .greetingName {
-    color: rgb(41,171,226);
+    color: rgb(41, 171, 226);
+}
+
+.mobileGreetAnimation {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@media screen and (max-width: 1100px) {
+
+    .greet-container {
+        display: none;
+    }
+
+    .summary-container-wrapper {
+        justify-content: center;
+    }
+
+    .summary-container {
+        margin: 0;
+        padding: 1%;
+        padding-top: 100px;
+        padding-bottom: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: auto;
+    }
+
+    .headline {
+        padding-top: 0;
+        padding-bottom: 20px;
+
+    }
+}
+
+@media screen and (max-width: 650px) {
+
+    .headline {
+        flex-direction: column;
+        gap: 0;
+        align-items: flex-start;
+        width: 90%;
+    }
+
+    .seperator {
+        display: none;
+    }
+
+    .seperator-mobile {
+        display: flex;
+    }
+
+    .main-task-container {
+        justify-content: center;
+        align-items: center;
+    }
+
+    .check-rectangle {
+        width: 90%;
+    }
+
+    .button-container {
+        gap: 0;
+        padding: 20px;
+        padding-left: 45px;
+        padding-right: 45px;
+    }
+
+    .urgency-container {
+        justify-content: space-between;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .urgency-summary {
+        width: 90%;
+        text-wrap: nowrap;
+    }
+
+    .overview-container {
+        width: 90%;
+
+    }
+
+    .task-container {
+        padding: 15px;
+        height: auto;
+    }
+}
+
+@media screen and (max-width: 502px) {
+
+    .fs-64 {
+        font-size: 50px;
+    }
+
+    .fs-20 {
+        font-size: 15px;
+    }
+
+    .button-container {
+        padding-left: 20px;
+        padding-right: 20px;
+
+    }
+
+
+
+    .line {
+        margin: 5px;
+    }
+
+    .task-container {
+        min-width: 100px;
+        min-height: 100px;
+
+    }
+
+    .overview-container {
+        gap: 10px;
+    }
 }

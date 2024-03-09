@@ -22,15 +22,15 @@
     <!--  -->
     <div w3-include-html="/templates/navBar.html"></div>
     <div w3-include-html="/templates/header.html"></div>
-    <div class="summary-container-wrapper">
+    <div class="summary-container-wrapper" id="summaryContainerWrapper">
       <div class="summary-container" id="summaryContainer">
-        <div class="headline">
+        <div class="headline d-none" id="headline">
           <span class="fs-50 fw-700">Join 100</span>
           <span class="seperator"></span>
           <span class="fs-27 fw-400">Key Metrics at a Glance</span>
           <span class="seperator-mobile"></span>
         </div>
-        <div class="flex-container">
+        <div class="flex-container d-none" id="flexContainer">
           <div class="main-task-container">
             <div class="check-rectangle">
               <div>
@@ -124,7 +124,7 @@
           </div>
         </div>
       </div>
-      <div class="greet-container">
+      <div class="greet-container" id="greetContainer">
         <div class="fs-47 fw-500 greeting greeting-content" id="greeting"></div>
 
         <div class="name-container name" id="name"><span id="greetingNameContainer" class="greetingName"></span></div>

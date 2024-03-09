@@ -67,6 +67,7 @@ function guestLogIn() {
 function setLoggedInTrue() {
     loggedIn = true;
     setLocalStorageItem('loggedIn', loggedIn);
+    setFirstVisitSummaryTrue();
 }
 
 function currentUserIsGuest() {
@@ -127,6 +128,7 @@ function showLogInFailed() {
 /* ---------- log out ---------- */
 
 function logOut() {
+    setFirstVisitSummaryFalse();
     setLoggedInFalse();
     document.location.replace("./index.html");
 }
@@ -135,3 +137,4 @@ function setLoggedInFalse() {
     loggedIn = false;
     setLocalStorageItem('loggedIn', loggedIn);
 }
+
