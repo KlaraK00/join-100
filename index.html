@@ -10,8 +10,8 @@
     <script src="./js/storage.js" defer></script>
     <script src="./js/register.js" defer></script>
     <script src="./js/index.js" defer></script>
-    <script src="js/header.js"></script>
-    <script src="js/summary.js"></script>
+    <!-- <script src="js/header.js"></script>
+    <script src="js/summary.js"></script> -->
     <link rel="icon" type="image/x-icon" href="/img/join_logo.png">
 </head>
 <body onload="initLogIn()">
@@ -37,7 +37,7 @@
                 <div id="logInFailed" class="fontRed fontSize11 posAbsolute bot0 d-none">Wrong password Ups! Try again.</div>
             </div>
             <div class="marBot20 fontSize14 dFlex alignCenter marTop10">
-                <img onclick="changeCheckbox('logInCheckbox')" id="logInCheckbox" class="registerCheckbox cursorPointer" src="./img/checkboxNotChecked.png" alt="checkbox">
+                <img onclick="changeLogInCheckbox()" id="logInCheckbox" class="registerCheckbox cursorPointer" src="./img/checkboxNotChecked.png" alt="checkbox">
                 <span for="logInRememberMe" class="padLeft8">Remember me</span>
             </div>
             <div class="dFlex">

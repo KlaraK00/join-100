@@ -1,3 +1,4 @@
+let loggedIn;
 let users = [];
 let contacts = [];
 let colors = [

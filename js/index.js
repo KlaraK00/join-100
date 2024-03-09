@@ -24,16 +24,31 @@
 // } ???
 
 let currentUser;
-let loggedIn;
+let rememberMe;
 
 /* ---------- init ---------- */
 
 async function initLogIn() {
     setLoggedInFalse();
     loadLoggedIn();
+    loadRememberMe();
     loadCurrentUser();
     await loadUsers();
     clearLogInForm();
+}
+
+function loadRememberMe() {
+    if (rememberMeExists()) {
+        rememberMe = getRememberMe();
+    }
+}
+
+function rememberMeExists() {
+    return getRememberMe() === false || getRememberMe === true;
+}
+
+function getRememberMe() {
+    return getLocalStorageItem('rememberMe');
 }
 
 function loadCurrentUser() {
@@ -89,10 +104,24 @@ function redirectToSummary() {
     window.location.href = "./summary.html";
 }
 
+/* ---------- "checkbox" ---------- */
+
+function changeLogInCheckbox() {
+    let checkbox = document.getElementById('logInCheckbox');
+    if (checkbox.src.includes('registerCheckedCheckbox.png')) {
+        checkbox.src = './img/checkboxNotChecked.png';
+        setRememberMeFalse();
+    } else {
+        checkbox.src = './img/registerCheckedCheckbox.png';
+        setRememberMeTrue();
+    }
+}
+
 /* ---------- log in ---------- */
 
 function logIn(event) {
     setLoggedInTrue();
+    // checkRememberMe();
     noReload(event);
     let logInEmail = document.getElementById('logInEmail').value;
     let logInPassword = document.getElementById('logInPassword').value;
@@ -103,6 +132,27 @@ function logIn(event) {
     } else {
         showLogInFailed();
     }
+}
+
+// function checkRememberMe() {
+//     if(rememberMeCheckboxIsChecked()) {
+//         setRememberMeTrue();
+//     }
+// }
+
+// function rememberMeCheckboxIsChecked() {
+//     let checkbox = document.getElementById('logInCheckbox');
+//     return checkbox.src.toLowerCase().includes('checkedcheckbox');
+// }
+
+function setRememberMeFalse() {
+    rememberMe = false;
+    setLocalStorageItem('rememberMe', rememberMe);
+}
+
+function setRememberMeTrue() {
+    rememberMe = true;
+    setLocalStorageItem('rememberMe', rememberMe);
 }
 
 function userIsFound(email, password) {
