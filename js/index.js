@@ -31,8 +31,10 @@ let rememberMe;
 async function initLogIn() {
     loadCurrentUser();
     if(rememberCurrentUser()) {
-        setLoggedInTrue(); // unnötig?
-        showLogInSucceed(currentUser.createdAt);
+        setLoggedInTrue();
+        await loadUsers();
+        let index = users.findIndex(u => u.createdAt == currentUser.createdAt);
+        showLogInSucceed(index);
     } else {
         setLoggedInFalse();
         loadLoggedIn();
