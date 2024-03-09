@@ -30,12 +30,14 @@ let rememberMe;
 
 async function initLogIn() {
     loadCurrentUser();
+    loadRememberMe();
     if(rememberCurrentUser()) {
         setLoggedInTrue();
         await loadUsers();
         let index = users.findIndex(u => u.createdAt == currentUser.createdAt);
         showLogInSucceed(index);
     } else {
+        setRememberMeFalse();
         setLoggedInFalse();
         loadLoggedIn();
         loadRememberMe();
@@ -45,7 +47,7 @@ async function initLogIn() {
 }
 
 function rememberCurrentUser() {
-    return currentUser && currentUser.firstName !== 'Guest' && currentUser !== '';
+    return (currentUser && currentUser.firstName !== 'Guest' && currentUser !== '') && rememberMe === true;
 }
 
 function loadRememberMe() {
@@ -55,7 +57,7 @@ function loadRememberMe() {
 }
 
 function rememberMeExists() {
-    return getRememberMe() === false || getRememberMe === true;
+    return getRememberMe() === false || getRememberMe() === true;
 }
 
 function getRememberMe() {
