@@ -4,11 +4,15 @@
  */
 async function start() {
   loadLoggedIn();
-  mobileGreetAnimation();
-  displayMainContentOnNormalScreenSize();
-  await loadTasks();
-  greetCurrentUser();
-  addTasksStatusLengthToSummary();
+  if(loggedIn) {
+    mobileGreetAnimation();
+    displayMainContentOnNormalScreenSize();
+    await loadTasks();
+    greetCurrentUser();
+    addTasksStatusLengthToSummary();
+  } else {
+    showLogInError();
+  }
 }
 
 /**
@@ -86,6 +90,10 @@ function addTasksStatusLengthToSummary() {
   awaitingFeedbackTaskCountContainer.innerHTML = taskCounts.awaitingFeedback;
   urgentFeedbackTaskCountContainer.innerHTML = taskCounts.urgent;
   tasksInBoardTaskContainer.innerHTML = allOpenTasks;
+}
+
+function showLogInError() {
+  document.body.innerHTML = 'sorry for loading error';
 }
 
 function setFirstVisitSummaryTrue() {

@@ -125,5 +125,5 @@ function showLogInFailed() {
 function logOut() {
     setFirstVisitSummaryFalse();
     setLoggedInFalse();
-    document.location.replace("./index.html");
+    window.location.href = "./index.html";
 }

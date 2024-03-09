@@ -107,7 +107,7 @@ function setToday() {
 
 async function initBoard() {
     loadLoggedIn();
-    // if(loggedIn) {
+    if(loggedIn) {
         await includeHTML();
         await loadContacts();
         // await loadTasks();
@@ -115,9 +115,9 @@ async function initBoard() {
         currentUser = getCurrentUser();
         showUserNavBar();
         renderAllTasks();
-    // } else {
-    //     console.log("no");
-    // }
+    } else {
+        showLogInError();
+    }
 }
 
 function renderAllTasks() {

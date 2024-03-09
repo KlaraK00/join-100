@@ -2,10 +2,14 @@ let letters = [];
 
 async function initContacts(){
     loadLoggedIn();
-    await loadContacts();
-    fillLetters();
-    loadLetters();
-    renderContact();
+    if(loggedIn) {
+        await loadContacts();
+        fillLetters();
+        loadLetters();
+        renderContact();
+    } else {
+        showLogInError();
+    }
 }
 
 function addNewContact(){
