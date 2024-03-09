@@ -44,5 +44,9 @@ function setLocalStorageItem(key, value) {
 }
 
 function getLocalStorageItem(key) {
-    return JSON.parse(localStorage.getItem(key));
+    try {
+        return JSON.parse(localStorage.getItem(key));
+    } catch {
+        return false;
+    }
 }

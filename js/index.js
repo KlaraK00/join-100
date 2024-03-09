@@ -29,12 +29,21 @@ let rememberMe;
 /* ---------- init ---------- */
 
 async function initLogIn() {
-    setLoggedInFalse();
-    loadLoggedIn();
-    loadRememberMe();
     loadCurrentUser();
-    await loadUsers();
-    clearLogInForm();
+    if(rememberCurrentUser()) {
+        setLoggedInTrue(); // unnötig?
+        showLogInSucceed(currentUser.createdAt);
+    } else {
+        setLoggedInFalse();
+        loadLoggedIn();
+        loadRememberMe();
+        await loadUsers();
+        clearLogInForm();
+    }
+}
+
+function rememberCurrentUser() {
+    return currentUser && currentUser.firstName !== 'Guest' && currentUser !== '';
 }
 
 function loadRememberMe() {
@@ -175,5 +184,6 @@ function showLogInFailed() {
 function logOut() {
     setFirstVisitSummaryFalse();
     setLoggedInFalse();
+    setCurrentUser('');
     window.location.href = "./index.html";
 }
