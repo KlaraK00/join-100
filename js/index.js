@@ -29,22 +29,17 @@ let loggedIn;
 /* ---------- init ---------- */
 
 async function initLogIn() {
-    if (loggedInExists()) {
-        loggedIn = getLoggedIn();
-    }
-    if (currentUserExists()) {
-        currentUser = getCurrentUser();
-    }
+    setLoggedInFalse();
+    loadLoggedIn();
+    loadCurrentUser();
     await loadUsers();
     clearLogInForm();
 }
 
-function loggedInExists() {
-    return getLoggedIn() && getLoggedIn() !== "";
-}
-
-function getLoggedIn() {
-    return getLocalStorageItem('loggedIn');
+function loadCurrentUser() {
+    if (currentUserExists()) {
+        currentUser = getCurrentUser();
+    }
 }
 
 function currentUserExists() {
@@ -58,6 +53,7 @@ function getCurrentUser() {
 /* ---------- guest log in ---------- */
 
 function guestLogIn() {
+    setFirstVisitSummaryTrue();
     setLoggedInTrue();
     currentUserIsGuest();
     clearLogInForm();
@@ -67,7 +63,6 @@ function guestLogIn() {
 function setLoggedInTrue() {
     loggedIn = true;
     setLocalStorageItem('loggedIn', loggedIn);
-    setFirstVisitSummaryTrue();
 }
 
 function currentUserIsGuest() {
@@ -132,9 +127,3 @@ function logOut() {
     setLoggedInFalse();
     document.location.replace("./index.html");
 }
-
-function setLoggedInFalse() {
-    loggedIn = false;
-    setLocalStorageItem('loggedIn', loggedIn);
-}
-

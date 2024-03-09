@@ -3,6 +3,7 @@
  * This function greets the current user.
  */
 async function start() {
+  loadLoggedIn();
   mobileGreetAnimation();
   displayMainContentOnNormalScreenSize();
   await loadTasks();

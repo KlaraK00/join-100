@@ -7,6 +7,7 @@ const TaskStatus = {
 };
 
 async function initAddTask() {
+  loadLoggedIn();
   await includeHTML();
   await loadTasks();
   await loadContacts();

@@ -21,8 +21,29 @@ let colors = [
 /* ---------- init ---------- */
 
 async function initRegister() {
+    setLoggedInFalse();
+    loadLoggedIn();
     await loadUsers();
     await loadContacts();
+}
+
+function setLoggedInFalse() {
+    loggedIn = false;
+    setLocalStorageItem('loggedIn', loggedIn);
+}
+
+function loadLoggedIn() {
+    if (loggedInExists()) {
+        loggedIn = getLoggedIn();
+    }
+}
+
+function loggedInExists() {
+    return getLoggedIn() === false || getLoggedIn() === true;
+}
+
+function getLoggedIn() {
+    return getLocalStorageItem('loggedIn');
 }
 
 async function loadUsers() {
@@ -50,24 +71,10 @@ async function contactsExist() {
 async function register(event) {
     noReload(event);
     await checkPassword()
-    // checkPrivacyPolicy();
 }
 
 function noReload(event) {
     event.preventDefault();
-}
-
-async function checkPrivacyPolicy() {
-    if (privacyPolicyCheckboxIsChecked()) {
-        await checkPassword();
-    } else {
-        console.log('NO');
-    }
-}
-
-function privacyPolicyCheckboxIsChecked() {
-    let checkbox = document.getElementById('registerCheckbox');
-    return checkbox.src.toLowerCase().includes('checkedCheckbox');
 }
  
 async function checkPassword() {

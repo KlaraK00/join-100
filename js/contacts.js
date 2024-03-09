@@ -1,6 +1,7 @@
 let letters = [];
 
 async function initContacts(){
+    loadLoggedIn();
     await loadContacts();
     fillLetters();
     loadLetters();
