@@ -4,10 +4,10 @@
  */
 async function start() {
   mobileGreetAnimation();
+  displayMainContentOnNormalScreenSize();
   await loadTasks();
   greetCurrentUser();
   addTasksStatusLengthToSummary();
-
 }
 
 /**
@@ -96,9 +96,10 @@ function setFirstVisitSummaryFalse() {
 }
 
 function mobileGreetAnimation() {
-  let firstVisitvalueFromLocalStorage = localStorage.getItem("summaryFirstVisit");
+  let firstVisitvalueFromLocalStorage =
+    localStorage.getItem("summaryFirstVisit");
 
-let convertedBooleanValue = JSON.parse(firstVisitvalueFromLocalStorage);
+  let convertedBooleanValue = JSON.parse(firstVisitvalueFromLocalStorage);
   if (convertedBooleanValue === true) {
     let greetContainer = document.getElementById("greetContainer");
     let flexContainer = document.getElementById("flexContainer");
@@ -111,15 +112,24 @@ let convertedBooleanValue = JSON.parse(firstVisitvalueFromLocalStorage);
       setTimeout(function () {
         greetContainer.classList.remove("mobileGreetAnimation");
         greetContainer.classList.add("d-none");
-        flexContainer.classList.remove('d-none');
-        headline.classList.remove('d-none');
+        flexContainer.classList.remove("d-none");
+        headline.classList.remove("d-none");
         setFirstVisitSummaryFalse(); // Setze summaryFirstVisit auf false, wenn der Timeout abgelaufen ist
       }, 4000);
     } else {
       // Setze summaryFirstVisit auf false, wenn das Fenster breiter als 1100 Pixel ist
       setFirstVisitSummaryFalse();
-      flexContainer.classList.remove('d-none');
-      headline.classList.remove('d-none');
+      flexContainer.classList.remove("d-none");
+      headline.classList.remove("d-none");
     }
+  }
+}
+
+function displayMainContentOnNormalScreenSize() {
+  let greetContainer = document.getElementById("greetContainer");
+  let flexContainer = document.getElementById("flexContainer");
+  if (window.innerWidth >= 1100) {
+    flexContainer.classList.remove("d-none");
+    headline.classList.remove("d-none");
   }
 }
