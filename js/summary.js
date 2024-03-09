@@ -122,14 +122,19 @@ function mobileGreetAnimation() {
       flexContainer.classList.remove("d-none");
       headline.classList.remove("d-none");
     }
+  } else {
+    flexContainer.classList.remove("d-none");
+    headline.classList.remove("d-none");
   }
 }
 
 function displayMainContentOnNormalScreenSize() {
   let greetContainer = document.getElementById("greetContainer");
   let flexContainer = document.getElementById("flexContainer");
+  let headline = document.getElementById("headline");
   if (window.innerWidth >= 1100) {
     flexContainer.classList.remove("d-none");
+    greetContainer.classList.remove("d-none");
     headline.classList.remove("d-none");
   }
 }
