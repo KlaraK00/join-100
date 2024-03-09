@@ -7,14 +7,19 @@ const TaskStatus = {
 };
 
 async function initAddTask() {
-  await includeHTML();
-  await loadTasks();
-  await loadContacts();
-  await loadUsers();
-  updateContactsDropdown(contacts);
-  highlightActiveSideButton();
-  currentUser = getCurrentUser();
-  showUserNavBar();
+  loadLoggedIn();
+  if(loggedIn) {
+    await includeHTML();
+    await loadTasks();
+    await loadContacts();
+    await loadUsers();
+    updateContactsDropdown(contacts);
+    highlightActiveSideButton();
+    currentUser = getCurrentUser();
+    showUserNavBar();
+  } else {
+    showLogInError();
+  }
 }
 
 async function loadTasks() {

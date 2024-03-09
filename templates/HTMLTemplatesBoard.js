@@ -88,7 +88,7 @@ function HTMLTemplatePopUpBoardEdit(task){
                 </div>
                 <div class="dFlex directionColumn width100Perc">
                     <label for="boardPopUpInputDescription" class="padBot5">Description</label>
-                    <textarea onkeyup="changeValueOfDescription('${task.createdAt}')" required id="boardPopUpInputDescription" class="inputBoardEdit" type="text" cols="10" rows="3">${task.description}</textarea>
+                    <textarea onkeyup="changeValueOfDescription('${task.createdAt}')" id="boardPopUpInputDescription" class="inputBoardEdit" type="text" cols="10" rows="3">${task.description}</textarea>
                 </div>
                 <div class="dFlex directionColumn width100Perc">
                     <label for="boardPopUpInputDate" class="padBot5">Due date</label>

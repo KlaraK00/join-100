@@ -3,11 +3,18 @@
  * This function greets the current user.
  */
 async function start() {
-  mobileGreetAnimation();
-  displayMainContentOnNormalScreenSize();
-  await loadTasks();
-  greetCurrentUser();
-  addTasksStatusLengthToSummary();
+  loadCurrentUser();
+  loadLoggedIn();
+  if(loggedIn) {
+    await init();
+    mobileGreetAnimation();
+    displayMainContentOnNormalScreenSize();
+    await loadTasks();
+    greetCurrentUser();
+    addTasksStatusLengthToSummary();
+  } else {
+    showLogInError();
+  }
 }
 
 // ##############################################
@@ -105,6 +112,10 @@ function updateTaskStatusLength(taskCounts, elements) {
 /**
  * Sets the value in localStorage to true to indicate that the summary is first visited.
  */
+function showLogInError() {
+  document.body.innerHTML = 'sorry for loading error';
+}
+
 function setFirstVisitSummaryTrue() {
   localStorage.setItem("summaryFirstVisit", true);
 }

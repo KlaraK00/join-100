@@ -106,8 +106,8 @@ function setToday() {
 
 
 async function initBoard() {
-    loggedIn = getLoggedIn();
-    // if(loggedIn) {
+    loadLoggedIn();
+    if(loggedIn) {
         await includeHTML();
         await loadContacts();
         // await loadTasks();
@@ -115,9 +115,9 @@ async function initBoard() {
         currentUser = getCurrentUser();
         showUserNavBar();
         renderAllTasks();
-    // } else {
-    //     console.log("no");
-    // }
+    } else {
+        showLogInError();
+    }
 }
 
 function renderAllTasks() {
@@ -430,10 +430,6 @@ function removePopUpPrioDiv(task) {
     popUpBoardPriorityDiv.remove();
 }
 
-// checkbox.src = './img/checkboxNotChecked.png';
-// } else {
-//     checkbox.src = './img/registerCheckedCheckbox.png';
-
 function changeBoardTaskPopUpEditToBlue() {
     let img = document.getElementById('boardTaskPopUpEditImg');
     let span = document.getElementById('boardTaskPopUpEditSpan');
@@ -727,7 +723,6 @@ function boardEditTaskAddSubtask(taskCreatedAt) {
         boardPopUpInputSubtasks.value = '';
         changeImageOnSubtaskInputToPlus(taskCreatedAt);
         renderBoardPopUpEditSubtasks(task);
-        // renderSubtasksPopUpBoard(task);FUNKTIONIERT NICHT ---> popUp Nicht edit-version?
         renderSubtasks(task);
     }
 }
@@ -738,16 +733,10 @@ function saveEditedTask(taskCreatedAt, event) {
     let title = document.getElementById('boardPopUpInputTitle').value;
     let description = document.getElementById('boardPopUpInputDescription').value;
     let date = document.getElementById('boardPopUpInputDate').value;
-    // let priority = boardCurrentPrio;
-    // let assignedTo = task.contacts;
-    // let subtasks = task.subtasks;
-    // console.log(
-    //     'title:', title, 'description', description,'date', date, 'priority', priority,'contacts', assignedTo, 'subtasks', subtasks
-    // )
     task.title = title;
     task.description = description;
     task.date = date;
-    task.prio = boardCurrentPrio; //funkioniert nicht?
+    task.prio = boardCurrentPrio;
     openTask(taskCreatedAt);
 }
 

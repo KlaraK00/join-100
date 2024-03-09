@@ -24,27 +24,50 @@
 // } ???
 
 let currentUser;
-let loggedIn;
+let rememberMe;
 
 /* ---------- init ---------- */
 
 async function initLogIn() {
-    if (loggedInExists()) {
-        loggedIn = getLoggedIn();
+    loadCurrentUser();
+    loadRememberMe();
+    if(rememberCurrentUser()) {
+        setLoggedInTrue();
+        await loadUsers();
+        let index = users.findIndex(u => u.createdAt == currentUser.createdAt);
+        showLogInSucceed(index);
+    } else {
+        setRememberMeFalse();
+        setLoggedInFalse();
+        loadLoggedIn();
+        loadRememberMe();
+        await loadUsers();
+        clearLogInForm();
     }
+}
+
+function rememberCurrentUser() {
+    return (currentUser && currentUser.firstName !== 'Guest' && currentUser !== '') && rememberMe === true;
+}
+
+function loadRememberMe() {
+    if (rememberMeExists()) {
+        rememberMe = getRememberMe();
+    }
+}
+
+function rememberMeExists() {
+    return getRememberMe() === false || getRememberMe() === true;
+}
+
+function getRememberMe() {
+    return getLocalStorageItem('rememberMe');
+}
+
+function loadCurrentUser() {
     if (currentUserExists()) {
         currentUser = getCurrentUser();
     }
-    await loadUsers();
-    clearLogInForm();
-}
-
-function loggedInExists() {
-    return getLoggedIn() && getLoggedIn() !== "";
-}
-
-function getLoggedIn() {
-    return getLocalStorageItem('loggedIn');
 }
 
 function currentUserExists() {
@@ -58,6 +81,7 @@ function getCurrentUser() {
 /* ---------- guest log in ---------- */
 
 function guestLogIn() {
+    setFirstVisitSummaryTrue();
     setLoggedInTrue();
     currentUserIsGuest();
     clearLogInForm();
@@ -67,7 +91,6 @@ function guestLogIn() {
 function setLoggedInTrue() {
     loggedIn = true;
     setLocalStorageItem('loggedIn', loggedIn);
-    setFirstVisitSummaryTrue();
 }
 
 function currentUserIsGuest() {
@@ -94,10 +117,24 @@ function redirectToSummary() {
     window.location.href = "./summary.html";
 }
 
+/* ---------- "checkbox" ---------- */
+
+function changeLogInCheckbox() {
+    let checkbox = document.getElementById('logInCheckbox');
+    if (checkbox.src.includes('registerCheckedCheckbox.png')) {
+        checkbox.src = './img/checkboxNotChecked.png';
+        setRememberMeFalse();
+    } else {
+        checkbox.src = './img/registerCheckedCheckbox.png';
+        setRememberMeTrue();
+    }
+}
+
 /* ---------- log in ---------- */
 
 function logIn(event) {
     setLoggedInTrue();
+    // checkRememberMe();
     noReload(event);
     let logInEmail = document.getElementById('logInEmail').value;
     let logInPassword = document.getElementById('logInPassword').value;
@@ -108,6 +145,27 @@ function logIn(event) {
     } else {
         showLogInFailed();
     }
+}
+
+// function checkRememberMe() {
+//     if(rememberMeCheckboxIsChecked()) {
+//         setRememberMeTrue();
+//     }
+// }
+
+// function rememberMeCheckboxIsChecked() {
+//     let checkbox = document.getElementById('logInCheckbox');
+//     return checkbox.src.toLowerCase().includes('checkedcheckbox');
+// }
+
+function setRememberMeFalse() {
+    rememberMe = false;
+    setLocalStorageItem('rememberMe', rememberMe);
+}
+
+function setRememberMeTrue() {
+    rememberMe = true;
+    setLocalStorageItem('rememberMe', rememberMe);
 }
 
 function userIsFound(email, password) {
@@ -130,11 +188,6 @@ function showLogInFailed() {
 function logOut() {
     setFirstVisitSummaryFalse();
     setLoggedInFalse();
-    document.location.replace("./index.html");
+    setCurrentUser('');
+    window.location.href = "./index.html";
 }
-
-function setLoggedInFalse() {
-    loggedIn = false;
-    setLocalStorageItem('loggedIn', loggedIn);
-}
-
