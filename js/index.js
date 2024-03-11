@@ -134,7 +134,6 @@ function changeLogInCheckbox() {
 
 function logIn(event) {
     setLoggedInTrue();
-    // checkRememberMe();
     noReload(event);
     let logInEmail = document.getElementById('logInEmail').value;
     let logInPassword = document.getElementById('logInPassword').value;
@@ -147,17 +146,6 @@ function logIn(event) {
         showLogInFailed();
     }
 }
-
-// function checkRememberMe() {
-//     if(rememberMeCheckboxIsChecked()) {
-//         setRememberMeTrue();
-//     }
-// }
-
-// function rememberMeCheckboxIsChecked() {
-//     let checkbox = document.getElementById('logInCheckbox');
-//     return checkbox.src.toLowerCase().includes('checkedcheckbox');
-// }
 
 function setRememberMeFalse() {
     rememberMe = false;

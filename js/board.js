@@ -4,7 +4,7 @@ tasks = [
         title: 'title1',
         description: 'description1',
         contacts: [1709742165910, 1709742196208],
-        date: '2014-03-04',
+        date: '2024-03-30',
         prio: 'medium',
         category: 'User Story',
         subtasks: [
@@ -24,7 +24,7 @@ tasks = [
         title: 'title2',
         description: 'description2',
         contacts: [],
-        date: '2014-03-04',
+        date: '2024-03-30',
         prio: '',
         category: 'Technical Task',
         subtasks: [
@@ -44,7 +44,7 @@ tasks = [
         title: 'title3',
         description: 'description3',
         contacts: [1709742196208, 1709742212979],
-        date: '2014-03-04',
+        date: '2024-04-25',
         prio: 'urgent',
         category: 'Technical Task',
         subtasks: [],
@@ -55,7 +55,7 @@ tasks = [
         title: 'title4',
         description: 'description4',
         contacts: [],
-        date: '2014-03-04',
+        date: '2024-05-13',
         prio: '',
         category: 'User Story',
         subtasks: [],
@@ -66,7 +66,7 @@ tasks = [
         title: 'title5',
         description: 'description5',
         contacts: [],
-        date: '2014-03-04',
+        date: '2024-05-30',
         prio: 'medium',
         category: 'Technical Task',
         subtasks: [
@@ -90,19 +90,20 @@ let currentDraggedElement;
 let boardCurrentPrio = '';
 let today;
 
-setToday();
+// setToday();
 
-function setToday() {
-    let month = new Date().getMonth() + 1 + "";
-    let day = new Date().getDate() + "";
-    if (month.length == 1) {
-        month = "0" + month;
-    }
-    if (day.length == 1) {
-        day = "0" + day;
-    }
-    today = new Date().getFullYear() + '-' + month + '-' + day;
-}
+// function setToday() {
+//     let month = new Date().getMonth() + 1 + "";
+//     let day = new Date().getDate() + "";
+//     if (month.length == 1) {
+//         month = "0" + month;
+//     }
+//     if (day.length == 1) {
+//         day = "0" + day;
+//     }
+//     today = day + '/' + month + '/' + new Date().getFullYear;
+//     // today = new Date().getFullYear() + '-' + month + '-' + day;
+// }
 
 
 async function initBoard() {
@@ -364,6 +365,7 @@ function openTask(taskCreatedAt) {
     boardTaskOverlay.innerHTML = '';
     boardTaskOverlay.innerHTML = HTMLTemplatePopUpTask(task);
     categoryBackground(task, `boardPopUpCategory${task.createdAt}`);
+    renderDatePopUpBoard(task);
     renderContactsPopUpBoard(task);
     renderSubtasksPopUpBoard(task);
     renderPriorityPopUpBoard(task);
@@ -372,6 +374,21 @@ function openTask(taskCreatedAt) {
 function closeTask() {
     let boardTaskOverlay = document.getElementById('boardTaskOverlay');
     boardTaskOverlay.innerHTML = '';
+}
+
+function renderDatePopUpBoard(task) {
+    let boardPopUpDate = document.getElementById('boardPopUpDate');
+    if (task.date.includes('-')) {
+        boardPopUpDate.innerHTML = getFormattedDate(task.date);
+    }
+}
+
+function getFormattedDate(date) {
+    let year = date.slice(0, 4);
+    let month = date.slice(5, 7);
+    let day = date.slice(8, 10);
+    let formattedDate = day + '/' + month + '/' + year;
+    return formattedDate;
 }
 
 function renderContactsPopUpBoard(task) {
@@ -469,9 +486,17 @@ function boardPopUpEdit(id) {
     let boardTaskOverlay = document.getElementById('boardTaskOverlay');
     boardTaskOverlay.innerHTML = '';
     boardTaskOverlay.innerHTML = HTMLTemplatePopUpBoardEdit(task);
+    renderBoardPopUpEditDate(task);
     renderBoardPopUpEditPrio(task);
     renderBoardPopUpEditContacts(task);
     renderBoardPopUpEditSubtasks(task);
+}
+
+function renderBoardPopUpEditDate(task) {
+    let boardPopUpInputDate = document.getElementById('boardPopUpInputDate');
+    if (task.date.includes('-')) {
+        boardPopUpInputDate.value = getFormattedDate(task.date);
+    }
 }
 
 function renderBoardPopUpEditPrio(task) {
@@ -497,7 +522,7 @@ function changePrioBtnUrgent(taskCreatedAt) {
         task.prio = 'urgent';
         renderContactsAndPriorityBoard(task);
     }
-    boardCurrentPrio = 'urgent'; // brauch ich das?
+    boardCurrentPrio = 'urgent';
     let btnUrgent = document.getElementById('boardPopUpEditUrgentBtn');
     btnUrgent.style.background = '#FF3D00';
     btnUrgent.style.color = 'white';

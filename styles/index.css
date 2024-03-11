@@ -22,6 +22,10 @@ h1 {
     height: 15px;
 }
 
+.height17 {
+    height: 17px;
+}
+
 .height18 {
     height: 18px;
 }
@@ -52,6 +56,10 @@ h1 {
 
 .width100Perc {
     width: 100%;
+}
+
+.width100PercMinus26Px {
+    width: calc(100% - 26px);
 }
 
 /* ---------- PADDING AND MARGIN ---------- */
@@ -325,6 +333,10 @@ dialog::backdrop {
     top: 5px;
 }
 
+.top7 {
+    top: 7px;
+}
+
 .top9 {
     top: 9px;
 }
@@ -343,6 +355,10 @@ dialog::backdrop {
 
 .right0 {
     right: 0;
+}
+
+.right7 {
+    right: 7px;
 }
 
 .right11 {
