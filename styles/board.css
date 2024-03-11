@@ -347,3 +347,7 @@ input {
     background-color: lightgrey;
     height: 25px;
 }
+
+.focusBlueBorder:focus {
+    border: 1px solid #29ABE2;
+}
