@@ -784,18 +784,19 @@ function saveEditedTask(taskCreatedAt, event) {
     task.date = date;
     task.prio = boardCurrentPrio;
     openTask(taskCreatedAt);
-}
-
-function changeValueOfTitle(taskCreatedAt) {
-    let task = tasks.find(t => t.createdAt == taskCreatedAt);
-    let input = document.getElementById('boardPopUpInputTitle');
-    task.title = input.value;
     renderAllTasks();
 }
 
-function changeValueOfDescription(taskCreatedAt) {
-    let task = tasks.find(t => t.createdAt == taskCreatedAt);
-    let input = document.getElementById('boardPopUpInputDescription');
-    task.description = input.value;
-    renderAllTasks();
-}
+// function changeValueOfTitle(taskCreatedAt) {
+//     let task = tasks.find(t => t.createdAt == taskCreatedAt);
+//     let input = document.getElementById('boardPopUpInputTitle');
+//     task.title = input.value;
+
+// }
+
+// function changeValueOfDescription(taskCreatedAt) {
+//     let task = tasks.find(t => t.createdAt == taskCreatedAt);
+//     let input = document.getElementById('boardPopUpInputDescription');
+//     task.description = input.value;
+//     renderAllTasks();
+// }
