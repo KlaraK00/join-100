@@ -20,7 +20,7 @@ function HTMLTemplateTask(task) {
 
 function HTMLTemplatePopUpTask(task) {
     return /*html*/`<div class="dFlex alignCenter justCenter">
-            <div class="card posRelative alignStart">
+            <div class="card posRelative alignStart translateX100vw animationRightSlideIn">
                 <img onclick="closeTask()" class="posAbsolute cursorPointer closeImgBoard" src="./img/Close.png" alt="close">
                 <div id="boardPopUpCategory${task.createdAt}">${task.category}</div>
                 <div class="headline">${task.title}</div>

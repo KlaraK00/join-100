@@ -3,6 +3,10 @@ body {
     font-family: "Inter", sans-serif;
 }
 
+.boardBody {
+    overflow-x: hidden;
+}
+
 @font-face {
     font-family: "Inter", sans-serif;
     src: url(/fonts/inter-v13-latin-regular.woff2);
@@ -267,7 +271,9 @@ body {
 
 #boardTaskOverlay>div>div,
 #boardTaskOverlay>div>form {
-    width: 400px;
+    width: 410px;
+    max-height: 90vh;
+    overflow-y: auto;
 }
 
 .closeImgBoard {
@@ -365,6 +371,23 @@ body {
 
 .addTaskPlus {
     display: none;
+}
+
+.overFlowXHidden {
+    overflow-x: hidden;
+}
+
+.animationRightSlideIn {
+    animation: rightSlideIn 1s forwards;
+}
+
+@keyframes rightSlideIn {
+    from {
+        transform: translateX(100vw);
+    }
+    to {
+        transform: translateX();
+    }
 }
 
 @media(max-width: 1100px) {
