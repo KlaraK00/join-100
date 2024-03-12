@@ -89,6 +89,9 @@ tasks = [
 let currentDraggedElement;
 let boardCurrentPrio = '';
 let today;
+let emptyDivAppeared = false;
+let editTaskContacts;
+let editTaskSubtasks;
 
 // setToday();
 
@@ -130,14 +133,20 @@ function renderAllTasks() {
 
 function renderToDo() {
     let allTasksToDo = tasks.filter(task => task.status == 'toDo');
-    let divToDo = document.getElementById('divToDo');
-    divToDo.innerHTML = '';
-    for (let i = 0; i < allTasksToDo.length; i++) {
-        let task = allTasksToDo[i];
-        divToDo.innerHTML += HTMLTemplateTask(task);
-        categoryBackground(task, `boardCategory${task.createdAt}`);
-        renderSubtasks(task);
-        renderContactsAndPriorityBoard(task);
+    if(allTasksToDo.length > 0) {
+        let divToDo = document.getElementById('divToDo');
+        divToDo.innerHTML = '';
+        for (let i = 0; i < allTasksToDo.length; i++) {
+            let task = allTasksToDo[i];
+            divToDo.innerHTML += HTMLTemplateTask(task);
+            categoryBackground(task, `boardCategory${task.createdAt}`);
+            renderSubtasks(task);
+            renderContactsAndPriorityBoard(task);
+        }
+    } else {
+        let divToDo = document.getElementById('divToDo');
+        divToDo.innerHTML = '';
+        divToDo.innerHTML = /*html*/`<div class="noTasksDiv">No tasks To do</div>`;
     }
 }
 
@@ -262,10 +271,24 @@ function renderDone() {
 
 function startDragging(id) {
     currentDraggedElement = id;
+    let element = document.getElementById(id);
+    element.style.transform = 'rotate(5deg)';
 }
 
 function allowDrop(event) {
     event.preventDefault();
+}
+
+function showEmptyDiv(id) {
+    let element = document.getElementById(id);
+    element.innerHTML += `<div id="${id}EmptyDiv" class="emptyDivForDraggedElement"></div>`;
+}
+
+function hideEmptyDiv(id) {
+    let element = document.getElementById(`${id}EmptyDiv`);
+    element.remove();
+    // let element = document.getElementById(id);
+    // element.classList.remove('emptyDivHighlight');
 }
 
 function moveTo(newStatus) { 
@@ -374,6 +397,8 @@ function openTask(taskCreatedAt) {
 function closeTask() {
     let boardTaskOverlay = document.getElementById('boardTaskOverlay');
     boardTaskOverlay.innerHTML = '';
+    editTaskContacts = undefined;
+    editTaskSubtasks = undefined;
 }
 
 function renderDatePopUpBoard(task) {
@@ -392,18 +417,22 @@ function getFormattedDate(date) {
 }
 
 function renderContactsPopUpBoard(task) {
+    // if(editTaskContacts) {
+    //     task.contacts = editTaskContacts; // ??? davor schon abspeichern bei OK
+    // }
     if(task.contacts == "") {
         removeContactsPopUpBoard(task);
     } else {
         let div = document.getElementById(`popUpContacts${task.createdAt}`);
         div.innerHTML = '';
         for (let i = 0; i < task.contacts.length; i++) {
-            if(contacts.find(c => c.createdAt == task.contacts[i])){
+            if(contacts.find(c => c.createdAt == task.contacts[i])) {
                 let contact = contacts.find(c => c.createdAt == task.contacts[i]);
                 div.innerHTML += HTMLTemplatePopUpContact(contact);
             }
         }
     }
+    // editTaskContacts = undefined; // bei OK oder x
 }
 
 function removeContactsPopUpBoard(task) {
@@ -486,6 +515,8 @@ function boardPopUpEdit(id) {
     let boardTaskOverlay = document.getElementById('boardTaskOverlay');
     boardTaskOverlay.innerHTML = '';
     boardTaskOverlay.innerHTML = HTMLTemplatePopUpBoardEdit(task);
+    editTaskContacts = task.contacts.slice();
+    editTaskSubtasks = task.subtasks.slice();
     renderBoardPopUpEditDate(task);
     renderBoardPopUpEditPrio(task);
     renderBoardPopUpEditContacts(task);
@@ -518,9 +549,9 @@ function changePrioBtn(priority, taskCreatedAt) {
 
 function changePrioBtnUrgent(taskCreatedAt) {
     if(taskCreatedAt){
-        let task = tasks.find(t => t.createdAt == taskCreatedAt);
-        task.prio = 'urgent';
-        renderContactsAndPriorityBoard(task);
+        // let task = tasks.find(t => t.createdAt == taskCreatedAt);
+        // task.prio = 'urgent';
+        // renderContactsAndPriorityBoard(task);
     }
     boardCurrentPrio = 'urgent';
     let btnUrgent = document.getElementById('boardPopUpEditUrgentBtn');
@@ -539,9 +570,9 @@ function changePrioBtnUrgent(taskCreatedAt) {
 
 function changePrioBtnMedium(taskCreatedAt) {
     if(taskCreatedAt){
-        let task = tasks.find(t => t.createdAt == taskCreatedAt);
-        task.prio = 'medium';
-        renderContactsAndPriorityBoard(task);
+        // let task = tasks.find(t => t.createdAt == taskCreatedAt);
+        // task.prio = 'medium';
+        // renderContactsAndPriorityBoard(task);
     }
     boardCurrentPrio = 'medium';
     let btnMedium = document.getElementById('boardPopUpEditMediumBtn');
@@ -560,9 +591,9 @@ function changePrioBtnMedium(taskCreatedAt) {
 
 function changePrioBtnLow(taskCreatedAt) {
     if(taskCreatedAt){
-        let task = tasks.find(t => t.createdAt == taskCreatedAt);
-        task.prio = 'low';
-        renderContactsAndPriorityBoard(task);
+        // let task = tasks.find(t => t.createdAt == taskCreatedAt);
+        // task.prio = 'low';
+        // renderContactsAndPriorityBoard(task);
     }
     boardCurrentPrio = 'low';
     let btnLow = document.getElementById('boardPopUpEditLowBtn');
@@ -581,9 +612,9 @@ function changePrioBtnLow(taskCreatedAt) {
 
 function cleanAllPrioBtns(taskCreatedAt) { // wo wird das eingesetzt?
     if(taskCreatedAt){
-        let task = tasks.find(t => t.createdAt == taskCreatedAt);
-        task.prio = '';
-        renderContactsAndPriorityBoard(task);
+        // let task = tasks.find(t => t.createdAt == taskCreatedAt);
+        // task.prio = '';
+        // renderContactsAndPriorityBoard(task);
     }
     boardCurrentPrio = '';
     let btnUrgent = document.getElementById('boardPopUpEditUrgentBtn');
@@ -603,9 +634,9 @@ function cleanAllPrioBtns(taskCreatedAt) { // wo wird das eingesetzt?
 function renderBoardPopUpEditContacts(task) {
     let div = document.getElementById(`boardPopUpEditColorfulContacts${task.createdAt}`);
     div.innerHTML = '';
-    for (let i = 0; i < task.contacts.length; i++) {
-        if(contacts.find(c => c.createdAt == task.contacts[i])) {
-            let contact = contacts.find(c => c.createdAt == task.contacts[i]);
+    for (let i = 0; i < editTaskContacts.length; i++) {
+        if(contacts.find(c => c.createdAt == editTaskContacts[i])) {
+            let contact = contacts.find(c => c.createdAt == editTaskContacts[i]);
             div.innerHTML += /*html*/`<div class="initialsBoard" style="background-color: ${contact.color}; margin:0">${contact.initials}</div>`;
         }
     }
@@ -614,8 +645,8 @@ function renderBoardPopUpEditContacts(task) {
 function renderBoardPopUpEditSubtasks(task) {
     let div = document.getElementById(`boardPopUpAllSubtasks`);
     div.innerHTML = '';
-    for (let i = 0; i < task.subtasks.length; i++) {
-        let subtask = task.subtasks[i];
+    for (let i = 0; i < editTaskSubtasks.length; i++) {
+        let subtask = editTaskSubtasks[i];
         div.innerHTML += /*html*/`<li class="fontSize12">${subtask.subtask}</li>`;
     }
 }
@@ -640,7 +671,7 @@ function renderContactsForSearch(search, taskCreatedAt) {
     for (let i = 0; i < contactsSearched.length; i++) {
         let contact = contactsSearched[i];
         contactsDiv.innerHTML += HTMLTemplatePopUpBoardEditSelectContacts(contact, task, search);
-        if (task.contacts.find(c => c == contact.createdAt)) {
+        if (editTaskContacts.find(c => c == contact.createdAt)) {
             let checkboxImg = document.getElementById(`boardEditTaskContactsCheckbox${contact.createdAt}`);
             checkboxImg.src = './img/checkedCheckboxWhite.png';
             checkboxImg.parentElement.style.color= "white";
@@ -672,16 +703,14 @@ function boardEditTaskAddOrRemoveContact(contactCreatedAt, taskCreatedAt, search
         searchTranslated = "";
     }
     if (checkboxImg.src.toLowerCase().includes('notchecked')) {
-        task.contacts.push(contactCreatedAt);
+        editTaskContacts.push(contactCreatedAt);
         renderContactsForSearch(searchTranslated, taskCreatedAt);
         renderBoardPopUpEditContacts(task);
-        renderAllTasks();
     } else {
-        let index = task.contacts.indexOf(contactCreatedAt);
-        task.contacts.splice(index, 1);
+        let index = editTaskContacts.indexOf(contactCreatedAt);
+        editTaskContacts.splice(index, 1);
         renderContactsForSearch(searchTranslated, taskCreatedAt);
         renderBoardPopUpEditContacts(task);
-        renderAllTasks();
     }
 }
 
@@ -741,14 +770,14 @@ function boardEditTaskAddSubtask(taskCreatedAt) {
     let boardPopUpInputSubtasks = document.getElementById('boardPopUpInputSubtasks');
     if(boardPopUpInputSubtasks.value !== '') {
         let task = tasks.find(t => t.createdAt == taskCreatedAt);
-        task.subtasks.push({
+        editTaskSubtasks.push({
             subtask: boardPopUpInputSubtasks.value,
             done: false
         });
         boardPopUpInputSubtasks.value = '';
         changeImageOnSubtaskInputToPlus(taskCreatedAt);
         renderBoardPopUpEditSubtasks(task);
-        renderSubtasks(task);
+        // renderSubtasks(task);
     }
 }
 
@@ -762,19 +791,24 @@ function saveEditedTask(taskCreatedAt, event) {
     task.description = description;
     task.date = date;
     task.prio = boardCurrentPrio;
+    task.contacts = editTaskContacts;
+    editTaskContacts = undefined;
+    task.subtasks = editTaskSubtasks;
+    editTaskSubtasks = undefined;
     openTask(taskCreatedAt);
-}
-
-function changeValueOfTitle(taskCreatedAt) {
-    let task = tasks.find(t => t.createdAt == taskCreatedAt);
-    let input = document.getElementById('boardPopUpInputTitle');
-    task.title = input.value;
     renderAllTasks();
 }
 
-function changeValueOfDescription(taskCreatedAt) {
-    let task = tasks.find(t => t.createdAt == taskCreatedAt);
-    let input = document.getElementById('boardPopUpInputDescription');
-    task.description = input.value;
-    renderAllTasks();
-}
+// function changeValueOfTitle(taskCreatedAt) {
+//     let task = tasks.find(t => t.createdAt == taskCreatedAt);
+//     let input = document.getElementById('boardPopUpInputTitle');
+//     task.title = input.value;
+
+// }
+
+// function changeValueOfDescription(taskCreatedAt) {
+//     let task = tasks.find(t => t.createdAt == taskCreatedAt);
+//     let input = document.getElementById('boardPopUpInputDescription');
+//     task.description = input.value;
+//     renderAllTasks();
+// }

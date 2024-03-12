@@ -20,7 +20,7 @@ function HTMLTemplateTask(task) {
 
 function HTMLTemplatePopUpTask(task) {
     return /*html*/`<div class="dFlex alignCenter justCenter">
-            <div class="card posRelative alignStart">
+            <div class="card posRelative alignStart translateX100vw animationRightSlideIn">
                 <img onclick="closeTask()" class="posAbsolute cursorPointer closeImgBoard" src="./img/Close.png" alt="close">
                 <div id="boardPopUpCategory${task.createdAt}">${task.category}</div>
                 <div class="headline">${task.title}</div>
@@ -84,11 +84,11 @@ function HTMLTemplatePopUpBoardEdit(task){
                 <img onclick="closeTask()" class="posAbsolute cursorPointer closeImgBoard" src="./img/Close.png" alt="close">
                 <div class="dFlex directionColumn padTop35 width100Perc">
                     <label for="boardPopUpInputTitle" class="padBot5">Title</label>
-                    <input onkeyup="changeValueOfTitle('${task.createdAt}')" required id="boardPopUpInputTitle" class="inputBoardEdit focusBlueBorder" value="${task.title}" type="text">
+                    <input required id="boardPopUpInputTitle" class="inputBoardEdit focusBlueBorder" value="${task.title}" type="text">
                 </div>
                 <div class="dFlex directionColumn width100Perc">
                     <label for="boardPopUpInputDescription" class="padBot5">Description</label>
-                    <textarea onkeyup="changeValueOfDescription('${task.createdAt}')" id="boardPopUpInputDescription" class="inputBoardEdit focusBlueBorder" type="text" cols="10" rows="3">${task.description}</textarea>
+                    <textarea id="boardPopUpInputDescription" class="inputBoardEdit focusBlueBorder" type="text" cols="10" rows="3">${task.description}</textarea>
                 </div>
                 <div class="dFlex directionColumn width100Perc">
                     <label for="boardPopUpInputDate" class="padBot5">Due date</label>
