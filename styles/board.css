@@ -285,7 +285,9 @@ input {
 
 #boardTaskOverlay>div>div,
 #boardTaskOverlay>div>form {
-    width: 400px;
+    width: 410px;
+    max-height: 90vh;
+    overflow-y: auto;
 }
 
 .closeImgBoard {
