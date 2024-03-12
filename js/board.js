@@ -89,6 +89,7 @@ tasks = [
 let currentDraggedElement;
 let boardCurrentPrio = '';
 let today;
+let emptyDivAppeared = false;
 
 // setToday();
 
@@ -130,14 +131,20 @@ function renderAllTasks() {
 
 function renderToDo() {
     let allTasksToDo = tasks.filter(task => task.status == 'toDo');
-    let divToDo = document.getElementById('divToDo');
-    divToDo.innerHTML = '';
-    for (let i = 0; i < allTasksToDo.length; i++) {
-        let task = allTasksToDo[i];
-        divToDo.innerHTML += HTMLTemplateTask(task);
-        categoryBackground(task, `boardCategory${task.createdAt}`);
-        renderSubtasks(task);
-        renderContactsAndPriorityBoard(task);
+    if(allTasksToDo.length > 0) {
+        let divToDo = document.getElementById('divToDo');
+        divToDo.innerHTML = '';
+        for (let i = 0; i < allTasksToDo.length; i++) {
+            let task = allTasksToDo[i];
+            divToDo.innerHTML += HTMLTemplateTask(task);
+            categoryBackground(task, `boardCategory${task.createdAt}`);
+            renderSubtasks(task);
+            renderContactsAndPriorityBoard(task);
+        }
+    } else {
+        let divToDo = document.getElementById('divToDo');
+        divToDo.innerHTML = '';
+        divToDo.innerHTML = /*html*/`<div class="noTasksDiv">No tasks To do</div>`;
     }
 }
 
@@ -262,10 +269,24 @@ function renderDone() {
 
 function startDragging(id) {
     currentDraggedElement = id;
+    let element = document.getElementById(id);
+    element.style.transform = 'rotate(5deg)';
 }
 
 function allowDrop(event) {
     event.preventDefault();
+}
+
+function showEmptyDiv(id) {
+    let element = document.getElementById(id);
+    element.innerHTML += `<div id="${id}EmptyDiv" class="emptyDivForDraggedElement"></div>`;
+}
+
+function hideEmptyDiv(id) {
+    let element = document.getElementById(`${id}EmptyDiv`);
+    element.remove();
+    // let element = document.getElementById(id);
+    // element.classList.remove('emptyDivHighlight');
 }
 
 function moveTo(newStatus) { 

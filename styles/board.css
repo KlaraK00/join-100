@@ -297,3 +297,26 @@ height: 32px;
 .focusBlueBorder:focus {
     border: 1px solid #29ABE2;
 }
+
+.noTasksDiv {
+    background-color: #E7E7E7;
+    color: #A8A8A8;
+    border: dotted 1px #A8A8A8;
+    border-radius: 10px;
+    box-shadow: 0px 0px 4px 0px #00000029;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+
+.emptyDivForDraggedElement {
+    width: 100%;
+    aspect-ratio: 1/0.9;
+    border: dotted 1px #A8A8A8;
+    border-radius: 24px;
+}
+
+.heightAsContent {
+    height: fit-content !important;
+}
