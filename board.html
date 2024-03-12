@@ -26,24 +26,57 @@
     <div w3-include-html="/templates/header.html"></div>
     <div class="main-board-container">
         <div id="boardTaskOverlay"></div>
-        <div class="menuwrapper">
-            <div class="menubar">
-                <div class="headline">Board</div>
-                <div class="searchAdd">
-                    <div class="fakeInput"> 
-                        <input class="inputSearch" id="boardSearchInput" onkeyup="searchAllTasks()" type="text" placeholder="Find Task">
-                        <div class="inputRight">
-                            <img src="/img/search-line.png" alt="">
-                            <div class="searchIcon">
-                                <img src="/img/search-symbol.png" alt="">
-                            </div>
+        <div class="menubar">
+            <div class="headline">
+                <div>Board</div>
+                <div class="addTaskPlus"><img src="img/plus add task mobile.png" alt=""></div>
+            </div>
+            <div class="searchAdd">
+                <div class="fakeInput"> 
+                    <input class="inputSearch" id="boardSearchInput" onkeyup="searchAllTasks()" type="text" placeholder="Find Task">
+                    <div class="inputRight">
+                        <img src="/img/search-line.png" alt="">
+                        <div class="searchIcon">
+                            <img src="/img/search-symbol.png" alt="">
                         </div>
                     </div>
-                    <div class="addTask"><button>Add Task <img src="img/add.png"></button></div>
                 </div>
+                <div class="addTask"><button>Add Task <img src="img/add.png"></button></div>
             </div>
         </div>
-        <!-- <div class="taskWrapper">
+        <div class="progressBar">
+            <div class="lineUp">
+                <div class="progressHead">
+                    <div class="headlineBoardTasks">To do</div> 
+                    <div class="plus">+</div>
+                </div>
+                <div ondragover="allowDrop(event)" ondrop="moveTo('toDo')" id="divToDo" class="column"></div>
+            </div>
+            <div class="lineUp">
+                <div class="progressHead">
+                    <div class="headlineBoardTasks">In  progress</div>
+                    <div class="plus">+</div>
+                </div>
+                <div ondragover="allowDrop(event)" ondrop="moveTo('inProgress')" id="divInProgress" class="column"></div>
+            </div>
+            <div class="lineUp">
+                <div class="progressHead">
+                    <div class="headlineBoardTasks">Await feedback</div>
+                    <div class="plus">+</div>
+                </div>
+                <div ondragover="allowDrop(event)" ondrop="moveTo('awaitFeedback')" id="divAwaitFeedback" class="column"></div>
+            </div>
+            <div class="lineUp">
+                <div class="progressDone">
+                    <div class="headlineBoardTasks">Done</div>
+                </div>
+                <div ondragover="allowDrop(event)" ondrop="moveTo('done')" id="divDone" class="column"></div>
+            </div>
+        </div>
+    </div>
+  </body>
+</html>
+<!-- <div class="taskWrapper">
             <div id="divToDo" class="toDoColumn">
                 <div class="noTask">
                     No Tasks to do
@@ -77,26 +110,3 @@
             <div ondragleave="hideEmptyDiv('divAwaitFeedback')" ondragover="allowDrop(event), showEmptyDiv('divAwaitFeedback')" ondrop="moveTo('awaitFeedback')" id="divAwaitFeedback" class="column"></div>
             <div ondragleave="hideEmptyDiv('divDone')" ondragover="allowDrop(event), showEmptyDiv('divDone')" ondrop="moveTo('done')" id="divDone" class="column"></div>
         </div> -->
-    
-        <div class="taskWrapper">
-            <div class="progressBar">
-                <div class="lineUp">
-                    <div class="progressHead">To do <div class="plus">+</div></div>
-                    <div ondragover="allowDrop(event)" ondrop="moveTo('toDo')" id="divToDo" class="column"></div>
-                </div>
-                <div class="lineUp">
-                    <div class="progressHead">In  progress<div class="plus">+</div></div>
-                    <div ondragover="allowDrop(event)" ondrop="moveTo('inProgress')" id="divInProgress" class="column"></div>
-                </div>
-                <div class="lineUp">
-                    <div class="progressHead">Await Feedback<div class="plus">+</div></div>
-                    <div ondragover="allowDrop(event)" ondrop="moveTo('awaitFeedback')" id="divAwaitFeedback" class="column"></div>
-                </div>
-                <div class="lineUp">
-                    <div class="progressDone">Done</div>
-                    <div ondragover="allowDrop(event)" ondrop="moveTo('done')" id="divDone" class="column"></div>
-                </div>
-        </div> 
-    </div>
-  </body>
-</html>
