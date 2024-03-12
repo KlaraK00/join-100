@@ -42,13 +42,6 @@
                     <div class="addTask"><button>Add Task <img src="img/add.png"></button></div>
                 </div>
             </div>
-          
-            <div class="progressBar">
-                <div class="lineUp"><div class="progressHead">To do <div class="plus">+</div></div></div>
-                <div class="lineUp"><div class="progressHead">In  progress<div class="plus">+</div></div></div>
-                <div class="lineUp"><div class="progressHead">Await Feedback<div class="plus">+</div></div></div>
-                <div class="lineUp"><div class="progressDone">Done</div></div>
-            </div>
         </div>
         <!-- <div class="taskWrapper">
             <div id="divToDo" class="toDoColumn">
@@ -79,10 +72,23 @@
         </div> -->
     
         <div class="taskWrapper">
-            <div ondragover="allowDrop(event)" ondrop="moveTo('toDo')" id="divToDo" class="column"></div>
-            <div ondragover="allowDrop(event)" ondrop="moveTo('inProgress')" id="divInProgress" class="column"></div>
-            <div ondragover="allowDrop(event)" ondrop="moveTo('awaitFeedback')" id="divAwaitFeedback" class="column"></div>
-            <div ondragover="allowDrop(event)" ondrop="moveTo('done')" id="divDone" class="column"></div>
+            <div class="progressBar">
+                <div class="lineUp">
+                    <div class="progressHead">To do <div class="plus">+</div></div>
+                    <div ondragover="allowDrop(event)" ondrop="moveTo('toDo')" id="divToDo" class="column"></div>
+                </div>
+                <div class="lineUp">
+                    <div class="progressHead">In  progress<div class="plus">+</div></div>
+                    <div ondragover="allowDrop(event)" ondrop="moveTo('inProgress')" id="divInProgress" class="column"></div>
+                </div>
+                <div class="lineUp">
+                    <div class="progressHead">Await Feedback<div class="plus">+</div></div>
+                    <div ondragover="allowDrop(event)" ondrop="moveTo('awaitFeedback')" id="divAwaitFeedback" class="column"></div>
+                </div>
+                <div class="lineUp">
+                    <div class="progressDone">Done</div>
+                    <div ondragover="allowDrop(event)" ondrop="moveTo('done')" id="divDone" class="column"></div>
+                </div>
         </div> 
     </div>
   </body>
