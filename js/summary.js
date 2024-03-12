@@ -116,6 +116,8 @@ function showLogInError() {
   document.body.innerHTML = 'sorry for loading error';
 }
 
+// ##############################################
+
 function setFirstVisitSummaryTrue() {
   localStorage.setItem("summaryFirstVisit", true);
 }
