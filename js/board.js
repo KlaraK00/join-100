@@ -398,6 +398,7 @@ function closeTask() {
     let boardTaskOverlay = document.getElementById('boardTaskOverlay');
     boardTaskOverlay.innerHTML = '';
     editTaskContacts = undefined;
+    editTaskSubtasks = undefined;
 }
 
 function renderDatePopUpBoard(task) {
@@ -515,6 +516,7 @@ function boardPopUpEdit(id) {
     boardTaskOverlay.innerHTML = '';
     boardTaskOverlay.innerHTML = HTMLTemplatePopUpBoardEdit(task);
     editTaskContacts = task.contacts.slice();
+    editTaskSubtasks = task.subtasks.slice();
     renderBoardPopUpEditDate(task);
     renderBoardPopUpEditPrio(task);
     renderBoardPopUpEditContacts(task);
@@ -643,8 +645,8 @@ function renderBoardPopUpEditContacts(task) {
 function renderBoardPopUpEditSubtasks(task) {
     let div = document.getElementById(`boardPopUpAllSubtasks`);
     div.innerHTML = '';
-    for (let i = 0; i < task.subtasks.length; i++) {
-        let subtask = task.subtasks[i];
+    for (let i = 0; i < editTaskSubtasks.length; i++) {
+        let subtask = editTaskSubtasks[i];
         div.innerHTML += /*html*/`<li class="fontSize12">${subtask.subtask}</li>`;
     }
 }
@@ -768,14 +770,14 @@ function boardEditTaskAddSubtask(taskCreatedAt) {
     let boardPopUpInputSubtasks = document.getElementById('boardPopUpInputSubtasks');
     if(boardPopUpInputSubtasks.value !== '') {
         let task = tasks.find(t => t.createdAt == taskCreatedAt);
-        task.subtasks.push({
+        editTaskSubtasks.push({
             subtask: boardPopUpInputSubtasks.value,
             done: false
         });
         boardPopUpInputSubtasks.value = '';
         changeImageOnSubtaskInputToPlus(taskCreatedAt);
         renderBoardPopUpEditSubtasks(task);
-        renderSubtasks(task);
+        // renderSubtasks(task);
     }
 }
 
@@ -791,6 +793,8 @@ function saveEditedTask(taskCreatedAt, event) {
     task.prio = boardCurrentPrio;
     task.contacts = editTaskContacts;
     editTaskContacts = undefined;
+    task.subtasks = editTaskSubtasks;
+    editTaskSubtasks = undefined;
     openTask(taskCreatedAt);
     renderAllTasks();
 }
