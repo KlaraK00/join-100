@@ -88,15 +88,9 @@ tasks = [
 ]
 let currentDraggedElement;
 let boardCurrentPrio = '';
-let today;
-let emptyDivAppeared = false;
 let editTaskContacts;
 let editTaskSubtasks;
-
-let toDoId = true;
-let inProgressId = true;
-let awaitFeedbackId = true;
-let doneId = true;
+let draggingOnce = true;
 
 // setToday();
 
@@ -293,10 +287,7 @@ function renderDone() {
 
 
 function startDragging(id) {
-    toDoId = true;
-    inProgressId = true;
-    awaitFeedbackId = true;
-    doneId = true;
+    draggingOnce = true;
     currentDraggedElement = id;
     let element = document.getElementById(id);
     element.style.transform = 'rotate(5deg)';
@@ -307,62 +298,14 @@ function allowDrop(event) {
 }
 
 function showEmptyDiv(id) {
-    let parentElementOfCurrentElement = document.getElementById(currentDraggedElement).parentElement;
-    if(parentElementOfCurrentElement.id !== id) {
-        let element = document.getElementById(id);
-        element.innerHTML += `<div id="${id}EmptyDiv" class="emptyDivForDraggedElement zIndexMinus1"></div>`;
+    if(draggingOnce) {
+        let parentElementOfCurrentElement = document.getElementById(currentDraggedElement).parentElement;
+        if(parentElementOfCurrentElement.id !== id) {
+            let element = document.getElementById(id);
+            element.innerHTML += `<div id="${id}EmptyDiv" class="emptyDivForDraggedElement zIndexMinus1"></div>`;
+            draggingOnce = false;
+        }
     }
-
-    // let parentElementOfCurrentElement = document.getElementById(currentDraggedElement).parentElement;
-    // if(parentElementOfCurrentElement.id.slice(3) == 'ToDo') {
-    //     if(toDoId) {
-    //         if(parentElementOfCurrentElement.id !== id) {
-    //             let element = document.getElementById(id);
-    //             element.innerHTML += `<div id="${id}EmptyDiv" class="emptyDivForDraggedElement"></div>`;
-    //         }
-    //     }
-    // }
-    // if(parentElementOfCurrentElement.id.slice(3) == 'InProgress') {
-    //     if(inProgressId) {
-    //         if(parentElementOfCurrentElement.id !== id) {
-    //             let element = document.getElementById(id);
-    //             element.innerHTML += `<div id="${id}EmptyDiv" class="emptyDivForDraggedElement"></div>`;
-    //         }
-    //     }
-    // }
-    // if(parentElementOfCurrentElement.id.slice(3) == 'AwaitFeedback') {
-    //     if(awaitFeedbackId) {
-    //         if(parentElementOfCurrentElement.id !== id) {
-    //             let element = document.getElementById(id);
-    //             element.innerHTML += `<div id="${id}EmptyDiv" class="emptyDivForDraggedElement"></div>`;
-    //         }
-    //     }
-    // }
-    // if(parentElementOfCurrentElement.id.slice(3) == 'Done') {
-    //     if(doneId) {
-    //         if(parentElementOfCurrentElement.id !== id) {
-    //             let element = document.getElementById(id);
-    //             element.innerHTML += `<div id="${id}EmptyDiv" class="emptyDivForDraggedElement"></div>`;
-    //         }
-    //     }
-    // }
-    // let status = id.slice(3);
-    // if(status == 'ToDo') {
-    //     toDoId = false;
-    // } else if (status == 'InProgress') {
-    //     inProgressId = false;
-    // } else if (status == 'AwaitFeedback') {
-    //     awaitFeedbackId = false;
-    // } else if (status == 'Done') {
-    //     doneId = false;
-    // }
-}
-
-function hideEmptyDiv(id) {
-    let element = document.getElementById(`${id}EmptyDiv`);
-    element.remove();
-    // let element = document.getElementById(id);
-    // element.classList.remove('emptyDivHighlight');
 }
 
 function moveTo(newStatus) { 
