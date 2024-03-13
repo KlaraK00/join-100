@@ -346,6 +346,12 @@ body {
     height: 25px;
 }
 
+.greyVerticalLineSubtasks17 {
+    width: 1px;
+    background-color: lightgrey;
+    height: 17px;
+}
+
 .focusBlueBorder:focus {
     border: 1px solid #29ABE2;
 }

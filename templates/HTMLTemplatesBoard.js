@@ -128,7 +128,7 @@ function HTMLTemplatePopUpBoardEdit(task){
                             <img onclick="focusOnInputOrAddSubtask('${task.createdAt}')" class="height10" src="./img/add-2.png" alt="plus">
                         </div>
                     </div>
-                    <ul class="dFlex directionColumn gap10" id="boardPopUpAllSubtasks"></ul>
+                    <div class="dFlex directionColumn gap5 padTop5" id="boardPopUpAllSubtasks"></div>
                 </div>
                 <div class="dFlex justEnd width100Perc">
                     <button class="darkBtn cursorPointer fontBold">Ok <img class="padLeft2 height10" src="./img/check.png" alt="check"></button>

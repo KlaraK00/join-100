@@ -68,16 +68,16 @@ h1 {
 
 /* ---------- PADDING AND MARGIN ---------- */
 
+.padTop3 {
+    padding-top: 3px;
+}
+
 .padTop5 {
     padding-top: 5px;
 }
 
 .padTop10 {
     padding-top: 10px;
-}
-
-.padRight18 {
-    padding-right: 18px;
 }
 
 .padTop20 {
@@ -90,6 +90,14 @@ h1 {
 
 .padTop60 {
     padding-top: 60px;
+}
+
+.padRight10 {
+    padding-right: 10px;
+}
+
+.padRight18 {
+    padding-right: 18px;
 }
 
 .padRight30 {
@@ -136,6 +144,10 @@ h1 {
     margin-top: 10px;
 }
 
+.marLeft3 {
+    margin-left: 3px;
+}
+
 .marLeft10 {
     margin-left: 10px !important;
 }
@@ -166,6 +178,10 @@ h1 {
 
 .gap1 {
     gap: 1px;
+}
+
+.gap5 {
+    gap: 5px;
 }
 
 .gap6 {

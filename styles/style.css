@@ -37,6 +37,10 @@ body {
     flex-direction: column;
 }
 
+.directionRow {
+    flex-direction: row;
+}
+
 .alignStart {
     align-items: start;
 }
