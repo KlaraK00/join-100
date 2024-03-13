@@ -331,6 +331,10 @@ body {
     border-radius: 5px;
 }
 
+.borderRadius10 {
+    border-radius: 10px;
+}
+
 .hoverGrey:hover {
     background-color: #eeeeee;
     cursor: pointer;
@@ -340,6 +344,12 @@ body {
     width: 1px;
     background-color: lightgrey;
     height: 25px;
+}
+
+.greyVerticalLineSubtasks17 {
+    width: 1px;
+    background-color: lightgrey;
+    height: 17px;
 }
 
 .focusBlueBorder:focus {

@@ -645,7 +645,15 @@ function renderBoardPopUpEditSubtasks(task) {
     div.innerHTML = '';
     for (let i = 0; i < editTaskSubtasks.length; i++) {
         let subtask = editTaskSubtasks[i];
-        div.innerHTML += /*html*/`<li class="fontSize12">${subtask.subtask}</li>`;
+        div.innerHTML += /*html*/`<div onmouseout="hideImgSubtasksDeleteAndEdit(${i})" onmouseover="showImgSubtasksDeleteAndEdit(${i})" class="height17 hoverGrey padBot5 borderRadius10 padTop5 dFlex alignCenter justBetween">
+                <li class="fontSize12 padLeft16 cursorPointer">${subtask.subtask}</li>
+                <div id="editTaskSubtask${i}" class="dFlex directionRow padRight10">
+                    <img class="height17" src="./img/edit-black.png" alt="edit">
+                    <div class="greyVerticalLineSubtasks17 marLeft3"></div>
+                    <img class="height17 marLeft3" src="./img/delete.png" alt="delete">
+                </div>
+            </div>
+        `;
     }
 }
 
@@ -805,4 +813,14 @@ function addAnimationRightSlideIn(id) {
 function removeAnimationRightSlideIn(id) {
     let element = document.getElementById(id);
     element.classList.remove('animationRightSlideIn');
+}
+
+function showImgSubtasksDeleteAndEdit(i) {
+    let subtask = document.getElementById(`editTaskSubtask${i}`);
+    subtask.classList.remove('d-none');
+}
+
+function hideImgSubtasksDeleteAndEdit(i) {
+    let subtask = document.getElementById(`editTaskSubtask${i}`);
+    subtask.classList.add('d-none');
 }

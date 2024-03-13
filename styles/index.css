@@ -62,10 +62,22 @@ h1 {
     width: calc(100% - 26px);
 }
 
+.width100PercMinus16Px {
+    width: calc(100% -16px);
+}
+
 /* ---------- PADDING AND MARGIN ---------- */
+
+.padTop3 {
+    padding-top: 3px;
+}
 
 .padTop5 {
     padding-top: 5px;
+}
+
+.padTop10 {
+    padding-top: 10px;
 }
 
 .padTop20 {
@@ -78,6 +90,14 @@ h1 {
 
 .padTop60 {
     padding-top: 60px;
+}
+
+.padRight10 {
+    padding-right: 10px;
+}
+
+.padRight18 {
+    padding-right: 18px;
 }
 
 .padRight30 {
@@ -108,6 +128,10 @@ h1 {
     padding-bottom: 5px;
 }
 
+.padBot10 {
+    padding-bottom: 10px;
+}
+
 .marBot20 {
     margin-bottom: 20px;
 }
@@ -118,6 +142,10 @@ h1 {
 
 .marTop10 {
     margin-top: 10px;
+}
+
+.marLeft3 {
+    margin-left: 3px;
 }
 
 .marLeft10 {
@@ -150,6 +178,10 @@ h1 {
 
 .gap1 {
     gap: 1px;
+}
+
+.gap5 {
+    gap: 5px;
 }
 
 .gap6 {
