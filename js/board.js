@@ -299,12 +299,9 @@ function allowDrop(event) {
 
 function showEmptyDiv(id) {
     if(draggingOnce) {
-        let parentElementOfCurrentElement = document.getElementById(currentDraggedElement).parentElement;
-        if(parentElementOfCurrentElement.id !== id) {
-            let element = document.getElementById(id);
-            element.innerHTML += `<div id="${id}EmptyDiv" class="emptyDivForDraggedElement zIndexMinus1"></div>`;
-            draggingOnce = false;
-        }
+        let element = document.getElementById(id);
+        element.innerHTML += `<div id="${id}EmptyDiv" class="emptyDivForDraggedElement zIndexMinus1"></div>`;
+        draggingOnce = false;
     }
 }
 
@@ -313,6 +310,14 @@ function moveTo(newStatus) {
     let element = tasks.find(task => task.createdAt == id);
     element.status = newStatus;
     renderAllTasks();
+}
+
+function removeEmptyDiv(id) {
+    if(!draggingOnce) {
+        let element = document.getElementById(`${id}EmptyDiv`);
+        element.remove();
+        draggingOnce = true;
+    }
 }
 
 /* ---------- search ---------- */

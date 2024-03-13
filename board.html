@@ -50,27 +50,27 @@
                     <div class="headlineBoardTasks">To do</div> 
                     <div class="plus">+</div>
                 </div>
-                <div ondragover="allowDrop(event), showEmptyDiv('divToDo')" ondrop="moveTo('toDo')" id="divToDo" class="column flex1"></div>
+                <div ondragover="allowDrop(event), showEmptyDiv('divToDo')" ondragleave="removeEmptyDiv('divToDo')" ondrop="moveTo('toDo')" id="divToDo" class="column flex1"></div>
             </div>
             <div class="lineUp dFlex directionColumn">
                 <div class="progressHead">
                     <div class="headlineBoardTasks">In  progress</div>
                     <div class="plus">+</div>
                 </div>
-                <div ondragover="allowDrop(event), showEmptyDiv('divInProgress')" ondrop="moveTo('inProgress')" id="divInProgress" class="column flex1"></div>
+                <div ondragover="allowDrop(event), showEmptyDiv('divInProgress')" ondragleave="removeEmptyDiv('divInProgress')" ondrop="moveTo('inProgress')" id="divInProgress" class="column flex1"></div>
             </div>
             <div class="lineUp dFlex directionColumn">
                 <div class="progressHead">
                     <div class="headlineBoardTasks">Await feedback</div>
                     <div class="plus">+</div>
                 </div>
-                <div ondragover="allowDrop(event), showEmptyDiv('divAwaitFeedback')" ondrop="moveTo('awaitFeedback')" id="divAwaitFeedback" class="column flex1"></div>
+                <div ondragover="allowDrop(event), showEmptyDiv('divAwaitFeedback')" ondragleave="removeEmptyDiv('divAwaitFeedback')" ondrop="moveTo('awaitFeedback')" id="divAwaitFeedback" class="column flex1"></div>
             </div>
             <div class="lineUp dFlex directionColumn">
                 <div class="progressDone">
                     <div class="headlineBoardTasks">Done</div>
                 </div>
-                <div ondragover="allowDrop(event), showEmptyDiv('divDone')" ondrop="moveTo('done')" id="divDone" class="column flex1"></div>
+                <div ondragover="allowDrop(event), showEmptyDiv('divDone')" ondragleave="removeEmptyDiv('divDone')" ondrop="moveTo('done')" id="divDone" class="column flex1"></div>
             </div>
         </div>
     </div>
