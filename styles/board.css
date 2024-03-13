@@ -331,6 +331,10 @@ body {
     border-radius: 5px;
 }
 
+.borderRadius10 {
+    border-radius: 10px;
+}
+
 .hoverGrey:hover {
     background-color: #eeeeee;
     cursor: pointer;

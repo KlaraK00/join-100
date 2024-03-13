@@ -30,13 +30,13 @@ function HTMLTemplatePopUpTask(task) {
                     <div id="boardPopUpDate">${task.date}</div>
                 </div>
                 <div id="boardPopUpPriority${task.createdAt}" class="dFlex"></div>
-                <div>
+                <div class="width100PercMinus26Px">
                     <span>Assigned To:</span>
-                    <div class="gap20 dFlex directionColumn padTop20" id="popUpContacts${task.createdAt}"></div>
+                    <div class="dFlex directionColumn width100Perc padTop10" id="popUpContacts${task.createdAt}"></div>
                 </div>
                 <div>
                     <span>Subtasks</span>
-                    <div class="padLeft16 gap10 dFlex directionColumn marTopMinus10 padTop20" id="popUpSubtasks${task.createdAt}"></div>
+                    <div class="dFlex directionColumn marTopMinus10 padTop20" id="popUpSubtasks${task.createdAt}"></div>
                 </div>
                 <div class="dFlex justEnd alignCenter width100Perc fontSize14 gap6">
                     <div onclick="boardDeleteTask('${task.createdAt}')" class="dFlex cursorPointer" onmouseover="changeBoardTaskPopUpDeleteToBlue()" onmouseout="changeBoardTaskPopUpDeleteToBlack()">
@@ -55,7 +55,7 @@ function HTMLTemplatePopUpTask(task) {
 }
 
 function HTMLTemplatePopUpContact(contact) {
-    return /*html*/`<div class="dFlex alignCenter padLeft16">
+    return /*html*/`<div class="dFlex alignCenter padLeft16 padTop10 padBot10 borderRadius10 hoverGrey width100Perc">
             <div class="initialsBoard" style="background-color:${contact.color}">${contact.initials}</div>
             <div class="padLeft16">${contact.firstName} ${contact.lastName}</div>
         </div>
@@ -63,8 +63,8 @@ function HTMLTemplatePopUpContact(contact) {
 }
 
 function HTMLTemplatePopUpSubtask(task, subtask, i) {
-    return /*html*/`<div class="dFlex alignCenter">
-            <img onclick="boardChangeSubtasksDoneOrNot('${task.createdAt}', ${i})" id="boardPopUpSubtask${task.createdAt}${i}" class="cursorPointer height20" src="./img/checkboxNotChecked.png" alt="checkbox">
+    return /*html*/`<div onclick="boardChangeSubtasksDoneOrNot('${task.createdAt}', ${i})" class="borderRadius5 padLeft16 padRight18 padTop5 padBot5 dFlex alignCenter hoverGrey cursorPointer">
+            <img id="boardPopUpSubtask${task.createdAt}${i}" class="cursorPointer height20" src="./img/checkboxNotChecked.png" alt="checkbox">
             <span class="padLeft16 fontSize14">${subtask.subtask}</span>
         </div>
     `;
