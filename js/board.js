@@ -417,9 +417,6 @@ function getFormattedDate(date) {
 }
 
 function renderContactsPopUpBoard(task) {
-    // if(editTaskContacts) {
-    //     task.contacts = editTaskContacts; // ??? davor schon abspeichern bei OK
-    // }
     if(task.contacts == "") {
         removeContactsPopUpBoard(task);
     } else {
@@ -432,7 +429,6 @@ function renderContactsPopUpBoard(task) {
             }
         }
     }
-    // editTaskContacts = undefined; // bei OK oder x
 }
 
 function removeContactsPopUpBoard(task) {
@@ -548,11 +544,6 @@ function changePrioBtn(priority, taskCreatedAt) {
 }
 
 function changePrioBtnUrgent(taskCreatedAt) {
-    if(taskCreatedAt){
-        // let task = tasks.find(t => t.createdAt == taskCreatedAt);
-        // task.prio = 'urgent';
-        // renderContactsAndPriorityBoard(task);
-    }
     boardCurrentPrio = 'urgent';
     let btnUrgent = document.getElementById('boardPopUpEditUrgentBtn');
     btnUrgent.style.background = '#FF3D00';
@@ -569,11 +560,6 @@ function changePrioBtnUrgent(taskCreatedAt) {
 }
 
 function changePrioBtnMedium(taskCreatedAt) {
-    if(taskCreatedAt){
-        // let task = tasks.find(t => t.createdAt == taskCreatedAt);
-        // task.prio = 'medium';
-        // renderContactsAndPriorityBoard(task);
-    }
     boardCurrentPrio = 'medium';
     let btnMedium = document.getElementById('boardPopUpEditMediumBtn');
     btnMedium.style.background = '#FFA800';
@@ -590,11 +576,6 @@ function changePrioBtnMedium(taskCreatedAt) {
 }
 
 function changePrioBtnLow(taskCreatedAt) {
-    if(taskCreatedAt){
-        // let task = tasks.find(t => t.createdAt == taskCreatedAt);
-        // task.prio = 'low';
-        // renderContactsAndPriorityBoard(task);
-    }
     boardCurrentPrio = 'low';
     let btnLow = document.getElementById('boardPopUpEditLowBtn');
     btnLow.style.background = '#7AE229';
@@ -610,12 +591,7 @@ function changePrioBtnLow(taskCreatedAt) {
     btnMedium.firstElementChild.src = './img/mediumPrio.png';
 }
 
-function cleanAllPrioBtns(taskCreatedAt) { // wo wird das eingesetzt?
-    if(taskCreatedAt){
-        // let task = tasks.find(t => t.createdAt == taskCreatedAt);
-        // task.prio = '';
-        // renderContactsAndPriorityBoard(task);
-    }
+function cleanAllPrioBtns(taskCreatedAt) {
     boardCurrentPrio = '';
     let btnUrgent = document.getElementById('boardPopUpEditUrgentBtn');
     btnUrgent.style.background = 'white';
@@ -777,7 +753,6 @@ function boardEditTaskAddSubtask(taskCreatedAt) {
         boardPopUpInputSubtasks.value = '';
         changeImageOnSubtaskInputToPlus(taskCreatedAt);
         renderBoardPopUpEditSubtasks(task);
-        // renderSubtasks(task);
     }
 }
 
@@ -799,16 +774,12 @@ function saveEditedTask(taskCreatedAt, event) {
     renderAllTasks();
 }
 
-// function changeValueOfTitle(taskCreatedAt) {
-//     let task = tasks.find(t => t.createdAt == taskCreatedAt);
-//     let input = document.getElementById('boardPopUpInputTitle');
-//     task.title = input.value;
+function addAnimationRightSlideIn(id) {
+    let element = document.getElementById(id);
+    element.classList.add('animationRightSlideIn');
+}
 
-// }
-
-// function changeValueOfDescription(taskCreatedAt) {
-//     let task = tasks.find(t => t.createdAt == taskCreatedAt);
-//     let input = document.getElementById('boardPopUpInputDescription');
-//     task.description = input.value;
-//     renderAllTasks();
-// }
+function removeAnimationRightSlideIn(id) {
+    let element = document.getElementById(id);
+    element.classList.remove('animationRightSlideIn');
+}

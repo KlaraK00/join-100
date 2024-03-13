@@ -1,5 +1,5 @@
 function HTMLTemplateTask(task) {
-    return /*html*/`<div id="task${task.createdAt}" onclick="openTask(${task.createdAt})" draggable="true" ondragstart="startDragging('task${task.createdAt}')" class="card dFlex directionColumn alignStart cursorPointer">
+    return /*html*/`<div id="task${task.createdAt}" onclick="openTask(${task.createdAt}), addAnimationRightSlideIn('boardPopUpCard')" draggable="true" ondragstart="startDragging('task${task.createdAt}')" class="card dFlex directionColumn alignStart cursorPointer">
             <div id="boardCategory${task.createdAt}">${task.category}</div>
             <div class="fontBold">${task.title}</div>
             <div class="fontGrey" >${task.description}</div>
@@ -20,7 +20,7 @@ function HTMLTemplateTask(task) {
 
 function HTMLTemplatePopUpTask(task) {
     return /*html*/`<div class="dFlex alignCenter justCenter">
-            <div class="card posRelative alignStart translateX100vw animationRightSlideIn">
+            <div class="card posRelative alignStart" id="boardPopUpCard">
                 <img onclick="closeTask()" class="posAbsolute cursorPointer closeImgBoard" src="./img/Close.png" alt="close">
                 <div id="boardPopUpCategory${task.createdAt}">${task.category}</div>
                 <div class="headline">${task.title}</div>
@@ -44,7 +44,7 @@ function HTMLTemplatePopUpTask(task) {
                         <span id="boardTaskPopUpDeleteSpan" class="padLeft6">Delete</span>
                     </div>
                     <div class="lightGreyVerticalLine"></div>
-                    <div class="dFlex cursorPointer width50" onclick="boardPopUpEdit('${task.createdAt}')" onmouseover="changeBoardTaskPopUpEditToBlue()" onmouseout="changeBoardTaskPopUpEditToBlack()">
+                    <div class="dFlex cursorPointer width50" onclick="boardPopUpEdit('${task.createdAt}'), removeAnimationRightSlideIn('boardPopUpCard')" onmouseover="changeBoardTaskPopUpEditToBlue()" onmouseout="changeBoardTaskPopUpEditToBlack()">
                         <img id="boardTaskPopUpEditImg" class="height18" src="./img/edit-black.png" alt="pencil">
                         <span id="boardTaskPopUpEditSpan" class="padLeft6">Edit</span>
                     </div>
