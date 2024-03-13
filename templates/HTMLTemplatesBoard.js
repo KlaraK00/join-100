@@ -44,7 +44,7 @@ function HTMLTemplatePopUpTask(task) {
                         <span id="boardTaskPopUpDeleteSpan" class="padLeft6">Delete</span>
                     </div>
                     <div class="lightGreyVerticalLine"></div>
-                    <div class="dFlex cursorPointer width50" onclick="boardPopUpEdit('${task.createdAt}'), removeAnimationRightSlideIn('boardPopUpCard')" onmouseover="changeBoardTaskPopUpEditToBlue()" onmouseout="changeBoardTaskPopUpEditToBlack()">
+                    <div class="dFlex cursorPointer width50" onclick="boardPopUpEdit('${task.createdAt}')" onmouseover="changeBoardTaskPopUpEditToBlue()" onmouseout="changeBoardTaskPopUpEditToBlack()">
                         <img id="boardTaskPopUpEditImg" class="height18" src="./img/edit-black.png" alt="pencil">
                         <span id="boardTaskPopUpEditSpan" class="padLeft6">Edit</span>
                     </div>

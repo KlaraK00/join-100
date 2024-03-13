@@ -93,6 +93,11 @@ let emptyDivAppeared = false;
 let editTaskContacts;
 let editTaskSubtasks;
 
+let toDoId = true;
+let inProgressId = true;
+let awaitFeedbackId = true;
+let doneId = true;
+
 // setToday();
 
 // function setToday() {
@@ -229,40 +234,58 @@ function priorityExistsAtBoard(task) {
 
 function renderInProgress() {
     let allTasksInProgress = tasks.filter(task => task.status == 'inProgress');
-    let divInProgress = document.getElementById('divInProgress');
-    divInProgress.innerHTML = '';
-    for (let i = 0; i < allTasksInProgress.length; i++) {
-        let task = allTasksInProgress[i];
-        divInProgress.innerHTML += HTMLTemplateTask(task);
-        categoryBackground(task, `boardCategory${task.createdAt}`);
-        renderSubtasks(task);
-        renderContactsAndPriorityBoard(task);
+    if(allTasksInProgress.length > 0) {
+        let divInProgress = document.getElementById('divInProgress');
+        divInProgress.innerHTML = '';
+        for (let i = 0; i < allTasksInProgress.length; i++) {
+            let task = allTasksInProgress[i];
+            divInProgress.innerHTML += HTMLTemplateTask(task);
+            categoryBackground(task, `boardCategory${task.createdAt}`);
+            renderSubtasks(task);
+            renderContactsAndPriorityBoard(task);
+        }
+    } else {
+        let divInProgress = document.getElementById('divInProgress');
+        divInProgress.innerHTML = '';
+        divInProgress.innerHTML = /*html*/`<div class="noTasksDiv">No tasks In Progress</div>`;
     }
 }
 
 function renderAwaitFeedback() {
     let allTasksAwaitFeedback = tasks.filter(task => task.status == 'awaitFeedback');
-    let divAwaitFeedback = document.getElementById('divAwaitFeedback');
-    divAwaitFeedback.innerHTML = '';
-    for (let i = 0; i < allTasksAwaitFeedback.length; i++) {
-        let task = allTasksAwaitFeedback[i];
-        divAwaitFeedback.innerHTML += HTMLTemplateTask(task);
-        categoryBackground(task, `boardCategory${task.createdAt}`);
-        renderSubtasks(task);
-        renderContactsAndPriorityBoard(task);
+    if(allTasksAwaitFeedback.length > 0) {
+        let divAwaitFeedback = document.getElementById('divAwaitFeedback');
+        divAwaitFeedback.innerHTML = '';
+        for (let i = 0; i < allTasksAwaitFeedback.length; i++) {
+            let task = allTasksAwaitFeedback[i];
+            divAwaitFeedback.innerHTML += HTMLTemplateTask(task);
+            categoryBackground(task, `boardCategory${task.createdAt}`);
+            renderSubtasks(task);
+            renderContactsAndPriorityBoard(task);
+        }
+    } else {
+        let divAwaitFeedback = document.getElementById('divAwaitFeedback');
+        divAwaitFeedback.innerHTML = '';
+        divAwaitFeedback.innerHTML = /*html*/`<div class="noTasksDiv">No tasks Await Feedback</div>`;
     }
 }
 
 function renderDone() {
     let allTasksDone = tasks.filter(task => task.status == 'done');
-    let divDone = document.getElementById('divDone');
-    divDone.innerHTML = '';
-    for (let i = 0; i < allTasksDone.length; i++) {
-        let task = allTasksDone[i];
-        divDone.innerHTML += HTMLTemplateTask(task);
-        categoryBackground(task, `boardCategory${task.createdAt}`);
-        renderSubtasks(task);
-        renderContactsAndPriorityBoard(task);
+    if(allTasksDone.length > 0) {
+        let divDone = document.getElementById('divDone');
+        divDone.innerHTML = '';
+        for (let i = 0; i < allTasksDone.length; i++) {
+            let task = allTasksDone[i];
+            divDone.innerHTML += HTMLTemplateTask(task);
+            categoryBackground(task, `boardCategory${task.createdAt}`);
+            renderSubtasks(task);
+            renderContactsAndPriorityBoard(task);
+        }
+    } else {
+        let divDone = document.getElementById('divDone');
+        divDone.innerHTML = '';
+        divDone.innerHTML = /*html*/`<div class="noTasksDiv">No tasks Done</div>`;
     }
 }
 
@@ -270,6 +293,10 @@ function renderDone() {
 
 
 function startDragging(id) {
+    toDoId = true;
+    inProgressId = true;
+    awaitFeedbackId = true;
+    doneId = true;
     currentDraggedElement = id;
     let element = document.getElementById(id);
     element.style.transform = 'rotate(5deg)';
@@ -280,8 +307,55 @@ function allowDrop(event) {
 }
 
 function showEmptyDiv(id) {
-    let element = document.getElementById(id);
-    element.innerHTML += `<div id="${id}EmptyDiv" class="emptyDivForDraggedElement"></div>`;
+    let parentElementOfCurrentElement = document.getElementById(currentDraggedElement).parentElement;
+    if(parentElementOfCurrentElement.id !== id) {
+        let element = document.getElementById(id);
+        element.innerHTML += `<div id="${id}EmptyDiv" class="emptyDivForDraggedElement zIndexMinus1"></div>`;
+    }
+
+    // let parentElementOfCurrentElement = document.getElementById(currentDraggedElement).parentElement;
+    // if(parentElementOfCurrentElement.id.slice(3) == 'ToDo') {
+    //     if(toDoId) {
+    //         if(parentElementOfCurrentElement.id !== id) {
+    //             let element = document.getElementById(id);
+    //             element.innerHTML += `<div id="${id}EmptyDiv" class="emptyDivForDraggedElement"></div>`;
+    //         }
+    //     }
+    // }
+    // if(parentElementOfCurrentElement.id.slice(3) == 'InProgress') {
+    //     if(inProgressId) {
+    //         if(parentElementOfCurrentElement.id !== id) {
+    //             let element = document.getElementById(id);
+    //             element.innerHTML += `<div id="${id}EmptyDiv" class="emptyDivForDraggedElement"></div>`;
+    //         }
+    //     }
+    // }
+    // if(parentElementOfCurrentElement.id.slice(3) == 'AwaitFeedback') {
+    //     if(awaitFeedbackId) {
+    //         if(parentElementOfCurrentElement.id !== id) {
+    //             let element = document.getElementById(id);
+    //             element.innerHTML += `<div id="${id}EmptyDiv" class="emptyDivForDraggedElement"></div>`;
+    //         }
+    //     }
+    // }
+    // if(parentElementOfCurrentElement.id.slice(3) == 'Done') {
+    //     if(doneId) {
+    //         if(parentElementOfCurrentElement.id !== id) {
+    //             let element = document.getElementById(id);
+    //             element.innerHTML += `<div id="${id}EmptyDiv" class="emptyDivForDraggedElement"></div>`;
+    //         }
+    //     }
+    // }
+    // let status = id.slice(3);
+    // if(status == 'ToDo') {
+    //     toDoId = false;
+    // } else if (status == 'InProgress') {
+    //     inProgressId = false;
+    // } else if (status == 'AwaitFeedback') {
+    //     awaitFeedbackId = false;
+    // } else if (status == 'Done') {
+    //     doneId = false;
+    // }
 }
 
 function hideEmptyDiv(id) {
@@ -771,6 +845,7 @@ function saveEditedTask(taskCreatedAt, event) {
     task.subtasks = editTaskSubtasks;
     editTaskSubtasks = undefined;
     openTask(taskCreatedAt);
+    removeAnimationRightSlideIn('boardPopUpCard');
     renderAllTasks();
 }
 
