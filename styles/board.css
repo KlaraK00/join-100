@@ -377,6 +377,10 @@ body {
     overflow-x: hidden;
 }
 
+.zIndexMinus1 {
+    z-index: -1;
+}
+
 .animationRightSlideIn {
     animation: rightSlideIn 1s forwards;
 }

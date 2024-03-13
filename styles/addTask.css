@@ -1,46 +1,66 @@
 body {
-    font-size:20px; 
-    font-weight: 400;
+    margin: 0;
+    font-family: "Inter", sans-serif;
+}
+
+@font-face {
+    font-family: "Inter", sans-serif;
+    src: url(/fonts/inter-v13-latin-regular.woff2);
+}
+
+.main-add-task-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1440px;
 }
 
 .addTask {
-    width: 278px; 
-    height: 73px; 
-    position:absolute; 
-    top: 206px; 
-    left: 328px; 
-    gap: 1px; 
+    margin-left: 328px;
+    margin-right: 40px;
+    margin-top: 206px;
+    margin-bottom: 40px;
     color: rgba(0, 0, 0, 1);
     font-size: 61px;
     font-weight: 700;
+}
 
+.taskWrapper {
+    margin-left: 328px;
+    display: flex;
+    margin-right: 40px;
+    height: 424px;
+}
 
+.parting-line {
+    height: 375px;
+    width: 1px;
+    background-color: #D1D1D1;
 }
 
 .taskFrame {
-    width: 440px; 
-    height: 376px; 
-    position: absolute; 
-    top: 327px; 
-    left: 328px; 
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 50%;
+    height: 376px;
 }
 
 .taskTitle {
     display: flex; 
     flex-direction: column;
     width: 440px;
-    height: 96px;
     gap: 8px;
 }
 
 .taskTitle input {
-    padding: 12px 21px 12px 21px; 
     border-radius: 10px;
     border: 1px solid rgba(168, 168, 168, 1);
     font-size: 20px;
     font-weight: 400;
     color:rgba(209, 209, 209, 1);
-
+    height: 48px;
+    padding-left: 10px;
 }
 
 .red {
@@ -52,31 +72,26 @@ body {
     flex-direction: column;
     width: 440px; 
     height: 168px; 
-    position:absolute;
-    top: 112px;
     gap: 8px;
 }
 
 .description textarea {
     display: flex; 
     gap: 4px;
-    width: 440px; 
     height: 136px; 
     font-size: 20px;
     font-weight: 400;
     color:rgba(209, 209, 209, 1);
-    padding: 18px 16px 18px 16px;
-
+    padding-left: 10px;
+    padding-top: 10px;
 }
 
 .assign {
     width: 440px; 
     height: 80px;
-    position: absolute; 
     top: 296px; 
     display: flex; 
     flex-direction: column;
-    
     gap: 4px;
 }
 
@@ -85,9 +100,9 @@ body {
     height: 48px; 
     border-radius: 10px;
     border: 1px solid rgba(209, 209, 209, 1);
-    padding: 12px 16px 12px 16px;
     font-size: 20px;
     font-weight: 400;
+    padding-left: 10px;
 }
 
 select#assign {
@@ -97,34 +112,40 @@ select#assign {
     background-image: url('../img/arrow_drop_down.png'); 
     background-position: right 8.39px top 20px;
     background-repeat: no-repeat; 
-    
 }
 
 .taskFrame2 {
-    width: 440px; 
-    height: 376px; 
-    position: absolute; 
-    top: 327px; 
-    left: 864.5px; 
+    width: 50%;
+    height: 424px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 16px;
 }
+
 .deadline {
     width: 440px; 
-    height: 96px; 
     display: flex; 
     flex-direction: column;
-    gap: 4px;
+    gap: 8px;
     font-size: 18px;
     font-weight: 400;
 }
 
 .deadline input {
-    padding: 12px 16px 12px 16px; 
+    height: 48px;
     border-radius: 10px;
     border: 1px solid rgba(168, 168, 168, 1);
     color:rgba(209, 209, 209, 1);
     background-image: url('../img/event.png'); 
     background-repeat: no-repeat; 
     background-position: top 10px right 10px;
+    padding-left: 10px;
+}
+
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
 }
 
 .priority {
@@ -132,14 +153,12 @@ select#assign {
     flex-direction: column;
     gap: 8px; 
     width: 440px; 
-    height: 88px; 
-    position: absolute; 
-    top: 120px; 
+    height: 88px;
 }
+
 .prio {
     display: flex;
     gap: 16px;
-   
 }
 
 .prio button {
@@ -147,28 +166,25 @@ select#assign {
     height: 56px; 
     border-radius: 10px; 
     padding: 16px 10px 16px 10px; 
-   background-color: rgba(255, 255, 255, 1);
+    background-color: rgba(255, 255, 255, 1);
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
     display:flex; 
     align-items: center;
     justify-content: center;
     gap: 8px;
-   font-size: 20px;
-   font-weight: 400;
-   cursor: pointer;
+    font-size: 20px;
+    font-weight: 400;
+    cursor: pointer;
 }
 
 .active {
     background-color: rgba(255, 168, 0, 1) !important;
     color: white;
-
 }
 
 .category {
     width: 440px; 
     height: 80px; 
-    position: absolute; 
-    top: 232px; 
     display: flex; 
     flex-direction: column;
     gap: 8px;
@@ -177,7 +193,6 @@ select#assign {
 .subtasks {
     width: 440px; 
     height: 80px; 
-    position: absolute; 
     top: 336px; 
     display: flex;
     flex-direction: column;
@@ -185,7 +200,6 @@ select#assign {
 }
 
 .subtasks input {
-    padding: 12px 21px 12px 21px; 
     border-radius: 10px;
     border: 1px solid rgba(168, 168, 168, 1);
     color:rgba(209, 209, 209, 1);
@@ -196,15 +210,21 @@ select#assign {
     background-image: url('../img/add-2.png'); 
     background-repeat: no-repeat; 
     background-position: top 16px right 10px;
-    
+    height: 48px;
+    padding-left: 10px;
+}
+
+.required-create {
+    margin-left: 328px;
+    margin-right: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 40px;
 }
 
 .required {
-    width: 170px; 
-    height: 27px; 
-    position: absolute; 
-    top: 926px; 
-    left: 328px; 
+    height: 27px;  
     display: flex;
     font-size: 15px; 
     font-weight: 400;
@@ -213,12 +233,8 @@ select#assign {
 .create {
     width: 309px; 
     height: 56px; 
-    position: absolute;
-    top: 889px; 
-    left: 995.25px; 
     display: flex; 
     gap: 16px;
-    
 }
 
 .clear {
@@ -236,6 +252,11 @@ select#assign {
     cursor: pointer;
 }
 
+.clear:hover {
+    color: rgb(41,171,226);
+    border-color: rgb(41,171,226);
+}
+
 .createTask {
     display: flex; 
     align-items: center;
@@ -251,7 +272,224 @@ select#assign {
     font-size: 21px; 
     font-weight: 700;
     cursor: pointer;
-
 }
 
-  
+.createTask:hover {
+    background-color: rgb(41,171,226);
+}
+
+@media(max-width: 1300px) {
+    .main-add-task-container {
+        align-items: center;
+    }
+
+    .addTask {
+        margin-top: 128px;
+    }
+
+    .taskWrapper {
+        flex-direction: column;
+        height: fit-content;
+    }
+
+    .parting-line {
+        display: none;
+    }
+
+    .required-create {
+        justify-content: flex-start;
+        margin-top: 20px;
+        width: 399px;
+    }
+
+    .create {
+        min-width: 220px;
+        justify-content: end;
+    }
+
+    .taskFrame {
+        width: 399px;
+    }
+
+    .taskFrame2 {
+        align-items: flex-start;
+        width: 399px;
+    }
+
+    .clear {
+        display: none;
+    }
+
+    .main-add-task-container {
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .taskWrapper {
+        overflow: scroll;
+    }
+
+    .required {
+        min-width: 220px;
+    }
+
+    .addTask {
+        margin-left: 232px;
+        font-size: 47px;
+    }
+
+    .taskWrapper {
+        margin-left: 232px;
+        margin-right: 20px;
+    }
+
+    .required-create {
+        margin-left: 232px;
+        margin-bottom: 100px;
+    }
+
+    .taskTitle input {
+        height: 36px;
+    }
+
+    .description textarea {
+        height: 104px;
+    }
+
+    .description {
+        height: 131px;
+        width: 396px;
+    }
+
+    .taskTitle {
+        width: 396px;
+    }
+
+    .assign {
+        width: 396px;
+    }
+
+    .dropdown select {
+        width: 396px;
+        height: 40px;
+        font-size: 16px;
+    }
+
+    .taskFrame {
+        height: fit-content;
+    }
+
+    .deadline {
+        width: 396px;
+    }
+
+    .deadline input {
+        height: 40px;
+        width: 384px;
+    }
+
+    .priority {
+        width: 396px;
+    }
+
+    .prio button {
+        width: 122.33px;
+    }
+
+    .subtasks {
+        width: 396px;
+    }
+
+    .subtasks input {
+        font-size: 16px;
+        height: 40px;
+    }
+
+    .required-create {
+        width: 396px;
+    }
+
+    .category {
+        width: 396px;
+    }
+
+    .createTask {
+        width: 183px;
+        font-size: 21px;
+    }
+
+    .required {
+        width: 163px;
+        min-width: 0;
+        font-size: 14px;
+    }
+}
+
+@media(max-width: 1100px) {
+    .addTask {
+        margin-left: 20px;
+    }
+
+    .taskWrapper {
+        margin-left: 20px;
+    }
+
+    .required-create {
+        margin-left: 20px;
+    }
+}
+
+@media(max-width: 430px) {
+    .taskFrame {
+       width: 300px;
+    }
+
+    .taskTitle {
+        width: 300px;
+    }
+
+    .description {
+        width: 300px;
+    }
+
+    .assign {
+        width: 300px;
+    }
+
+    .dropdown select {
+        width: 300px;
+    }
+
+    .taskFrame2 {
+        width: 300px;
+    }
+
+    .deadline {
+        width: 300px;
+    }
+
+    .deadline input {
+        width: 288px;
+    }
+
+    .priority {
+        width: 300px;
+    }
+
+    .prio button {
+        width: 89px;
+        font-size: 14px;
+    }
+
+    .category {
+        width: 300px;
+    }
+
+    .subtasks {
+        width: 300px;
+    }
+
+    .required-create {
+        width: 300px;
+    }
+}
