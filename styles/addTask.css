@@ -13,7 +13,6 @@ body {
     flex-direction: column;
     width: 100%;
     max-width: 1440px;
-    height: 100vh;
 }
 
 .addTask {
@@ -231,8 +230,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .create {
     width: 309px; 
     height: 56px; 
-    top: 889px; 
-    left: 995.25px; 
     display: flex; 
     gap: 16px;
 }
@@ -276,4 +273,59 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .createTask:hover {
     background-color: rgb(41,171,226);
+}
+
+@media(max-width: 1300px) {
+    .addTask {
+        margin-top: 128px;
+    }
+
+    .taskWrapper {
+        display: block;
+        height: fit-content;
+    }
+
+    .parting-line {
+        display: none;
+    }
+
+    .required-create {
+        justify-content: flex-start;
+    }
+
+    .create {
+        width: 0;
+    }
+
+    .taskFrame2 {
+        align-items: flex-start;
+    }
+}
+
+@media(max-width: 1100px) {
+    .addTask {
+        margin-left: 20px;
+    }
+
+    .taskWrapper {
+        margin-left: 20px;
+    }
+
+    .required-create {
+        margin-left: 20px;
+        margin-bottom: 100px;
+    }
+
+    .main-add-task-container {
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .taskWrapper {
+        overflow: scroll;
+    }
+
+    .clear {
+        display: none;
+    }
 }
