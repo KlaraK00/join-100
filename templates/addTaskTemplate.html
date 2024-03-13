@@ -17,18 +17,20 @@
 <body onload="init(), includeHTML()">
     <div w3-include-html="/templates/navBar.html"></div>
     <div w3-include-html="/templates/header.html"></div>
-    <div class="addTask">Add Task</div>
-    <div class="taskWrapper">
-    <div class="taskFrame">
-        <div class="taskTitle">
-            <div>Title<span class="red">*</span></div>
-            <input id="title" type="text" placeholder="Enter a Title" required />
-        </div>
+    <div class="main-add-task-container">
+        <div class="addTask">Add Task</div>
+        <div class="taskWrapper">
+        <div class="taskFrame">
+            <div class="taskTitle">
+                <div>Title<span class="red">*</span></div>
+                <input id="title" type="text" placeholder="Enter a Title" required>
+            </div>
             <div class="description">
                 <div>Description</div>
                 <textarea id="description" rows="2" cols="25" placeholder="Enter a Description"></textarea>
             </div>
-               <div class="assign">Assigned to
+            <div class="assign">
+                Assigned to
                 <div class="dropdown">
                     <form>
                         <select name="contacts" id="assign">
@@ -37,53 +39,58 @@
                           <option value="contact2">Heinz Schmidt</option>
                           <option value="contact3">Edeltraud Schneider</option>
                         </select>
-                        </form>
+                    </form>
                 </div>
-               </div>
-    </div>
-    <div class="taskFrame2">
-        <div class="deadline">
-            <div>Due Date <span class="red">*</span></div>
-            <!-- Added required attribute -->
-            <input id="due" type="date" required />
-        </div>
-        <div id="priority" class="priority">
-            Priority
-            <div class="prio">
-                <div><button onclick="activateButton('urgent')" id="urgent">urgent <img src="../img/prio alta.png"></button></div>
-                <div><button onclick="activateButton('medium')" id="medium">medium <img src="../img/Capa 2.png"></button></div>
-                <div><button onclick="activateButton('low')" id="low">low <img src="../img/Capa 1.png"></button></div>
             </div>
         </div>
-        
-            
+        <div class="parting-line"></div>
+        <div class="taskFrame2">
+            <div class="deadline">
+                <div>
+                    Due Date 
+                    <span class="red">*</span>
+                </div>
+                <!-- Added required attribute -->
+                <input id="due" type="date" required />
+            </div>
+            <div id="priority" class="priority">
+                Prio
+                <div class="prio">
+                    <div><button onclick="activateButton('urgent')" id="urgent">urgent <img src="../img/prio alta.png"></button></div>
+                    <div><button onclick="activateButton('medium')" id="medium">medium <img src="../img/Capa 2.png"></button></div>
+                    <div><button onclick="activateButton('low')" id="low">low <img src="../img/Capa 1.png"></button></div>
+                </div>
+            </div>
             <div class="category">
-                <div>Category</div>
+                <div>
+                    Category
+                    <span class="red">*</span>
+                </div>
                 <div class="dropdown">
                     <form>
                         <select name="category" id="category">
                           <option value="preview">Select task category</option>
                           <option value="User Story">User Story</option>
                           <option value="Technical Task">Technical Task</option>
-                          
                         </select>
-                        </form>
+                    </form>
                 </div>
-        </div>
-        <div class="subtasks">
-            <div>Subtasks</div>
-            <input id ="subtasks" type="text" placeholder="Add new subtask" />
-        </div>
+            </div>
+            <div class="subtasks">
+                <div>Subtasks</div>
+                <input id ="subtasks" type="text" placeholder="Add new subtask" />
+            </div>
         </div> 
-    </div>
-    <div class="required">
-        <span class="red">*</span><div>This field is required</div>
-    </div>  
-    <div class="create">
+        </div>
+        <div class="required-create">
+            <div class="required">
+        <span class="red">*</span>
+        <div>This field is required</div>
+            </div>  
+            <div class="create">
         <button type="reset" class="clear">Clear <img src="../img/iconoir_cancel.png"></button>
         <button onclick="createTask()" class="createTask">Create Task <img src="../img/check.png"></button>
+            </div>
+        </div>
     </div>
-</div>        
-</div>
-
 </body>
