@@ -29,7 +29,6 @@ body {
     margin-left: 328px;
     display: flex;
     margin-right: 40px;
-    justify-content: center;
     height: 424px;
 }
 
@@ -61,6 +60,7 @@ body {
     font-weight: 400;
     color:rgba(209, 209, 209, 1);
     height: 48px;
+    padding-left: 10px;
 }
 
 .red {
@@ -82,6 +82,8 @@ body {
     font-size: 20px;
     font-weight: 400;
     color:rgba(209, 209, 209, 1);
+    padding-left: 10px;
+    padding-top: 10px;
 }
 
 .assign {
@@ -98,9 +100,9 @@ body {
     height: 48px; 
     border-radius: 10px;
     border: 1px solid rgba(209, 209, 209, 1);
-    padding: 12px 16px 12px 16px;
     font-size: 20px;
     font-weight: 400;
+    padding-left: 10px;
 }
 
 select#assign {
@@ -138,6 +140,7 @@ select#assign {
     background-image: url('../img/event.png'); 
     background-repeat: no-repeat; 
     background-position: top 10px right 10px;
+    padding-left: 10px;
 }
 
 input[type="date"]::-webkit-inner-spin-button,
@@ -197,7 +200,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .subtasks input {
-    padding: 12px 21px 12px 21px; 
     border-radius: 10px;
     border: 1px solid rgba(168, 168, 168, 1);
     color:rgba(209, 209, 209, 1);
@@ -208,7 +210,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     background-image: url('../img/add-2.png'); 
     background-repeat: no-repeat; 
     background-position: top 16px right 10px;
-    
+    height: 48px;
+    padding-left: 10px;
 }
 
 .required-create {
@@ -217,10 +220,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+    margin-bottom: 40px;
 }
 
 .required {
-    width: 170px; 
     height: 27px;  
     display: flex;
     font-size: 15px; 
@@ -276,12 +279,16 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 @media(max-width: 1300px) {
+    .main-add-task-container {
+        align-items: center;
+    }
+
     .addTask {
         margin-top: 128px;
     }
 
     .taskWrapper {
-        display: block;
+        flex-direction: column;
         height: fit-content;
     }
 
@@ -291,14 +298,130 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
     .required-create {
         justify-content: flex-start;
+        margin-top: 20px;
+        width: 399px;
     }
 
     .create {
-        width: 0;
+        min-width: 220px;
+        justify-content: end;
+    }
+
+    .taskFrame {
+        width: 399px;
     }
 
     .taskFrame2 {
         align-items: flex-start;
+        width: 399px;
+    }
+
+    .clear {
+        display: none;
+    }
+
+    .main-add-task-container {
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .taskWrapper {
+        overflow: scroll;
+    }
+
+    .required {
+        min-width: 220px;
+    }
+
+    .addTask {
+        margin-left: 232px;
+        font-size: 47px;
+    }
+
+    .taskWrapper {
+        margin-left: 232px;
+        margin-right: 20px;
+    }
+
+    .required-create {
+        margin-left: 232px;
+        margin-bottom: 100px;
+    }
+
+    .taskTitle input {
+        height: 36px;
+    }
+
+    .description textarea {
+        height: 104px;
+    }
+
+    .description {
+        height: 131px;
+        width: 396px;
+    }
+
+    .taskTitle {
+        width: 396px;
+    }
+
+    .assign {
+        width: 396px;
+    }
+
+    .dropdown select {
+        width: 396px;
+        height: 40px;
+        font-size: 16px;
+    }
+
+    .taskFrame {
+        height: fit-content;
+    }
+
+    .deadline {
+        width: 396px;
+    }
+
+    .deadline input {
+        height: 40px;
+        width: 384px;
+    }
+
+    .priority {
+        width: 396px;
+    }
+
+    .prio button {
+        width: 122.33px;
+    }
+
+    .subtasks {
+        width: 396px;
+    }
+
+    .subtasks input {
+        font-size: 16px;
+        height: 40px;
+    }
+
+    .required-create {
+        width: 396px;
+    }
+
+    .category {
+        width: 396px;
+    }
+
+    .createTask {
+        width: 183px;
+        font-size: 21px;
+    }
+
+    .required {
+        width: 163px;
+        min-width: 0;
+        font-size: 14px;
     }
 }
 
@@ -313,19 +436,60 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
     .required-create {
         margin-left: 20px;
-        margin-bottom: 100px;
+    }
+}
+
+@media(max-width: 430px) {
+    .taskFrame {
+       width: 300px;
     }
 
-    .main-add-task-container {
-        height: 100vh;
-        overflow: hidden;
+    .taskTitle {
+        width: 300px;
     }
 
-    .taskWrapper {
-        overflow: scroll;
+    .description {
+        width: 300px;
     }
 
-    .clear {
-        display: none;
+    .assign {
+        width: 300px;
+    }
+
+    .dropdown select {
+        width: 300px;
+    }
+
+    .taskFrame2 {
+        width: 300px;
+    }
+
+    .deadline {
+        width: 300px;
+    }
+
+    .deadline input {
+        width: 288px;
+    }
+
+    .priority {
+        width: 300px;
+    }
+
+    .prio button {
+        width: 89px;
+        font-size: 14px;
+    }
+
+    .category {
+        width: 300px;
+    }
+
+    .subtasks {
+        width: 300px;
+    }
+
+    .required-create {
+        width: 300px;
     }
 }
