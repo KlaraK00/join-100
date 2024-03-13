@@ -11,6 +11,10 @@ a {
     display: flex;
 }
 
+/* .content-wrapper {
+    max-width: 1440px;
+} */
+
 .summary-container-wrapper {
     display: flex;
     justify-content: space-between;
@@ -26,6 +30,7 @@ a {
     padding-left: 10%;
     padding-bottom: 30px;
     height: auto;
+
 }
 
 .headline {
@@ -354,7 +359,8 @@ a {
     }
 
     .summary-container {
-        margin: 0;
+        margin-left:0;
+        margin-top: 0;
         padding: 1%;
         padding-top: 100px;
         padding-bottom: 100px;
@@ -472,8 +478,8 @@ a {
 
 @media screen and (max-width: 347px) {
     .button-container {
-        padding-left: 9px;
-        padding-right: 9px;
+        padding-left: 9px !important;
+        padding-right: 9px !important;
     }
 
     .task-container {
@@ -493,4 +499,11 @@ a {
         word-wrap: break-word;
         text-wrap: wrap;
     }
+}
+
+@media screen and (max-height: 905px) {
+ .summary-container {
+    margin-top: ;
+    margin-bottom: 30%;
+ }
 }
