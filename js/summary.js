@@ -109,15 +109,15 @@ function updateTaskStatusLength(taskCounts, elements) {
 // ##############################################
 
 
-/**
- * Sets the value in localStorage to true to indicate that the summary is first visited.
- */
+
 function showLogInError() {
   document.body.innerHTML = 'sorry for loading error';
 }
 
 // ##############################################
-
+/**
+ * Sets the value in localStorage to true to indicate that the summary is first visited.
+ */
 function setFirstVisitSummaryTrue() {
   localStorage.setItem("summaryFirstVisit", true);
 }
