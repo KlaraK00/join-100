@@ -16,7 +16,6 @@
 <body onload="initRegister()">
     <div class="savingError d-none"><div class="savingError1">Sorry for saving error! <button onclick="closeSavingError()" class="savingErrorButton">OK</button></div></div>
     <div class="loadingError d-none"><div class="loadingError1">Sorry for loading error! <button onclick="closeLoadingError()" class="loadingErrorButton">OK</button></div></div>
-    <dialog></dialog>
     <dialog class="fontSize16 registerDialog">
         <span class="darkBtn">You Signed Up successfully</span>
     </dialog>
@@ -26,7 +25,7 @@
             <div onclick="redirectToLogIn()" class="parentRegisterArrowBack cursorPointer">
                 <img src="./img/registerArrowBack.png" class="registerArrowBack cursorPointer">
             </div>
-            <h1>Sign up</h1>
+            <h1 class="registerH1">Sign up</h1>
             <div class="blueLine"></div>
             <div class="marBot20 posRelative">
                 <input id="registerName" class="cursorPointer logInInputBorder fontSize16" placeholder="Name" minlength="3" type="text">
