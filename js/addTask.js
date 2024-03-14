@@ -1,4 +1,5 @@
 let tasks = [];
+let editTaskContacts;
 const TaskStatus = {
   TODO: "toDo",
   IN_PROGRESS: "inProgress",
@@ -132,21 +133,33 @@ function clearInput() {
   location.reload();
 }
 
-function updateContactsDropdown(contacts) {
-  const assignDropdown = document.getElementById("assign");
-  // Clear existing options but keep preview
-  assignDropdown.innerHTML =
-    '<option value="preview">Select contacts to assign</option>';
+// Function to toggle the visibility of the contacts dropdown
+function toggleContactsDropdown() {
+    const dropdown = document.getElementById('contactsDropdown');
+    dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
+    // Optionally, call updateContactsDropdown here if you want to populate it every time it's toggled
+}
 
-  // Iterate over the contacts array to add each contact as an option
-  contacts.forEach((contact) => {
-    const optionElement = document.createElement("option");
-    //use createdAt as a Unique ID to access contacts
-    optionElement.value = contact.createdAt;
-    optionElement.textContent = `${contact.firstName} ${contact.lastName}`;
-    assignDropdown.appendChild(optionElement);
-  });
+// Updated function to populate the dropdown div instead of a select element
+function updateContactsDropdown(contacts) {
+    const contactsDropdown = document.getElementById("contactsDropdown");
+    // Clear existing content
+    contactsDropdown.innerHTML = '';
+
+    // Iterate over the contacts array to add each contact as an option
+    contacts.forEach((contact) => {
+        const contactElement = document.createElement("div");
+        contactElement.textContent = `${contact.firstName} ${contact.lastName}`;
+        contactElement.classList.add("contact-option");
+        contactElement.onclick = function() {
+            document.querySelector('.assignContact').value = contact.firstName + ' ' + contact.lastName; // Example action
+            toggleContactsDropdown(); // Hide dropdown after selection
+        };
+        // Additional styles or classes for contactElement can be added here
+        contactsDropdown.appendChild(contactElement);
+    });
 }
 
 
-function createSubtask() {}
+
+

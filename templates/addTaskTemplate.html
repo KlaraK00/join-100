@@ -31,17 +31,12 @@
             </div>
             <div class="assign">
                 Assigned to
-                <div class="dropdown">
-                    <form>
-                        <select name="contacts" id="assign">
-                          <option value="preview" disabled>Select contacts to assign</option>
-                          <option value="contact1">Thomas Müller</option>
-                          <option value="contact2">Heinz Schmidt</option>
-                          <option value="contact3">Edeltraud Schneider</option>
-                        </select>
-                    </form>
+                <input class="assignContact" readonly onclick="toggleContactsDropdown()">
+                <div id="contactsDropdown" class="contacts-dropdown" style="display: none;">
+                    <!-- Contacts will be dynamically inserted here -->
                 </div>
             </div>
+            
         </div>
         <div class="parting-line"></div>
         <div class="taskFrame2">
@@ -50,16 +45,15 @@
                     Due Date 
                     <span class="red">*</span>
                 </div>
-                <!-- Added required attribute -->
                 <input id="due" type="date" required />
             </div>
             <div id="priority" class="priority">
                 Prio
                 <div class="prio">
-                    <div><button onclick="activateButton('urgent')" id="urgent">urgent <img src="../img/prio alta.png"></button></div>
-                    <div><button onclick="activateButton('medium')" id="medium">medium <img src="../img/Capa 2.png"></button></div>
-                    <div><button onclick="activateButton('low')" id="low">low <img src="../img/Capa 1.png"></button></div>
-                </div>
+                    <div><button type="button" onclick="activateButton('urgent')" id="urgent">urgent <img src="../img/prio alta.png"></button></div>
+                    <div><button type="button" onclick="activateButton('medium')" id="medium">medium <img src="../img/Capa 2.png"></button></div>
+                    <div><button type="button" onclick="activateButton('low')" id="low">low <img src="../img/Capa 1.png"></button></div>
+                  </div>
             </div>
             <div class="category">
                 <div>
@@ -89,8 +83,9 @@
             </div>  
             <div class="create">
         <button type="reset" class="clear">Clear <img src="../img/iconoir_cancel.png"></button>
-        <button onclick="createTask()" class="createTask">Create Task <img src="../img/check.png"></button>
+        <button type="button" onclick="createTask()" class="createTask">Create Task <img src="../img/check.png"></button>
             </div>
         </div>
     </div>
 </body>
+
