@@ -74,7 +74,9 @@ function pushTask(task) {
   console.log(task);
   tasks.push(task);
   console.log(JSON.stringify(tasks));
+  setItem("tasks", tasks); // Speichern des tasks-Arrays im lokalen Speicher
 }
+
 
 function createTask() {
   let title = getInputValue("title");

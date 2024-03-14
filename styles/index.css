@@ -207,15 +207,6 @@ h1 {
     border-radius: 12px !important;
 }
 
-/* .registerBgDark {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.2);
-} */
-
 .registerDialog {
     position: absolute;
     top: 0;
@@ -422,7 +413,7 @@ dialog::backdrop {
 }
 
 .logoSlideIn {
-    animation-name: logoSlideIn;
+    animation-name: logoSlideInDesktop;
     animation-duration: 1s;
     animation-fill-mode: forwards;
 }
@@ -439,7 +430,7 @@ dialog::backdrop {
     }
 }
 
-@keyframes logoSlideIn {
+@keyframes logoSlideInDesktop {
     0% {
         width: 274px;
         left: calc(50vw - 137px);
@@ -454,5 +445,132 @@ dialog::backdrop {
         width: 100px;
         left: 60px;
         top: 60px;
+    }
+}
+
+@keyframes logoSlideInMobile450 {
+    0% {
+        width: 274px;
+        left: calc(50vw - 137px);
+        top: calc(50vh - 167px);
+    }
+    25% {
+        width: 274px;
+        left: calc(50vw - 137px);
+        top: calc(50vh - 167px);
+    }
+    100% {
+        width: 50px;
+        left: 60px;
+        top: 60px;
+    }
+}
+
+@keyframes logoSlideInMobile360 {
+    0% {
+        width: 274px;
+        left: calc(50vw - 137px);
+        top: calc(50vh - 167px);
+    }
+    25% {
+        width: 274px;
+        left: calc(50vw - 137px);
+        top: calc(50vh - 167px);
+    }
+    100% {
+        width: 50px;
+        left: 20px;
+        top: 20px;
+    }
+}
+
+@media (max-width: 860px) {
+    .registerJoinLogo {
+        width: 80px;
+        left: 30px;
+        top: 30px;
+    }
+}
+
+@media (max-width: 550px) {
+    .formLogIn {
+        padding: 40px;
+    }
+
+    .logInInputBorder {
+        width: 200px;
+    }
+
+    .registerH1 {
+        font-size: 40px;
+        margin: 8px;
+    }
+}
+
+@media (max-width: 450px) {
+    .logoSlideIn {
+        animation-name: logoSlideInMobile450 !important;
+    }
+
+    .sectionSignUpMobile {
+        padding: 0;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: calc(100vh - 150px);
+    }
+}
+
+@media (max-width: 360px) {
+    .logoSlideIn {
+        animation-name: logoSlideInMobile360 !important;
+    }
+
+    .parentRegisterArrowBack {
+        left: 20px;
+        top: 27px;
+    }
+
+    .registerJoinLogo {
+        width: 50px;
+        left: 20px;
+        top: 20px;
+    }
+
+    .registerH1 {
+        font-size: 30px;
+        margin: 4px;
+    }
+
+    .logInInputBorder {
+        width: 150px;
+    }
+
+    .formLogIn {
+        padding: 20px;
+    }
+
+    .logInH1 {
+        font-size: 50px;
+    }
+
+    div:has(>.overDivGuestLogInBtn) {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .overDivGuestLogInBtn {
+        margin: 0;
+    }
+
+    .bot60LeftCenter {
+        bottom: 15px;
+    }
+
+    @media(max-height: 750px) {
+        .sectionSignUpMobile {
+            margin-top: calc(100vh - 100px);
+        }
     }
 }
