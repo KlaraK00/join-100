@@ -112,6 +112,7 @@ body {
 }
 
 .contacts-dropdown {
+   
     position: absolute;
     top: 100%; 
     left: 0;
@@ -123,6 +124,65 @@ body {
     z-index: 1000;
     max-height: 200px;
     overflow-y: auto;
+}
+
+#contactsDropdown {
+    display:none;
+}
+#contactsDropdown.show {
+    display: block;
+}
+.contacts-dropdown {
+    display: none; 
+}
+
+.contacts-dropdown.show {
+    display: block; }
+
+.contact-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    padding: 7px 16px;
+    font-size: 20px;
+    cursor: pointer;
+    
+    
+    
+}
+
+.contact-option.selected {
+    background-color: rgba(9, 25, 49, 1);
+    
+    color: rgba(255, 255, 255, 1);
+    ;
+}
+
+.contact-initials {
+    display: flex;
+    gap: 10px; 
+    width: 42px;
+    height: 42px; 
+    border-radius: 45px; 
+    color: #ffffff;
+    align-items: center;
+    justify-content: center;
+    
+    
+}
+
+.name-container {
+    display: flex; 
+    align-items: center;
+    gap: 16px; 
+}
+
+.selected-contacts-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px; /* Adjust based on design */
+    margin-top: 5px; /* Space between input and this container */
 }
 
 
@@ -521,8 +581,4 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     }
 }
 
-.contact-option.selected {
-    background-color: #e9ecef; 
-    border-radius: 5px;
-    padding: 5px;
-}
+

@@ -8,21 +8,29 @@ const TaskStatus = {
   DONE: "done",
 };
 
-async function initAddTask() {
-  loadLoggedIn();
-  if(loggedIn) {
-    await includeHTML();
-    await loadTasks();
-    await loadContacts();
-    await loadUsers();
-    updateContactsDropdown(contacts);
-    highlightActiveSideButton();
-    currentUser = getCurrentUser();
-    showUserNavBar();
-  } else {
-    showLogInError();
+async function initApp() {
+    await includeHTML(); // ensures the Template is loaded 
+    initAddTask(); // Now safe to initialize tasks and attach event listeners
   }
-}
+  
+  async function initAddTask() {
+    loadLoggedIn();
+    if(loggedIn) {
+      await loadTasks();
+      await loadContacts();
+      await loadUsers();
+      updateContactsDropdown(contacts); 
+      highlightActiveSideButton();
+      currentUser = getCurrentUser();
+      showUserNavBar();
+      attachInputEventListeners(); // Attach event listeners so they are called after content is loaded
+      
+    }
+  }
+  
+  // Modification to the way you bootstrap your application
+  document.addEventListener('DOMContentLoaded', initApp); // Use initApp to coordinate initialization
+  
 
 async function loadTasks() {
   if (await tasksExist()) {
@@ -133,59 +141,138 @@ function clearInput() {
   location.reload();
 }
 
-// Function to toggle the visibility of the contacts dropdown
-function toggleContactsDropdown() {
+
+ function toggleContactsDropdown() {
     const dropdown = document.getElementById('contactsDropdown');
-    dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
+    dropdown.classList.toggle('show'); 
     
-}
+} 
+
 
 function updateContactsDropdown(contacts) {
     const contactsDropdown = document.getElementById("contactsDropdown");
-    const assignContactInput = document.querySelector(".assignContact");
-
-    contactsDropdown.innerHTML = '';
+    contactsDropdown.innerHTML='';
 
     contacts.forEach((contact) => {
         const contactElement = document.createElement("div");
-        contactElement.textContent = `${contact.firstName} ${contact.lastName}`;
         contactElement.classList.add("contact-option");
-
-        // Check if the contact is already selected
-        if (selectedContacts.includes(contact.createdAt)) {
-            // Add a class to indicate selection
-            contactElement.classList.add("selected");
-        }
-
+        contactElement.setAttribute('data-contact-id', contact.createdAt);
+    
+       
+        const nameContainer = document.createElement("div");
+        nameContainer.classList.add("name-container")
+        
+        const initialsSpan = document.createElement("span");
+        initialsSpan.className = "contact-initials";
+        initialsSpan.textContent = contact.initials;
+        initialsSpan.style.backgroundColor = contact.color;
+        
+    
+        const nameTextSpan = document.createElement("span");
+        nameTextSpan.textContent = ` ${contact.firstName} ${contact.lastName}`;
+       
+        nameContainer.appendChild(initialsSpan);
+        nameContainer.appendChild(nameTextSpan);
+    
+        // Checkbox image
+        const checkboxImg = document.createElement("img");
+        checkboxImg.setAttribute("src", selectedContacts.includes(contact.createdAt) ? "img/checkedCheckboxWhite.png" : "img/checkboxNotChecked.png");
+        checkboxImg.className = "contact-checkbox"; 
+    
+        // Appending the name container and checkbox image to the contact element
+        contactElement.appendChild(nameContainer);
+        contactElement.appendChild(checkboxImg);
+        
+        
+        // Event handler for selection
         contactElement.onclick = function() {
             const index = selectedContacts.indexOf(contact.createdAt);
             if (index > -1) {
-                // If already selected, remove from selection
                 selectedContacts.splice(index, 1);
+                contactElement.classList.add("d-none"); // Hide if it's not part of the search
+                checkboxImg.setAttribute("src", "img/checkboxNotChecked.png");
                 contactElement.classList.remove("selected");
             } else {
-                // If not selected, add to selection
                 selectedContacts.push(contact.createdAt);
+                checkboxImg.setAttribute("src", "img/checkedCheckboxWhite.png");
                 contactElement.classList.add("selected");
+                contactElement.classList.remove("d-none");
             }
             updateAssignContactInput();
         };
-
+    
+        if (selectedContacts.includes(contact.createdAt)) {
+            contactElement.classList.add("selected");
+        }
+    
         contactsDropdown.appendChild(contactElement);
     });
+    
+    
 
     function updateAssignContactInput() {
-        const selectedContactsNames = contacts.filter(contact => 
-            selectedContacts.includes(contact.createdAt))
-            .map(contact => `${contact.firstName} ${contact.lastName}`);
+        const selectedContactsContainer = document.getElementById("selectedContactsContainer");
         
-        assignContactInput.value = selectedContactsNames.join(", ");
+        // Clear previously displayed selected contacts to prepare for updated display
+        selectedContactsContainer.innerHTML = '';
+        
+        // Ensure selectedContacts array is maintained correctly across user actions
+        selectedContacts.forEach(contactId => {
+            const contact = contacts.find(c => c.createdAt === contactId);
+            if (contact) {
+                const initialsDiv = document.createElement("div");
+                initialsDiv.className = "contact-initials"; 
+                initialsDiv.textContent = contact.initials;
+                initialsDiv.style.backgroundColor = contact.color;
+                selectedContactsContainer.appendChild(initialsDiv);
+            }
+        });
+       
+    } }
+    
+    function attachInputEventListeners() {
+        const assignContactInput = document.querySelector(".assignContact");
+        const dropdown = document.getElementById('contactsDropdown');
+    
+        assignContactInput.addEventListener('input', function() {
+            const searchTerm = assignContactInput.value.toLowerCase();
+            const contactOptions = document.querySelectorAll(".contact-option");
+    
+            contactOptions.forEach(option => {
+                const contactId = option.getAttribute('data-contact-id');
+                const contact = contacts.find(c => c.createdAt.toString() === contactId);
+                // Remove visibility when selected contact doesn't fit search
+                if (contact && (contact.firstName.toLowerCase().includes(searchTerm) || contact.lastName.toLowerCase().includes(searchTerm))) {
+                    option.classList.remove("d-none");
+                } else {
+                    option.classList.add("d-none");
+                }
+            });
+            // Ensure dropdown opens upon typing if it's not already open
+            if (!dropdown.classList.contains('show')) {
+                dropdown.classList.add('show');
+            }
+        });
+    
+        // Event listener to open the dropdown when the input field is focused
+        assignContactInput.addEventListener('focus', function() {
+            // Only open the dropdown if it's not already open
+            if (!dropdown.classList.contains('show')) {
+                dropdown.classList.add('show');
+            }
+        });
+    
+        // Listener for clicks outside the dropdown or input to close the dropdown
+        document.addEventListener('click', function(event) {
+            if (!dropdown.contains(event.target) && !assignContactInput.contains(event.target)) {
+                dropdown.classList.remove('show');
+            }
+        });
     }
-}
-
-
-
-
+    
+    
+    
+    
 
 
 
