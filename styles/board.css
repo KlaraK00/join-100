@@ -331,6 +331,10 @@ body {
     border-radius: 5px;
 }
 
+.borderRadius10 {
+    border-radius: 10px;
+}
+
 .hoverGrey:hover {
     background-color: #eeeeee;
     cursor: pointer;
@@ -340,6 +344,12 @@ body {
     width: 1px;
     background-color: lightgrey;
     height: 25px;
+}
+
+.greyVerticalLineSubtasks17 {
+    width: 1px;
+    background-color: lightgrey;
+    height: 17px;
 }
 
 .focusBlueBorder:focus {
@@ -381,8 +391,33 @@ body {
     z-index: -1;
 }
 
+.editEditSubtaskInput {
+    border:none;
+    outline: none;
+    height: 100%;
+    width: 100%;
+}
+
+.blueBorderBottom{    
+    border-bottom: 1px solid #29ABE2;
+    border-radius: 0;
+}
+
+.animationRightSlideOut {
+    animation: rightSlideOut 225ms forwards !important;
+}
+
 .animationRightSlideIn {
-    animation: rightSlideIn 1s forwards;
+    animation: rightSlideIn 225ms forwards;
+}
+
+@keyframes rightSlideOut {
+    from {
+        transform: translateX();
+    }
+    to {
+        transform: translateX(100vw);
+    }
 }
 
 @keyframes rightSlideIn {
@@ -450,7 +485,31 @@ body {
     }
 }
 
+@media(max-width: 420px) {
+    #boardTaskOverlay>div>div,
+    #boardTaskOverlay>div>form {
+        width: calc(100% - 10px);
+    }
+
+    div:has(>#boardPopUpEditLowBtn),
+    div:has(#boardPopUpEditMediumBtn),
+    div:has(#boardPopUpEditUrgentBtn) {
+        justify-content: center;
+    }
+}
+
 @media(max-width: 350px) {
+    #boardPopUpEditLowBtn,
+    #boardPopUpEditMediumBtn,
+    #boardPopUpEditUrgentBtn {
+        margin-left: 0px !important;
+        font-size: 14px
+    }
+
+    .boardPrioBtn img {
+        width: 12px;
+    }
+
     .menubar {
         margin-left: 10px;
         margin-right: 10px;
@@ -466,5 +525,28 @@ body {
         gap: 0;
         width: calc(100vw - 20px);
         justify-content: center;
+    }
+}
+
+@media(max-width: 300px) {
+    #boardPopUpEditLowBtn,
+    #boardPopUpEditMediumBtn,
+    #boardPopUpEditUrgentBtn {
+        margin-left: 0px !important;
+        font-size: 12px;
+    }
+
+    .boardPrioBtn {
+        width: 33%;
+        height: 30px;
+    }
+
+    .boardPrioBtn img {
+        width: 10px;
+    }
+
+    #boardPopUpSelectContactsToAssignDiv,
+    #boardPopUpSelectContacts {
+        font-size: 14px;
     }
 }

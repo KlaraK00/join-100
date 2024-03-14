@@ -20,7 +20,7 @@ function HTMLTemplateTask(task) {
 
 function HTMLTemplatePopUpTask(task) {
     return /*html*/`<div class="dFlex alignCenter justCenter">
-            <div class="card posRelative alignStart" id="boardPopUpCard">
+            <div class="card posRelative alignStart" id="boardPopUpCard" onclick="event.stopPropagation()">
                 <img onclick="closeTask()" class="posAbsolute cursorPointer closeImgBoard" src="./img/Close.png" alt="close">
                 <div id="boardPopUpCategory${task.createdAt}">${task.category}</div>
                 <div class="headline">${task.title}</div>
@@ -30,13 +30,13 @@ function HTMLTemplatePopUpTask(task) {
                     <div id="boardPopUpDate">${task.date}</div>
                 </div>
                 <div id="boardPopUpPriority${task.createdAt}" class="dFlex"></div>
-                <div>
+                <div class="width100PercMinus26Px">
                     <span>Assigned To:</span>
-                    <div class="gap20 dFlex directionColumn padTop20" id="popUpContacts${task.createdAt}"></div>
+                    <div class="dFlex directionColumn width100Perc padTop10" id="popUpContacts${task.createdAt}"></div>
                 </div>
                 <div>
                     <span>Subtasks</span>
-                    <div class="padLeft16 gap10 dFlex directionColumn marTopMinus10 padTop20" id="popUpSubtasks${task.createdAt}"></div>
+                    <div class="dFlex directionColumn marTopMinus10 padTop20" id="popUpSubtasks${task.createdAt}"></div>
                 </div>
                 <div class="dFlex justEnd alignCenter width100Perc fontSize14 gap6">
                     <div onclick="boardDeleteTask('${task.createdAt}')" class="dFlex cursorPointer" onmouseover="changeBoardTaskPopUpDeleteToBlue()" onmouseout="changeBoardTaskPopUpDeleteToBlack()">
@@ -55,7 +55,7 @@ function HTMLTemplatePopUpTask(task) {
 }
 
 function HTMLTemplatePopUpContact(contact) {
-    return /*html*/`<div class="dFlex alignCenter padLeft16">
+    return /*html*/`<div class="dFlex alignCenter padLeft16 padTop10 padBot10 borderRadius10 hoverGrey width100Perc">
             <div class="initialsBoard" style="background-color:${contact.color}">${contact.initials}</div>
             <div class="padLeft16">${contact.firstName} ${contact.lastName}</div>
         </div>
@@ -63,8 +63,8 @@ function HTMLTemplatePopUpContact(contact) {
 }
 
 function HTMLTemplatePopUpSubtask(task, subtask, i) {
-    return /*html*/`<div class="dFlex alignCenter">
-            <img onclick="boardChangeSubtasksDoneOrNot('${task.createdAt}', ${i})" id="boardPopUpSubtask${task.createdAt}${i}" class="cursorPointer height20" src="./img/checkboxNotChecked.png" alt="checkbox">
+    return /*html*/`<div onclick="boardChangeSubtasksDoneOrNot('${task.createdAt}', ${i})" class="borderRadius5 padLeft16 padRight18 padTop5 padBot5 dFlex alignCenter hoverGrey cursorPointer">
+            <img id="boardPopUpSubtask${task.createdAt}${i}" class="cursorPointer height20" src="./img/checkboxNotChecked.png" alt="checkbox">
             <span class="padLeft16 fontSize14">${subtask.subtask}</span>
         </div>
     `;
@@ -80,7 +80,7 @@ function HTMLTemplatePopUpPriority(task) {
 
 function HTMLTemplatePopUpBoardEdit(task){
     return /*html*/`<div class="dFlex alignCenter justCenter">
-            <form onsubmit="saveEditedTask('${task.createdAt}', event)" class="card posRelative alignStart">
+            <form onsubmit="saveEditedTask('${task.createdAt}', event)" onclick="event.stopPropagation()" class="card posRelative alignStart">
                 <img onclick="closeTask()" class="posAbsolute cursorPointer closeImgBoard" src="./img/Close.png" alt="close">
                 <div class="dFlex directionColumn padTop35 width100Perc">
                     <label for="boardPopUpInputTitle" class="padBot5">Title</label>
@@ -128,7 +128,7 @@ function HTMLTemplatePopUpBoardEdit(task){
                             <img onclick="focusOnInputOrAddSubtask('${task.createdAt}')" class="height10" src="./img/add-2.png" alt="plus">
                         </div>
                     </div>
-                    <ul class="dFlex directionColumn gap10" id="boardPopUpAllSubtasks"></ul>
+                    <div class="dFlex directionColumn gap5 padTop5" id="boardPopUpAllSubtasks"></div>
                 </div>
                 <div class="dFlex justEnd width100Perc">
                     <button class="darkBtn cursorPointer fontBold">Ok <img class="padLeft2 height10" src="./img/check.png" alt="check"></button>
@@ -145,6 +145,28 @@ function HTMLTemplatePopUpBoardEditSelectContacts(contact, task, search) {
                 <div class="dFlex alignCenter">${contact.firstName} ${contact.lastName}</div> 
             </div>
             <img id="boardEditTaskContactsCheckbox${contact.createdAt}" class="height20 marRight10" src="./img/checkboxNotChecked.png" alt="checkbox">
+        </div>
+    `;
+}
+
+function HTMLTemplatePopUpBoardEditSubtasks(i, subtask, task) {
+    return /*html*/`<div id="editTaskSubtaskParent${i}" onmouseout="hideImgSubtasksDeleteAndEdit(${i})" onmouseover="showImgSubtasksDeleteAndEdit(${i})" class="height17 hoverGrey padBot5 borderRadius10 padTop5 dFlex alignCenter justBetween">
+            <li class="fontSize12 padLeft16 cursorPointer">${subtask.subtask}</li>
+            <div id="editTaskSubtask${i}" class="dFlex directionRow padRight10 d-none">
+                <img onclick="editEditTaskSubtask(${i}, '${task.createdAt}')" class="height17" src="./img/edit-black.png" alt="edit">
+                <div class="greyVerticalLineSubtasks17 marLeft3"></div>
+                <img onclick="deleteEditTaskSubtask(${i}, '${task.createdAt}')" class="height17 marLeft3" src="./img/delete.png" alt="delete">
+            </div>
+        </div>
+    `;
+}
+
+function HTMLTemplatePopUpBoardEditSubtasksEdit(i, taskCreatedAt) {
+    return /*html*/`<input onfocus="setBlueBorderBottom(${i})" onfocusout="removeBlueBorderBottom(${i})" id="editEditSubtaskInput${i}" class="editEditSubtaskInput padLeft16" value="${editTaskSubtasks[i].subtask}">
+        <div class="dFlex directionRow padRight10 alignCenter">
+            <img class="height17 cursorPointer" src="./img/delete.png" alt="delete">
+            <div class="greyVerticalLineSubtasks17 marLeft3"></div>
+            <img onclick="editEditSubtaskInputValue(${i}, '${taskCreatedAt}')" class="height10 marLeft6 cursorPointer" src="./img/checkBlack.png" alt="check">
         </div>
     `;
 }

@@ -16,7 +16,8 @@ async function setItem(key, value) {
             throw response.status;
         }
     } catch {
-        alert('Sorry for saving error!');
+        var savingErrorDiv = document.querySelector('.savingError');
+        savingErrorDiv.classList.remove('d-none')
     }
 }
 
@@ -31,8 +32,19 @@ async function getItem(key) {
             throw response.status;
         }
     } catch {
-        alert('Sorry for loading error!');
+        var savingErrorDiv = document.querySelector('.loadingError');
+        savingErrorDiv.classList.remove('d-none')
     }
+}
+
+function closeSavingError() {
+    var savingErrorDiv = document.querySelector('.savingError');
+    savingErrorDiv.classList.add('d-none')
+}
+
+function closeLoadingError() {
+    var savingErrorDiv = document.querySelector('.loadingError');
+    savingErrorDiv.classList.add('d-none')
 }
 
 function getValueFromJson(json) {

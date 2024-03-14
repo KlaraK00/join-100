@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./styles/style.css" />
     <link rel="stylesheet" href="./styles/index.css" />
     <link rel="stylesheet" href="./styles/board.css" />
+    <link rel="stylesheet" href="/styles/storage.css">
 
     <script src="./js/storageToken.js" defer></script>
     <script src="./js/storage.js" defer></script>
@@ -24,8 +25,10 @@
 <body class="boardBody" onload="initBoard()">
     <div w3-include-html="/templates/navBar.html"></div>
     <div w3-include-html="/templates/header.html"></div>
+    <div class="savingError d-none"><div class="savingError1">Sorry for saving error! <button onclick="closeSavingError()" class="savingErrorButton">OK</button></div></div>
+    <div class="loadingError d-none"><div class="loadingError1">Sorry for loading error! <button onclick="closeLoadingError()" class="loadingErrorButton">OK</button></div></div>
     <div class="main-board-container">
-        <div id="boardTaskOverlay"></div>
+        <div onclick="closeTask()" id="boardTaskOverlay"></div>
         <div class="menubar">
             <div class="headline">
                 <div>Board</div>
@@ -50,63 +53,29 @@
                     <div class="headlineBoardTasks">To do</div> 
                     <div class="plus">+</div>
                 </div>
-                <div ondragover="allowDrop(event), showEmptyDiv('divToDo')" ondragleave="hideEmptyDiv('divToDo')" ondrop="moveTo('toDo')" id="divToDo" class="column flex1"></div>
+                <div ondragover="allowDrop(event), showEmptyDiv('divToDo')" ondragleave="removeEmptyDiv('divToDo')" ondrop="moveTo('toDo')" id="divToDo" class="column flex1"></div>
             </div>
             <div class="lineUp dFlex directionColumn">
                 <div class="progressHead">
                     <div class="headlineBoardTasks">In  progress</div>
                     <div class="plus">+</div>
                 </div>
-                <div ondragover="allowDrop(event), showEmptyDiv('divInProgress')" ondragleave="hideEmptyDiv('divInProgress')" ondrop="moveTo('inProgress')" id="divInProgress" class="column flex1"></div>
+                <div ondragover="allowDrop(event), showEmptyDiv('divInProgress')" ondragleave="removeEmptyDiv('divInProgress')" ondrop="moveTo('inProgress')" id="divInProgress" class="column flex1"></div>
             </div>
             <div class="lineUp dFlex directionColumn">
                 <div class="progressHead">
                     <div class="headlineBoardTasks">Await feedback</div>
                     <div class="plus">+</div>
                 </div>
-                <div ondragover="allowDrop(event), showEmptyDiv('divAwaitFeedback')" ondragleave="hideEmptyDiv('divAwaitFeedback')" ondrop="moveTo('awaitFeedback')" id="divAwaitFeedback" class="column flex1"></div>
+                <div ondragover="allowDrop(event), showEmptyDiv('divAwaitFeedback')" ondragleave="removeEmptyDiv('divAwaitFeedback')" ondrop="moveTo('awaitFeedback')" id="divAwaitFeedback" class="column flex1"></div>
             </div>
             <div class="lineUp dFlex directionColumn">
                 <div class="progressDone">
                     <div class="headlineBoardTasks">Done</div>
                 </div>
-                <div ondragover="allowDrop(event), showEmptyDiv('divDone')" ondragleave="hideEmptyDiv('divDone')" ondrop="moveTo('done')" id="divDone" class="column flex1"></div>
+                <div ondragover="allowDrop(event), showEmptyDiv('divDone')" ondragleave="removeEmptyDiv('divDone')" ondrop="moveTo('done')" id="divDone" class="column flex1"></div>
             </div>
         </div>
     </div>
   </body>
 </html>
-<!-- <div class="taskWrapper">
-            <div id="divToDo" class="toDoColumn">
-                <div class="noTask">
-                    No Tasks to do
-                </div>
-                <div class="card d-none">
-                    Progress
-                </div>
-            </div>
-            <div class="column">
-                <div class="card">
-                    <div class="cardInsideFrame">
-                        Progress
-                    </div>
-                </div>
-            </div>
-            <div class="column">
-                <div class="card">
-                    Progress
-                </div>
-            </div>
-            <div class="column">
-                <div class="card">
-                    Progress
-                </div>
-            </div>
-        </div> -->
-
-        <!-- <div class="taskWrapper">
-            <div ondragleave="hideEmptyDiv('divToDo')" ondragover="allowDrop(event), showEmptyDiv('divToDo')" ondrop="moveTo('toDo')" id="divToDo" class="column"></div>
-            <div ondragleave="hideEmptyDiv('divInProgress')" ondragover="allowDrop(event), showEmptyDiv('divInProgress')" ondrop="moveTo('inProgress')" id="divInProgress" class="column"></div>
-            <div ondragleave="hideEmptyDiv('divAwaitFeedback')" ondragover="allowDrop(event), showEmptyDiv('divAwaitFeedback')" ondrop="moveTo('awaitFeedback')" id="divAwaitFeedback" class="column"></div>
-            <div ondragleave="hideEmptyDiv('divDone')" ondragover="allowDrop(event), showEmptyDiv('divDone')" ondrop="moveTo('done')" id="divDone" class="column"></div>
-        </div> -->
