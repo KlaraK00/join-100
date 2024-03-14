@@ -1,5 +1,9 @@
 let letters = [];
 
+/**
+ * Initialisiert die Kontakte, lädt sie und rendert sie, wenn der Benutzer eingeloggt ist.
+ * Zeigt andernfalls einen Fehler an.
+ */
 async function initContacts(){
     loadLoggedIn();
     if(loggedIn) {
@@ -12,6 +16,9 @@ async function initContacts(){
     }
 }
 
+/**
+ * Öffnet das Overlay zum Hinzufügen eines neuen Kontakts.
+ */
 function addNewContact(){
     document.getElementById('overlay-add-contact').classList.remove('d-none');
     document.getElementById('overlay-add-contact').classList.add('d-flex');
@@ -19,6 +26,10 @@ function addNewContact(){
     document.getElementById('overlay-add-contact').innerHTML = createNewContactHTML();
 }
 
+/**
+ * Öffnet das Overlay zum Bearbeiten eines vorhandenen Kontakts.
+ * @param {number} i - Der Index des zu bearbeitenden Kontakts.
+ */
 function editContact(i){
     document.getElementById('overlay-edit-contact').classList.remove('d-none');
     document.getElementById('overlay-edit-contact').classList.add('d-flex');
@@ -26,18 +37,28 @@ function editContact(i){
     document.getElementById('overlay-edit-contact').innerHTML = createEditContactHTML(i);
 }
 
+/**
+ * Schließt das Overlay zum Hinzufügen eines neuen Kontakts.
+ */
 function closeNewContactWindow(){
     document.getElementById('overlay-add-contact').classList.add('d-none');
     document.getElementById('overlay-add-contact').classList.remove('d-flex');
     document.getElementById('overlay-add-contact').classList.remove('overlay-add-contact');
 }
 
+/**
+ * Schließt das Overlay zum Bearbeiten eines vorhandenen Kontakts.
+ */
 function closeEditContactWindow(){
     document.getElementById('overlay-edit-contact').classList.add('d-none');
     document.getElementById('overlay-edit-contact').classList.remove('d-flex');
     document.getElementById('overlay-edit-contact').classList.remove('overlay-add-contact');
 }
 
+/**
+ * Erstellt einen neuen Kontakt basierend auf den eingegebenen Informationen.
+ * Speichert den Kontakt und aktualisiert dann die Anzeige.
+ */
  async function createAContact(){
     let mail = document.getElementById('contactMail');
     let number = document.getElementById('contactNumber');
@@ -61,30 +82,49 @@ function closeEditContactWindow(){
     showOverlayCreated();
 }
 
+/**
+ * Extrahiert den Vornamen aus dem Eingabefeld für den Kontakt.
+ * @returns {string} Der Vornamen des Kontakts.
+ */
 function getFirstName1() {
     let name = document.getElementById('contactName');
     let nameArray = name.value.split(' ');
     return nameArray[0];
 }
 
+/**
+ * Extrahiert den Nachnamen aus dem Eingabefeld für den Kontakt.
+ * @returns {string} Der Nachnamen des Kontakts.
+ */
 function getLastName1() {
     let name = document.getElementById('contactName');
     let nameArray = name.value.split(' ');
     return nameArray[nameArray.length -1];
 }
 
+/**
+ * Extrahiert den Vornamen aus dem Eingabefeld für die Bearbeitung des Kontakts.
+ * @returns {string} Der Vornamen des Kontakts.
+ */
 function getFirstName2() {
     let name = document.getElementById('editName');
     let nameArray = name.value.split(' ');
     return nameArray[0];
 }
 
+/**
+ * Extrahiert den Nachnamen aus dem Eingabefeld für die Bearbeitung des Kontakts.
+ * @returns {string} Der Nachnamen des Kontakts.
+ */
 function getLastName2() {
     let name = document.getElementById('editName');
     let nameArray = name.value.split(' ');
     return nameArray[nameArray.length -1];
 }
 
+/**
+ * Zeigt die Initialen des aktuellen Kontakts an.
+ */
 function showInitials(){
     let firstName = getFirstName1();
     let lastName = getLastName1();
@@ -92,6 +132,9 @@ function showInitials(){
     document.getElementById('initials').innerHTML = initials;
 }
 
+/**
+ * Rendert die Kontakte in der Benutzeroberfläche.
+ */
 function renderContact(){
     for (let i = 0; i < contacts.length; i++) {
         const contact = contacts[i]['firstName'];
@@ -100,6 +143,10 @@ function renderContact(){
     }
 }
 
+/**
+ * Löscht einen Kontakt anhand seines Index.
+ * @param {number} i - Der Index des zu löschenden Kontakts.
+ */
 async function deleteContact(i){
     document.getElementById(`contact-info${i}`).remove();
     if (previousContact === i) {
@@ -113,6 +160,10 @@ async function deleteContact(i){
     showOverlayDeleted();
 }
 
+/**
+ * Löscht einen bearbeiteten Kontakt anhand seines Index.
+ * @param {number} i - Der Index des zu löschenden Kontakts.
+ */
 async function deleteEditContact(i){
     contacts.splice(i, 1);
     await saveContact();
@@ -123,6 +174,10 @@ async function deleteEditContact(i){
     showOverlayDeleted();
 }
 
+/**
+ * Zeigt die Details eines Kontakts auf dem Desktop an.
+ * @param {number} i - Der Index des anzuzeigenden Kontakts.
+ */
 function showContactDesktop(i){
     document.getElementById('show-contact-infos').innerHTML = '';
     document.getElementById('show-contact-infos').innerHTML += createShowContactHTML(i);
@@ -138,6 +193,10 @@ function showContactDesktop(i){
     previousContact = i
 }
 
+/**
+ * Entscheidet, ob die Details eines Kontakts auf mobilen Gerät oder Desktop angezeigt werden sollen.
+ * @param {number} i - Der Index des anzuzeigenden Kontakts.
+ */
 function showContact(i){
     if (window.innerWidth < 1090){
         showContactMobile(i);
@@ -146,6 +205,10 @@ function showContact(i){
     }
 }
 
+/**
+ * Zeigt die Details eines Kontakts auf mobilen Geräten an.
+ * @param {number} i - Der Index des anzuzeigenden Kontakts.
+ */
 function showContactMobile(i){
     document.getElementById('show-contact-infos').innerHTML = '';
     document.getElementById('show-contact-infos').innerHTML += createShowContactHTML(i);
@@ -161,12 +224,18 @@ function showContactMobile(i){
     previousContact = i;
 }
 
+/**
+ * Wechselt zur Kontaktliste-Ansicht.
+ */
 function backToList(){
     document.getElementById('right-side').classList.remove('z-index');
     document.getElementById('mobile-menu').classList.add('d-none');
     document.getElementById('blue-underline').classList.add('d-none');
 }
 
+/**
+ * Öffnet das mobile Menü für die Kontakte.
+ */
 function openMobileMenu(){
     document.getElementById('mobile-menu').classList.add('d-none');
     document.getElementById('edit-delete-mobile').classList.remove('d-none');
@@ -177,12 +246,18 @@ function openMobileMenu(){
     }) 
 }
 
+/**
+ * Zeigt das Overlay für die Kontaktinformationen an.
+ */
 function showOverlayContact() {
     setTimeout(() => {
       document.getElementById('show-contact-infos').classList.add('show-contact-infos');
     }, 225);
 }
 
+/**
+ * Zeigt das Overlay für die Erfolgsmeldung bei der Kontakt-Erstellung an.
+ */
 function showOverlayCreated() {
     document.getElementById('successfully-created').classList.add('show-successfully-created');
     setTimeout(() => {
@@ -190,6 +265,9 @@ function showOverlayCreated() {
     }, 2000);
 }
 
+/**
+ * Zeigt das Overlay für die Erfolgsmeldung bei der Kontaktlöschung an.
+ */
 function showOverlayDeleted() {
     document.getElementById('successfully-deleted').classList.add('show-successfully-deleted');
     setTimeout(() => {
@@ -197,6 +275,9 @@ function showOverlayDeleted() {
     }, 2000);
 }
 
+/**
+ * Zeigt das Overlay für die Erfolgsmeldung bei der Kontaktspeicherung an.
+ */
 function showOverlaySaved() {
     document.getElementById('successfully-saved').classList.add('show-successfully-saved');
     setTimeout(() => {
@@ -204,6 +285,10 @@ function showOverlaySaved() {
     }, 2000);
 }
 
+/**
+ * Bearbeitet einen vorhandenen Kontakt.
+ * @param {number} i - Der Index des zu bearbeitenden Kontakts.
+ */
 async function editAContact(i){
     contacts.splice(i, 1);
     let mail = document.getElementById('editMail');
@@ -228,6 +313,9 @@ async function editAContact(i){
     showOverlaySaved();
 }
 
+/**
+ * Füllt das Array 'letters' mit den Anfangsbuchstaben der Kontakte.
+ */
 function fillLetters() {
     letters = [];
     for (let i = 0; i < contacts.length; i++) {
@@ -240,6 +328,9 @@ function fillLetters() {
     letters.sort();
 }
 
+/**
+ * Lädt die Anfangsbuchstaben der Kontakte in die Benutzeroberfläche.
+ */
 function loadLetters() {
     let container = document.getElementById('contact-area');
     container.innerHTML = '';
