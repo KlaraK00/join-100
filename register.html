@@ -6,6 +6,7 @@
     <title>Register</title>
     <link rel="stylesheet" href="./styles/style.css">
     <link rel="stylesheet" href="./styles/index.css">
+    <link rel="stylesheet" href="/styles/storage.css">
     <script src="./js/storageToken.js" defer></script>
     <script src="./js/storage.js" defer></script>
     <script src="./js/register.js" defer></script>
@@ -13,6 +14,8 @@
     <link rel="icon" type="image/x-icon" href="/img/join_logo.png">
 </head>
 <body onload="initRegister()">
+    <div class="savingError d-none"><div class="savingError1">Sorry for saving error! <button onclick="closeSavingError()" class="savingErrorButton">OK</button></div></div>
+    <div class="loadingError d-none"><div class="loadingError1">Sorry for loading error! <button onclick="closeLoadingError()" class="loadingErrorButton">OK</button></div></div>
     <dialog></dialog>
     <dialog class="fontSize16 registerDialog">
         <span class="darkBtn">You Signed Up successfully</span>

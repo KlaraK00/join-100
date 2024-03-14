@@ -1,0 +1,57 @@
+.savingError {
+    position: absolute;
+    top: 20px;
+    z-index: 1000;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.savingError1 {
+    width: 300px;
+    background-color: #2a3647;
+    height: 40px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    color: white;
+}
+
+.savingErrorButton {
+    background-color: #29ABE2;
+    margin-left: 20px;
+    padding: 5px;
+}
+
+.loadingError {
+    position: absolute;
+    top: 20px;
+    z-index: 1000;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.loadingError1 {
+    width: 300px;
+    background-color: #2a3647;
+    height: 40px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    color: white;
+}
+
+.loadingErrorButton {
+    background-color: #29ABE2;
+    margin-left: 20px;
+    padding: 5px;
+}

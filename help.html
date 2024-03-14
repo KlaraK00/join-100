@@ -6,12 +6,15 @@
     <title>Help</title>
     <script src="/js/navBar.js"></script>
     <link rel="stylesheet" href="/styles/help.css">
+    <link rel="stylesheet" href="/styles/storage.css">
     <script src="js/header.js"></script>
     <link rel="icon" type="image/x-icon" href="/img/join_logo.png">
 </head>
 <body onload="includeHTML()">
     <div w3-include-html="/templates/navBar.html"></div>
     <div w3-include-html="/templates/header.html"></div>
+    <div class="savingError d-none"><div class="savingError1">Sorry for saving error! <button onclick="closeSavingError()" class="savingErrorButton">OK</button></div></div>
+    <div class="loadingError d-none"><div class="loadingError1">Sorry for loading error! <button onclick="closeLoadingError()" class="loadingErrorButton">OK</button></div></div>
     <div class="main-help-container">
         <img onclick="history.back()" class="arrow" src="/img/arrow-left-line.png" alt="">
         <h1>Help</h1> 
