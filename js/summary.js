@@ -108,9 +108,31 @@ function updateTaskStatusLength(taskCounts, elements) {
 
 // ##############################################
 
+function parseDate(dateString) {
+  return new Date(dateString);
+}
+function sortTasks() {
+  tasks.sort(function(a, b) {
+    return parseDate(a.date) - parseDate(b.date);
+});
+}
+
+function formatDateToDE() {
+  const earliestDate = tasks[0].date;
+  const dateObj = new Date(earliestDate);
+  const options = { day: 'numeric', month: 'long', year: 'numeric' };
+  const formattedDate = dateObj.toLocaleDateString('de-DE', options);
+  return formattedDate;
+}
+
+function addFormattedDateToSummaryHtml() {
+  let deadlineContainer = document.getElementById('deadline');
+  deadlineContainer.innerHTML = `${formatDateToDE()}`;
+}
+
 function addUpcomingDeadlineToSummary() {
-  const todayTimestamp = new Date().getTime();
-// const todayDate = new Date(todayTimestamp);
+  sortTasks();
+  addFormattedDateToSummaryHtml();
 }
 
 // ##############################################
