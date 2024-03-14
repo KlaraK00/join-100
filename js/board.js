@@ -852,6 +852,12 @@ function editEditSubtaskInputValue(i, taskCreatedAt) {
     renderBoardPopUpEditSubtasks(task);
 }
 
+function deleteEditTaskSubtask(i, taskCreatedAt) {
+    let task = tasks.find(t => t.createdAt == taskCreatedAt);
+    editTaskSubtasks.splice(i, 1);
+    renderBoardPopUpEditSubtasks(task);
+}
+
 function setBlueBorderBottom(i) {
     let editTaskSubtaskParent = document.getElementById(`editTaskSubtaskParent${i}`);
     editTaskSubtaskParent.classList.add('blueBorderBottom');
