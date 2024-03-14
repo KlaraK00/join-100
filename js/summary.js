@@ -1,6 +1,5 @@
 /**
  * Starts the application.
- * This function greets the current user.
  */
 async function start() {
   loadCurrentUser();
@@ -17,8 +16,6 @@ async function start() {
     showLogInError();
   }
 }
-
-// ##############################################
 
 /**
  * Greets the current user by displaying their first name along with a greeting based on the time of the day.
@@ -52,7 +49,10 @@ function generateGreeting() {
   return greeting;
 }
 
-// ##############################################
+/**
+ * Counts the number of tasks by their status.
+ * @returns {Object} An object containing the count of tasks for each status.
+ */
 function countTasksByStatus() {
   const doneTasksCount = tasks.filter((task) => task.status === "done").length;
   const inProgressTasksCount = tasks.filter((task) => task.status === "inProgress").length;
@@ -69,7 +69,7 @@ function countTasksByStatus() {
 }
 
 /**
- * Fügt die Aufgabenstatuslängen der Zusammenfassung hinzu.
+ * Adds the task status lengths to the summary.
  */
 function addTasksStatusLengthToSummary() {
   const taskCounts = countTasksByStatus();
@@ -78,8 +78,8 @@ function addTasksStatusLengthToSummary() {
 }
 
 /**
- * Ruft die Container-Elemente für die Aufgabenstatuslängen ab.
- * @returns {Object} Ein Objekt mit den Container-Elementen für die Aufgabenstatuslängen.
+ * Retrieves the container elements for the task status lengths.
+ * @returns {Object} An object containing the container elements for the task status lengths.
  */
 function getTaskCountContainers() {
   return {
@@ -93,9 +93,9 @@ function getTaskCountContainers() {
 }
 
 /**
- * Aktualisiert die Aufgabenstatuslängen in den entsprechenden HTML-Containern.
- * @param {Object} taskCounts - Ein Objekt, das die Anzahl der Aufgaben nach Status enthält.
- * @param {Object} elements - Ein Objekt mit den Container-Elementen für die Aufgabenstatuslängen.
+ * Updates the task status lengths in the corresponding HTML containers.
+ * @param {Object} taskCounts - An object containing the count of tasks by status.
+ * @param {Object} elements - An object containing the container elements for the task status lengths.
  */
 function updateTaskStatusLength(taskCounts, elements) {
   const allOpenTasks = taskCounts.done + taskCounts.inProgress + taskCounts.toDo + taskCounts.awaitingFeedback + taskCounts.urgent;
@@ -106,18 +106,28 @@ function updateTaskStatusLength(taskCounts, elements) {
   elements.urgentFeedback.innerHTML = taskCounts.urgent;
   elements.tasksInBoard.innerHTML = allOpenTasks;
 }
-
-// ##############################################
-
+/**
+ * Parses a date string into a JavaScript Date object.
+ * @param {string} dateString - The date string to parse.
+ * @returns {Date} A JavaScript Date object representing the parsed date.
+ */
 function parseDate(dateString) {
   return new Date(dateString);
 }
+
+/**
+ * Sorts the tasks array by their date values.
+ */
 function sortTasks() {
   tasks.sort(function(a, b) {
     return parseDate(a.date) - parseDate(b.date);
-});
+  });
 }
 
+/**
+ * Formats the earliest task date to German date format.
+ * @returns {string} The formatted date string.
+ */
 function formatDateToDE() {
   const earliestDate = tasks[0].date;
   const dateObj = new Date(earliestDate);
@@ -126,25 +136,31 @@ function formatDateToDE() {
   return formattedDate;
 }
 
+/**
+ * Adds the formatted date to the summary HTML.
+ */
 function addFormattedDateToSummaryHtml() {
   let deadlineContainer = document.getElementById('deadline');
   deadlineContainer.innerHTML = `${formatDateToDE()}`;
 }
 
+/**
+ * Adds the upcoming deadline to the summary.
+ */
 function addUpcomingDeadlineToSummary() {
   sortTasks();
   addFormattedDateToSummaryHtml();
 }
 
-// ##############################################
-
+/**
+ * Displays a login error message and hides the summary container.
+ */
 function showLogInError() {
   var logInError = document.querySelector('.error-container');
-  logInError.classList.remove('d-none')
-  document.getElementById('summaryContainerWrapper').classList.add('d-none')
+  logInError.classList.remove('d-none');
+  document.getElementById('summaryContainerWrapper').classList.add('d-none');
 }
 
-// ##############################################
 /**
  * Sets the value in localStorage to true to indicate that the summary is first visited.
  */
@@ -252,5 +268,3 @@ function displayMainContentOnNormalScreenSize() {
     headline.classList.remove("d-none");
   }
 }
-
-// ##############################################
