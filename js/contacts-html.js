@@ -66,7 +66,7 @@ function createNewContactHTML() {
             <form onsubmit="createAContact(); return false">
                 <div class="input-fields">
                     <input id="contactName" class="input background-img-profile" placeholder="Name" required>
-                    <input id="contactMail" class="input background-img-mail" placeholder="Email" required>
+                    <input id="contactMail" class="input background-img-mail" placeholder="Email" type="email" required>
                     <input id="contactNumber" class="input background-img-phone" placeholder="Phone" required>
                 </div>
                 <div class="add-contact-button">
@@ -97,7 +97,7 @@ function createEditContactHTML(i) {
             <form onsubmit="editAContact(${i}); return false">
                 <div class="input-fields">
                     <input id="editName" class="input background-img-profile" value="${contacts[i]['firstName']} ${contacts[i]['lastName']}" required>
-                    <input id="editMail" class="input background-img-mail" value="${contacts[i]['mail']}" required>
+                    <input id="editMail" class="input background-img-mail" value="${contacts[i]['mail']}" type="email" required>
                     <input id="editNumber" class="input background-img-phone" value="${contacts[i]['number']}" required>
                 </div>
                 <div class="add-contact-button">
