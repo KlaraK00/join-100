@@ -57,7 +57,7 @@ function countTasksByStatus() {
   const inProgressTasksCount = tasks.filter((task) => task.status === "inProgress").length;
   const toDoTasksCount = tasks.filter((task) => task.status === "toDo").length;
   const awaitingFeedbackTasksCount = tasks.filter((task) => task.status === "awaitFeedback").length;
-  const urgentFeedbackTasksCount = tasks.filter((task) => task.status === "urgent").length;
+  const urgentFeedbackTasksCount = tasks.filter((task) => task.prio === "urgent").length;
   return {
     done: doneTasksCount,
     inProgress: inProgressTasksCount,
@@ -108,7 +108,12 @@ function updateTaskStatusLength(taskCounts, elements) {
 
 // ##############################################
 
+function addUpcomingDeadlineToSummary() {
+  const todayTimestamp = new Date().getTime();
+// const todayDate = new Date(todayTimestamp);
+}
 
+// ##############################################
 
 function showLogInError() {
   var logInError = document.querySelector('.error-container');
