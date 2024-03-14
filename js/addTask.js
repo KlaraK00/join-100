@@ -1,5 +1,6 @@
 let tasks = [];
 let editTaskContacts;
+let selectedContacts = [];
 const TaskStatus = {
   TODO: "toDo",
   IN_PROGRESS: "inProgress",
@@ -76,10 +77,8 @@ function createTask() {
     return; // Exit the function 
   }
   let description = getInputValue("description");
-  let assignedToDropdown = document.getElementById("assign");
-  let contacts = Array.from(assignedToDropdown.selectedOptions)
-    .map((option) => Number(option.value)) // Convert to Number
-    .filter((value) => !isNaN(value) && value !== "preview"); //exlude preview from NaN
+  
+  let contacts = selectedContacts;
   let priority = getPriority();
   let category = getInputValue("category");
   let subtasksInput = getInputValue("subtasks");
@@ -103,6 +102,7 @@ function createTask() {
 
   pushTask(task);
   setItem("tasks", tasks);
+  selectedContacts = [];
 }
 
 function getPriority() {
@@ -137,28 +137,55 @@ function clearInput() {
 function toggleContactsDropdown() {
     const dropdown = document.getElementById('contactsDropdown');
     dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
-    // Optionally, call updateContactsDropdown here if you want to populate it every time it's toggled
+    
 }
 
-// Updated function to populate the dropdown div instead of a select element
 function updateContactsDropdown(contacts) {
     const contactsDropdown = document.getElementById("contactsDropdown");
-    // Clear existing content
+    const assignContactInput = document.querySelector(".assignContact");
+
     contactsDropdown.innerHTML = '';
 
-    // Iterate over the contacts array to add each contact as an option
     contacts.forEach((contact) => {
         const contactElement = document.createElement("div");
         contactElement.textContent = `${contact.firstName} ${contact.lastName}`;
         contactElement.classList.add("contact-option");
+
+        // Check if the contact is already selected
+        if (selectedContacts.includes(contact.createdAt)) {
+            // Add a class to indicate selection
+            contactElement.classList.add("selected");
+        }
+
         contactElement.onclick = function() {
-            document.querySelector('.assignContact').value = contact.firstName + ' ' + contact.lastName; // Example action
-            toggleContactsDropdown(); // Hide dropdown after selection
+            const index = selectedContacts.indexOf(contact.createdAt);
+            if (index > -1) {
+                // If already selected, remove from selection
+                selectedContacts.splice(index, 1);
+                contactElement.classList.remove("selected");
+            } else {
+                // If not selected, add to selection
+                selectedContacts.push(contact.createdAt);
+                contactElement.classList.add("selected");
+            }
+            updateAssignContactInput();
         };
-        // Additional styles or classes for contactElement can be added here
+
         contactsDropdown.appendChild(contactElement);
     });
+
+    function updateAssignContactInput() {
+        const selectedContactsNames = contacts.filter(contact => 
+            selectedContacts.includes(contact.createdAt))
+            .map(contact => `${contact.firstName} ${contact.lastName}`);
+        
+        assignContactInput.value = selectedContactsNames.join(", ");
+    }
 }
+
+
+
+
 
 
 
