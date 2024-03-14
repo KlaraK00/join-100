@@ -391,8 +391,33 @@ body {
     z-index: -1;
 }
 
+.editEditSubtaskInput {
+    border:none;
+    outline: none;
+    height: 100%;
+    width: 100%;
+}
+
+.blueBorderBottom{    
+    border-bottom: 1px solid #29ABE2;
+    border-radius: 0;
+}
+
+.animationRightSlideOut {
+    animation: rightSlideOut 225ms forwards !important;
+}
+
 .animationRightSlideIn {
-    animation: rightSlideIn 1s forwards;
+    animation: rightSlideIn 225ms forwards;
+}
+
+@keyframes rightSlideOut {
+    from {
+        transform: translateX();
+    }
+    to {
+        transform: translateX(100vw);
+    }
 }
 
 @keyframes rightSlideIn {

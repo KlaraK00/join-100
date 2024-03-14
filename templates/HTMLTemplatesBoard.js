@@ -148,3 +148,25 @@ function HTMLTemplatePopUpBoardEditSelectContacts(contact, task, search) {
         </div>
     `;
 }
+
+function HTMLTemplatePopUpBoardEditSubtasks(i, subtask, task) {
+    return /*html*/`<div id="editTaskSubtaskParent${i}" onmouseout="hideImgSubtasksDeleteAndEdit(${i})" onmouseover="showImgSubtasksDeleteAndEdit(${i})" class="height17 hoverGrey padBot5 borderRadius10 padTop5 dFlex alignCenter justBetween">
+            <li class="fontSize12 padLeft16 cursorPointer">${subtask.subtask}</li>
+            <div id="editTaskSubtask${i}" class="dFlex directionRow padRight10 d-none">
+                <img onclick="editEditTaskSubtask(${i}, '${task.createdAt}')" class="height17" src="./img/edit-black.png" alt="edit">
+                <div class="greyVerticalLineSubtasks17 marLeft3"></div>
+                <img onclick="deleteEditTaskSubtask(${i}, '${task.createdAt}')" class="height17 marLeft3" src="./img/delete.png" alt="delete">
+            </div>
+        </div>
+    `;
+}
+
+function HTMLTemplatePopUpBoardEditSubtasksEdit(i, taskCreatedAt) {
+    return /*html*/`<input onfocus="setBlueBorderBottom(${i})" onfocusout="removeBlueBorderBottom(${i})" id="editEditSubtaskInput${i}" class="editEditSubtaskInput padLeft16" value="${editTaskSubtasks[i].subtask}">
+        <div class="dFlex directionRow padRight10 alignCenter">
+            <img class="height17 cursorPointer" src="./img/delete.png" alt="delete">
+            <div class="greyVerticalLineSubtasks17 marLeft3"></div>
+            <img onclick="editEditSubtaskInputValue(${i}, '${taskCreatedAt}')" class="height10 marLeft6 cursorPointer" src="./img/checkBlack.png" alt="check">
+        </div>
+    `;
+}
