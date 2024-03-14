@@ -20,7 +20,7 @@ function HTMLTemplateTask(task) {
 
 function HTMLTemplatePopUpTask(task) {
     return /*html*/`<div class="dFlex alignCenter justCenter">
-            <div class="card posRelative alignStart" id="boardPopUpCard">
+            <div class="card posRelative alignStart" id="boardPopUpCard" onclick="event.stopPropagation()">
                 <img onclick="closeTask()" class="posAbsolute cursorPointer closeImgBoard" src="./img/Close.png" alt="close">
                 <div id="boardPopUpCategory${task.createdAt}">${task.category}</div>
                 <div class="headline">${task.title}</div>
@@ -80,7 +80,7 @@ function HTMLTemplatePopUpPriority(task) {
 
 function HTMLTemplatePopUpBoardEdit(task){
     return /*html*/`<div class="dFlex alignCenter justCenter">
-            <form onsubmit="saveEditedTask('${task.createdAt}', event)" class="card posRelative alignStart">
+            <form onsubmit="saveEditedTask('${task.createdAt}', event)" onclick="event.stopPropagation()" class="card posRelative alignStart">
                 <img onclick="closeTask()" class="posAbsolute cursorPointer closeImgBoard" src="./img/Close.png" alt="close">
                 <div class="dFlex directionColumn padTop35 width100Perc">
                     <label for="boardPopUpInputTitle" class="padBot5">Title</label>
