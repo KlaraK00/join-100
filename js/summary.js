@@ -12,6 +12,7 @@ async function start() {
     await loadTasks();
     greetCurrentUser();
     addTasksStatusLengthToSummary();
+    addUpcomingDeadlineToSummary();
   } else {
     showLogInError();
   }
