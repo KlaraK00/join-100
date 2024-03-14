@@ -485,7 +485,31 @@ body {
     }
 }
 
+@media(max-width: 420px) {
+    #boardTaskOverlay>div>div,
+    #boardTaskOverlay>div>form {
+        width: calc(100% - 10px);
+    }
+
+    div:has(>#boardPopUpEditLowBtn),
+    div:has(#boardPopUpEditMediumBtn),
+    div:has(#boardPopUpEditUrgentBtn) {
+        justify-content: center;
+    }
+}
+
 @media(max-width: 350px) {
+    #boardPopUpEditLowBtn,
+    #boardPopUpEditMediumBtn,
+    #boardPopUpEditUrgentBtn {
+        margin-left: 0px !important;
+        font-size: 14px
+    }
+
+    .boardPrioBtn img {
+        width: 12px;
+    }
+
     .menubar {
         margin-left: 10px;
         margin-right: 10px;
@@ -501,5 +525,28 @@ body {
         gap: 0;
         width: calc(100vw - 20px);
         justify-content: center;
+    }
+}
+
+@media(max-width: 300px) {
+    #boardPopUpEditLowBtn,
+    #boardPopUpEditMediumBtn,
+    #boardPopUpEditUrgentBtn {
+        margin-left: 0px !important;
+        font-size: 12px;
+    }
+
+    .boardPrioBtn {
+        width: 33%;
+        height: 30px;
+    }
+
+    .boardPrioBtn img {
+        width: 10px;
+    }
+
+    #boardPopUpSelectContactsToAssignDiv,
+    #boardPopUpSelectContacts {
+        font-size: 14px;
     }
 }
