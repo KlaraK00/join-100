@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacts</title>
     <link rel="stylesheet" href="./styles/contacts.css">
+    <link rel="stylesheet" href="/styles/storage.css">
     <script src="./js/storageToken.js" defer></script>
     <script src="./js/storage.js" defer></script>
     <script src="./js/register.js" defer></script>
@@ -19,6 +20,8 @@
 <body onload="init(), initContacts()">
     <div w3-include-html="/templates/navBar.html"></div>
     <div w3-include-html="/templates/header.html"></div>
+    <div class="savingError d-none"><div class="savingError1">Sorry for saving error! <button onclick="closeSavingError()" class="savingErrorButton">OK</button></div></div>
+    <div class="loadingError d-none"><div class="loadingError1">Sorry for loading error! <button onclick="closeLoadingError()" class="loadingErrorButton">OK</button></div></div>
     <div class="contact-container">
         <div class="d-none" id="overlay-add-contact"></div>
         <div class="d-none" id="overlay-edit-contact"></div>

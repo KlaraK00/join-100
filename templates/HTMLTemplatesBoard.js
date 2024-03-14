@@ -20,7 +20,7 @@ function HTMLTemplateTask(task) {
 
 function HTMLTemplatePopUpTask(task) {
     return /*html*/`<div class="dFlex alignCenter justCenter">
-            <div class="card posRelative alignStart" id="boardPopUpCard">
+            <div class="card posRelative alignStart" id="boardPopUpCard" onclick="event.stopPropagation()">
                 <img onclick="closeTask()" class="posAbsolute cursorPointer closeImgBoard" src="./img/Close.png" alt="close">
                 <div id="boardPopUpCategory${task.createdAt}">${task.category}</div>
                 <div class="headline">${task.title}</div>
@@ -80,7 +80,7 @@ function HTMLTemplatePopUpPriority(task) {
 
 function HTMLTemplatePopUpBoardEdit(task){
     return /*html*/`<div class="dFlex alignCenter justCenter">
-            <form onsubmit="saveEditedTask('${task.createdAt}', event)" class="card posRelative alignStart">
+            <form onsubmit="saveEditedTask('${task.createdAt}', event)" onclick="event.stopPropagation()" class="card posRelative alignStart">
                 <img onclick="closeTask()" class="posAbsolute cursorPointer closeImgBoard" src="./img/Close.png" alt="close">
                 <div class="dFlex directionColumn padTop35 width100Perc">
                     <label for="boardPopUpInputTitle" class="padBot5">Title</label>
@@ -145,6 +145,28 @@ function HTMLTemplatePopUpBoardEditSelectContacts(contact, task, search) {
                 <div class="dFlex alignCenter">${contact.firstName} ${contact.lastName}</div> 
             </div>
             <img id="boardEditTaskContactsCheckbox${contact.createdAt}" class="height20 marRight10" src="./img/checkboxNotChecked.png" alt="checkbox">
+        </div>
+    `;
+}
+
+function HTMLTemplatePopUpBoardEditSubtasks(i, subtask, task) {
+    return /*html*/`<div id="editTaskSubtaskParent${i}" onmouseout="hideImgSubtasksDeleteAndEdit(${i})" onmouseover="showImgSubtasksDeleteAndEdit(${i})" class="height17 hoverGrey padBot5 borderRadius10 padTop5 dFlex alignCenter justBetween">
+            <li class="fontSize12 padLeft16 cursorPointer">${subtask.subtask}</li>
+            <div id="editTaskSubtask${i}" class="dFlex directionRow padRight10 d-none">
+                <img onclick="editEditTaskSubtask(${i}, '${task.createdAt}')" class="height17" src="./img/edit-black.png" alt="edit">
+                <div class="greyVerticalLineSubtasks17 marLeft3"></div>
+                <img onclick="deleteEditTaskSubtask(${i}, '${task.createdAt}')" class="height17 marLeft3" src="./img/delete.png" alt="delete">
+            </div>
+        </div>
+    `;
+}
+
+function HTMLTemplatePopUpBoardEditSubtasksEdit(i, taskCreatedAt) {
+    return /*html*/`<input onfocus="setBlueBorderBottom(${i})" onfocusout="removeBlueBorderBottom(${i})" id="editEditSubtaskInput${i}" class="editEditSubtaskInput padLeft16" value="${editTaskSubtasks[i].subtask}">
+        <div class="dFlex directionRow padRight10 alignCenter">
+            <img class="height17 cursorPointer" src="./img/delete.png" alt="delete">
+            <div class="greyVerticalLineSubtasks17 marLeft3"></div>
+            <img onclick="editEditSubtaskInputValue(${i}, '${taskCreatedAt}')" class="height10 marLeft6 cursorPointer" src="./img/checkBlack.png" alt="check">
         </div>
     `;
 }

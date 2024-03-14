@@ -87,13 +87,47 @@ body {
 }
 
 .assign {
-    width: 440px; 
-    height: 80px;
-    top: 296px; 
+    position: relative; 
+    width: 440px;
     display: flex; 
     flex-direction: column;
-    gap: 4px;
+    gap: 8px;
 }
+
+.assign input, .contacts-dropdown {
+    box-sizing: border-box; 
+    width: 100%; 
+   
+}
+
+.assign input {
+    height: 48px;
+    border: 1px solid; 
+    border-radius: 10px;
+    padding: 12px 16px; 
+    font-size: 16px;
+    background-image: url('../img/arrow_drop_down.png'); 
+    background-position: right 10px top 20px; 
+    background-repeat: no-repeat; 
+}
+
+.contacts-dropdown {
+    position: absolute;
+    top: 100%; 
+    left: 0;
+    border: 1px solid #ccc;
+    border-top: none; 
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    background-color: white;
+    z-index: 1000;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+
+
+
 
 .dropdown select{
     width: 440px; 
@@ -105,14 +139,7 @@ body {
     padding-left: 10px;
 }
 
-select#assign {
-    appearance: none; 
-    -webkit-appearance: none; 
-    -moz-appearance: none; 
-    background-image: url('../img/arrow_drop_down.png'); 
-    background-position: right 8.39px top 20px;
-    background-repeat: no-repeat; 
-}
+
 
 .taskFrame2 {
     width: 50%;
@@ -369,7 +396,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         width: 396px;
     }
 
-    .dropdown select {
+    .assign input {
         width: 396px;
         height: 40px;
         font-size: 16px;
@@ -492,4 +519,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     .required-create {
         width: 300px;
     }
+}
+
+.contact-option.selected {
+    background-color: #e9ecef; 
+    border-radius: 5px;
+    padding: 5px;
 }

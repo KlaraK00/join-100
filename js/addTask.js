@@ -1,4 +1,6 @@
 let tasks = [];
+let editTaskContacts;
+let selectedContacts = [];
 const TaskStatus = {
   TODO: "toDo",
   IN_PROGRESS: "inProgress",
@@ -77,10 +79,8 @@ function createTask() {
     return; // Exit the function 
   }
   let description = getInputValue("description");
-  let assignedToDropdown = document.getElementById("assign");
-  let contacts = Array.from(assignedToDropdown.selectedOptions)
-    .map((option) => Number(option.value)) // Convert to Number
-    .filter((value) => !isNaN(value) && value !== "preview"); //exlude preview from NaN
+  
+  let contacts = selectedContacts;
   let priority = getPriority();
   let category = getInputValue("category");
   let subtasksInput = getInputValue("subtasks");
@@ -104,6 +104,7 @@ function createTask() {
 
   pushTask(task);
   setItem("tasks", tasks);
+  selectedContacts = [];
 }
 
 function getPriority() {
@@ -134,21 +135,60 @@ function clearInput() {
   location.reload();
 }
 
-function updateContactsDropdown(contacts) {
-  const assignDropdown = document.getElementById("assign");
-  // Clear existing options but keep preview
-  assignDropdown.innerHTML =
-    '<option value="preview">Select contacts to assign</option>';
+// Function to toggle the visibility of the contacts dropdown
+function toggleContactsDropdown() {
+    const dropdown = document.getElementById('contactsDropdown');
+    dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
+    
+}
 
-  // Iterate over the contacts array to add each contact as an option
-  contacts.forEach((contact) => {
-    const optionElement = document.createElement("option");
-    //use createdAt as a Unique ID to access contacts
-    optionElement.value = contact.createdAt;
-    optionElement.textContent = `${contact.firstName} ${contact.lastName}`;
-    assignDropdown.appendChild(optionElement);
-  });
+function updateContactsDropdown(contacts) {
+    const contactsDropdown = document.getElementById("contactsDropdown");
+    const assignContactInput = document.querySelector(".assignContact");
+
+    contactsDropdown.innerHTML = '';
+
+    contacts.forEach((contact) => {
+        const contactElement = document.createElement("div");
+        contactElement.textContent = `${contact.firstName} ${contact.lastName}`;
+        contactElement.classList.add("contact-option");
+
+        // Check if the contact is already selected
+        if (selectedContacts.includes(contact.createdAt)) {
+            // Add a class to indicate selection
+            contactElement.classList.add("selected");
+        }
+
+        contactElement.onclick = function() {
+            const index = selectedContacts.indexOf(contact.createdAt);
+            if (index > -1) {
+                // If already selected, remove from selection
+                selectedContacts.splice(index, 1);
+                contactElement.classList.remove("selected");
+            } else {
+                // If not selected, add to selection
+                selectedContacts.push(contact.createdAt);
+                contactElement.classList.add("selected");
+            }
+            updateAssignContactInput();
+        };
+
+        contactsDropdown.appendChild(contactElement);
+    });
+
+    function updateAssignContactInput() {
+        const selectedContactsNames = contacts.filter(contact => 
+            selectedContacts.includes(contact.createdAt))
+            .map(contact => `${contact.firstName} ${contact.lastName}`);
+        
+        assignContactInput.value = selectedContactsNames.join(", ");
+    }
 }
 
 
-function createSubtask() {}
+
+
+
+
+
+

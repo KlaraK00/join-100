@@ -417,10 +417,14 @@ function openTask(taskCreatedAt) {
 }
 
 function closeTask() {
-    let boardTaskOverlay = document.getElementById('boardTaskOverlay');
-    boardTaskOverlay.innerHTML = '';
-    editTaskContacts = undefined;
-    editTaskSubtasks = undefined;
+    let boardTaskOverlayChildElement = document.getElementById('boardTaskOverlay').firstElementChild;
+    boardTaskOverlayChildElement.firstElementChild.classList.add('animationRightSlideOut');
+    setTimeout(() => {
+        let boardTaskOverlay = document.getElementById('boardTaskOverlay');
+        boardTaskOverlay.innerHTML = '';
+        editTaskContacts = undefined;
+        editTaskSubtasks = undefined;
+    }, 500);
 }
 
 function renderDatePopUpBoard(task) {
@@ -533,8 +537,10 @@ function boardPopUpEdit(id) {
     let boardTaskOverlay = document.getElementById('boardTaskOverlay');
     boardTaskOverlay.innerHTML = '';
     boardTaskOverlay.innerHTML = HTMLTemplatePopUpBoardEdit(task);
-    editTaskContacts = task.contacts.slice();
-    editTaskSubtasks = task.subtasks.slice();
+    // editTaskContacts = task.contacts; // geht nicht, sonst beide gleichzeitig verändert
+    editTaskContacts = task.contacts.slice(); // erstellt eine tiefe Kopie (jedoch nicht für Unterobjekte)
+    editTaskSubtasks = JSON.parse(JSON.stringify(task.subtasks)); // dies erstellt eine tiefe Kopie des Arrays 'subtasks', sodass 'editTaskSubtasks' und 'task.subtasks' auf separate Arrays mit separaten Unterobjekten verweisen, und Änderungen an einem haben keinen Einfluss auf das andere.
+    // editTaskSubtasks = task.subtasks.slice(); // wenn ich Unterobjekte verändern will bei einem Array, wird das andere Array gleichzeitig verändert
     renderBoardPopUpEditDate(task);
     renderBoardPopUpEditPrio(task);
     renderBoardPopUpEditContacts(task);
@@ -645,15 +651,7 @@ function renderBoardPopUpEditSubtasks(task) {
     div.innerHTML = '';
     for (let i = 0; i < editTaskSubtasks.length; i++) {
         let subtask = editTaskSubtasks[i];
-        div.innerHTML += /*html*/`<div onmouseout="hideImgSubtasksDeleteAndEdit(${i})" onmouseover="showImgSubtasksDeleteAndEdit(${i})" class="height17 hoverGrey padBot5 borderRadius10 padTop5 dFlex alignCenter justBetween">
-                <li class="fontSize12 padLeft16 cursorPointer">${subtask.subtask}</li>
-                <div id="editTaskSubtask${i}" class="dFlex directionRow padRight10">
-                    <img class="height17" src="./img/edit-black.png" alt="edit">
-                    <div class="greyVerticalLineSubtasks17 marLeft3"></div>
-                    <img class="height17 marLeft3" src="./img/delete.png" alt="delete">
-                </div>
-            </div>
-        `;
+        div.innerHTML += HTMLTemplatePopUpBoardEditSubtasks(i, subtask, task);
     }
 }
 
@@ -816,11 +814,56 @@ function removeAnimationRightSlideIn(id) {
 }
 
 function showImgSubtasksDeleteAndEdit(i) {
-    let subtask = document.getElementById(`editTaskSubtask${i}`);
-    subtask.classList.remove('d-none');
+    if(editEditSubtaskInputExists(i)) {
+        let subtask = document.getElementById(`editTaskSubtask${i}`);
+        subtask.classList.remove('d-none');
+    }
+}
+
+function editEditSubtaskInputExists(i) {
+    let editEditSubtaskInput = document.getElementById(`editEditSubtaskInput${i}`);
+    return !editEditSubtaskInput;
 }
 
 function hideImgSubtasksDeleteAndEdit(i) {
-    let subtask = document.getElementById(`editTaskSubtask${i}`);
-    subtask.classList.add('d-none');
+    if(editEditSubtaskInputExists(i)) {
+        let subtask = document.getElementById(`editTaskSubtask${i}`);
+        subtask.classList.add('d-none');
+    }
+}
+
+function deleteEditTaskSubtask(i, taskCreatedAt) {
+    let task = tasks.find(t => t.createdAt == taskCreatedAt);
+    editTaskSubtasks.splice(i, 1);
+    renderBoardPopUpEditSubtasks(task);
+}
+
+function editEditTaskSubtask(i, taskCreatedAt) {
+    let editTaskSubtaskParent = document.getElementById(`editTaskSubtaskParent${i}`);
+    editTaskSubtaskParent.classList.remove('hoverGrey');
+    editTaskSubtaskParent.innerHTML = '';
+    editTaskSubtaskParent.innerHTML = HTMLTemplatePopUpBoardEditSubtasksEdit(i, `${taskCreatedAt}`);
+}
+
+function editEditSubtaskInputValue(i, taskCreatedAt) {
+    let task = tasks.find(t => t.createdAt == taskCreatedAt);
+    let editEditSubtaskInput = document.getElementById(`editEditSubtaskInput${i}`);
+    editTaskSubtasks[i].subtask = editEditSubtaskInput.value;
+    renderBoardPopUpEditSubtasks(task);
+}
+
+function deleteEditTaskSubtask(i, taskCreatedAt) {
+    let task = tasks.find(t => t.createdAt == taskCreatedAt);
+    editTaskSubtasks.splice(i, 1);
+    renderBoardPopUpEditSubtasks(task);
+}
+
+function setBlueBorderBottom(i) {
+    let editTaskSubtaskParent = document.getElementById(`editTaskSubtaskParent${i}`);
+    editTaskSubtaskParent.classList.add('blueBorderBottom');
+}
+
+function removeBlueBorderBottom(i) {
+    let editTaskSubtaskParent = document.getElementById(`editTaskSubtaskParent${i}`);
+    editTaskSubtaskParent.classList.remove('blueBorderBottom');
 }

@@ -111,7 +111,9 @@ function updateTaskStatusLength(taskCounts, elements) {
 
 
 function showLogInError() {
-  document.body.innerHTML = 'sorry for loading error';
+  var logInError = document.querySelector('.error-container');
+  logInError.classList.remove('d-none')
+  document.getElementById('summaryContainerWrapper').classList.add('d-none')
 }
 
 // ##############################################
