@@ -10,7 +10,14 @@
 async function setItem(key, value) {
     let payload = {key, value, token: STORAGE_TOKEN};
     try {
-        tryToSetItem(payload);
+        let response = await fetch(STORAGE_URL, {method: 'POST', body: JSON.stringify(payload)});
+        if (response.ok) {
+            let responseAsJson = await response.json();
+            return responseAsJson;
+        } else {
+            throw response.status;
+        }
+        // tryToSetItem(payload);
     } catch {
         showSavingError();
     }
@@ -23,15 +30,15 @@ async function setItem(key, value) {
  * @returns {object} - The response as json of a promise.
  * @throws {number} - The HTTP status code returned by the server if the storage operation fails.
  */
-async function tryToSetItem(payload) {
-    let response = await fetch(STORAGE_URL, {method: 'POST', body: JSON.stringify(payload)});
-    if (response.ok) {
-        let responseAsJson = await response.json();
-        return responseAsJson;
-    } else {
-        throw response.status;
-    }
-}
+// async function tryToSetItem(payload) {
+//     let response = await fetch(STORAGE_URL, {method: 'POST', body: JSON.stringify(payload)});
+//     if (response.ok) {
+//         let responseAsJson = await response.json();
+//         return responseAsJson;
+//     } else {
+//         throw response.status;
+//     }
+// }
 
 /**
  * This function shows that a saving error occured.
@@ -50,7 +57,14 @@ function showSavingError() {
 async function getItem(key) {
     let url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
     try {
-        tryToGetItem(url);
+        // tryToGetItem(url);
+    let response = await fetch(url);
+    if (response.ok) {
+        let responseAsJson = await response.json();
+        return getValueFromJson(responseAsJson);
+    } else {
+        throw response.status;
+    }
     } catch {
         showLoadingError();
     }
@@ -63,15 +77,15 @@ async function getItem(key) {
  * @returns {object} - The response as json of a promise.
  * @throws {number} - The HTTP status code returned by the server if an error occurs during the fetching process.
  */
-async function tryToGetItem(url) {
-    let response = await fetch(url);
-    if (response.ok) {
-        let responseAsJson = await response.json();
-        return getValueFromJson(responseAsJson);
-    } else {
-        throw response.status;
-    }
-}
+// async function tryToGetItem(url) {
+//     let response = await fetch(url);
+//     if (response.ok) {
+//         let responseAsJson = await response.json();
+//         return getValueFromJson(responseAsJson);
+//     } else {
+//         throw response.status;
+//     }
+// }
 
 /**
  * This function returns the value from a JSON.
