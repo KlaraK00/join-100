@@ -9,7 +9,7 @@ body {
 }
 
 .legal-notice-container {
-    margin-top: 206px;
+    margin-top: 150px;
     margin-left: 328px;
     margin-bottom: 40px;
     margin-right: 40px;
@@ -45,7 +45,7 @@ p {
 
 .arrow {
     position: fixed;
-    top: 225px;
+    top: 150px;
     right: 40px;
 }
 

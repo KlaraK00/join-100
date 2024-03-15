@@ -19,7 +19,6 @@ a {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 100vh;
     width: 100%;
 }
 
@@ -259,8 +258,6 @@ a {
 
 .greeting-content {
     /* width: 400px; */
-
-
 }
 
 .name-container {
@@ -418,7 +415,6 @@ a {
     .headline {
         padding-top: 0;
         padding-bottom: 20px;
-
     }
 }
 
@@ -468,7 +464,6 @@ a {
 
     .overview-container {
         width: 90%;
-
     }
 
     .task-container {
@@ -500,7 +495,6 @@ a {
     .task-container {
         min-width: 100px;
         min-height: 100px;
-
     }
 
     .overview-container {
@@ -517,7 +511,6 @@ a {
     .task-container {
         min-width: 90px;
         min-height: 90px;
-
     }
 }
 
@@ -544,11 +537,4 @@ a {
         word-wrap: break-word;
         text-wrap: wrap;
     }
-}
-
-@media screen and (max-height: 905px) {
- .summary-container {
-    margin-top: ;
-    margin-bottom: 30%;
- }
 }

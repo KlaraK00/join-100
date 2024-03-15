@@ -26,11 +26,11 @@ body {
     width: calc(100vw - 360px);
     margin-bottom: 40px;
     max-width: 1440px;
-    margin-top: 175.5px;
+    margin-top: 100px;
     margin-left: 296px;
 }
 
-.headline {
+.headline-board {
     display: flex;
     align-items: center;
     gap: 1px; 
@@ -535,7 +535,7 @@ body {
         width: 100%;
     }
 
-    .headline {
+    .headline-board {
         justify-content: space-between;
         font-size: 47px;
     }
