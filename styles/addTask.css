@@ -363,6 +363,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     color: rgb(41,171,226);
     border-color: rgb(41,171,226);
 }
+.clear:hover img {
+    color: rgb(41,171,226);
+    border-color: rgb(41,171,226);
+}
 
 .createTask {
     display: flex; 

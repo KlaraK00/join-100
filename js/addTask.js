@@ -283,6 +283,15 @@ function updateContactsDropdown(contacts) {
                 dropdown.classList.remove('show');
             }
         });
+            // Attach this validation to an event listener for the input or form submission
+    document.getElementById('due').addEventListener('change', function() {
+        const isValid = isValidDate(this.value);
+        if (!isValid) {
+            alert("The date entered does not exist. Please enter a valid date.");
+            // Optionally, clear the input or take other corrective action
+            this.value = ''; // Clear the invalid date
+        }
+    });
     }
 
     function addSubtask(event) {
@@ -306,6 +315,28 @@ function updateContactsDropdown(contacts) {
         }
       }
    
+      function isValidDate(dateString) {
+        const regex = /^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/;
+        const match = dateString.match(regex);
+        
+        if (!match) {
+            return false; // Does not match the pattern
+        }
+        
+        const day = parseInt(match[1], 10);
+        const month = parseInt(match[2], 10) - 1; // JavaScript months are 0-based
+        const year = parseInt(match[3], 10);
+        
+        const date = new Date(year, month, day);
+        if (date.getFullYear() === year && date.getMonth() === month && date.getDate() === day) {
+            return true; // The date is valid
+        } else {
+            return false; // The date does not exist
+        }
+    }
+    
+
+    
       
     
     
