@@ -25,6 +25,7 @@ async function initApp() {
       attachInputEventListeners(); // Attach event listeners so they are called after content is loaded
     } else
       showLogInError();
+      
     }
   
   // Modification to the way you bootstrap your application
@@ -76,42 +77,46 @@ function pushTask(task) {
 
 
 function createTask() {
-  let title = getInputValue("title");
-  let dueDate = getInputValue("due");
-  // Check required fields 
-  if (!title.trim() || !dueDate.trim()) {
-    alert("Please fill in all required fields.");
-    return; // Exit the function 
-  }
-  let description = getInputValue("description");
+    let title = getInputValue("title");
+    let dueDate = getInputValue("due");
   
-  let contacts = selectedContacts;
-  let priority = getPriority();
-  let category = getInputValue("category");
-  let subtasksInput = getInputValue("subtasks");
-  let subtasks = subtasksInput
-    .split(",")
-    .filter((subtask) => subtask.trim() !== "") // Remove any empty entries
-    .map((subtask) => ({ subtask: subtask.trim(), done: false })); // Map to objects
-
-  let createdAt = new Date().getTime();
-  let task = createTaskObject(
-    createdAt,
-    title,
-    description,
-    contacts,
-    dueDate,
-    priority,
-    category,
-    subtasks,
-    TaskStatus.TODO
-  );
-
-  pushTask(task);
-  setItem("tasks", tasks);
-  selectedContacts = [];
-  clearInput();
-}
+    if (!title.trim() || !dueDate.trim()) {
+      alert("Please fill in all required fields.");
+      return;
+    }
+  
+    let description = getInputValue("description");
+    
+    let contacts = selectedContacts;
+    let priority = getPriority();
+    let category = getInputValue("category");
+  
+    //  read the subtasks from the UL list
+    let subtasksListElement = document.getElementById("subtasksList");
+    let subtasks = Array.from(subtasksListElement.querySelectorAll("li")).map(li => ({
+      subtask: li.textContent.trim(),
+      done: false // Assuming all new subtasks are initially not done
+    }));
+  
+    let createdAt = new Date().getTime();
+    let task = createTaskObject(
+      createdAt,
+      title,
+      description,
+      contacts,
+      dueDate,
+      priority,
+      category,
+      subtasks,
+      TaskStatus.TODO
+    );
+  
+    pushTask(task);
+    setItem("tasks", tasks);
+    selectedContacts = [];
+    clearInput();
+  }
+  
 
 function getPriority() {
   //access all prio buttons
