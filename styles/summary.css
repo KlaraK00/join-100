@@ -28,7 +28,6 @@ a {
     margin-top: 96px;
     margin-left: 232px;
     padding-left: 10%;
-    padding-bottom: 30px;
     height: auto;
 
 }
@@ -357,16 +356,16 @@ a {
 .error-container h1 {
     margin-block-start: 0;
 }
-  
+
 .error-container p {
     font-size: 1.2em;
     margin-bottom: 5px;
 }
-  
+
 .error-container p:last-child {
     margin-bottom: 20px;
 }
-  
+
 .error-container a {
     color: white;
     text-decoration: underline;
@@ -404,11 +403,9 @@ a {
     }
 
     .summary-container {
-        margin-left:0;
-        margin-top: 0;
+        margin-left: 0;
         padding: 1%;
-        padding-top: 100px;
-        padding-bottom: 100px;
+        margin-bottom: 100px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -420,6 +417,7 @@ a {
         padding-bottom: 20px;
 
     }
+
 }
 
 @media screen and (max-width: 650px) {
@@ -442,17 +440,12 @@ a {
     .main-task-container {
         justify-content: center;
         align-items: center;
+        max-width: 100vw;
     }
 
     .check-rectangle {
         width: 90%;
-    }
-
-    .button-container {
         gap: 0;
-        padding: 20px;
-        padding-left: 45px;
-        padding-right: 45px;
     }
 
     .urgency-container {
@@ -477,7 +470,20 @@ a {
     }
 }
 
+@media screen and (max-width: 560px) {
+
+    .button-container {
+        gap: 0;
+        padding: 20px;
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+
+}
+
+
 @media screen and (max-width: 502px) {
+
 
     .fs-64 {
         font-size: 50px;
@@ -488,9 +494,11 @@ a {
     }
 
     .button-container {
-        padding-left: 28px;
-        padding-right: 28px;
-
+        padding-left: 45px;
+        padding-right: 45px;
+        padding-top: 25px;
+        padding-bottom: 25px;
+        height: auto;
     }
 
     .line {
@@ -506,25 +514,81 @@ a {
     .overview-container {
         gap: 10px;
     }
+
+    .urgency-container {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        height: auto;
+    }
 }
 
-@media screen and (max-width: 407px) {
-    .button-container {
-        padding-left: 18px;
-        padding-right: 18px;
-    }
+
+@media screen and (max-width: 436px) {
 
     .task-container {
         min-width: 90px;
         min-height: 90px;
+    }
+
+    .button-container {
+        gap: 0;
+        padding-left: 30px;
+        padding-right: 30px;
 
     }
 }
 
-@media screen and (max-width: 347px) {
+@media screen and (max-width: 376px) {
+
     .button-container {
-        padding-left: 9px !important;
-        padding-right: 9px !important;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 30px;
+        padding-bottom: 30px;
+        height: auto;
+    }
+}
+
+@media screen and (max-width: 347px) {
+
+    .main-task-container {
+        gap: 15px;
+    }
+
+    .elipse {
+        height: 50px;
+        width: 50px;
+    }
+
+    .elipse-urgency {
+        height: 50px;
+        width: 50px;
+    }
+
+    .vector-icon {
+        height: 20px;
+        width: 25px;
+    }
+
+    .arrow-icon {
+        height: 20px;
+        width: 25px;
+    }
+
+    .fs-64 {
+        font-size: 40px;
+    }
+
+    .fs-20 {
+        font-size: 10px;
+    }
+
+    .button-container {
+        padding-left: 30px !important;
+        padding-right: 30px !important;
+        padding-top: 30px !important;
+        padding-bottom: 30px !important;
+        height: auto;
     }
 
     .task-container {
@@ -536,7 +600,7 @@ a {
 
     .urgency-container {
         justify-content: space-between;
-
+        height: auto;
     }
 
     .deadline {
@@ -544,11 +608,24 @@ a {
         word-wrap: break-word;
         text-wrap: wrap;
     }
+
+    .line {
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+
 }
 
 @media screen and (max-height: 905px) {
- .summary-container {
-    margin-top: ;
-    margin-bottom: 30%;
- }
+    .summary-container-wrapper {
+      height: 100%;
+    }
+    .headline {
+        align-items: center;
+    }
+
+    .headline-description {
+        display: none;
+    }
+
 }
