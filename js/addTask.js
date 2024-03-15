@@ -71,9 +71,7 @@ function createTaskObject(
 }
 
 function pushTask(task) {
-  console.log(task);
   tasks.push(task);
-  console.log(JSON.stringify(tasks));
   setItem("tasks", tasks); // Speichern des tasks-Arrays im lokalen Speicher
 }
 
@@ -125,7 +123,7 @@ function getPriority() {
       return button.textContent.trim();
     }
   }
-  return "Not set";
+  return "";
 }
 
 function activateButton(buttonId) {
