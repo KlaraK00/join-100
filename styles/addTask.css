@@ -29,7 +29,7 @@ body {
     margin-left: 328px;
     display: flex;
     margin-right: 40px;
-    height: 424px;
+    min-height: 424px;
 }
 
 .parting-line {
@@ -285,6 +285,24 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     flex-direction: column;
     gap: 8px;
 }
+.subList {
+    width: 440px; 
+    height: 80px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+     }
+
+    .subList ul {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding: 6px 16px;
+    }
+
+  li {
+        margin-bottom: 10px;
+    }
 
 .subtasks input {
     border-radius: 10px;
@@ -302,6 +320,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .required-create {
+    margin-top: 20px;
     margin-left: 328px;
     margin-right: 40px;
     display: flex;

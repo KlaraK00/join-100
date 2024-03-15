@@ -141,6 +141,7 @@ function clearInput() {
     updateAssignContactInput();
     selectedContacts = [];
     updateContactsDropdown(contacts);
+    document.getElementById('subtasksList').innerHTML = '';
     document.getElementById("title").value = "";
     document.getElementById("description").value = "";
     document.getElementById("due").value = "";
@@ -278,6 +279,29 @@ function updateContactsDropdown(contacts) {
             }
         });
     }
+
+    function addSubtask(event) {
+        // Only add the subtask when the Enter key is pressed
+        if (event.key === "Enter" || event.keyCode === 13) {
+          event.preventDefault(); // Prevent the form from being submitted
+      
+          const subtasksInput = document.getElementById('subtasks');
+          const subtaskText = subtasksInput.value.trim();
+      
+          if(subtaskText) { // Check if the input is not empty
+            // Add the subtask to the display list
+            const subtasksList = document.getElementById('subtasksList');
+            const li = document.createElement('li');
+            li.textContent = subtaskText;
+            subtasksList.appendChild(li);
+      
+            // Clear the input field for the next subtask
+            subtasksInput.value = '';
+          }
+        }
+      }
+   
+      
     
     
     

@@ -76,8 +76,10 @@
             </div>
             <div class="subtasks">
                 <div>Subtasks</div>
-                <input id ="subtasks" type="text" placeholder="Add new subtask" />
-            </div>
+                <input id="subtasks" type="text" placeholder="Add new subtask" onkeypress="addSubtask(event)" />
+                </div>
+                <div class="subList"><ul id="subtasksList"></ul></div>
+              
         </div> 
         </div>
         <div class="required-create">
@@ -86,7 +88,7 @@
         <div>This field is required</div>
             </div>  
             <div class="create">
-        <button type="reset" class="clear">Clear <img src="../img/iconoir_cancel.png"></button>
+        <button type="reset" class="clear" onclick="clearInput()">Clear <img src="../img/iconoir_cancel.png"></button>
         <button type="button" onclick="createTask()" class="createTask">Create Task <img src="../img/check.png"></button>
             </div>
         </div>
