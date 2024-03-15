@@ -93,7 +93,7 @@ function HTMLTemplatePopUpBoardEdit(task){
                 <div class="dFlex directionColumn width100Perc">
                     <label for="boardPopUpInputDate" class="padBot5">Due date</label>
                     <div class="posRelative cursorPointer">
-                        <input required id="boardPopUpInputDate" value="${task.date}" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}" placeholder="dd/mm/yyyy" class="inputBoardEdit width100PercMinus26Px focusBlueBorder" type="text">
+                        <input required id="boardPopUpInputDate" value="${task.date}" pattern="([0][1-9]|[1][0-9]|3[01]|[2][0-9])/([0][1-9]|[1][0-2])/([2][0][2][4-8])" placeholder="dd/mm/yyyy" class="inputBoardEdit width100PercMinus26Px focusBlueBorder" type="text">
                         <img onclick="focusOn('boardPopUpInputDate')" class="posAbsolute height17 top7 right7" src="./img/event.png" alt="calendar">
                     </div>
                 </div>
