@@ -18,9 +18,9 @@
     <div w3-include-html="/templates/navBar.html"></div>
     <div w3-include-html="/templates/header.html"></div>
     <div class="main-add-task-container">
-        <div class="addTask">Add Task</div>
-        <div class="taskWrapper">
-        <div class="taskFrame">
+        <div id="addTaskTemplateH1" class="addTask">Add Task</div>
+        <div id="addTaskTemplateTaskWrapper" class="taskWrapper">
+        <div class="taskFrame ">
             <div class="taskTitle">
                 <div>Title<span class="red">*</span></div>
                 <input id="title" type="text" placeholder="Enter a Title" required>
@@ -41,8 +41,8 @@
             </div>
             
         </div>
-        <div class="parting-line"></div>
-        <div class="taskFrame2">
+        <div class="parting-line addTaskTemplateTaskMar25"></div>
+        <div class="taskFrame2 addTaskTemplateTaskMar25">
             <div class="deadline">
                 <div>
                     Due Date 
@@ -82,14 +82,14 @@
               
         </div> 
         </div>
-        <div class="required-create">
+        <div class="required-create addTaskTemplateRequiredCreate">
             <div class="required">
-        <span class="red">*</span>
-        <div>This field is required</div>
+                <span class="red">*</span>
+                <div>This field is required</div>
             </div>  
             <div class="create">
-        <button type="reset" class="clear" onclick="clearInput()">Clear <img src="../img/iconoir_cancel.png"></button>
-        <button type="button" onclick="createTask()" class="createTask">Create Task <img src="../img/check.png"></button>
+                <button type="reset" class="clear" onclick="clearInput()">Clear <img src="../img/iconoir_cancel.png"></button>
+                <button type="button" onclick="createTask()" class="createTask">Create Task <img src="../img/check.png"></button>
             </div>
         </div>
     </div>

@@ -530,7 +530,7 @@ function changeBoardTaskPopUpDeleteToBlack() {
     span.style.fontWeight = "400";
 }
 
-/* ---------- edit task ---------- */
+/* ---------- EDIT TASK ---------- */
 
 function boardPopUpEdit(id) {
     let task = tasks.find(t => t.createdAt == id);
@@ -866,4 +866,16 @@ function setBlueBorderBottom(i) {
 function removeBlueBorderBottom(i) {
     let editTaskSubtaskParent = document.getElementById(`editTaskSubtaskParent${i}`);
     editTaskSubtaskParent.classList.remove('blueBorderBottom');
+}
+
+/* ---------- OPEN ADD TASK ---------- */
+
+
+async function openAddTask() {
+    let boardTaskOverlay = document.getElementById('boardTaskOverlay');
+    boardTaskOverlay.innerHTML = '';
+    boardTaskOverlay.innerHTML = HTMLTemplateAddTask();
+    await includeHTML();
+    let addTaskOverlay = document.getElementById('addTaskOverlay');
+    addTaskOverlay.innerHTML += `<img onclick="closeTask()" class="posAbsolute top45 right47" src="./img/Close.png" alt="close">`
 }

@@ -170,3 +170,10 @@ function HTMLTemplatePopUpBoardEditSubtasksEdit(i, taskCreatedAt) {
         </div>
     `;
 }
+
+function HTMLTemplateAddTask() {
+    return /*html*/`<div class="dFlex alignCenter justCenter">
+        <div onclick="event.stopPropagation()" id="addTaskOverlay" class="addTaskOverlay animationRightSlideIn posRelative" w3-include-html="/templates/addTaskTemplate.html"></div>
+    </div>
+`;
+}
