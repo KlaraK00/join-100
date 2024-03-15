@@ -139,6 +139,8 @@ function activateButton(buttonId) {
 
 function clearInput() {
     updateAssignContactInput();
+    selectedContacts = [];
+    updateContactsDropdown(contacts);
     document.getElementById("title").value = "";
     document.getElementById("description").value = "";
     document.getElementById("due").value = "";
