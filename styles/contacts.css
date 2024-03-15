@@ -241,7 +241,7 @@ h5 {
 }
 
 .contact-area {
-    overflow-y: scroll;
+    overflow-y: auto;
     height: calc(100vh - 175.5px);
 }
 
