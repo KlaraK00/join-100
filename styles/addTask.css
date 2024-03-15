@@ -284,13 +284,16 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     display: flex;
     flex-direction: column;
     gap: 8px;
+   
+    
 }
 .subList {
     width: 440px; 
-    height: 80px; 
+    height: 200px; 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    overflow: auto;
      }
 
     .subList ul {
@@ -300,9 +303,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         padding: 6px 16px;
     }
 
-  li {
-        margin-bottom: 10px;
-    }
+  
 
 .subtasks input {
     border-radius: 10px;
