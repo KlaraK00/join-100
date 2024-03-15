@@ -30,7 +30,7 @@ body {
     margin-left: 296px;
 }
 
-.headline {
+.headline-board {
     display: flex;
     align-items: center;
     gap: 1px; 
@@ -514,7 +514,7 @@ body {
         width: 100%;
     }
 
-    .headline {
+    .headline-board {
         justify-content: space-between;
         font-size: 47px;
     }
