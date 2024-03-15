@@ -292,7 +292,7 @@ function updateContactsDropdown(contacts) {
             this.value = ''; // Clear the invalid date
         }
     });
-    document.getElementById('due').addEventListener('input', function() {
+    document.getElementById('due').addEventListener('blur', function() {
         var value = this.value.replace(/[\.\-\/]/g, ''); // Remove dots, dashes, and slashes
         
         // Automatically insert slashes for ddmmyyyy format
