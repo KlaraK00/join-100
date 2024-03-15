@@ -70,7 +70,7 @@ function createNewContactHTML() {
                     <input id="contactNumber" class="input background-img-phone" placeholder="Phone" required>
                 </div>
                 <div class="add-contact-button">
-                    <button type="button" onclick="closeNewContactWindow()" class="button2">Cancel</button>
+                    <button type="button" onclick="closeNewContactWindow()" class="button2">Cancel <img class="cross" src="/img/cancel-button.png"</button>
                     <button type="submit" class="button3">Create contact</button>
                 </div>
             </form>
