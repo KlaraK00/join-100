@@ -128,8 +128,10 @@ body {
     max-width: 1440px;
     gap: 26px;
     height: calc(100vh - 285.5px);
-    margin-left: 296px;
-    overflow: scroll;
+    margin-left: 286px;
+    overflow: auto;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .progressHead {
