@@ -510,6 +510,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         min-width: 0;
         font-size: 14px;
     }
+
+    .dropdown select {
+        width: 396px;
+    }
 }
 
 @media(max-width: 1100px) {
@@ -540,6 +544,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     }
 
     .assign {
+        width: 300px;
+    }
+
+    .assign input {
         width: 300px;
     }
 
