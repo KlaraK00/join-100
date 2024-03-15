@@ -1,5 +1,4 @@
 let tasks = [];
-let editTaskContacts;
 let selectedContacts = [];
 const TaskStatus = {
   TODO: "toDo",
@@ -111,6 +110,7 @@ function createTask() {
   pushTask(task);
   setItem("tasks", tasks);
   selectedContacts = [];
+  clearInput();
 }
 
 function getPriority() {
@@ -138,9 +138,16 @@ function activateButton(buttonId) {
 }
 
 function clearInput() {
-  location.reload();
+    updateAssignContactInput();
+    document.getElementById("title").value = "";
+    document.getElementById("description").value = "";
+    document.getElementById("due").value = "";
+    document.getElementById("category").selectedIndex = 0; 
+    document.getElementById("subtasks").value = "";
+    document.querySelectorAll("#priority .prio button").forEach(button => {
+      button.classList.remove("active");
+})
 }
-
 
  function toggleContactsDropdown() {
     const dropdown = document.getElementById('contactsDropdown');
@@ -206,7 +213,7 @@ function updateContactsDropdown(contacts) {
         }
     
         contactsDropdown.appendChild(contactElement);
-    });
+    });}
     
     
 
@@ -228,7 +235,7 @@ function updateContactsDropdown(contacts) {
             }
         });
        
-    } }
+    } 
     
     function attachInputEventListeners() {
         const assignContactInput = document.querySelector(".assignContact");
