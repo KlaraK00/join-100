@@ -55,6 +55,7 @@ body {
     border: 1px solid #a8a8a8;
     border-radius: 10px; 
     width: 312px;
+    position: relative;
 }
 
 .inputSearch {
@@ -69,10 +70,9 @@ body {
 
 .inputRight {
     display: flex;
-    justify-content: space-between;
-    align-self: center;
     gap: 16px;
-    margin-right: 16px;
+    position: absolute;
+    right: 16px;
 }
 
 .searchIcon {
@@ -165,7 +165,7 @@ body {
     display: flex; 
     align-items: center;
     width: 100%; 
-    height: 24px; 
+    height: 28px; 
     gap: 35px;
     margin-bottom: 20px;
 }
