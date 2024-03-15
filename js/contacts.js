@@ -27,6 +27,33 @@ function addNewContact(){
 }
 
 /**
+ * Schließt das Overlay für das Hinzufügen eines neuen Kontakts, wenn auf den Hintergrund hinter dem Overlay geklickt wird.
+ * @param {Event} event - Das Klick-Ereignis, das ausgelöst wurde.
+ */
+function closeOverlayNewContact(event) {
+    var overlay = document.getElementById('overlay-add-contact');
+    if (event.target === overlay) {
+        overlay.classList.add('d-none');
+        overlay.classList.remove('d-flex');
+    }
+}
+
+/**
+ * Schließt das Overlay für die Bearbeitung eines Kontakts, wenn auf den Hintergrund hinter dem Overlay geklickt wird.
+ * @param {Event} event - Das Klick-Ereignis, das ausgelöst wurde.
+ */
+function closeOverlayEditContact(event) {
+    var overlay = document.getElementById('overlay-edit-contact');
+    if (event.target === overlay) {
+        overlay.classList.add('d-none');
+        overlay.classList.remove('d-flex');
+    }
+}
+
+document.addEventListener('click', closeOverlayNewContact);
+document.addEventListener('click', closeOverlayEditContact);
+
+/**
  * Öffnet das Overlay zum Bearbeiten eines vorhandenen Kontakts.
  * @param {number} i - Der Index des zu bearbeitenden Kontakts.
  */
