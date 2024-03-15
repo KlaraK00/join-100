@@ -107,7 +107,7 @@ h5 {
     padding-top: 15px;
 }
 
-.line {
+.contacts-line {
     border: 3x;
     background-color: #29ABE2;
     height: 59px;
@@ -230,7 +230,7 @@ h5 {
     height: 1px;
 }
 
-a {
+.mail-link {
     color: rgb(32,140,240);
 }
 
@@ -655,7 +655,7 @@ a {
         margin-block-end: 0;
     }
 
-    .line {
+    .contacts-line {
         display: none;
     }
 

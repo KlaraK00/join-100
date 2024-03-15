@@ -14,7 +14,7 @@ function createContactHTML(contact, firstLetterName, i){
         <div class="user-small" style="background-color: ${contacts[i]['color']}">${contacts[i]['initials']}</div>
             <div>
             ${contacts[i]['firstName']} ${contacts[i]['lastName']} <br>
-            <a href="mailto:${contacts[i]['mail']}">${contacts[i]['mail']}</a>
+            <a class="mail-link" href="mailto:${contacts[i]['mail']}">${contacts[i]['mail']}</a>
         </div>
     </div>
     `;
