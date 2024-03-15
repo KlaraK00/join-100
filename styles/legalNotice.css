@@ -13,6 +13,7 @@ body {
     margin-left: 328px;
     margin-bottom: 40px;
     margin-right: 40px;
+    max-width: 1440px;
 }
 
 a {
