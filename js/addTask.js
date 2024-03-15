@@ -23,9 +23,9 @@ async function initApp() {
       currentUser = getCurrentUser();
       showUserNavBar();
       attachInputEventListeners(); // Attach event listeners so they are called after content is loaded
-      
+    } else
+      showLogInError();
     }
-  }
   
   // Modification to the way you bootstrap your application
   document.addEventListener('DOMContentLoaded', initApp); // Use initApp to coordinate initialization
