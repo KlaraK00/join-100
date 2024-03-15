@@ -203,7 +203,7 @@ body {
 
 .taskFrame2 {
     width: 50%;
-    height: 424px;
+    min-height: 424px;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -289,7 +289,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 .subList {
     width: 440px; 
-    height: 200px; 
+    max-height: 100px; 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
