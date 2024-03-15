@@ -18,5 +18,11 @@
   <body onload="initApp()">
   <div w3-include-html="/templates/navBar.html"></div>
   <div w3-include-html="/templates/header.html"></div>
+  <div class="error-container d-none">
+    <h1>Oops!</h1>
+    <p>An error occurred because you are not logged in.</p>
+    <p>Please log in and try again.</p>
+    <div class="login-button-div"><a href="index.html" class="login-button">Login</a></div>
+  </div>
   <form id="taskForm"><div w3-include-html="/templates/addTaskTemplate.html"></div></form>
 </body>
