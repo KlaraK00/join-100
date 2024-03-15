@@ -82,11 +82,12 @@ body {
     justify-content: center;
     align-items: center;
     border-radius: 50%;
+    cursor: pointer;
+    transition: all 225ms ease-in-out;
 }
 
 .searchIcon:hover {
     background-color: #eeeeee;
-    cursor: pointer;
 }
 
 .menubar input:hover {
@@ -154,6 +155,7 @@ body {
     justify-content: center;
     cursor: pointer;
     align-items: center;
+    transition: all 225ms ease-in-out;
 }
 
 .plus:hover {
@@ -283,6 +285,12 @@ body {
     right: 24px;
     top: 24px;
     height: 25px;
+    border-radius: 100%;
+    transition: all 225ms ease-in-out;
+}
+
+.closeImgBoard:hover {
+    background-color: #eeeeee;
 }
 
 .width100Px {
@@ -338,9 +346,13 @@ body {
     border-radius: 10px;
 }
 
+.hoverGrey {
+    transition: all 225ms ease-in-out;
+    cursor: pointer;
+}
+
 .hoverGrey:hover {
     background-color: #eeeeee;
-    cursor: pointer;
 }
 
 .greyVerticalLineSubtasks {
