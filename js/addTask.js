@@ -288,10 +288,32 @@ function updateContactsDropdown(contacts) {
         const isValid = isValidDate(this.value);
         if (!isValid) {
             alert("The date entered does not exist. Please enter a valid date.");
-            // Optionally, clear the input or take other corrective action
+            
             this.value = ''; // Clear the invalid date
         }
     });
+    document.getElementById('due').addEventListener('input', function() {
+        var value = this.value.replace(/[\.\-\/]/g, ''); // Remove dots, dashes, and slashes
+        
+        // Automatically insert slashes for ddmmyyyy format
+        if(value.length > 2 && value.length <= 4)
+            value = value.slice(0,2) + '/' + value.slice(2);
+        if(value.length > 4)
+            value = value.slice(0,2) + '/' + value.slice(2,4) + '/' + value.slice(4,8);
+    
+        this.value = value;
+    
+        // Add validation for correct date if needed
+        if (value.length === 10) { // Check if full length date is entered
+            if (!isValidDate(this.value)) {
+                alert("The date entered does not exist. Please enter a valid date.");
+                this.value = ''; // Clear the input if the date is invalid
+            }
+        }
+    });
+    
+    
+    
     }
 
     function addSubtask(event) {
@@ -316,17 +338,29 @@ function updateContactsDropdown(contacts) {
       }
    
       function isValidDate(dateString) {
-        const regex = /^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/;
-        const match = dateString.match(regex);
-        
+        // Normalize the date string by replacing non-numeric characters with a slash
+        const normalizedDateString = dateString.replace(/[\.\-]/g, '/');
+        let regex = /^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/;
+        let match = normalizedDateString.match(regex);
+    
+        // Attempt to match ddmmyyyy format if the initial regex fails
         if (!match) {
-            return false; // Does not match the pattern
+            regex = /^([0-9]{2})([0-9]{2})([0-9]{4})$/;
+            match = dateString.match(regex);
+            if(match) {
+                // Reformat to dd/mm/yyyy for consistency in further validation
+                match = [match[0], match[1], match[2], match[3]];
+            }
         }
-        
+    
+        if (!match) {
+            return false; // Does not match any expected pattern
+        }
+    
         const day = parseInt(match[1], 10);
         const month = parseInt(match[2], 10) - 1; // JavaScript months are 0-based
         const year = parseInt(match[3], 10);
-        
+    
         const date = new Date(year, month, day);
         if (date.getFullYear() === year && date.getMonth() === month && date.getDate() === day) {
             return true; // The date is valid
@@ -334,6 +368,7 @@ function updateContactsDropdown(contacts) {
             return false; // The date does not exist
         }
     }
+    
     
 
     
