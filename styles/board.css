@@ -429,6 +429,7 @@ body {
 
 #addTaskTemplateH1 {
     margin: 0;
+    margin-bottom: 20px;
 }
 
 #addTaskTemplateTaskWrapper {
@@ -453,7 +454,7 @@ body {
 
 @keyframes rightSlideOut {
     from {
-        transform: translateX();
+        transform: translateX(0);
     }
     to {
         transform: translateX(100vw);
@@ -465,7 +466,27 @@ body {
         transform: translateX(100vw);
     }
     to {
-        transform: translateX();
+        transform: translateX(0);
+    }
+}
+
+@media (max-width: 1300px) {
+    .taskWrapper {
+        overflow: unset !important;
+        flex-direction: row !important;
+    }
+    .parting-line {
+        display: block !important;
+    }
+    .main-add-task-container {
+        height: fit-content !important;
+    }
+    .deadline input {
+        width: unset !important;
+    }
+    .required-create {
+        justify-content: space-between !important;
+        width: 100% !important;
     }
 }
 
@@ -522,6 +543,52 @@ body {
     .addTaskPlus {
         display: block;
         cursor: pointer;
+    }
+}
+
+@media(max-width: 950px) {
+    .taskWrapper {
+        display: flex;
+        flex-direction: column !important;
+    }
+    .parting-line {
+        display: none !important;
+    }
+    .addTaskTemplateTaskMar25 {
+        margin-left: 0;
+    }
+}
+
+@media(max-width: 570px) {
+    .addTaskOverlay {
+        padding: 0;
+        border-radius: 0;
+        height: 100vh!important;
+        width: 100%!important;
+        max-height: 100vh!important;
+    }
+    .required-create {
+        width: unset !important;
+        padding-bottom: 20px;
+    }
+    .create {
+        width: unset !important;
+        height: unset !important;
+        min-width: unset !important;
+    }
+    #addTaskTemplateH1 {
+        padding-top: 20px;
+        font-size: 32px;
+    }
+    .createTask {
+        height: unset !important;
+        width: unset !important;
+        padding: 10px !important;
+        font-size: 16px !important;
+    }
+    .addTaskOverlayCloseImg {
+        top: 16px !important;
+        right: 16px !important;
     }
 }
 
