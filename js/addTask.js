@@ -148,25 +148,20 @@ function activateButton(priority) {
 
   switch(priority) {
     case 'urgent':
-      document.body.style.backgroundColor = 'rgb(255, 62, 0)';
       document.getElementById('urgent').style.backgroundColor = 'rgb(255, 62, 0)';
       document.getElementById('urgent').querySelector('img').style.filter = 'brightness(0) invert(1)';
       document.getElementById('urgent').style.color = 'white';
       break;
     case 'medium':
-      document.body.style.backgroundColor = 'rgb(255, 168, 0)';
       document.getElementById('medium').style.backgroundColor = 'rgb(255, 168, 0)';
       document.getElementById('medium').querySelector('img').style.filter = 'brightness(0) invert(1)';
       document.getElementById('medium').style.color = 'white';
       break;
     case 'low':
-      document.body.style.backgroundColor = 'rgb(123, 226, 40)';
       document.getElementById('low').style.backgroundColor = 'rgb(123, 226, 40)';
       document.getElementById('low').querySelector('img').style.filter = 'brightness(0) invert(1)';
       document.getElementById('low').style.color = 'white';
       break;
-    default:
-      document.body.style.backgroundColor = 'white';
   }
 }
 
@@ -203,7 +198,7 @@ function updateContactsDropdown(contacts) {
     
        
         const nameContainer = document.createElement("div");
-        nameContainer.classList.add("name-container")
+        nameContainer.classList.add("name-container-add-task")
         
         const initialsSpan = document.createElement("span");
         initialsSpan.className = "contact-initials";

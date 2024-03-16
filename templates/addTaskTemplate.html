@@ -22,16 +22,16 @@
         <div id="addTaskTemplateTaskWrapper" class="taskWrapper">
         <div class="taskFrame ">
             <div class="taskTitle">
-                <div>Title<span class="red">*</span></div>
+                <div><p>Title<span class="red">*</span></p></div>
                 <input id="title" type="text" placeholder="Enter a Title" required>
             </div>
             <div class="description">
-                <div>Description</div>
+                <div><p>Description</p></div>
                 <textarea id="description" rows="2" cols="25" placeholder="Enter a Description"></textarea>
             </div>
             <div class="assign">
-                Assigned to
-                <input class="assignContact">
+                <p>Assigned to</p>
+                <input class="assignContact" placeholder="Select contacts to assign">
                 <div id="contactsDropdown" class="contacts-dropdown">
                     <!-- Contacts will be dynamically inserted here -->
                 </div>
@@ -45,29 +45,27 @@
         <div class="taskFrame2 addTaskTemplateTaskMar25">
             <div class="deadline">
                 <div>
-                    Due Date 
-                    <span class="red">*</span>
+                    <p>Due Date<span class="red">*</span></p>
                 </div>
                 <input required id="due"  pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}" placeholder="dd/mm/yyyy" class="inputBoardEdit width100PercMinus26Px focusBlueBorder" type="text">
                         
             </div>
             <div id="priority" class="priority">
-                Prio
+                <p>Prio</p>
                 <div class="prio">
-                    <div><button type="button" onclick="activateButton('urgent')" id="urgent">urgent <img src="../img/prio alta.png"></button></div>
+                    <div><button class="urgent-inactive" type="button" onclick="activateButton('urgent')" id="urgent">urgent <img src="../img/prio alta.png"></button></div>
                     <div><button type="button" onclick="activateButton('medium')" id="medium">medium <img src="../img/mediumPrio.png"></button></div>
                     <div><button type="button" onclick="activateButton('low')" id="low">low <img src="../img/Capa 1.png"></button></div>
                   </div>
             </div>
             <div class="category">
                 <div>
-                    Category
-                    <span class="red">*</span>
+                    <p>Category<span class="red">*</span></p>
                 </div>
                 <div class="dropdown">
                     <form>
                         <select name="category" id="category">
-                          <option value="preview">Select task category</option>
+                          <option class="d-none" value="preview">Select task category</option>
                           <option value="User Story">User Story</option>
                           <option value="Technical Task">Technical Task</option>
                         </select>
@@ -75,7 +73,7 @@
                 </div>
             </div>
             <div class="subtasks">
-                <div>Subtasks</div>
+                <div><p>Subtasks</p></div>
                 <input id="subtasks" type="text" placeholder="Add new subtask" onkeypress="addSubtask(event)" />
                 </div>
                 <div class="subList"><ul id="subtasksList"></ul></div>
@@ -88,7 +86,7 @@
                 <div>This field is required</div>
             </div>  
             <div class="create">
-                <button type="reset" class="clear" onclick="clearInput()">Clear <img src="../img/iconoir_cancel.png"></button>
+                <button type="reset" class="clear" onclick="clearInput()">Clear <img class="crossAddTask" src="../img/iconoir_cancel.png"></button>
                 <button type="button" onclick="createTask()" class="createTask">Create Task <img src="../img/check.png"></button>
             </div>
         </div>

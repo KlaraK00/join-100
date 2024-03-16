@@ -15,6 +15,12 @@ body {
     max-width: 1440px;
 }
 
+.taskWrapper p {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    font-size: 20px;
+}
+
 .addTask {
     margin-left: 328px;
     margin-right: 40px;
@@ -88,6 +94,8 @@ body {
     font-size: 20px;
     font-weight: 400;
     color:rgba(209, 209, 209, 1);
+    border: 1px solid rgba(168, 168, 168, 1);
+    border-radius: 10px;
     padding-left: 10px;
     padding-top: 10px;
     cursor: pointer;
@@ -121,6 +129,8 @@ body {
     background-position: right 10px top 20px; 
     background-repeat: no-repeat; 
     cursor: pointer;
+    border: 1px solid rgba(168, 168, 168, 1);
+    font-size: 20px;
 }
 
 .assignContact:focus-within {
@@ -181,7 +191,7 @@ body {
     justify-content: center;
 }
 
-.name-container {
+.name-container-add-task {
     display: flex; 
     align-items: center;
     gap: 16px; 
@@ -194,7 +204,7 @@ body {
     margin-top: 5px; /* Space between input and this container */
 }
 
-.dropdown select{
+.dropdown select {
     width: 440px; 
     height: 48px; 
     border-radius: 10px;
@@ -238,6 +248,7 @@ body {
     background-position: top 10px right 10px;
     padding-left: 10px;
     cursor: pointer;
+    font-size: 20px;
 }
 
 #due:focus-within {
@@ -293,6 +304,18 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     height: 8px;
     width: 21px;
     filter: brightness(0) invert(1);
+}
+
+.urgent-active {
+    background-color: rgb(255, 62, 0);
+    filter: brightness(0) invert(1);
+    color: white;
+}
+
+.urgent-inactive {
+    background-color: white;
+    filter: none;
+    color: black;
 }
 
 .category {
@@ -392,9 +415,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     color: rgb(41,171,226);
     border-color: rgb(41,171,226);
 }
-.clear:hover img {
-    color: rgb(41,171,226);
-    border-color: rgb(41,171,226);
+
+.clear:hover .crossAddTask {
+    filter: brightness(0) saturate(100%) invert(52%) sepia(98%) saturate(407%) hue-rotate(155deg) brightness(93%) contrast(90%); 
 }
 
 .createTask {
