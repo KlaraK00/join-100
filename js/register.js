@@ -441,7 +441,7 @@ function showRightVisibility(id, input) {
 }
 
 /**
- * 
+ * Shows the open-eye-image.
  * 
  * @param {string} id - Passes an id of the image which source will be changed.
  * @param {string} input - Uses an id of an input as parameter.
@@ -455,6 +455,12 @@ function visibilityOn(id, input) {
     password.type = "text";
 }
 
+/**
+ * Shows the closed-eye-image.
+ * 
+ * @param {string} id - Passes an id of the image which source will be changed.
+ * @param {string} input - Uses an id of an input as parameter.
+ */
 function visibilityOff(id, input) {
     let visibilityOnOrOff = document.getElementById(id);
     let password = document.getElementById(input);
@@ -465,6 +471,11 @@ function visibilityOff(id, input) {
 
 /* ---------- focus on element ---------- */
 
+/**
+ * Focusses on an element with the spedific id.
+ * 
+ * @param {string} id - Passes an id of a specific element.
+ */
 function focusOn(id) {
     let element = document.getElementById(id);
     element.focus();
@@ -472,6 +483,11 @@ function focusOn(id) {
 
 /* ---------- "checkbox" ---------- */
 
+/**
+ * Checks if the source of the image with a specific id shows a checked checkbox and changes the source to the opposite.
+ * 
+ * @param {string} id - Uses an id of an image as parameter.
+ */
 function changeCheckbox(id) {
     let checkbox = document.getElementById(id);
     if (checkbox.src.includes('registerCheckedCheckbox.png')) {
@@ -483,11 +499,21 @@ function changeCheckbox(id) {
 
 /* ---------- others ---------- */
 
+/**
+ * Removes the red border of an specific element.
+ * 
+ * @param {string} id - Passes an id of a specific element.
+ */
 function removeRedBorder(id) {
     let element = document.getElementById(id);
     element.classList.remove('redBorder');
 }
 
+/**
+ * Hides a specific element by adding the css-property "display: none;".
+ * 
+ * @param {string} id - Passes an id of a specific element.
+ */
 function removeDiv(id) {
     let element = document.getElementById(id);
     element.classList.add('d-none');
