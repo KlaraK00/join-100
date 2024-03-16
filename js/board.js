@@ -1,91 +1,91 @@
-tasks = [
-    {   
-        createdAt: '0990790667',
-        title: 'title1',
-        description: 'description1',
-        contacts: [1709742165910, 1709742196208],
-        date: '2024-03-30',
-        prio: 'medium',
-        category: 'User Story',
-        subtasks: [
-            {
-            subtask: 'subtask1',
-            done: false
-            },
-            {
-            subtask: 'subtask2',
-            done: false 
-            }
-        ],
-        status: 'done'
-    },
-    {
-        createdAt: '0990790669',
-        title: 'title2',
-        description: 'description2',
-        contacts: [],
-        date: '2024-03-30',
-        prio: '',
-        category: 'Technical Task',
-        subtasks: [
-            {
-            subtask: 'subtask1',
-            done: false
-            },
-            {
-            subtask: 'subtask2',
-            done: true 
-            }
-        ],
-        status: 'toDo'
-    },
-    {
-        createdAt: '0990798667',
-        title: 'title3',
-        description: 'description3',
-        contacts: [1709742196208, 1709742212979],
-        date: '2024-04-25',
-        prio: 'urgent',
-        category: 'Technical Task',
-        subtasks: [],
-        status: 'done'
-    },
-    {
-        createdAt: '0999790667',
-        title: 'title4',
-        description: 'description4',
-        contacts: [],
-        date: '2024-05-13',
-        prio: '',
-        category: 'User Story',
-        subtasks: [],
-        status: 'inProgress'
-    },
-    {
-        createdAt: '9990790667',
-        title: 'title5',
-        description: 'description5',
-        contacts: [],
-        date: '2024-05-30',
-        prio: 'medium',
-        category: 'Technical Task',
-        subtasks: [
-            {
-            subtask: 'subtask1',
-            done: false
-            },
-            {
-            subtask: 'subtask2',
-            done: false 
-            },
-            {
-            subtask: 'subtask3',
-            done: true 
-            }
-        ],
-        status: 'awaitFeedback'
-    }
-]
+// tasks = [
+//     {   
+//         createdAt: '0990790667',
+//         title: 'title1',
+//         description: 'description1',
+//         contacts: [1709742165910, 1709742196208],
+//         date: '2024-03-30',
+//         prio: 'medium',
+//         category: 'User Story',
+//         subtasks: [
+//             {
+//             subtask: 'subtask1',
+//             done: false
+//             },
+//             {
+//             subtask: 'subtask2',
+//             done: false 
+//             }
+//         ],
+//         status: 'done'
+//     },
+//     {
+//         createdAt: '0990790669',
+//         title: 'title2',
+//         description: 'description2',
+//         contacts: [],
+//         date: '2024-03-30',
+//         prio: '',
+//         category: 'Technical Task',
+//         subtasks: [
+//             {
+//             subtask: 'subtask1',
+//             done: false
+//             },
+//             {
+//             subtask: 'subtask2',
+//             done: true 
+//             }
+//         ],
+//         status: 'toDo'
+//     },
+//     {
+//         createdAt: '0990798667',
+//         title: 'title3',
+//         description: 'description3',
+//         contacts: [1709742196208, 1709742212979],
+//         date: '2024-04-25',
+//         prio: 'urgent',
+//         category: 'Technical Task',
+//         subtasks: [],
+//         status: 'done'
+//     },
+//     {
+//         createdAt: '0999790667',
+//         title: 'title4',
+//         description: 'description4',
+//         contacts: [],
+//         date: '2024-05-13',
+//         prio: '',
+//         category: 'User Story',
+//         subtasks: [],
+//         status: 'inProgress'
+//     },
+//     {
+//         createdAt: '9990790667',
+//         title: 'title5',
+//         description: 'description5',
+//         contacts: [],
+//         date: '2024-05-30',
+//         prio: 'medium',
+//         category: 'Technical Task',
+//         subtasks: [
+//             {
+//             subtask: 'subtask1',
+//             done: false
+//             },
+//             {
+//             subtask: 'subtask2',
+//             done: false 
+//             },
+//             {
+//             subtask: 'subtask3',
+//             done: true 
+//             }
+//         ],
+//         status: 'awaitFeedback'
+//     }
+// ]
 let currentDraggedElement;
 let boardCurrentPrio = '';
 let editTaskContacts;
@@ -113,7 +113,7 @@ async function initBoard() {
     if(loggedIn) {
         await includeHTML();
         await loadContacts();
-        // await loadTasks();
+        await loadTasks();
         highlightActiveSideButton();
         currentUser = getCurrentUser();
         showUserNavBar();
@@ -305,10 +305,11 @@ function showEmptyDiv(id) {
     }
 }
 
-function moveTo(newStatus) { 
-    let id = currentDraggedElement.slice(currentDraggedElement.length -10);
+async function moveTo(newStatus) { 
+    let id = currentDraggedElement.slice(currentDraggedElement.length -13);
     let element = tasks.find(task => task.createdAt == id);
     element.status = newStatus;
+    await setItem('tasks', tasks);
     renderAllTasks();
 }
 
@@ -402,7 +403,7 @@ function rendeSearchedDone(search) {
     }
 }
 
-/* ---------- open task ---------- */
+/* ---------- OPEN TASK ---------- */
 
 function openTask(taskCreatedAt) {
     let task = tasks.find(t => t.createdAt == taskCreatedAt);
@@ -718,16 +719,18 @@ function boardEditTaskAddOrRemoveContact(contactCreatedAt, taskCreatedAt, search
     }
 }
 
-function boardChangeSubtasksDoneOrNot(taskCreatedAt, i) {
+async function boardChangeSubtasksDoneOrNot(taskCreatedAt, i) {
     let subtaskCheckboxImg = document.getElementById(`boardPopUpSubtask${taskCreatedAt}${i}`);
     let task = tasks.find(t => t.createdAt == taskCreatedAt);
     if(subtaskCheckboxImg.src.toLowerCase().includes('notchecked')) {
         task.subtasks[i].done = true;
         renderSubtasksPopUpBoard(task);
+        await setItem('tasks', tasks);
         renderAllTasks();
     } else {
         task.subtasks[i].done = false;
         renderSubtasksPopUpBoard(task);
+        await setItem('tasks', tasks);
         renderAllTasks();
     }
 }
@@ -770,7 +773,7 @@ function changeImageOnSubtaskInputToPlus(taskCreatedAt) {
     boardPopUpInputSubtasksImg.innerHTML = /*html*/`<img onclick="focusOnInputOrAddSubtask('${taskCreatedAt}')" class="height10" src="./img/add-2.png" alt="plus">`;
 }
 
-function boardEditTaskAddSubtask(taskCreatedAt) {
+async function boardEditTaskAddSubtask(taskCreatedAt) {
     let boardPopUpInputSubtasks = document.getElementById('boardPopUpInputSubtasks');
     if(boardPopUpInputSubtasks.value !== '') {
         let task = tasks.find(t => t.createdAt == taskCreatedAt);
@@ -784,7 +787,7 @@ function boardEditTaskAddSubtask(taskCreatedAt) {
     }
 }
 
-function saveEditedTask(taskCreatedAt, event) {
+async function saveEditedTask(taskCreatedAt, event) {
     event.preventDefault();
     let task = tasks.find(t => t.createdAt == taskCreatedAt);
     let title = document.getElementById('boardPopUpInputTitle').value;
@@ -800,6 +803,7 @@ function saveEditedTask(taskCreatedAt, event) {
     editTaskSubtasks = undefined;
     openTask(taskCreatedAt);
     removeAnimationRightSlideIn('boardPopUpCard');
+    await setItem('tasks', tasks);
     renderAllTasks();
 }
 
