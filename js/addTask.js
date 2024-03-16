@@ -341,27 +341,65 @@ function updateContactsDropdown(contacts) {
     
     
     }
-
     function addSubtask(event) {
-        // Only add the subtask when the Enter key is pressed
         if (event.key === "Enter" || event.keyCode === 13) {
-          event.preventDefault(); // Prevent the form from being submitted
-      
-          const subtasksInput = document.getElementById('subtasks');
-          const subtaskText = subtasksInput.value.trim();
-      
-          if(subtaskText) { // Check if the input is not empty
-            // Add the subtask to the display list
-            const subtasksList = document.getElementById('subtasksList');
-            const li = document.createElement('li');
-            li.textContent = subtaskText;
-            subtasksList.appendChild(li);
-      
-            // Clear the input field for the next subtask
-            subtasksInput.value = '';
-          }
+            event.preventDefault(); // Prevent form submission
+    
+            const subtasksInput = document.getElementById('subtasks');
+            const subtaskText = subtasksInput.value.trim();
+    
+            if (subtaskText) {
+                const subtasksList = document.getElementById('subtasksList');
+                const li = document.createElement('li');
+                li.textContent = subtaskText;
+                li.addEventListener('dblclick', () => openEditField(li));
+                subtasksList.appendChild(li);
+    
+                subtasksInput.value = ''; // Clear input field
+            }
         }
-      }
+    }
+    
+    function openEditField(li) {
+        // Create edit input field
+        const editInput = document.createElement('input');
+        editInput.type = 'text';
+        editInput.value = li.textContent;
+        editInput.className = 'edit-input'; // CSS class for styling
+    
+        // Create save button
+        const saveButton = document.createElement('img');
+        saveButton.src = 'img/edit.png'; // Path to edit image
+        saveButton.className = 'edit-btn'; // CSS class for styling
+        saveButton.addEventListener('click', () => saveEdit(li, editInput.value));
+    
+        // Create delete button
+        const deleteButton = document.createElement('img');
+        deleteButton.src = 'img/delete.png'; // Path to delete image
+        deleteButton.className = 'delete-btn'; // CSS class for styling
+        deleteButton.addEventListener('click', () => deleteSubtask(li));
+        
+        const confirmButton = document.createElement('img');
+        confirmButton.src = 'img/tick.png';
+        confirmButton.className ="confirm-btn";
+        confirmButton.addEventListener('click', () => saveEdit(li, editInput.value));
+        // Append elements to the list item
+        li.innerHTML = ''; // Clear the list item content
+        li.appendChild(editInput);
+        li.appendChild(saveButton);
+        li.appendChild(deleteButton);
+        li.appendChild(confirmButton);
+    }
+    
+    function saveEdit(li, newValue) {
+        li.textContent = newValue; // Update the list item text
+        li.addEventListener('dblclick', () => openEditField(li)); // Add double-click listener again
+    }
+    
+    function deleteSubtask(li) {
+        li.remove(); // Remove the list item
+    }
+    
    
       function isValidDate(dateString) {
         // Normalize the date string by replacing non-numeric characters with a slash
