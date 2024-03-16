@@ -18,8 +18,8 @@ a {
 .summary-container-wrapper {
     display: flex;
     justify-content: space-between;
-    align-items: center;  
-     height: 100vh;
+    align-items: center;
+    height: 100vh;
     width: 100%;
 }
 
@@ -274,6 +274,10 @@ a {
     gap: 28px;
 }
 
+.overview-container p {
+    margin: 0;
+}
+
 .task-container {
     box-sizing: border-box;
     max-width: 172px;
@@ -400,6 +404,7 @@ a {
 
     .summary-container-wrapper {
         justify-content: center;
+        height: auto;
     }
 
     .summary-container {
@@ -476,6 +481,17 @@ a {
     .button-container {
         gap: 0;
         padding: 20px;
+        padding-left: 57px;
+        padding-right: 57px;
+    }
+
+}
+
+@media screen and (max-width: 540px) {
+
+    .button-container {
+        gap: 0;
+        padding: 20px;
         padding-left: 50px;
         padding-right: 50px;
     }
@@ -524,14 +540,80 @@ a {
 }
 
 
-@media screen and (max-width: 436px) {
+@media screen and (max-width: 456px) {
 
     .task-container {
         min-width: 90px;
         min-height: 90px;
+    }
 
+    .button-container {
+        padding-left: 39px;
+        padding-right: 39px;
+        padding-top: 25px;
+        padding-bottom: 25px;
+        height: auto;
     }
 }
+@media screen and (max-width: 434px) {
+
+
+    .button-container {
+        padding-left: 35px;
+        padding-right: 35px;
+        padding-top: 25px;
+        padding-bottom: 25px;
+        height: auto;
+    }
+}
+
+@media screen and (max-width: 412px) {
+
+    .button-container {
+        padding-left: 30px;
+        padding-right: 30px;
+        padding-top: 25px;
+        padding-bottom: 25px;
+        height: auto;
+    }
+}
+
+@media screen and (max-width: 390px) {
+
+    .button-container {
+        padding-left: 25px;
+        padding-right: 25px;
+        padding-top: 25px;
+        padding-bottom: 25px;
+        height: auto;
+    }
+
+    .line {
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+
+    .deadline-wrapper {
+        font-size: 12px;
+        text-align: center;
+    }
+
+    .deadline {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 360px) {
+
+    .button-container {
+        padding-left: 23px;
+        padding-right: 23px;
+        padding-top: 25px;
+        padding-bottom: 25px;
+        height: auto;
+    }
+}
+
 
 @media screen and (max-width: 347px) {
 
@@ -564,18 +646,23 @@ a {
     }
 
     .fs-20 {
-        font-size: 10px;
+        font-size: 15px;
     }
 
     .button-container {
-        padding-left: 30px !important;
-        padding-right: 30px !important;
-        padding-top: 30px !important;
-        padding-bottom: 30px !important;
+        padding-left: 28px;
+        padding-right:28px;
+        padding-top: 30px;
+        padding-bottom: 30px;
         height: auto;
     }
 
+    .overview-container p {
+        font-size: 12px;
+    }
+
     .task-container {
+
         min-width: 30px;
         min-height: 30px;
         word-wrap: break-word;
@@ -593,10 +680,61 @@ a {
         text-wrap: wrap;
     }
 }
-/* 
-@media screen and (max-height: 905px) {
- .summary-container {
-    margin-top: ;
-    margin-bottom: 30%;
- }
-} */
+
+
+@media screen and (max-width: 336px) {
+    .button-container {
+        padding-left: 24px;
+        padding-right:24px;
+
+    }
+
+}
+
+@media screen and (max-width: 325px) {
+    .button-container {
+        padding-left: 24x;
+        padding-right:24px;
+
+    }
+
+}
+
+@media screen and (max-width: 320px) {
+    .headline {
+        align-items: center;
+    }
+    .headline-headline {
+        font-size: 30px;
+    }
+    .headline-description {
+        display: none;
+    }
+}
+@media screen and (max-width: 315px) {
+.check-rectangle {
+    flex-direction: column;
+}
+
+.button-container {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.overview-container {
+    flex-direction: column;
+}
+.urgency-container {
+    flex-direction: column;
+    width: auto;
+    padding: 40px;
+}
+.line {
+    width: 100%;
+    height: 1px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.task-container {
+min-width: 100%;
+}
+}
