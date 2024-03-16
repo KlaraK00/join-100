@@ -17,7 +17,7 @@
     <script src="./js/navBar.js" defer></script>
     <script src="./templates/HTMLTemplatesBoard.js" defer></script>
     <script src="./js/summary.js" defer></script>
-    <!-- <script src="./js/addTask.js" defer></script> -->
+    <script src="./js/addTask.js" defer></script>
     <script src="./js/board.js" defer></script>
     <script src="./js/header.js" defer></script>
     <link rel="icon" type="image/x-icon" href="/img/join_logo.png">
@@ -37,9 +37,9 @@
     <div class="main-board-container">
         <div onclick="closeTask()" id="boardTaskOverlay"></div>
         <div class="menubar">
-            <div class="headline">
+            <div class="headline-board">
                 <div>Board</div>
-                <div class="addTaskPlus"><img src="img/plus add task mobile.png" alt=""></div>
+                <div class="addTaskPlus" onclick="openAddTask()"><img src="img/plus add task mobile.png" alt=""></div>
             </div>
             <div class="searchAdd">
                 <div class="fakeInput"> 
@@ -51,28 +51,28 @@
                         </div>
                     </div>
                 </div>
-                <div class="addTask"><button>Add Task <img src="img/add.png"></button></div>
+                <button onclick="openAddTask()" class="darkBtn cursorPointer">Add Task <img src="img/add.png"></button>                
             </div>
         </div>
         <div class="progressBar">
             <div class="lineUp dFlex directionColumn">
                 <div class="progressHead">
                     <div class="headlineBoardTasks">To do</div> 
-                    <div class="plus">+</div>
+                    <div onclick="openAddTask()" class="plus">+</div>
                 </div>
                 <div ondragover="allowDrop(event), showEmptyDiv('divToDo')" ondragleave="removeEmptyDiv('divToDo')" ondrop="moveTo('toDo')" id="divToDo" class="column flex1"></div>
             </div>
             <div class="lineUp dFlex directionColumn">
                 <div class="progressHead">
                     <div class="headlineBoardTasks">In  progress</div>
-                    <div class="plus">+</div>
+                    <div onclick="openAddTask()" class="plus">+</div>
                 </div>
                 <div ondragover="allowDrop(event), showEmptyDiv('divInProgress')" ondragleave="removeEmptyDiv('divInProgress')" ondrop="moveTo('inProgress')" id="divInProgress" class="column flex1"></div>
             </div>
             <div class="lineUp dFlex directionColumn">
                 <div class="progressHead">
                     <div class="headlineBoardTasks">Await feedback</div>
-                    <div class="plus">+</div>
+                    <div onclick="openAddTask()" class="plus">+</div>
                 </div>
                 <div ondragover="allowDrop(event), showEmptyDiv('divAwaitFeedback')" ondragleave="removeEmptyDiv('divAwaitFeedback')" ondrop="moveTo('awaitFeedback')" id="divAwaitFeedback" class="column flex1"></div>
             </div>

@@ -166,3 +166,13 @@ body {
         border-radius: 20px;
     }
 }
+
+
+@media screen and (max-width: 340px) {
+    .menuButton p {
+        font-size: 14px;
+    }
+    .selectedMenuButton p {
+        font-size: 14px;
+    }
+ }

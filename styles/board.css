@@ -26,11 +26,11 @@ body {
     width: calc(100vw - 360px);
     margin-bottom: 40px;
     max-width: 1440px;
-    margin-top: 175.5px;
+    margin-top: 150px;
     margin-left: 296px;
 }
 
-.headline {
+.headline-board {
     display: flex;
     align-items: center;
     gap: 1px; 
@@ -55,6 +55,7 @@ body {
     border: 1px solid #a8a8a8;
     border-radius: 10px; 
     width: 312px;
+    position: relative;
 }
 
 .inputSearch {
@@ -69,10 +70,9 @@ body {
 
 .inputRight {
     display: flex;
-    justify-content: space-between;
-    align-self: center;
     gap: 16px;
-    margin-right: 16px;
+    position: absolute;
+    right: 16px;
 }
 
 .searchIcon {
@@ -82,11 +82,12 @@ body {
     justify-content: center;
     align-items: center;
     border-radius: 50%;
+    cursor: pointer;
+    transition: all 225ms ease-in-out;
 }
 
 .searchIcon:hover {
     background-color: #eeeeee;
-    cursor: pointer;
 }
 
 .menubar input:hover {
@@ -128,8 +129,10 @@ body {
     max-width: 1440px;
     gap: 26px;
     height: calc(100vh - 285.5px);
-    margin-left: 296px;
-    overflow: scroll;
+    margin-left: 286px;
+    overflow: auto;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .progressHead {
@@ -152,6 +155,7 @@ body {
     justify-content: center;
     cursor: pointer;
     align-items: center;
+    transition: all 225ms ease-in-out;
 }
 
 .plus:hover {
@@ -163,7 +167,7 @@ body {
     display: flex; 
     align-items: center;
     width: 100%; 
-    height: 24px; 
+    height: 28px; 
     gap: 35px;
     margin-bottom: 20px;
 }
@@ -281,6 +285,12 @@ body {
     right: 24px;
     top: 24px;
     height: 25px;
+    border-radius: 100%;
+    transition: all 225ms ease-in-out;
+}
+
+.closeImgBoard:hover {
+    background-color: #eeeeee;
 }
 
 .width100Px {
@@ -336,9 +346,13 @@ body {
     border-radius: 10px;
 }
 
+.hoverGrey {
+    transition: all 225ms ease-in-out;
+    cursor: pointer;
+}
+
 .hoverGrey:hover {
     background-color: #eeeeee;
-    cursor: pointer;
 }
 
 .greyVerticalLineSubtasks {
@@ -404,6 +418,46 @@ body {
     border-radius: 0;
 }
 
+.addTaskOverlay {
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.08);
+    width: fit-content !important;
+    margin: 0;
+    padding: 50px;
+    border-radius: 25px;
+}
+
+#addTaskTemplateH1 {
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+#addTaskTemplateTaskWrapper {
+    margin: 0;
+}
+
+.addTaskTemplateRequiredCreate {
+    margin: 0 !important;
+}
+
+.addTaskTemplateTaskMar25 {
+    margin-left: 25px;
+}
+
+.addTaskOverlayCloseImg {
+    transition: all 225ms ease-in-out;
+}
+
+.addTaskOverlayCloseImg:hover {
+    border-radius: 100%;
+    background-color: #eeeeee;
+}
+
+.addTaskOverlayDateInput {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
 .animationRightSlideOut {
     animation: rightSlideOut 225ms forwards !important;
 }
@@ -414,7 +468,7 @@ body {
 
 @keyframes rightSlideOut {
     from {
-        transform: translateX();
+        transform: translateX(0);
     }
     to {
         transform: translateX(100vw);
@@ -426,7 +480,27 @@ body {
         transform: translateX(100vw);
     }
     to {
-        transform: translateX();
+        transform: translateX(0);
+    }
+}
+
+@media (max-width: 1300px) {
+    .taskWrapper {
+        overflow: unset !important;
+        flex-direction: row !important;
+    }
+    .parting-line {
+        display: block !important;
+    }
+    .main-add-task-container {
+        height: fit-content !important;
+    }
+    .deadline input {
+        width: unset !important;
+    }
+    .required-create {
+        justify-content: space-between !important;
+        width: 100% !important;
     }
 }
 
@@ -475,7 +549,7 @@ body {
         width: 100%;
     }
 
-    .headline {
+    .headline-board {
         justify-content: space-between;
         font-size: 47px;
     }
@@ -483,6 +557,52 @@ body {
     .addTaskPlus {
         display: block;
         cursor: pointer;
+    }
+}
+
+@media(max-width: 950px) {
+    .taskWrapper {
+        display: flex;
+        flex-direction: column !important;
+    }
+    .parting-line {
+        display: none !important;
+    }
+    .addTaskTemplateTaskMar25 {
+        margin-left: 0;
+    }
+}
+
+@media(max-width: 570px) {
+    .addTaskOverlay {
+        padding: 0;
+        border-radius: 0;
+        height: 100vh!important;
+        width: 100%!important;
+        max-height: 100vh!important;
+    }
+    .required-create {
+        width: unset !important;
+        padding-bottom: 20px;
+    }
+    .create {
+        width: unset !important;
+        height: unset !important;
+        min-width: unset !important;
+    }
+    #addTaskTemplateH1 {
+        padding-top: 20px;
+        font-size: 32px;
+    }
+    .createTask {
+        height: unset !important;
+        width: unset !important;
+        padding: 10px !important;
+        font-size: 16px !important;
+    }
+    .addTaskOverlayCloseImg {
+        top: 16px !important;
+        right: 16px !important;
     }
 }
 

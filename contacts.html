@@ -18,17 +18,17 @@
     <script src="js/header.js"></script>
     <link rel="icon" type="image/x-icon" href="/img/join_logo.png">
 </head>
-<body onload="init(), initContacts()">
+<body onload="initContacts()">
     <div w3-include-html="/templates/navBar.html"></div>
     <div w3-include-html="/templates/header.html"></div>
-    <div class="savingError d-none"><div class="savingError1">Sorry for saving error! <button onclick="closeSavingError()" class="savingErrorButton">OK</button></div></div>
-    <div class="loadingError d-none"><div class="loadingError1">Sorry for loading error! <button onclick="closeLoadingError()" class="loadingErrorButton">OK</button></div></div>
-    <div class="error-container d-none">
+    <div class="savingError d-none-contacts"><div class="savingError1">Sorry for saving error! <button onclick="closeSavingError()" class="savingErrorButton">OK</button></div></div>
+    <div class="loadingError d-none-contacts"><div class="loadingError1">Sorry for loading error! <button onclick="closeLoadingError()" class="loadingErrorButton">OK</button></div></div>
+    <div class="error-container d-none-contacts">
         <h1>Oops!</h1>
         <p>An error occurred because you are not logged in.</p>
         <p>Please log in and try again.</p>
         <div class="login-button-div"><a href="index.html" class="login-button">Login</a></div>
-      </div>
+    </div>
     <div class="contact-container">
         <div class="d-none" id="overlay-add-contact"></div>
         <div class="d-none" id="overlay-edit-contact"></div>

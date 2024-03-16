@@ -7,7 +7,11 @@ let letters = [];
 async function initContacts(){
     loadLoggedIn();
     if(loggedIn) {
+        await includeHTML();
         await loadContacts();
+        highlightActiveSideButton();
+        currentUser = getCurrentUser();
+        showUserNavBar();
         fillLetters();
         loadLetters();
         renderContact();

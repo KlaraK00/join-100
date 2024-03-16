@@ -202,23 +202,21 @@ h1 {
 
 /* ---------- FONTS ---------- */
 
-.registerDialog span {
+.registerSignUpSuccessfully span {
     padding: 18px 20px 18px 20px !important;
     border-radius: 12px !important;
 }
 
-.registerDialog {
+.registerSignUpSuccessfully {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    border: none;
-    background-color: transparent;
-}
-
-dialog::backdrop {
-    background: rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 .fontSize11 {
@@ -243,17 +241,6 @@ dialog::backdrop {
 }
 
 /* ---------- OTHERS ---------- */
-
-/* input:-webkit-autofill {
-    appearance: none;
-} */
-
-/* input:-internal-autofill-selected {
-    appearance: auto;
-    background-image: none !important;
-    background-color: transparent !important;
-    color: white !important;
-} */
 
 .informNotTheSamePassword {
     position: absolute;
@@ -376,6 +363,10 @@ dialog::backdrop {
     top: 15px;
 }
 
+.top45 {
+    top: 45px;
+}
+
 .rightMinus26 {
     right: -26px;
 }
@@ -396,6 +387,10 @@ dialog::backdrop {
     right: 15px;
 }
 
+.right47 {
+    right: 47px;
+}
+
 .bot0 {
     bottom: 0;
 }
@@ -405,6 +400,12 @@ dialog::backdrop {
 }
 
 /* ---------- ANIMATIONS ---------- */
+
+.bottomSlideInAndOut {
+    animation-name: bottomSlideInAnOut;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
 
 .opacity0to1 {
     animation-name: opacity0to1;
@@ -416,6 +417,18 @@ dialog::backdrop {
     animation-name: logoSlideInDesktop;
     animation-duration: 1s;
     animation-fill-mode: forwards;
+}
+
+@keyframes bottomSlideInAnOut {
+    0% {
+        transform: translateY(75vh);
+    }
+    33%, 67% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(75vh);
+    }
 }
 
 @keyframes opacity0to1 {
@@ -483,6 +496,8 @@ dialog::backdrop {
         top: 20px;
     }
 }
+
+/* ---------- MEDIA QUERY ---------- */
 
 @media (max-width: 860px) {
     .registerJoinLogo {

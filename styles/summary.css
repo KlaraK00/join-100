@@ -19,7 +19,7 @@ a {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 100vh;
+    height: 100%;
     width: 100%;
 }
 
@@ -28,7 +28,6 @@ a {
     margin-top: 96px;
     margin-left: 232px;
     padding-left: 10%;
-    padding-bottom: 30px;
     height: auto;
 
 }
@@ -275,6 +274,10 @@ a {
     gap: 28px;
 }
 
+.overview-container p {
+    margin: 0;
+}
+
 .task-container {
     box-sizing: border-box;
     max-width: 172px;
@@ -357,16 +360,16 @@ a {
 .error-container h1 {
     margin-block-start: 0;
 }
-  
+
 .error-container p {
     font-size: 1.2em;
     margin-bottom: 5px;
 }
-  
+
 .error-container p:last-child {
     margin-bottom: 20px;
 }
-  
+
 .error-container a {
     color: white;
     text-decoration: underline;
@@ -393,22 +396,19 @@ a {
     .greet-container {
         display: none;
     }
-
 }
 
 @media screen and (max-width: 1100px) {
 
-
     .summary-container-wrapper {
         justify-content: center;
+        align-items: center;
     }
 
     .summary-container {
-        margin-left:0;
-        margin-top: 0;
+        margin-left: 0;
         padding: 1%;
-        padding-top: 100px;
-        padding-bottom: 100px;
+        margin-bottom: 100px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -420,6 +420,7 @@ a {
         padding-bottom: 20px;
 
     }
+
 }
 
 @media screen and (max-width: 650px) {
@@ -442,17 +443,12 @@ a {
     .main-task-container {
         justify-content: center;
         align-items: center;
+        max-width: 100vw;
     }
 
     .check-rectangle {
         width: 90%;
-    }
-
-    .button-container {
         gap: 0;
-        padding: 20px;
-        padding-left: 45px;
-        padding-right: 45px;
     }
 
     .urgency-container {
@@ -471,13 +467,38 @@ a {
 
     }
 
+
     .task-container {
         padding: 15px;
         height: auto;
     }
 }
 
+@media screen and (max-width: 560px) {
+
+    .button-container {
+        gap: 0;
+        padding: 20px;
+        padding-left: 57px;
+        padding-right: 57px;
+    }
+
+}
+
+@media screen and (max-width: 540px) {
+
+    .button-container {
+        gap: 0;
+        padding: 20px;
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+
+}
+
+
 @media screen and (max-width: 502px) {
+
 
     .fs-64 {
         font-size: 50px;
@@ -488,10 +509,12 @@ a {
     }
 
     .button-container {
-        padding-left: 28px;
-        padding-right: 28px;
-
+        padding-left: 45px;
+        padding-right: 45px;
+        padding-top: 25px;
+        padding-bottom: 25px;
     }
+
 
     .line {
         margin: 5px;
@@ -506,28 +529,138 @@ a {
     .overview-container {
         gap: 10px;
     }
+
+    .urgency-container {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        height: auto;
+    }
 }
 
-@media screen and (max-width: 407px) {
-    .button-container {
-        padding-left: 18px;
-        padding-right: 18px;
-    }
+
+@media screen and (max-width: 456px) {
 
     .task-container {
         min-width: 90px;
         min-height: 90px;
+    }
 
+    .button-container {
+        padding-left: 39px;
+        padding-right: 39px;
+        padding-top: 25px;
+        padding-bottom: 25px;
+        height: auto;
+    }
+}
+@media screen and (max-width: 434px) {
+
+
+    .button-container {
+        padding-left: 35px;
+        padding-right: 35px;
+        padding-top: 25px;
+        padding-bottom: 25px;
+        height: auto;
     }
 }
 
-@media screen and (max-width: 347px) {
+@media screen and (max-width: 412px) {
+
     .button-container {
-        padding-left: 9px !important;
-        padding-right: 9px !important;
+        padding-left: 30px;
+        padding-right: 30px;
+        padding-top: 25px;
+        padding-bottom: 25px;
+        height: auto;
+    }
+}
+
+@media screen and (max-width: 390px) {
+
+    .button-container {
+        padding-left: 25px;
+        padding-right: 25px;
+        padding-top: 25px;
+        padding-bottom: 25px;
+        height: auto;
+    }
+
+    .line {
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+
+    .deadline-wrapper {
+        font-size: 12px;
+        text-align: center;
+    }
+
+    .deadline {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 360px) {
+
+    .button-container {
+        padding-left: 23px;
+        padding-right: 23px;
+        padding-top: 25px;
+        padding-bottom: 25px;
+        height: auto;
+    }
+}
+
+
+@media screen and (max-width: 347px) {
+
+    .main-task-container {
+        gap: 15px;
+    }
+
+    .elipse {
+        height: 50px;
+        width: 50px;
+    }
+
+    .elipse-urgency {
+        height: 50px;
+        width: 50px;
+    }
+
+    .vector-icon {
+        height: 20px;
+        width: 25px;
+    }
+
+    .arrow-icon {
+        height: 20px;
+        width: 25px;
+    }
+
+    .fs-64 {
+        font-size: 40px;
+    }
+
+    .fs-20 {
+        font-size: 15px;
+    }
+
+    .button-container {
+        padding-left: 28px;
+        padding-right:28px;
+        padding-top: 30px;
+        padding-bottom: 30px;
+        height: auto;
+    }
+
+    .overview-container p {
+        font-size: 12px;
     }
 
     .task-container {
+
         min-width: 30px;
         min-height: 30px;
         word-wrap: break-word;
@@ -536,7 +669,7 @@ a {
 
     .urgency-container {
         justify-content: space-between;
-
+        height: auto;
     }
 
     .deadline {
@@ -546,9 +679,60 @@ a {
     }
 }
 
-@media screen and (max-height: 905px) {
- .summary-container {
-    margin-top: ;
-    margin-bottom: 30%;
- }
+
+@media screen and (max-width: 336px) {
+    .button-container {
+        padding-left: 24px;
+        padding-right:24px;
+
+    }
+
+}
+
+@media screen and (max-width: 325px) {
+    .button-container {
+        padding-left: 24x;
+        padding-right:24px;
+
+    }
+
+}
+
+@media screen and (max-width: 320px) {
+    .headline {
+        align-items: center;
+    }
+    .headline-headline {
+        font-size: 30px;
+    }
+    .headline-description {
+        display: none;
+    }
+}
+@media screen and (max-width: 315px) {
+.check-rectangle {
+    flex-direction: column;
+}
+
+.button-container {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.overview-container {
+    flex-direction: column;
+}
+.urgency-container {
+    flex-direction: column;
+    width: auto;
+    padding: 40px;
+}
+.line {
+    width: 100%;
+    height: 1px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.task-container {
+min-width: 100%;
+}
 }

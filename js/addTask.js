@@ -134,15 +134,38 @@ function getPriority() {
   return "";
 }
 
-function activateButton(buttonId) {
-  //remove active from all buttons
-  document.querySelectorAll("#priority .prio button").forEach((button) => {
-    button.classList.remove("active");
-  });
+/**
+ * Aktiviert den ausgewählten Button, ändert die Hintergrundfarbe entsprechend der Priorität, setzt den Filter für die Bilder und ändert die Schriftfarbe der Buttons.
+ * @param {string} priority - Die Priorität des ausgewählten Buttons ('urgent', 'medium' oder 'low').
+ */
+function activateButton(priority) {
+  document.getElementById('urgent').style.backgroundColor = 'white';
+  document.getElementById('medium').style.backgroundColor = 'white';
+  document.getElementById('low').style.backgroundColor = 'white';
+  document.getElementById('urgent').querySelector('img').style.filter = 'none';
+  document.getElementById('medium').querySelector('img').style.filter = 'none';
+  document.getElementById('low').querySelector('img').style.filter = 'none';
+  document.getElementById('urgent').style.color = 'black';
+  document.getElementById('medium').style.color = 'black';
+  document.getElementById('low').style.color = 'black';
 
-  //add active to the button the user clicks on
-  let button = document.getElementById(buttonId);
-  button.classList.add("active");
+  switch(priority) {
+    case 'urgent':
+      document.getElementById('urgent').style.backgroundColor = 'rgb(255, 62, 0)';
+      document.getElementById('urgent').querySelector('img').style.filter = 'brightness(0) invert(1)';
+      document.getElementById('urgent').style.color = 'white';
+      break;
+    case 'medium':
+      document.getElementById('medium').style.backgroundColor = 'rgb(255, 168, 0)';
+      document.getElementById('medium').querySelector('img').style.filter = 'brightness(0) invert(1)';
+      document.getElementById('medium').style.color = 'white';
+      break;
+    case 'low':
+      document.getElementById('low').style.backgroundColor = 'rgb(123, 226, 40)';
+      document.getElementById('low').querySelector('img').style.filter = 'brightness(0) invert(1)';
+      document.getElementById('low').style.color = 'white';
+      break;
+  }
 }
 
 function clearInput() {
@@ -178,7 +201,7 @@ function updateContactsDropdown(contacts) {
     
        
         const nameContainer = document.createElement("div");
-        nameContainer.classList.add("name-container")
+        nameContainer.classList.add("name-container-add-task")
         
         const initialsSpan = document.createElement("span");
         initialsSpan.className = "contact-initials";
@@ -371,16 +394,3 @@ function updateContactsDropdown(contacts) {
             return false; // The date does not exist
         }
     }
-    
-    
-
-    
-      
-    
-    
-    
-    
-
-
-
-
