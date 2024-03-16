@@ -453,6 +453,11 @@ body {
     background-color: #eeeeee;
 }
 
+.addTaskOverlayDateInput {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
 .animationRightSlideOut {
     animation: rightSlideOut 225ms forwards !important;
 }
