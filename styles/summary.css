@@ -19,7 +19,7 @@ a {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 100vh;
+    height: 100%;
     width: 100%;
 }
 
@@ -396,15 +396,13 @@ a {
     .greet-container {
         display: none;
     }
-
 }
 
 @media screen and (max-width: 1100px) {
 
-
     .summary-container-wrapper {
         justify-content: center;
-        height: auto;
+        align-items: center;
     }
 
     .summary-container {
@@ -515,8 +513,8 @@ a {
         padding-right: 45px;
         padding-top: 25px;
         padding-bottom: 25px;
-        height: auto;
     }
+
 
     .line {
         margin: 5px;
