@@ -78,7 +78,10 @@ function pushTask(task) {
 
 function createTask() {
     let title = getInputValue("title");
-    let dueDate = getInputValue("due");
+    let dueDateOriginalFormat = getInputValue("due");
+    // Convert dueDate from dd/mm/yyyy to yyyy-mm-dd format
+    let dueDateParts = dueDateOriginalFormat.split("/");
+    let dueDate = `${dueDateParts[2]}-${dueDateParts[1]}-${dueDateParts[0]}`;
   
     if (!title.trim() || !dueDate.trim()) {
       alert("Please fill in all required fields.");
