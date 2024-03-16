@@ -64,7 +64,7 @@ body {
     border: 1px solid rgba(168, 168, 168, 1);
     font-size: 20px;
     font-weight: 400;
-    color:rgba(209, 209, 209, 1);
+    color: black;
     height: 48px;
     padding-left: 10px;
     cursor: pointer;
@@ -93,7 +93,7 @@ body {
     height: 136px; 
     font-size: 20px;
     font-weight: 400;
-    color:rgba(209, 209, 209, 1);
+    color: black;
     border: 1px solid rgba(168, 168, 168, 1);
     border-radius: 10px;
     padding-left: 10px;
@@ -246,13 +246,13 @@ body {
     height: 48px;
     border-radius: 10px;
     border: 1px solid rgba(168, 168, 168, 1);
-    color:rgba(209, 209, 209, 1);
     background-image: url('../img/event.png'); 
     background-repeat: no-repeat; 
     background-position: top 10px right 10px;
     padding-left: 10px;
     cursor: pointer;
     font-size: 20px;
+    color: black;
 }
 
 #due:focus-within {
@@ -362,7 +362,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     justify-content: space-between;
     font-size: 20px;
     font-weight: 400;
-    color: rgba(209, 209, 209, 1);
+    color: black;
     background-image: url('../img/add-2.png'); 
     background-repeat: no-repeat; 
     background-position: top 16px right 10px;
@@ -450,6 +450,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         align-items: center;
     }
 
+    .dropdown select {
+        font-size: 16px;
+    }
+
     .addTask {
         margin-top: 128px;
     }
@@ -495,7 +499,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     .taskWrapper {
         overflow-y: auto;
         overflow-x: hidden;
-
     }
 
     .required {
@@ -519,10 +522,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
     .taskTitle input {
         height: 36px;
+        font-size: 16px;
     }
 
     .description textarea {
         height: 104px;
+        font-size: 16px;
     }
 
     .description {
@@ -555,6 +560,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     .deadline input {
         height: 40px;
         width: 384px;
+        font-size: 16px;
     }
 
     .priority {
