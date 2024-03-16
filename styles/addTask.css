@@ -428,7 +428,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     display: flex; 
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(42, 54, 71, 1);
+    border: none;
     width: 183px; 
     height: 56px; 
     border-radius: 10px;
