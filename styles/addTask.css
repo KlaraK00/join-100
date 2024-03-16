@@ -61,6 +61,12 @@ body {
     color:rgba(209, 209, 209, 1);
     height: 48px;
     padding-left: 10px;
+    cursor: pointer;
+}
+
+#title:focus-within {
+    border: 1px solid #29abe2;
+    outline: none;
 }
 
 .red {
@@ -84,6 +90,12 @@ body {
     color:rgba(209, 209, 209, 1);
     padding-left: 10px;
     padding-top: 10px;
+    cursor: pointer;
+}
+
+#description:focus-within {
+    border: 1px solid #29abe2;
+    outline: none;
 }
 
 .assign {
@@ -97,7 +109,6 @@ body {
 .assign input, .contacts-dropdown {
     box-sizing: border-box; 
     width: 100%; 
-   
 }
 
 .assign input {
@@ -109,10 +120,15 @@ body {
     background-image: url('../img/arrow_drop_down.png'); 
     background-position: right 10px top 20px; 
     background-repeat: no-repeat; 
+    cursor: pointer;
+}
+
+.assignContact:focus-within {
+    border: 1px solid #29abe2;
+    outline: none;
 }
 
 .contacts-dropdown {
-   
     position: absolute;
     top: 100%; 
     left: 0;
@@ -147,16 +163,11 @@ body {
     padding: 7px 16px;
     font-size: 20px;
     cursor: pointer;
-    
-    
-    
 }
 
 .contact-option.selected {
     background-color: rgba(9, 25, 49, 1);
-    
     color: rgba(255, 255, 255, 1);
-    ;
 }
 
 .contact-initials {
@@ -168,8 +179,6 @@ body {
     color: #ffffff;
     align-items: center;
     justify-content: center;
-    
-    
 }
 
 .name-container {
@@ -185,10 +194,6 @@ body {
     margin-top: 5px; /* Space between input and this container */
 }
 
-
-
-
-
 .dropdown select{
     width: 440px; 
     height: 48px; 
@@ -197,9 +202,13 @@ body {
     font-size: 20px;
     font-weight: 400;
     padding-left: 10px;
+    cursor: pointer;
 }
 
-
+#category:focus-within {
+    border: 1px solid #29abe2;
+    outline: none;
+}
 
 .taskFrame2 {
     width: 50%;
@@ -228,6 +237,12 @@ body {
     background-repeat: no-repeat; 
     background-position: top 10px right 10px;
     padding-left: 10px;
+    cursor: pointer;
+}
+
+#due:focus-within {
+    border: 1px solid #29abe2;
+    outline: none;
 }
 
 input[type="date"]::-webkit-inner-spin-button,
@@ -283,10 +298,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     top: 336px; 
     display: flex;
     flex-direction: column;
-    gap: 8px;
-   
-    
+    gap: 8px;  
 }
+
 .subList {
     width: 440px; 
     max-height: 100px; 
@@ -303,8 +317,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         padding: 6px 16px;
     }
 
-  
-
 .subtasks input {
     border-radius: 10px;
     border: 1px solid rgba(168, 168, 168, 1);
@@ -318,6 +330,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     background-position: top 16px right 10px;
     height: 48px;
     padding-left: 10px;
+    cursor: pointer;
+}
+
+#subtasks:focus-within {
+    border: 1px solid #29abe2;
+    outline: none;
 }
 
 .required-create {

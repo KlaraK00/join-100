@@ -368,16 +368,3 @@ function updateContactsDropdown(contacts) {
             return false; // The date does not exist
         }
     }
-    
-    
-
-    
-      
-    
-    
-    
-    
-
-
-
-
