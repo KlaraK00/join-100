@@ -321,7 +321,7 @@ function removeEmptyDiv(id) {
     }
 }
 
-/* ---------- search ---------- */
+/* ---------- SEARCH ---------- */
 
 function searchAllTasks() {
     let search = document.getElementById('boardSearchInput').value;
