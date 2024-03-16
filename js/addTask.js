@@ -361,6 +361,10 @@ function updateContactsDropdown(contacts) {
     }
     
     function openEditField(li) {
+        // Create a wrapper div to hold the input field and the images
+        const wrapper = document.createElement('div');
+        wrapper.className = 'edit-field-wrapper'; // CSS class for styling
+    
         // Create edit input field
         const editInput = document.createElement('input');
         editInput.type = 'text';
@@ -378,18 +382,24 @@ function updateContactsDropdown(contacts) {
         deleteButton.src = 'img/delete.png'; // Path to delete image
         deleteButton.className = 'delete-btn'; // CSS class for styling
         deleteButton.addEventListener('click', () => deleteSubtask(li));
-        
+    
+        // Create confirm button
         const confirmButton = document.createElement('img');
         confirmButton.src = 'img/tick.png';
-        confirmButton.className ="confirm-btn";
+        confirmButton.className = "confirm-btn";
         confirmButton.addEventListener('click', () => saveEdit(li, editInput.value));
-        // Append elements to the list item
-        li.innerHTML = ''; // Clear the list item content
-        li.appendChild(editInput);
-        li.appendChild(saveButton);
-        li.appendChild(deleteButton);
-        li.appendChild(confirmButton);
+    
+        // Append the input and images to the wrapper
+        wrapper.appendChild(editInput);
+        wrapper.appendChild(saveButton);
+        wrapper.appendChild(deleteButton);
+        wrapper.appendChild(confirmButton);
+    
+        // Clear the list item content and append the wrapper
+        li.innerHTML = '';
+        li.appendChild(wrapper);
     }
+    
     
     function saveEdit(li, newValue) {
         li.textContent = newValue; // Update the list item text

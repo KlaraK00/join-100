@@ -355,6 +355,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         padding: 6px 16px;
     }
 
+    
+
 .subtasks input {
     border-radius: 10px;
     border: 1px solid rgba(168, 168, 168, 1);
@@ -376,6 +378,37 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     outline: none;
 }
 
+.edit-input {
+    flex-grow: 1; 
+    padding-right: 80px;
+    width: 440px;
+    height: 32px;
+    padding: 4px 16px;
+    border: none;
+    border-bottom: 1px solid;
+    border-color: rgba(0, 93, 255, 1);
+}
+
+.edit-field-wrapper {
+    display: flex; 
+    align-items: center;
+    position: relative;
+}
+
+.edit-btn, .delete-btn, .confirm-btn {
+    width: 24px; 
+    height: 24px; 
+    cursor: pointer;
+    position: absolute;
+    right: 56px; }
+
+.delete-btn {
+    right: 32px; 
+}
+
+.confirm-btn {
+    right: 8px; 
+}
 .required-create {
     margin-top: 20px;
     margin-left: 328px;
