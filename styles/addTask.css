@@ -445,6 +445,17 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     background-color: rgb(41,171,226);
 }
 
+.dropdown-icon {
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 10px solid #555;
+    position: absolute;
+    margin-top: 25px;
+    margin-left: 438px;
+}
+
 @media(max-width: 1300px) {
     .main-add-task-container {
         align-items: center;
