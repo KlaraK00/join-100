@@ -16,9 +16,9 @@
 <body onload="initRegister()">
     <div class="savingError d-none"><div class="savingError1">Sorry for saving error! <button onclick="closeSavingError()" class="savingErrorButton">OK</button></div></div>
     <div class="loadingError d-none"><div class="loadingError1">Sorry for loading error! <button onclick="closeLoadingError()" class="loadingErrorButton">OK</button></div></div>
-    <dialog class="fontSize16 registerDialog">
-        <span class="darkBtn">You Signed Up successfully</span>
-    </dialog>
+    <div id="registerSignUpSuccessfully" class="fontSize16 registerSignUpSuccessfully d-none">
+        <span class="darkBtn bottomSlideInAndOut">You Signed Up successfully</span>
+    </div>
     <img class="posAbsolute registerJoinLogo" src="./img/joinLogoBig.png" alt="Join-Logo">
     <div class="overDivFormLogIn">
         <form onsubmit="register(event)" class="formLogIn dFlex directionColumn alignCenter posRelative">

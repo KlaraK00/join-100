@@ -119,8 +119,11 @@ async function signUpSuccessfully() {
     let createdAt = new Date().getTime();
     await createUser(createdAt);
     await createContact(createdAt);
-    // await showOverlaySignedUpSuccessfully(); // ERROR: DIALOG IS NOT DEFINED!
-    redirectToLogIn();
+    showInformationSignedUpSuccessfully();
+    setTimeout(() => {
+        hideInformationSignedUpSuccessfully()
+        redirectToLogIn();
+    }, 2000);
 }
 
 async function createUser(createdAt) {
@@ -190,13 +193,15 @@ async function saveContact() {
     await setItem('contacts', contacts);
 }
 
-// the function below is not functioning!
-// async function showOverlaySignedUpSuccessfully() {
-//     dialog.showModal();
-//     setTimeout(() => {
-//         dialog.close();
-//     }, 1000);
-// }
+function showInformationSignedUpSuccessfully() {
+    let registerSignUpSuccessfully = document.getElementById('registerSignUpSuccessfully');
+    registerSignUpSuccessfully.classList.remove('d-none');
+}
+
+function hideInformationSignedUpSuccessfully() {
+    let registerSignUpSuccessfully = document.getElementById('registerSignUpSuccessfully');
+    registerSignUpSuccessfully.classList.add('d-none');
+}
 
 function redirectToLogIn() {
     window.location.href = "./index.html";
