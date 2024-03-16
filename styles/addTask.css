@@ -284,8 +284,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     box-shadow: 0px 4px 4px 0px #00000040;
 }
 
-.active {
-    background-color: rgba(255, 168, 0, 1) !important;
+#medium {
+    background-color: rgb(255, 168, 0);
     color: white;
 }
 
