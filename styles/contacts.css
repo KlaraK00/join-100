@@ -276,8 +276,8 @@ h5 {
     display: flex;
 }
 
-.d-none {
-    display: none;
+.d-none-contacts {
+    display: none !important;
 }
 
 .blue-container {
