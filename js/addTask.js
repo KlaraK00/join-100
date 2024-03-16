@@ -136,50 +136,36 @@ function getPriority() {
  * @param {string} priority - Die Priorität des ausgewählten Buttons ('urgent', 'medium' oder 'low').
  */
 function activateButton(priority) {
-  // Setze die Hintergrundfarbe aller Buttons zurück
   document.getElementById('urgent').style.backgroundColor = 'white';
   document.getElementById('medium').style.backgroundColor = 'white';
   document.getElementById('low').style.backgroundColor = 'white';
-
-  // Entferne den Filter für alle Bilder
   document.getElementById('urgent').querySelector('img').style.filter = 'none';
-  document.getElementById('medium').querySelector('img').style.filter = 'brightness(0) invert(1)';
+  document.getElementById('medium').querySelector('img').style.filter = 'none';
   document.getElementById('low').querySelector('img').style.filter = 'none';
-
-  // Setze die Schriftfarbe aller Buttons auf schwarz zurück
   document.getElementById('urgent').style.color = 'black';
   document.getElementById('medium').style.color = 'black';
   document.getElementById('low').style.color = 'black';
 
-  // Ändere die Hintergrundfarbe basierend auf der Priorität und setze den Filter für das Bild
   switch(priority) {
     case 'urgent':
-      // Setze die Hintergrundfarbe für 'urgent'
       document.body.style.backgroundColor = 'rgb(255, 62, 0)';
       document.getElementById('urgent').style.backgroundColor = 'rgb(255, 62, 0)';
-      // Setze den Filter für das Bild im 'urgent'-Button
       document.getElementById('urgent').querySelector('img').style.filter = 'brightness(0) invert(1)';
-      // Ändere die Schriftfarbe des 'urgent'-Buttons zu weiß
       document.getElementById('urgent').style.color = 'white';
       break;
     case 'medium':
-      // Setze die Hintergrundfarbe für 'medium'
       document.body.style.backgroundColor = 'rgb(255, 168, 0)';
       document.getElementById('medium').style.backgroundColor = 'rgb(255, 168, 0)';
-      // Ändere die Schriftfarbe des 'urgent'-Buttons zu weiß
+      document.getElementById('medium').querySelector('img').style.filter = 'brightness(0) invert(1)';
       document.getElementById('medium').style.color = 'white';
       break;
     case 'low':
-      // Setze die Hintergrundfarbe für 'low'
       document.body.style.backgroundColor = 'rgb(123, 226, 40)';
       document.getElementById('low').style.backgroundColor = 'rgb(123, 226, 40)';
-      // Setze den Filter für das Bild im 'low'-Button
       document.getElementById('low').querySelector('img').style.filter = 'brightness(0) invert(1)';
-      // Ändere die Schriftfarbe des 'low'-Buttons zu weiß
       document.getElementById('low').style.color = 'white';
       break;
     default:
-      // Standard-Hintergrundfarbe
       document.body.style.backgroundColor = 'white';
   }
 }

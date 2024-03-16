@@ -289,6 +289,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     color: white;
 }
 
+#medium img {
+    height: 8px;
+    width: 21px;
+    filter: brightness(0) invert(1);
+}
+
 .category {
     width: 440px; 
     height: 80px; 
