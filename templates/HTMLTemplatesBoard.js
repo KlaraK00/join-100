@@ -23,7 +23,7 @@ function HTMLTemplatePopUpTask(task) {
             <div class="card posRelative alignStart" id="boardPopUpCard" onclick="event.stopPropagation()">
                 <img onclick="closeTask()" class="posAbsolute cursorPointer closeImgBoard" src="./img/Close.png" alt="close">
                 <div id="boardPopUpCategory${task.createdAt}">${task.category}</div>
-                <div class="headline">${task.title}</div>
+                <div class="headline-board">${task.title}</div>
                 <div>${task.description}</div>
                 <div class="dFlex">
                     <span class="width100Px">Due date:</span>

@@ -444,6 +444,15 @@ body {
     margin-left: 25px;
 }
 
+.addTaskOverlayCloseImg {
+    transition: all 225ms ease-in-out;
+}
+
+.addTaskOverlayCloseImg:hover {
+    border-radius: 100%;
+    background-color: #eeeeee;
+}
+
 .animationRightSlideOut {
     animation: rightSlideOut 225ms forwards !important;
 }
