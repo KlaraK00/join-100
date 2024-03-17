@@ -17,6 +17,7 @@
 <body onload="init(), includeHTML()">
     <div w3-include-html="/templates/navBar.html"></div>
     <div w3-include-html="/templates/header.html"></div>
+ 
     <div class="main-add-task-container">
         <div id="addTaskTemplateH1" class="addTask">Add Task</div>
         <div id="addTaskTemplateTaskWrapper" class="taskWrapper">
@@ -63,13 +64,13 @@
                     <p>Category<span class="red">*</span></p>
                 </div>
                 <div class="dropdown">
-                    <form>
+                    
                         <select name="category" id="category">
                           <option class="d-none" value="preview">Select task category</option>
                           <option value="User Story">User Story</option>
                           <option value="Technical Task">Technical Task</option>
                         </select>
-                    </form>
+                    
                 </div>
             </div>
             <div class="subtasks">
@@ -77,7 +78,7 @@
                 <input id="subtasks" type="text" placeholder="Add new subtask" onkeypress="addSubtask(event)">
                 </div>
                 <div class="subList"><ul id="subtasksList"></ul></div>
-              
+            
         </div> 
         </div>
         <div class="required-create addTaskTemplateRequiredCreate">
