@@ -1,128 +1,39 @@
-// tasks = [
-//     {   
-//         createdAt: '0990790667',
-//         title: 'title1',
-//         description: 'description1',
-//         contacts: [1709742165910, 1709742196208],
-//         date: '2024-03-30',
-//         prio: 'medium',
-//         category: 'User Story',
-//         subtasks: [
-//             {
-//             subtask: 'subtask1',
-//             done: false
-//             },
-//             {
-//             subtask: 'subtask2',
-//             done: false 
-//             }
-//         ],
-//         status: 'done'
-//     },
-//     {
-//         createdAt: '0990790669',
-//         title: 'title2',
-//         description: 'description2',
-//         contacts: [],
-//         date: '2024-03-30',
-//         prio: '',
-//         category: 'Technical Task',
-//         subtasks: [
-//             {
-//             subtask: 'subtask1',
-//             done: false
-//             },
-//             {
-//             subtask: 'subtask2',
-//             done: true 
-//             }
-//         ],
-//         status: 'toDo'
-//     },
-//     {
-//         createdAt: '0990798667',
-//         title: 'title3',
-//         description: 'description3',
-//         contacts: [1709742196208, 1709742212979],
-//         date: '2024-04-25',
-//         prio: 'urgent',
-//         category: 'Technical Task',
-//         subtasks: [],
-//         status: 'done'
-//     },
-//     {
-//         createdAt: '0999790667',
-//         title: 'title4',
-//         description: 'description4',
-//         contacts: [],
-//         date: '2024-05-13',
-//         prio: '',
-//         category: 'User Story',
-//         subtasks: [],
-//         status: 'inProgress'
-//     },
-//     {
-//         createdAt: '9990790667',
-//         title: 'title5',
-//         description: 'description5',
-//         contacts: [],
-//         date: '2024-05-30',
-//         prio: 'medium',
-//         category: 'Technical Task',
-//         subtasks: [
-//             {
-//             subtask: 'subtask1',
-//             done: false
-//             },
-//             {
-//             subtask: 'subtask2',
-//             done: false 
-//             },
-//             {
-//             subtask: 'subtask3',
-//             done: true 
-//             }
-//         ],
-//         status: 'awaitFeedback'
-//     }
-// ]
 let currentDraggedElement;
 let boardCurrentPrio = '';
 let editTaskContacts;
 let editTaskSubtasks;
 let draggingOnce = true;
 
-// setToday();
-
-// function setToday() {
-//     let month = new Date().getMonth() + 1 + "";
-//     let day = new Date().getDate() + "";
-//     if (month.length == 1) {
-//         month = "0" + month;
-//     }
-//     if (day.length == 1) {
-//         day = "0" + day;
-//     }
-//     today = day + '/' + month + '/' + new Date().getFullYear;
-//     // today = new Date().getFullYear() + '-' + month + '-' + day;
-// }
-
-
-async function initBoard() {
+/**
+ * Checks if the user is logged in.
+ * If yes it loads the board, if not it informs the user about a log-in-error.
+ */
+function initBoard() {
     loadLoggedIn();
     if(loggedIn) {
-        await includeHTML();
-        await loadContacts();
-        await loadTasks();
-        highlightActiveSideButton();
-        currentUser = getCurrentUser();
-        showUserNavBar();
-        renderAllTasks();
+        loadingBoard();
     } else {
         showLogInError();
     }
 }
 
+/**
+ * Starts loading the board-site asynchronously.
+ * It loads data from the remote storage, sets the current user and renders all loaded tasks.
+ */
+async function loadingBoard() {
+    await includeHTML();
+    await loadContacts();
+    await loadTasks();
+    highlightActiveSideButton();
+    currentUser = getCurrentUser();
+    showUserNavBar();
+    renderAllTasks();
+}
+
+/**
+ * Initializes to render all tasks from the remote storage.
+ */
 function renderAllTasks() {
     renderToDo();
     renderInProgress();
@@ -130,6 +41,9 @@ function renderAllTasks() {
     renderDone();
 }
 
+/**
+ * Renders all "to-do-tasks".
+ */
 function renderToDo() {
     let allTasksToDo = tasks.filter(task => task.status == 'toDo');
     if(allTasksToDo.length > 0) {
@@ -149,6 +63,12 @@ function renderToDo() {
     }
 }
 
+/**
+ * Sets the right background-color for the specific category.
+ * 
+ * @param {object} task - Uses the task-object as a parameter to address the right task-data.
+ * @param {string} id - Passes the id to speak to the right element which gets the right the background-color.
+ */
 function categoryBackground(task, id) {
     let div = document.getElementById(id);
     if (task.category == 'Technical Task') {
@@ -158,6 +78,11 @@ function categoryBackground(task, id) {
     }
 }
 
+/**
+ * Render all subtasks from a specific task from the remote storage.
+ * 
+ * @param {object} task - Uses the task-object as a parameter to address the right task-data.
+ */
 function renderSubtasks(task) {
     if (task.subtasks.length > 0) {
         let subtasksDone = getSubtasksDone(task);
@@ -169,17 +94,35 @@ function renderSubtasks(task) {
     }
 }
 
+/**
+ * Gets the length of subtasks that are done from a specific task from the remote storage.
+ * 
+ * @param {object} task - Uses the task-object as a parameter to address the right task-data.
+ * @returns {number} - Returns the length of all subtasks that are done.
+ */
 function getSubtasksDone(task) {
     let subtasksDone = task.subtasks.filter(subtask => subtask.done);
     return subtasksDone.length;
 }
 
+/**
+ * Shows how many subtasks are done and how many subtasks are total.
+ * 
+ * @param {object} task - Uses the task-object as a parameter to address the right task-data.
+ * @param {number} subtasksDone - Passes the number of subtasks that are done.
+ */
 function createNumbersForSubtasks(task, subtasksDone) {
     let howManySubtasksDoneDiv = document.getElementById(`subtasksBoard${task.createdAt}`);
     howManySubtasksDoneDiv.innerHTML = '';
     howManySubtasksDoneDiv.innerHTML = `${subtasksDone}/${task.subtasks.length} Subtasks`;
 }
 
+/**
+ * Shows with a progressbar how many subtasks are total and how many subtasks are done.
+ * 
+ * @param {object} task - Uses the task-object as a parameter to address the right task-data.
+ * @param {number} subtasksDone - Passes the number of subtasks that are done.
+ */
 function createProgressBarForSubtasks(task, subtasksDone) {
     let percentage = subtasksDone / task.subtasks.length * 100 + '%';
     let blueProgressBarDiv = document.getElementById(`blueProgressBar${task.createdAt}`); 
@@ -188,6 +131,11 @@ function createProgressBarForSubtasks(task, subtasksDone) {
     greyProgressBarDiv.style.width = "100%";
 }
 
+/**
+ * Begins to render the contacts and priority for the overall board-view.
+ * 
+ * @param {object} task - Uses the task-object as a parameter to address the right task-data.
+ */
 function renderContactsAndPriorityBoard(task) {
     if((!task.contacts || task.contacts == "") && (!task.prio || task.prio == "")) {
         removeContactsAndPriorityDiv(task);
@@ -197,11 +145,21 @@ function renderContactsAndPriorityBoard(task) {
     }
 }
 
+/**
+ * Removes the whole content of the contacts and priority.
+ * 
+ * @param {object} task - Uses the task-object as a parameter to address the right task-data.
+ */
 function removeContactsAndPriorityDiv(task) {
     let divOfContactsAnPriority = document.getElementById(`contacts${task.createdAt}`).parentElement;
     divOfContactsAnPriority.remove();
 }
 
+/**
+ * Starts to render the contacts for the overall board-view.
+ *  
+ * @param {object} task - Uses the task-object as a parameter to address the right task-data.
+ */
 function renderContactsBoard(task) {
     let div = document.getElementById(`contacts${task.createdAt}`);
     div.innerHTML = '';
@@ -213,6 +171,11 @@ function renderContactsBoard(task) {
     }
 }
 
+/**
+ * Starts to render the priority for the overall board-view.
+ *  
+ * @param {object} task - Uses the task-object as a parameter to address the right task-data.
+ */
 function renderPriorityAtBoard(task) {
     let div = document.getElementById(`priority${task.createdAt}`);
     div.innerHTML = '';
@@ -222,10 +185,19 @@ function renderPriorityAtBoard(task) {
     }
 }
 
+/**
+ * Checks if a priority-value exists
+ * 
+ * @param {object} task - Uses the task-object as a parameter to address the right task-data.
+ * @returns {boolean} - Returns "true" if a priority-value for the task exists and "false" if it doesn't.
+ */
 function priorityExistsAtBoard(task) {
     return task.prio !== '';
 }
 
+/**
+ * Renders all "in-progress-tasks".
+ */
 function renderInProgress() {
     let allTasksInProgress = tasks.filter(task => task.status == 'inProgress');
     if(allTasksInProgress.length > 0) {
@@ -245,6 +217,9 @@ function renderInProgress() {
     }
 }
 
+/**
+ * Renders all "await-feedback-tasks".
+ */
 function renderAwaitFeedback() {
     let allTasksAwaitFeedback = tasks.filter(task => task.status == 'awaitFeedback');
     if(allTasksAwaitFeedback.length > 0) {
@@ -264,6 +239,9 @@ function renderAwaitFeedback() {
     }
 }
 
+/**
+ * Renders all "done-tasks".
+ */
 function renderDone() {
     let allTasksDone = tasks.filter(task => task.status == 'done');
     if(allTasksDone.length > 0) {
@@ -285,7 +263,11 @@ function renderDone() {
 
 /* ---------- drag and drop ---------- */
 
-
+/**
+ * Initializes the dragging-process by setting the "draggingOnce"-variable to true and transforming the look of the current dragged element.
+ * 
+ * @param {string} id - Passes the id from the current dragged element.
+ */
 function startDragging(id) {
     draggingOnce = true;
     currentDraggedElement = id;
@@ -293,10 +275,20 @@ function startDragging(id) {
     element.style.transform = 'rotate(5deg)';
 }
 
+/**
+ * Allows to drop a task down on another element by preventing the default mode of the specific element.
+ * 
+ * @param {Event} event - The event object representing the drop event.
+ */
 function allowDrop(event) {
     event.preventDefault();
 }
 
+/**
+ * Shows an empty div.
+ * 
+ * @param {string} id - Uses the id of a specific element as parameter.
+ */
 function showEmptyDiv(id) {
     if(draggingOnce) {
         let element = document.getElementById(id);
@@ -305,6 +297,11 @@ function showEmptyDiv(id) {
     }
 }
 
+/**
+ * Changes the value of the key "status" from a specific task and stores the edited data in the remote storage.
+ * 
+ * @param {string} newStatus 
+ */
 async function moveTo(newStatus) { 
     let id = currentDraggedElement.slice(currentDraggedElement.length -13);
     let element = tasks.find(task => task.createdAt == id);
@@ -313,6 +310,11 @@ async function moveTo(newStatus) {
     renderAllTasks();
 }
 
+/**
+ * Hides an empty div.
+ * 
+ * @param {*} id - Uses the id of a specific element as parameter.
+ */
 function removeEmptyDiv(id) {
     if(!draggingOnce) {
         let element = document.getElementById(`${id}EmptyDiv`);
@@ -323,6 +325,9 @@ function removeEmptyDiv(id) {
 
 /* ---------- SEARCH ---------- */
 
+/**
+ * Renders all tasks if the search-input is empty and renders all searched tasks if it isn't so.
+ */
 function searchAllTasks() {
     let search = document.getElementById('boardSearchInput').value;
     if(boardInputIsEmpty(search)) {
@@ -332,10 +337,21 @@ function searchAllTasks() {
     }
 }
 
+/**
+ * Checks if the search-input of the board is empty.
+ * 
+ * @param {string} search - Passes the searched value.
+ * @returns {boolean} - Returns true if the input of the board is empty. If not it returns false.
+ */
 function boardInputIsEmpty(search) {
     return search == '';
 }
 
+/**
+ * Renders all searched tasks.
+ * 
+ * @param {string} search - Passes the searched value.
+ */
 function renderAllSearchedTasks(search) {
     renderSearchedToDo(search);
     renderSearchedInProgress(search);
@@ -343,6 +359,11 @@ function renderAllSearchedTasks(search) {
     rendeSearchedDone(search);
 }
 
+/**
+ * Renders all searched tasks that has the status "toDo".
+ * 
+ * @param {string} search - Passes the searched value.
+ */
 function renderSearchedToDo(search) {
     let allTasksToDo = tasks.filter(task => task.status == 'toDo');
     let allSearchedTasksToDo = allTasksToDo.filter(task => task.title.toLowerCase().includes(search) || task.description.toLowerCase().includes(search));
@@ -358,6 +379,11 @@ function renderSearchedToDo(search) {
     }
 }
 
+/**
+ * Renders all searched tasks that has the status "inProgress".
+ * 
+ * @param {string} search - Passes the searched value.
+ */
 function renderSearchedInProgress(search) {
     let allTasksInProgress = tasks.filter(task => task.status == 'inProgress');
     let allSearchedTasksInProgress = allTasksInProgress.filter(task => task.title.toLowerCase().includes(search) || task.description.toLowerCase().includes(search));
@@ -373,6 +399,11 @@ function renderSearchedInProgress(search) {
     }
 }
 
+/**
+ * Renders all searched tasks that has the status "awaitingFeedback".
+ * 
+ * @param {string} search - Passes the searched value.
+ */
 function renderSearchedAwaitFeedback(search) {
     let allTasksAwaitFeedback = tasks.filter(task => task.status == 'awaitFeedback');
     let allSearchedTasksAwaitFeedback = allTasksAwaitFeedback.filter(task => task.title.toLowerCase().includes(search) || task.description.toLowerCase().includes(search));
@@ -388,6 +419,11 @@ function renderSearchedAwaitFeedback(search) {
     }
 }
 
+/**
+ * Renders all searched tasks that has the status "done".
+ * 
+ * @param {string} search - Passes the searched value.
+ */
 function rendeSearchedDone(search) {
     let allTasksDone = tasks.filter(task => task.status == 'done');
     let allSearchedTasksDone = allTasksDone.filter(task => task.title.toLowerCase().includes(search) || task.description.toLowerCase().includes(search));
@@ -405,6 +441,11 @@ function rendeSearchedDone(search) {
 
 /* ---------- OPEN TASK ---------- */
 
+/**
+ * Opens a specific task by showing an overlay with more information about the task.
+ * 
+ * @param {string} taskCreatedAt - Uses a unique long number to identify the specific task.
+ */
 function openTask(taskCreatedAt) {
     let task = tasks.find(t => t.createdAt == taskCreatedAt);
     let boardTaskOverlay = document.getElementById('boardTaskOverlay');
@@ -417,6 +458,9 @@ function openTask(taskCreatedAt) {
     renderPriorityPopUpBoard(task);
 }
 
+/**
+ * Closes the task by hiding the overlay of the task.
+ */
 function closeTask() {
     let boardTaskOverlayChildElement = document.getElementById('boardTaskOverlay').firstElementChild;
     boardTaskOverlayChildElement.firstElementChild.classList.add('animationRightSlideOut');
@@ -428,6 +472,11 @@ function closeTask() {
     }, 500);
 }
 
+/**
+ * Renders the right format of the date of a specific task.
+ * 
+ * @param {object} task - Uses the task-object as a parameter to address the right task-data.
+ */
 function renderDatePopUpBoard(task) {
     let boardPopUpDate = document.getElementById('boardPopUpDate');
     if (task.date.includes('-')) {
@@ -435,6 +484,12 @@ function renderDatePopUpBoard(task) {
     }
 }
 
+/**
+ * Gets the formatted date.
+ * 
+ * @param {string} date - Uses the date with the format "yyyy-mm-dd" as a paramenter.
+ * @returns {string} - Returns the formatted date.
+ */
 function getFormattedDate(date) {
     let year = date.slice(0, 4);
     let month = date.slice(5, 7);
@@ -443,6 +498,11 @@ function getFormattedDate(date) {
     return formattedDate;
 }
 
+/**
+ * Renders all contacts from a specific task for the overlay-task-view if there are contacts.
+ * 
+ * @param {object} task - Uses the task-object as a parameter to address the right task-data.
+ */
 function renderContactsPopUpBoard(task) {
     if(task.contacts == "") {
         removeContactsPopUpBoard(task);
@@ -458,11 +518,21 @@ function renderContactsPopUpBoard(task) {
     }
 }
 
+/**
+ * Removes the space from the contacts in the task-overlay.
+ * 
+ * @param {object} task - Uses the task-object as a parameter to address the right task-data.
+ */
 function removeContactsPopUpBoard(task) {
     let divOfContacts = document.getElementById(`popUpContacts${task.createdAt}`).parentElement;
     divOfContacts.remove();
 }
 
+/**
+ * Renders all subtasks from a specific task for the task-overlay-view if subtasks exists.
+ * 
+ * @param {object} task - Uses the task-object as a parameter to address the right task-data.
+ */
 function renderSubtasksPopUpBoard(task) {
     if(task.subtasks == "") {
         let popUpSubtasksParent = document.getElementById(`popUpSubtasks${task.createdAt}`).parentElement;
@@ -478,6 +548,12 @@ function renderSubtasksPopUpBoard(task) {
     }
 }
 
+/**
+ * Renders the a checked checkbox if the specific subtask is done and not a checked checkbos if the subtask is not done.
+ * 
+ * @param {object} task - Uses the task-object as a parameter to address the right task-data.
+ * @param {number} i - Passes the index of the subtask.
+ */
 function renderSubtasksPopUpBoardCheckbox(task, i) {
     let subtaskCheckboxImg = document.getElementById(`boardPopUpSubtask${task.createdAt}${i}`);
     if(task.subtasks[i].done) {
@@ -485,6 +561,11 @@ function renderSubtasksPopUpBoardCheckbox(task, i) {
     }
 }
 
+/**
+ * Renders the priority of a specific task for the task-overlay-view if there is a priority.
+ * 
+ * @param {object} task - Uses the task-object as a parameter to address the right task-data.
+ */
 function renderPriorityPopUpBoard(task) {
     if(task.prio == '') {
         removePopUpPrioDiv(task);
@@ -494,11 +575,19 @@ function renderPriorityPopUpBoard(task) {
     }
 }
 
+/**
+ * Removes the whole space from the priority for the task-overlay-view.
+ * 
+ * @param {object} task - Uses the task-object as a parameter to address the right task-data.
+ */
 function removePopUpPrioDiv(task) {
     let popUpBoardPriorityDiv = document.getElementById(`boardPopUpPriority${task.createdAt}`);
     popUpBoardPriorityDiv.remove();
 }
 
+/**
+ * Changes the button "edit" from the task-overlay to blue.
+ */
 function changeBoardTaskPopUpEditToBlue() {
     let img = document.getElementById('boardTaskPopUpEditImg');
     let span = document.getElementById('boardTaskPopUpEditSpan');
@@ -507,6 +596,9 @@ function changeBoardTaskPopUpEditToBlue() {
     span.style.fontWeight = "bold";
 }
 
+/**
+ * Changes the button "edit" from the task-overlay to black.
+ */
 function changeBoardTaskPopUpEditToBlack() {
     let img = document.getElementById('boardTaskPopUpEditImg');
     let span = document.getElementById('boardTaskPopUpEditSpan');
@@ -515,6 +607,9 @@ function changeBoardTaskPopUpEditToBlack() {
     span.style.fontWeight = "400";
 }
 
+/**
+ * Changes the button "delete" from the task-overlay to blue.
+ */
 function changeBoardTaskPopUpDeleteToBlue() {
     let img = document.getElementById('boardTaskPopUpDeleteImg');
     let span = document.getElementById('boardTaskPopUpDeleteSpan');
@@ -523,6 +618,9 @@ function changeBoardTaskPopUpDeleteToBlue() {
     span.style.fontWeight = "bold";
 }
 
+/**
+ * Changes the button "delete" from the task-overlay to black.
+ */
 function changeBoardTaskPopUpDeleteToBlack() {
     let img = document.getElementById('boardTaskPopUpDeleteImg');
     let span = document.getElementById('boardTaskPopUpDeleteSpan');
@@ -807,11 +905,6 @@ async function saveEditedTask(taskCreatedAt, event) {
     renderAllTasks();
 }
 
-function addAnimationRightSlideIn(id) {
-    let element = document.getElementById(id);
-    element.classList.add('animationRightSlideIn');
-}
-
 function removeAnimationRightSlideIn(id) {
     let element = document.getElementById(id);
     element.classList.remove('animationRightSlideIn');
@@ -870,6 +963,11 @@ function setBlueBorderBottom(i) {
 function removeBlueBorderBottom(i) {
     let editTaskSubtaskParent = document.getElementById(`editTaskSubtaskParent${i}`);
     editTaskSubtaskParent.classList.remove('blueBorderBottom');
+}
+
+function addAnimationRightSlideIn(id) {
+    let element = document.getElementById(id);
+    element.classList.add('animationRightSlideIn');
 }
 
 /* ---------- OPEN ADD TASK ---------- */
