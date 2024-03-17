@@ -535,9 +535,13 @@ body {
     }
 
     .lineUp {
-        overflow: scroll;
         padding: 10px;
         margin: -10px;
+        overflow: auto;
+    }
+
+    .lineUp::-webkit-scrollbar {
+        display: none;
     }
 
     .searchAdd {
