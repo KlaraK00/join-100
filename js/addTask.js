@@ -88,6 +88,9 @@ function createTask() {
   // Convert dueDate from dd/mm/yyyy to yyyy-mm-dd format
   let dueDateParts = dueDateOriginalFormat.split("/");
   let dueDate = `${dueDateParts[2]}-${dueDateParts[1]}-${dueDateParts[0]}`;
+    if (!title.trim() || !dueDate.trim()) {
+    return;
+  }
 
   let description = getInputValue("description");
 
