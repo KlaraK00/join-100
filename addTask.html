@@ -13,6 +13,12 @@
     <script src="./js/register.js" defer></script>
     <script src="js/summary.js" defer></script>
     <script src="./js/index.js" defer></script>
+    <script src="./js/board/initBoard.js" defer></script>
+    <script src="./js/board/searchBoard.js" defer></script>
+    <script src="./js/board/dragAndDropBoard.js" defer></script>
+    <script src="./js/board/openOverlays.js" defer></script>
+    <script src="./js/board/editTask1.js" defer></script>
+    <script src="./js/board/editTask2.js" defer></script>
     <script src="/js/navBar.js" defer></script>
     <script src ="../js/addTask.js" defer></script>
     <script src="js/header.js" defer></script>
@@ -28,5 +34,5 @@
     <p>Please log in and try again.</p>
     <div class="login-button-div"><a href="index.html" class="login-button">Login</a></div>
   </div>
-  <form  onsubmit="createTask(), event.preventDefault()"  id="taskForm"><div w3-include-html="/templates/addTaskTemplate.html"></div></form>
+  <form onsubmit="createTask(), event.preventDefault()"  id="taskForm"><div w3-include-html="/templates/addTaskTemplate.html"></div></form>
 </body>

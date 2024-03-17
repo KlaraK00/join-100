@@ -115,6 +115,10 @@ function createTask() {
   setItem("tasks", tasks);
   selectedContacts = [];
   clearInput();
+  if(window.location.href.includes('board')) {
+    closeTask();
+    renderAllTasks();
+  }
 }
 
 function getPriority() {
