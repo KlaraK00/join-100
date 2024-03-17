@@ -1,3 +1,5 @@
+let dateRange = [];
+
 /**
  * Starts the application.
  */

@@ -118,7 +118,7 @@ function createTask() {
 }
 
 function getPriority() {
-    // Define an object mapping the button IDs to their priorities
+  // Define an object mapping the button IDs to their priorities
     const priorities = {
       "urgent": "urgent",
       "medium": "medium",
@@ -131,11 +131,10 @@ function getPriority() {
       // Check if the button's text color is white
       if (button.style.color === "white") {
         return priorities[id]; // Return the corresponding priority
-      }
     }
-    return ""; // Return an empty string if no priority is actively white
   }
-  
+  return "";
+}
 
 /**
  * Aktiviert den ausgewählten Button, ändert die Hintergrundfarbe entsprechend der Priorität, setzt den Filter für die Bilder und ändert die Schriftfarbe der Buttons.
@@ -315,6 +314,16 @@ function attachInputEventListeners() {
     // Only open the dropdown if it's not already open
     if (!dropdown.classList.contains("show")) {
       dropdown.classList.add("show");
+    }
+  });
+
+  // Listener for clicks outside the dropdown or input to close the dropdown
+  document.getElementById('main-add-task-container').addEventListener("click", function (event) {
+    if (
+      !dropdown.contains(event.target) &&
+      !assignContactInput.contains(event.target)
+    ) {
+      dropdown.classList.remove("show");
     }
   });
 
