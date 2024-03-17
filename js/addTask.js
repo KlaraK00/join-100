@@ -320,10 +320,12 @@ function attachInputEventListeners() {
 
   // Listener for clicks outside the dropdown or input to close the dropdown
   document.addEventListener("click", function (event) {
+   
     if (
       !dropdown.contains(event.target) &&
       !assignContactInput.contains(event.target)
     ) {
+        
       dropdown.classList.remove("show");
     }
   });
