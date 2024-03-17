@@ -6,8 +6,7 @@ let TaskStatus = {
   AWAIT_FEEDBACK: "awaitFeedback",
   DONE: "done",
 };
-
-let currentStatus = "toDo";
+let currentStatus = 'toDo';
 
 async function initApp() {
     await includeHTML(); // ensures the Template is loaded 
@@ -20,6 +19,7 @@ async function initApp() {
       await loadTasks();
       await loadContacts();
       await loadUsers();
+      currentStatus = getCurrentStatus();
       updateContactsDropdown(contacts); 
       highlightActiveSideButton();
       currentUser = getCurrentUser();
@@ -27,10 +27,7 @@ async function initApp() {
       attachInputEventListeners(); // Attach event listeners so they are called after content is loaded
     } else
       showLogInError();
-      
-    }
-  
-  
+  }
 
 async function loadTasks() {
   if (await tasksExist()) {
@@ -40,6 +37,16 @@ async function loadTasks() {
 
 async function tasksExist() {
   return await getItem("tasks");
+}
+
+function getCurrentStatus() {
+  if(currentStatusExists()) {
+      return getLocalStorageItem('currentStatus');
+  }
+}
+
+function currentStatusExists() {
+  return getLocalStorageItem('currentStatus');
 }
 
 function getInputValue(id) {
@@ -77,49 +84,42 @@ function pushTask(task) {
 
 
 function createTask() {
-    let title = getInputValue("title");
-    let dueDateOriginalFormat = getInputValue("due");
-    // Convert dueDate from dd/mm/yyyy to yyyy-mm-dd format
-    let dueDateParts = dueDateOriginalFormat.split("/");
-    let dueDate = `${dueDateParts[2]}-${dueDateParts[1]}-${dueDateParts[0]}`;
-  
-    if (!title.trim() || !dueDate.trim()) {
-      alert("Please fill in all required fields.");
-      return;
-    }
-  
-    let description = getInputValue("description");
-    
-    let contacts = selectedContacts;
-    let priority = getPriority();
-    let category = getInputValue("category");
-  
-    //  read the subtasks from the UL list
-    let subtasksListElement = document.getElementById("subtasksList");
-    let subtasks = Array.from(subtasksListElement.querySelectorAll("li")).map(li => ({
-      subtask: li.textContent.trim(),
-      done: false // Assuming all new subtasks are initially not done
-    }));
-  
-    let createdAt = new Date().getTime();
-    let task = createTaskObject(
-      createdAt,
-      title,
-      description,
-      contacts,
-      dueDate,
-      priority,
-      category,
-      subtasks,
-      TaskStatus = currentStatus
-    );
-  
-    pushTask(task);
-    setItem("tasks", tasks);
-    selectedContacts = [];
-    clearInput();
+  let title = getInputValue("title");
+  let dueDate = getInputValue("due");
+  // Check required fields 
+  if (!title.trim() || !dueDate.trim()) {
+    alert("Please fill in all required fields.");
+    return; // Exit the function 
   }
+  let description = getInputValue("description");
   
+  let contacts = selectedContacts;
+  let priority = getPriority();
+  let category = getInputValue("category");
+  let subtasksInput = getInputValue("subtasks");
+  let subtasks = subtasksInput
+    .split(",")
+    .filter((subtask) => subtask.trim() !== "") // Remove any empty entries
+    .map((subtask) => ({ subtask: subtask.trim(), done: false })); // Map to objects
+
+  let createdAt = new Date().getTime();
+  let task = createTaskObject(
+    createdAt,
+    title,
+    description,
+    contacts,
+    dueDate,
+    priority,
+    category,
+    subtasks,
+    TaskStatus = currentStatus
+  );
+
+  pushTask(task);
+  setItem("tasks", tasks);
+  selectedContacts = [];
+  clearInput();
+}
 
 function getPriority() {
   //access all prio buttons
@@ -134,38 +134,14 @@ function getPriority() {
   return "";
 }
 
-/**
- * Aktiviert den ausgewählten Button, ändert die Hintergrundfarbe entsprechend der Priorität, setzt den Filter für die Bilder und ändert die Schriftfarbe der Buttons.
- * @param {string} priority - Die Priorität des ausgewählten Buttons ('urgent', 'medium' oder 'low').
- */
-function activateButton(priority) {
-  document.getElementById('urgent').style.backgroundColor = 'white';
-  document.getElementById('medium').style.backgroundColor = 'white';
-  document.getElementById('low').style.backgroundColor = 'white';
-  document.getElementById('urgent').querySelector('img').style.filter = 'none';
-  document.getElementById('medium').querySelector('img').style.filter = 'none';
-  document.getElementById('low').querySelector('img').style.filter = 'none';
-  document.getElementById('urgent').style.color = 'black';
-  document.getElementById('medium').style.color = 'black';
-  document.getElementById('low').style.color = 'black';
-
-  switch(priority) {
-    case 'urgent':
-      document.getElementById('urgent').style.backgroundColor = 'rgb(255, 62, 0)';
-      document.getElementById('urgent').querySelector('img').style.filter = 'brightness(0) invert(1)';
-      document.getElementById('urgent').style.color = 'white';
-      break;
-    case 'medium':
-      document.getElementById('medium').style.backgroundColor = 'rgb(255, 168, 0)';
-      document.getElementById('medium').querySelector('img').style.filter = 'brightness(0) invert(1)';
-      document.getElementById('medium').style.color = 'white';
-      break;
-    case 'low':
-      document.getElementById('low').style.backgroundColor = 'rgb(123, 226, 40)';
-      document.getElementById('low').querySelector('img').style.filter = 'brightness(0) invert(1)';
-      document.getElementById('low').style.color = 'white';
-      break;
-  }
+function activateButton(buttonId) {
+  //remove active from all buttons
+  document.querySelectorAll("#priority .prio button").forEach((button) => {
+    button.classList.remove("active");
+  });
+  //add active to the button the user clicks on
+  let button = document.getElementById(buttonId);
+  button.classList.add("active");
 }
 
 function clearInput() {
@@ -201,7 +177,7 @@ function updateContactsDropdown(contacts) {
     
        
         const nameContainer = document.createElement("div");
-        nameContainer.classList.add("name-container-add-task")
+        nameContainer.classList.add("name-container")
         
         const initialsSpan = document.createElement("span");
         initialsSpan.className = "contact-initials";
@@ -309,137 +285,35 @@ function updateContactsDropdown(contacts) {
                 dropdown.classList.remove('show');
             }
         });
-            // Attach this validation to an event listener for the input or form submission
-    document.getElementById('due').addEventListener('change', function() {
-        const isValid = isValidDate(this.value);
-        if (!isValid) {
-            alert("The date entered does not exist. Please enter a valid date.");
-            
-            this.value = ''; // Clear the invalid date
-        }
-    });
-    document.getElementById('due').addEventListener('blur', function() {
-        var value = this.value.replace(/[\.\-\/]/g, ''); // Remove dots, dashes, and slashes
-        
-        // Automatically insert slashes for ddmmyyyy format
-        if(value.length > 2 && value.length <= 4)
-            value = value.slice(0,2) + '/' + value.slice(2);
-        if(value.length > 4)
-            value = value.slice(0,2) + '/' + value.slice(2,4) + '/' + value.slice(4,8);
-    
-        this.value = value;
-    
-        // Add validation for correct date if needed
-        if (value.length === 10) { // Check if full length date is entered
-            if (!isValidDate(this.value)) {
-                alert("The date entered does not exist. Please enter a valid date.");
-                this.value = ''; // Clear the input if the date is invalid
-            }
-        }
-    });
-    
-    
-    
-    
     }
+
     function addSubtask(event) {
+        // Only add the subtask when the Enter key is pressed
         if (event.key === "Enter" || event.keyCode === 13) {
-            event.preventDefault(); // Prevent form submission
-    
-            const subtasksInput = document.getElementById('subtasks');
-            const subtaskText = subtasksInput.value.trim();
-    
-            if (subtaskText) {
-                const subtasksList = document.getElementById('subtasksList');
-                const li = document.createElement('li');
-                li.textContent = subtaskText;
-                li.addEventListener('dblclick', () => openEditField(li));
-                subtasksList.appendChild(li);
-    
-                subtasksInput.value = ''; // Clear input field
-            }
+          event.preventDefault(); // Prevent the form from being submitted
+      
+          const subtasksInput = document.getElementById('subtasks');
+          const subtaskText = subtasksInput.value.trim();
+      
+          if(subtaskText) { // Check if the input is not empty
+            // Add the subtask to the display list
+            const subtasksList = document.getElementById('subtasksList');
+            const li = document.createElement('li');
+            li.textContent = subtaskText;
+            subtasksList.appendChild(li);
+      
+            // Clear the input field for the next subtask
+            subtasksInput.value = '';
+          }
         }
-    }
-    
-    function openEditField(li) {
-        // Create a wrapper div to hold the input field and the images
-        const wrapper = document.createElement('div');
-        wrapper.className = 'edit-field-wrapper'; // CSS class for styling
-    
-        // Create edit input field
-        const editInput = document.createElement('input');
-        editInput.type = 'text';
-        editInput.value = li.textContent;
-        editInput.className = 'edit-input'; // CSS class for styling
-    
-        // Create save button
-        const saveButton = document.createElement('img');
-        saveButton.src = 'img/edit.png'; // Path to edit image
-        saveButton.className = 'edit-btn'; // CSS class for styling
-        saveButton.addEventListener('click', () => saveEdit(li, editInput.value));
-    
-        // Create delete button
-        const deleteButton = document.createElement('img');
-        deleteButton.src = 'img/delete.png'; // Path to delete image
-        deleteButton.className = 'delete-btn'; // CSS class for styling
-        deleteButton.addEventListener('click', () => deleteSubtask(li));
-    
-        // Create confirm button
-        const confirmButton = document.createElement('img');
-        confirmButton.src = 'img/tick.png';
-        confirmButton.className = "confirm-btn";
-        confirmButton.addEventListener('click', () => saveEdit(li, editInput.value));
-    
-        // Append the input and images to the wrapper
-        wrapper.appendChild(editInput);
-        wrapper.appendChild(saveButton);
-        wrapper.appendChild(deleteButton);
-        wrapper.appendChild(confirmButton);
-    
-        // Clear the list item content and append the wrapper
-        li.innerHTML = '';
-        li.appendChild(wrapper);
-    }
-    
-    
-    function saveEdit(li, newValue) {
-        li.textContent = newValue; // Update the list item text
-        li.addEventListener('dblclick', () => openEditField(li)); // Add double-click listener again
-    }
-    
-    function deleteSubtask(li) {
-        li.remove(); // Remove the list item
-    }
-    
+      }
    
-      function isValidDate(dateString) {
-        // Normalize the date string by replacing non-numeric characters with a slash
-        const normalizedDateString = dateString.replace(/[\.\-]/g, '/');
-        let regex = /^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/;
-        let match = normalizedDateString.match(regex);
+      
     
-        // Attempt to match ddmmyyyy format if the initial regex fails
-        if (!match) {
-            regex = /^([0-9]{2})([0-9]{2})([0-9]{4})$/;
-            match = dateString.match(regex);
-            if(match) {
-                // Reformat to dd/mm/yyyy for consistency in further validation
-                match = [match[0], match[1], match[2], match[3]];
-            }
-        }
     
-        if (!match) {
-            return false; // Does not match any expected pattern
-        }
     
-        const day = parseInt(match[1], 10);
-        const month = parseInt(match[2], 10) - 1; // JavaScript months are 0-based
-        const year = parseInt(match[3], 10);
     
-        const date = new Date(year, month, day);
-        if (date.getFullYear() === year && date.getMonth() === month && date.getDate() === day) {
-            return true; // The date is valid
-        } else {
-            return false; // The date does not exist
-        }
-    }
+
+
+
+

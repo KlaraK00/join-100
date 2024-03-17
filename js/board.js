@@ -25,6 +25,7 @@ async function loadingBoard() {
     await includeHTML();
     await loadContacts();
     await loadTasks();
+    currentStatus = getCurrentStatus();
     highlightActiveSideButton();
     currentUser = getCurrentUser();
     showUserNavBar();
@@ -1140,7 +1141,9 @@ function addAnimationRightSlideIn(id) {
 /**
  * Shows an overlay of the openTask-Template.
  */
-async function openAddTask() {
+async function openAddTask(status) {
+    currentStatus = status;
+    setLocalStorageItem('currentStatus', currentStatus);
     let boardTaskOverlay = document.getElementById('boardTaskOverlay');
     boardTaskOverlay.innerHTML = '';
     boardTaskOverlay.innerHTML = HTMLTemplateAddTask();
