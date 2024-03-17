@@ -38,8 +38,6 @@ function closePopUpMenu(popUpMenu, closePopUpContentContainer) {
   popUpMenu.style.display = "none";
   closePopUpContentContainer.style.display = "none";
 }
-
-/* ---------- show User ---------- */
 /**
  * Displays the user navigation bar icon.
  */
@@ -80,12 +78,12 @@ function lastNameExists(element) {
   return element.lastName && element.lastName !== '';
 }
 
+/**
+ * Hides the user icon in the navigation bar.
+ */
 function hideUserIcon() {
   let userIcon = document.getElementById('userNavar');
   let helpContainer = document.getElementById('helpContainer');
   userIcon.classList.add('d-none');
   helpContainer.classList.add('d-none');
-
 }
-
-

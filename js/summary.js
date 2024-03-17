@@ -1,3 +1,7 @@
+/**
+ * An array representing a date range.
+ * @type {Array<Date>}
+ */
 let dateRange = [];
 
 /**
@@ -115,6 +119,7 @@ function updateTaskStatusLength(taskCounts, elements) {
   elements.urgentFeedback.innerHTML = taskCounts.urgent;
   elements.tasksInBoard.innerHTML = allOpenTasks;
 }
+
 /**
  * Parses a date string into a JavaScript Date object.
  * @param {string} dateString - The date string to parse.

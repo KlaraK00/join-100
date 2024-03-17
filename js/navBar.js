@@ -2,6 +2,7 @@
  * Initializes the application.
  * This function includes HTML files, highlights the active side button,
  * gets the current user, and shows the user navigation bar.
+ * @returns {Promise<void>} A Promise that resolves when the initialization is complete.
  */
 async function init() {
   await includeHTML();
@@ -10,8 +11,6 @@ async function init() {
   showUserNavBar();
   ifLoggedOutHideMenuButtons();
 }
-
-
 
 /**
  * Includes HTML files dynamically into the DOM.
@@ -54,27 +53,29 @@ function getCurrentPage() {
   currentPage = currentPage.split(".")[0];
   return currentPage;
 }
-
 /**
  * Opens the specified page.
  * @param {string} page - The name of the page to be opened.
  */
 function openPage(page) {
-    window.location.href = page + '.html';
+  window.location.href = page + '.html';
 }
 
-
-function hideMenuButtons() {
-  let menuButtonContainer = document.getElementById('menuButtonContainer');
-  menuButtonContainer.classList.add('d-none');
-}
 /**
- * Hides the user icon in the navigation bar if the user is logged out.
- * This function checks the login status from the local storage and hides the user icon if the user is not logged in.
- */
+* Hides the menu buttons container.
+*/
+function hideMenuButtons() {
+let menuButtonContainer = document.getElementById('menuButtonContainer');
+menuButtonContainer.classList.add('d-none');
+}
+
+/**
+* Hides the user icon in the navigation bar if the user is logged out.
+* This function checks the login status from the local storage and hides the user icon if the user is not logged in.
+*/
 function ifLoggedOutHideMenuButtons() {
-  let loggInStatus = localStorage.getItem('loggedIn');
-  if (loggInStatus === "false") {
-    hideMenuButtons();
-  }
+let loggInStatus = localStorage.getItem('loggedIn');
+if (loggInStatus === "false") {
+  hideMenuButtons();
+}
 }

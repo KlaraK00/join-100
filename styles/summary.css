@@ -11,25 +11,24 @@ a {
     display: flex;
 }
 
-/* .content-wrapper {
-    max-width: 1440px;
-} */
-
 .summary-container-wrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 100%;
+    height: 100vh;
     width: 100%;
 }
 
 .summary-container {
+    display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
     margin-top: 96px;
     margin-left: 232px;
     padding-left: 10%;
     height: auto;
-
 }
 
 .headline {
@@ -43,7 +42,6 @@ a {
 .width-100 {
     width: 100%;
 }
-
 
 .pb-13 {
     padding-bottom: 13px;
@@ -116,7 +114,6 @@ a {
     justify-content: center;
     align-items: center;
 }
-
 
 .flex-column {
     flex-direction: column;
@@ -256,12 +253,6 @@ a {
     transition: opacity 0.5s ease;
 }
 
-.greeting-content {
-    /* width: 400px; */
-
-
-}
-
 .name-container {
     font-size: 64px;
     font-weight: 700;
@@ -295,8 +286,6 @@ a {
     transform: scale(1.01);
 }
 
-
-
 @keyframes fadeOut {
     0% {
         opacity: 1;
@@ -319,9 +308,7 @@ a {
     width: 100%;
     height: 100%;
     background-color: #f6f7f8;
-    /* Hintergrundfarbe mit Transparenz */
     z-index: 999;
-    /* Damit das Div Ã¼ber anderen Elementen liegt */
 }
 
 .p-absolut {
@@ -338,13 +325,10 @@ a {
 
 .mobileGreetAnimation {
     position: absolute;
-
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    /* opacity: 0; */
     opacity: 1;
-    /* transition: opacity 0.5s ease; */
 }
 
 .error-container {
@@ -418,7 +402,6 @@ a {
     .headline {
         padding-top: 0;
         padding-bottom: 20px;
-
     }
 
 }
@@ -464,7 +447,6 @@ a {
 
     .overview-container {
         width: 90%;
-
     }
 
 
@@ -499,7 +481,6 @@ a {
 
 @media screen and (max-width: 502px) {
 
-
     .fs-64 {
         font-size: 50px;
     }
@@ -515,7 +496,6 @@ a {
         padding-bottom: 25px;
     }
 
-
     .line {
         margin: 5px;
     }
@@ -523,7 +503,6 @@ a {
     .task-container {
         min-width: 100px;
         min-height: 100px;
-
     }
 
     .overview-container {
@@ -536,7 +515,6 @@ a {
         height: auto;
     }
 }
-
 
 @media screen and (max-width: 456px) {
 
@@ -553,8 +531,8 @@ a {
         height: auto;
     }
 }
-@media screen and (max-width: 434px) {
 
+@media screen and (max-width: 434px) {
 
     .button-container {
         padding-left: 35px;
@@ -612,7 +590,6 @@ a {
     }
 }
 
-
 @media screen and (max-width: 347px) {
 
     .main-task-container {
@@ -649,7 +626,7 @@ a {
 
     .button-container {
         padding-left: 28px;
-        padding-right:28px;
+        padding-right: 28px;
         padding-top: 30px;
         padding-bottom: 30px;
         height: auto;
@@ -660,7 +637,6 @@ a {
     }
 
     .task-container {
-
         min-width: 30px;
         min-height: 30px;
         word-wrap: break-word;
@@ -683,56 +659,65 @@ a {
 @media screen and (max-width: 336px) {
     .button-container {
         padding-left: 24px;
-        padding-right:24px;
-
+        padding-right: 24px;
     }
-
 }
 
 @media screen and (max-width: 325px) {
     .button-container {
         padding-left: 24x;
-        padding-right:24px;
-
+        padding-right: 24px;
     }
-
 }
 
 @media screen and (max-width: 320px) {
     .headline {
         align-items: center;
     }
+
     .headline-headline {
         font-size: 30px;
     }
+
     .headline-description {
         display: none;
     }
 }
+
 @media screen and (max-width: 315px) {
-.check-rectangle {
-    flex-direction: column;
+    .check-rectangle {
+        flex-direction: column;
+    }
+
+    .button-container {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+    .overview-container {
+        flex-direction: column;
+    }
+
+    .urgency-container {
+        flex-direction: column;
+        width: auto;
+        padding: 40px;
+    }
+
+    .line {
+        width: 100%;
+        height: 1px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
+    .task-container {
+        min-width: 100%;
+    }
 }
 
-.button-container {
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
-.overview-container {
-    flex-direction: column;
-}
-.urgency-container {
-    flex-direction: column;
-    width: auto;
-    padding: 40px;
-}
-.line {
-    width: 100%;
-    height: 1px;
-    margin-top: 15px;
-    margin-bottom: 15px;
-}
-.task-container {
-min-width: 100%;
-}
+@media screen and (max-height: 827px) {
+    .summary-container-wrapper {
+        height: 100%;
+    }
 }
