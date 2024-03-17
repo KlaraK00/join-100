@@ -135,3 +135,25 @@ textarea {
     border: 2px solid #29ABE2;
     color: #29ABE2;
 }
+
+/* ---------- SCROLLBAR ---------- */
+
+/* width */
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+::-webkit-scrollbar-corner {
+    background-color: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #dedede; 
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #d3d3d3; 
+}

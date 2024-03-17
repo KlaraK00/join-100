@@ -536,6 +536,8 @@ body {
 
     .lineUp {
         overflow: scroll;
+        padding: 10px;
+        margin: -10px;
     }
 
     .searchAdd {
@@ -646,6 +648,10 @@ body {
         gap: 0;
         width: calc(100vw - 20px);
         justify-content: center;
+    }
+
+    .inputSearch {
+        width: 100%;
     }
 }
 
