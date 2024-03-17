@@ -89,11 +89,6 @@ function createTask() {
   let dueDateParts = dueDateOriginalFormat.split("/");
   let dueDate = `${dueDateParts[2]}-${dueDateParts[1]}-${dueDateParts[0]}`;
 
-  if (!title.trim() || !dueDate.trim()) {
-    alert("Please fill in all required fields.");
-    return;
-  }
-
   let description = getInputValue("description");
 
   let contacts = selectedContacts;
