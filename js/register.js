@@ -103,7 +103,7 @@ async function contactsExist() {
     return getItem('contacts');
 }
 
-/* ---------- register ---------- */
+/* ---------- REGISTER ---------- */
 
 /**
  * This function is used to prevent a reload of the formular and check the passwords to sign up an user.
@@ -469,7 +469,7 @@ function visibilityOff(id, input) {
     password.type = "password";
 }
 
-/* ---------- focus on element ---------- */
+/* ---------- FOCUS ON ELEMENT ---------- */
 
 /**
  * Focusses on an element with the spedific id.
@@ -481,7 +481,7 @@ function focusOn(id) {
     element.focus();
 }
 
-/* ---------- "checkbox" ---------- */
+/* ---------- CHECKBOX ---------- */
 
 /**
  * Checks if the source of the image with a specific id shows a checked checkbox and changes the source to the opposite.
@@ -497,7 +497,7 @@ function changeCheckbox(id) {
     }
 }
 
-/* ---------- others ---------- */
+/* ---------- OTHERS ---------- */
 
 /**
  * Removes the red border of an specific element.
