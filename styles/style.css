@@ -115,7 +115,7 @@ textarea {
     padding: 12px 15px 12px 15px;
     border: none;
     border-radius: 7px;
-    transition: all 225ms ease-in-out;
+    transition: all 125ms ease-in-out;
 }
 
 .darkBtn:hover {
@@ -127,7 +127,7 @@ textarea {
     padding: 12px 15px 12px 15px;
     border: 1px solid #2A3647;
     border-radius: 7px;
-    transition: all 225ms ease-in-out;
+    transition: all 125ms ease-in-out;
 }
 
 .transparentBtn:hover {

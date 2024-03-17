@@ -83,7 +83,7 @@ body {
     align-items: center;
     border-radius: 50%;
     cursor: pointer;
-    transition: all 225ms ease-in-out;
+    transition: all 125ms ease-in-out;
 }
 
 .searchIcon:hover {
@@ -155,7 +155,7 @@ body {
     justify-content: center;
     cursor: pointer;
     align-items: center;
-    transition: all 225ms ease-in-out;
+    transition: all 125ms ease-in-out;
 }
 
 .plus:hover {
@@ -286,7 +286,7 @@ body {
     top: 24px;
     height: 25px;
     border-radius: 100%;
-    transition: all 225ms ease-in-out;
+    transition: all 125ms ease-in-out;
 }
 
 .closeImgBoard:hover {
@@ -347,7 +347,7 @@ body {
 }
 
 .hoverGrey {
-    transition: all 225ms ease-in-out;
+    transition: all 125ms ease-in-out;
     cursor: pointer;
 }
 
@@ -445,7 +445,7 @@ body {
 }
 
 .addTaskOverlayCloseImg {
-    transition: all 225ms ease-in-out;
+    transition: all 125ms ease-in-out;
 }
 
 .addTaskOverlayCloseImg:hover {
