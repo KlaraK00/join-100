@@ -1,11 +1,13 @@
 let tasks = [];
 let selectedContacts = [];
-const TaskStatus = {
+let TaskStatus = {
   TODO: "toDo",
   IN_PROGRESS: "inProgress",
   AWAIT_FEEDBACK: "awaitFeedback",
   DONE: "done",
 };
+
+let currentStatus = "toDo";
 
 async function initApp() {
     await includeHTML(); // ensures the Template is loaded 
@@ -109,7 +111,7 @@ function createTask() {
       priority,
       category,
       subtasks,
-      TaskStatus.TODO
+      TaskStatus = currentStatus
     );
   
     pushTask(task);
