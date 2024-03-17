@@ -4,6 +4,8 @@ let editTaskContacts;
 let editTaskSubtasks;
 let draggingOnce = true;
 
+/* ---------- INIT ---------- */
+
 /**
  * Checks if the user is logged in.
  * If yes it loads the board, if not it informs the user about a log-in-error.
@@ -262,7 +264,7 @@ function renderDone() {
     }
 }
 
-/* ---------- drag and drop ---------- */
+/* ---------- DRAG AND DROP ---------- */
 
 /**
  * Initializes the dragging-process by setting the "draggingOnce"-variable to true and transforming the look of the current dragged element.
