@@ -80,20 +80,12 @@ function lastNameExists(element) {
   return element.lastName && element.lastName !== '';
 }
 
-/**
- * Hides the user icon in the navigation bar if the user is logged out.
- * This function checks the login status from the local storage and hides the user icon if the user is not logged in.
- */
-function ifLoggedOutHideUserIcon() {
-  let loggInStatus = localStorage.getItem('loggedIn');
+function hideUserIcon() {
+  let userIcon = document.getElementById('userNavar');
+  let helpContainer = document.getElementById('helpContainer');
+  userIcon.classList.add('d-none');
+  helpContainer.classList.add('d-none');
 
-  
-  if (loggInStatus === "false") {
-    let userIcon = document.getElementById('userNavar');
-    let helpContainer = document.getElementById('helpContainer');
-    let menuButtonContainer = document.getElementById('menuButtonContainer');
-    userIcon.classList.add('d-none');
-    helpContainer.classList.add('d-none');
-    menuButtonContainer.classList.add('d-none');
-  }
 }
+
+

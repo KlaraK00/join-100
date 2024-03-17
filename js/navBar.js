@@ -8,6 +8,7 @@ async function init() {
   highlightActiveSideButton();
   currentUser = getCurrentUser();
   showUserNavBar();
+  ifLoggedOutHideMenuButtons();
 }
 
 
@@ -60,4 +61,20 @@ function getCurrentPage() {
  */
 function openPage(page) {
     window.location.href = page + '.html';
+}
+
+
+function hideMenuButtons() {
+  let menuButtonContainer = document.getElementById('menuButtonContainer');
+  menuButtonContainer.classList.add('d-none');
+}
+/**
+ * Hides the user icon in the navigation bar if the user is logged out.
+ * This function checks the login status from the local storage and hides the user icon if the user is not logged in.
+ */
+function ifLoggedOutHideMenuButtons() {
+  let loggInStatus = localStorage.getItem('loggedIn');
+  if (loggInStatus === "false") {
+    hideMenuButtons();
+  }
 }

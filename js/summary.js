@@ -29,7 +29,14 @@ function greetCurrentUser() {
   let greetingContainer = document.getElementById("greeting");
   let greeting = generateGreeting();
   let nameContainer = document.getElementById("greetingNameContainer");
-  nameContainer.textContent = getCurrentUser().firstName;
+  let firstName = getCurrentUser().firstName;
+  let lastName = getCurrentUser().lastName;
+  if (firstName === lastName) {
+    nameContainer.textContent = `${lastName}`;
+  } else {
+    nameContainer.textContent = `${firstName} ${lastName}`;
+
+  }
   greetingContainer.textContent = greeting;
 }
 
@@ -127,14 +134,14 @@ function sortTasks() {
 }
 
 /**
- * Formats the earliest task date to German date format.
+ * Formats the earliest task date to English date format.
  * @returns {string} The formatted date string.
  */
-function formatDateToDE() {
+function formatDateToEN() {
   const earliestDate = tasks[0].date;
   const dateObj = new Date(earliestDate);
   const options = { day: 'numeric', month: 'long', year: 'numeric' };
-  const formattedDate = dateObj.toLocaleDateString('de-DE', options);
+  const formattedDate = dateObj.toLocaleDateString('en-US', options);
   return formattedDate;
 }
 
@@ -143,7 +150,7 @@ function formatDateToDE() {
  */
 function addFormattedDateToSummaryHtml() {
   let deadlineContainer = document.getElementById('deadline');
-  deadlineContainer.innerHTML = `${formatDateToDE()}`;
+  deadlineContainer.innerHTML = `${formatDateToEN()}`;
 }
 
 /**

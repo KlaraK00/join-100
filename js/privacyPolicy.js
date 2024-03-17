@@ -1,4 +1,5 @@
 async function initPrivacyPolicy() {
     await includeHTML();
-     ifLoggedOutHideUserIcon();
+    hideUserIcon();
+    ifLoggedOutHideMenuButtons();
  }

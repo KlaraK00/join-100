@@ -1,4 +1,5 @@
 async function initLegalNotice() {
-   await includeHTML();
-    ifLoggedOutHideUserIcon();
+  await includeHTML();
+  hideUserIcon();
+  ifLoggedOutHideMenuButtons();
 }
