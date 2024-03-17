@@ -1,8 +1,8 @@
 let letters = [];
 
 /**
- * Initialisiert die Kontakte, lädt sie und rendert sie, wenn der Benutzer eingeloggt ist.
- * Zeigt andernfalls einen Fehler an.
+ * Initializes the contacts, loads them, and renders them if the user is logged in.
+ * Otherwise, displays an error.
  */
 async function initContacts(){
     loadLoggedIn();
@@ -21,7 +21,7 @@ async function initContacts(){
 }
 
 /**
- * Öffnet das Overlay zum Hinzufügen eines neuen Kontakts.
+ * Opens the overlay to add a new contact.
  */
 function addNewContact(){
     document.getElementById('overlay-add-contact').classList.remove('d-none');
@@ -31,8 +31,8 @@ function addNewContact(){
 }
 
 /**
- * Schließt das Overlay für das Hinzufügen eines neuen Kontakts, wenn auf den Hintergrund hinter dem Overlay geklickt wird.
- * @param {Event} event - Das Klick-Ereignis, das ausgelöst wurde.
+ * Closes the overlay for adding a new contact when clicking on the background behind the overlay.
+ * @param {Event} event - The click event that was triggered.
  */
 function closeOverlayNewContact(event) {
     var overlay = document.getElementById('overlay-add-contact');
@@ -43,8 +43,8 @@ function closeOverlayNewContact(event) {
 }
 
 /**
- * Schließt das Overlay für die Bearbeitung eines Kontakts, wenn auf den Hintergrund hinter dem Overlay geklickt wird.
- * @param {Event} event - Das Klick-Ereignis, das ausgelöst wurde.
+ * Closes the overlay for editing a contact when clicking on the background behind the overlay.
+ * @param {Event} event - The click event that was triggered.
  */
 function closeOverlayEditContact(event) {
     var overlay = document.getElementById('overlay-edit-contact');
@@ -58,8 +58,8 @@ document.addEventListener('click', closeOverlayNewContact);
 document.addEventListener('click', closeOverlayEditContact);
 
 /**
- * Öffnet das Overlay zum Bearbeiten eines vorhandenen Kontakts.
- * @param {number} i - Der Index des zu bearbeitenden Kontakts.
+ * Opens the overlay to edit an existing contact.
+ * @param {number} i - The index of the contact to edit.
  */
 function editContact(i){
     document.getElementById('overlay-edit-contact').classList.remove('d-none');
@@ -69,7 +69,7 @@ function editContact(i){
 }
 
 /**
- * Schließt das Overlay zum Hinzufügen eines neuen Kontakts.
+ * Closes the overlay for adding a new contact.
  */
 function closeNewContactWindow(){
     document.getElementById('overlay-add-contact').classList.add('d-none');
@@ -78,7 +78,7 @@ function closeNewContactWindow(){
 }
 
 /**
- * Schließt das Overlay zum Bearbeiten eines vorhandenen Kontakts.
+ * Closes the overlay for editing an existing contact.
  */
 function closeEditContactWindow(){
     document.getElementById('overlay-edit-contact').classList.add('d-none');
@@ -87,8 +87,8 @@ function closeEditContactWindow(){
 }
 
 /**
- * Erstellt einen neuen Kontakt basierend auf den eingegebenen Informationen.
- * Speichert den Kontakt und aktualisiert dann die Anzeige.
+ * Creates a new contact based on the entered information.
+ * Saves the contact and then updates the display.
  */
  async function createAContact(){
     let mail = document.getElementById('contactMail');
@@ -114,8 +114,8 @@ function closeEditContactWindow(){
 }
 
 /**
- * Extrahiert den Vornamen aus dem Eingabefeld für den Kontakt.
- * @returns {string} Der Vornamen des Kontakts.
+ * Extracts the first name from the contact input field.
+ * @returns {string} The first name of the contact.
  */
 function getFirstName1() {
     let name = document.getElementById('contactName');
@@ -124,8 +124,8 @@ function getFirstName1() {
 }
 
 /**
- * Extrahiert den Nachnamen aus dem Eingabefeld für den Kontakt.
- * @returns {string} Der Nachnamen des Kontakts.
+ * Extracts the last name from the contact input field.
+ * @returns {string} The last name of the contact.
  */
 function getLastName1() {
     let name = document.getElementById('contactName');
@@ -134,8 +134,8 @@ function getLastName1() {
 }
 
 /**
- * Extrahiert den Vornamen aus dem Eingabefeld für die Bearbeitung des Kontakts.
- * @returns {string} Der Vornamen des Kontakts.
+ * Extracts the first name from the edit contact input field.
+ * @returns {string} The first name of the contact.
  */
 function getFirstName2() {
     let name = document.getElementById('editName');
@@ -144,8 +144,8 @@ function getFirstName2() {
 }
 
 /**
- * Extrahiert den Nachnamen aus dem Eingabefeld für die Bearbeitung des Kontakts.
- * @returns {string} Der Nachnamen des Kontakts.
+ * Extracts the last name from the edit contact input field.
+ * @returns {string} The last name of the contact.
  */
 function getLastName2() {
     let name = document.getElementById('editName');
@@ -154,7 +154,7 @@ function getLastName2() {
 }
 
 /**
- * Zeigt die Initialen des aktuellen Kontakts an.
+ * Displays the initials of the current contact.
  */
 function showInitials(){
     let firstName = getFirstName1();
@@ -164,7 +164,7 @@ function showInitials(){
 }
 
 /**
- * Rendert die Kontakte in der Benutzeroberfläche.
+ * Renders the contacts on the user interface.
  */
 function renderContact(){
     for (let i = 0; i < contacts.length; i++) {
@@ -175,8 +175,8 @@ function renderContact(){
 }
 
 /**
- * Löscht einen Kontakt anhand seines Index.
- * @param {number} i - Der Index des zu löschenden Kontakts.
+ * Deletes a contact based on its index.
+ * @param {number} i - The index of the contact to delete.
  */
 async function deleteContact(i){
     document.getElementById(`contact-info${i}`).remove();
@@ -192,8 +192,8 @@ async function deleteContact(i){
 }
 
 /**
- * Löscht einen bearbeiteten Kontakt anhand seines Index.
- * @param {number} i - Der Index des zu löschenden Kontakts.
+ * Deletes an edited contact based on its index.
+ * @param {number} i - The index of the contact to delete.
  */
 async function deleteEditContact(i){
     contacts.splice(i, 1);
@@ -206,8 +206,8 @@ async function deleteEditContact(i){
 }
 
 /**
- * Zeigt die Details eines Kontakts auf dem Desktop an.
- * @param {number} i - Der Index des anzuzeigenden Kontakts.
+ * Displays the details of a contact on desktop.
+ * @param {number} i - The index of the contact to display.
  */
 function showContactDesktop(i){
     document.getElementById('show-contact-infos').innerHTML = '';
@@ -225,8 +225,8 @@ function showContactDesktop(i){
 }
 
 /**
- * Entscheidet, ob die Details eines Kontakts auf mobilen Gerät oder Desktop angezeigt werden sollen.
- * @param {number} i - Der Index des anzuzeigenden Kontakts.
+ * Decides whether to display the details of a contact on a mobile device or desktop.
+ * @param {number} i - The index of the contact to display.
  */
 function showContact(i){
     if (window.innerWidth < 1090){
@@ -237,8 +237,8 @@ function showContact(i){
 }
 
 /**
- * Zeigt die Details eines Kontakts auf mobilen Geräten an.
- * @param {number} i - Der Index des anzuzeigenden Kontakts.
+ * Displays the details of a contact on mobile devices.
+ * @param {number} i - The index of the contact to display.
  */
 function showContactMobile(i){
     document.getElementById('show-contact-infos').innerHTML = '';
@@ -256,7 +256,7 @@ function showContactMobile(i){
 }
 
 /**
- * Wechselt zur Kontaktliste-Ansicht.
+ * Switches to the contact list view.
  */
 function backToList(){
     document.getElementById('right-side').classList.remove('z-index');
@@ -265,7 +265,7 @@ function backToList(){
 }
 
 /**
- * Öffnet das mobile Menü für die Kontakte.
+ * Opens the mobile menu for contacts.
  */
 function openMobileMenu(){
     document.getElementById('mobile-menu').classList.add('d-none');
@@ -278,7 +278,7 @@ function openMobileMenu(){
 }
 
 /**
- * Zeigt das Overlay für die Kontaktinformationen an.
+ * Displays the overlay for contact information.
  */
 function showOverlayContact() {
     setTimeout(() => {
@@ -287,7 +287,7 @@ function showOverlayContact() {
 }
 
 /**
- * Zeigt das Overlay für die Erfolgsmeldung bei der Kontakt-Erstellung an.
+ * Displays the overlay for successful contact creation.
  */
 function showOverlayCreated() {
     document.getElementById('successfully-created').classList.add('show-successfully-created');
@@ -297,7 +297,7 @@ function showOverlayCreated() {
 }
 
 /**
- * Zeigt das Overlay für die Erfolgsmeldung bei der Kontaktlöschung an.
+ * Displays the overlay for successful contact deletion.
  */
 function showOverlayDeleted() {
     document.getElementById('successfully-deleted').classList.add('show-successfully-deleted');
@@ -307,7 +307,7 @@ function showOverlayDeleted() {
 }
 
 /**
- * Zeigt das Overlay für die Erfolgsmeldung bei der Kontaktspeicherung an.
+ * Displays the overlay for successful contact saving.
  */
 function showOverlaySaved() {
     document.getElementById('successfully-saved').classList.add('show-successfully-saved');
@@ -317,8 +317,8 @@ function showOverlaySaved() {
 }
 
 /**
- * Bearbeitet einen vorhandenen Kontakt.
- * @param {number} i - Der Index des zu bearbeitenden Kontakts.
+ * Edits an existing contact.
+ * @param {number} i - The index of the contact to edit.
  */
 async function editAContact(i){
     contacts.splice(i, 1);
@@ -345,7 +345,7 @@ async function editAContact(i){
 }
 
 /**
- * Füllt das Array 'letters' mit den Anfangsbuchstaben der Kontakte.
+ * Fills the 'letters' array with the initial letters of the contacts.
  */
 function fillLetters() {
     letters = [];
@@ -360,7 +360,7 @@ function fillLetters() {
 }
 
 /**
- * Lädt die Anfangsbuchstaben der Kontakte in die Benutzeroberfläche.
+ * Loads the initial letters of the contacts into the user interface.
  */
 function loadLetters() {
     let container = document.getElementById('contact-area');
