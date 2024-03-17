@@ -631,21 +631,29 @@ function changeBoardTaskPopUpDeleteToBlack() {
 
 /* ---------- EDIT TASK ---------- */
 
+/**
+ * Opens the task-overlay-view for editing. 
+ * 
+ * @param {string} id - Uses the id of a specific task.
+ */
 function boardPopUpEdit(id) {
     let task = tasks.find(t => t.createdAt == id);
     let boardTaskOverlay = document.getElementById('boardTaskOverlay');
     boardTaskOverlay.innerHTML = '';
     boardTaskOverlay.innerHTML = HTMLTemplatePopUpBoardEdit(task);
-    // editTaskContacts = task.contacts; // geht nicht, sonst beide gleichzeitig verändert
-    editTaskContacts = task.contacts.slice(); // erstellt eine tiefe Kopie (jedoch nicht für Unterobjekte)
-    editTaskSubtasks = JSON.parse(JSON.stringify(task.subtasks)); // dies erstellt eine tiefe Kopie des Arrays 'subtasks', sodass 'editTaskSubtasks' und 'task.subtasks' auf separate Arrays mit separaten Unterobjekten verweisen, und Änderungen an einem haben keinen Einfluss auf das andere.
-    // editTaskSubtasks = task.subtasks.slice(); // wenn ich Unterobjekte verändern will bei einem Array, wird das andere Array gleichzeitig verändert
+    editTaskContacts = task.contacts.slice(); // deep copy task.contacts array
+    editTaskSubtasks = JSON.parse(JSON.stringify(task.subtasks)); // deep copy task.subtasks array
     renderBoardPopUpEditDate(task);
     renderBoardPopUpEditPrio(task);
     renderBoardPopUpEditContacts(task);
     renderBoardPopUpEditSubtasks(task);
 }
 
+/**
+ * Renders the date for the task-overlay-view for editing.
+ * 
+ * @param {object} task - Uses the task-object as a parameter to address the right task-data.
+ */
 function renderBoardPopUpEditDate(task) {
     let boardPopUpInputDate = document.getElementById('boardPopUpInputDate');
     if (task.date.includes('-')) {
@@ -653,11 +661,22 @@ function renderBoardPopUpEditDate(task) {
     }
 }
 
+/**
+ * Renders the priority for the task-overlay-view for editing.
+ * 
+ * @param {object} task - Uses the task-object as a parameter to address the right task-data.
+ */
 function renderBoardPopUpEditPrio(task) {
     boardCurrentPrio = task.prio;
     changePrioBtn(boardCurrentPrio);
 }
 
+/**
+ * Changes the right priority-button for the task-overlay-view for editing.
+ * 
+ * @param {string} priority - Passes the priority.
+ * @param {string} taskCreatedAt - Uses a unique long number as parameter to identify the specific task.
+ */
 function changePrioBtn(priority, taskCreatedAt) {
     if(priority == 'urgent') {
         changePrioBtnUrgent(taskCreatedAt);
@@ -670,7 +689,10 @@ function changePrioBtn(priority, taskCreatedAt) {
     }
 }
 
-function changePrioBtnUrgent(taskCreatedAt) {
+/**
+ * Changes the priority-button for the task-overlay-view for editing to "urgent".
+ */
+function changePrioBtnUrgent() {
     boardCurrentPrio = 'urgent';
     let btnUrgent = document.getElementById('boardPopUpEditUrgentBtn');
     btnUrgent.style.background = '#FF3D00';
@@ -686,7 +708,10 @@ function changePrioBtnUrgent(taskCreatedAt) {
     btnLow.firstElementChild.src = './img/lowPrio.png';
 }
 
-function changePrioBtnMedium(taskCreatedAt) {
+/**
+ * Changes the priority-button for the task-overlay-view for editing to "medium".
+ */
+function changePrioBtnMedium() {
     boardCurrentPrio = 'medium';
     let btnMedium = document.getElementById('boardPopUpEditMediumBtn');
     btnMedium.style.background = '#FFA800';
@@ -702,7 +727,10 @@ function changePrioBtnMedium(taskCreatedAt) {
     btnLow.firstElementChild.src = './img/lowPrio.png';
 }
 
-function changePrioBtnLow(taskCreatedAt) {
+/**
+ * Changes the priority-button for the task-overlay-view for editing to "low".
+ */
+function changePrioBtnLow() {
     boardCurrentPrio = 'low';
     let btnLow = document.getElementById('boardPopUpEditLowBtn');
     btnLow.style.background = '#7AE229';
@@ -718,7 +746,10 @@ function changePrioBtnLow(taskCreatedAt) {
     btnMedium.firstElementChild.src = './img/mediumPrio.png';
 }
 
-function cleanAllPrioBtns(taskCreatedAt) {
+/**
+ * Cleans the priority-button for the task-overlay-view for editing.
+ */
+function cleanAllPrioBtns() {
     boardCurrentPrio = '';
     let btnUrgent = document.getElementById('boardPopUpEditUrgentBtn');
     btnUrgent.style.background = 'white';
@@ -734,6 +765,11 @@ function cleanAllPrioBtns(taskCreatedAt) {
     btnLow.firstElementChild.src = './img/lowPrio.png';
 }
 
+/**
+ * Renders the contacts for the editing-task-overlay-view.
+ * 
+ * @param {object} task - Uses the task-object as a parameter to address the right task-data.
+ */
 function renderBoardPopUpEditContacts(task) {
     let div = document.getElementById(`boardPopUpEditColorfulContacts${task.createdAt}`);
     div.innerHTML = '';
@@ -745,6 +781,11 @@ function renderBoardPopUpEditContacts(task) {
     }
 }
 
+/**
+ * Renders the subtasks for the editing-task-overlay-view.
+ * 
+ * @param {object} task - Uses the task-object as a parameter to address the right task-data.
+ */
 function renderBoardPopUpEditSubtasks(task) {
     let div = document.getElementById(`boardPopUpAllSubtasks`);
     div.innerHTML = '';
@@ -754,6 +795,11 @@ function renderBoardPopUpEditSubtasks(task) {
     }
 }
 
+/**
+ * Renders the contacts for the editing-task-overlay-view.
+ * 
+ * @param {string} taskCreatedAt - Passes a unique long number to identify a specific task.
+ */
 function boardEditTaskAssignContacts(taskCreatedAt) {
     let div = document.getElementById('boardPopUpSelectContactsToAssignDiv');
     let input = document.getElementById('boardPopUpSelectContactsInput');
@@ -765,6 +811,12 @@ function boardEditTaskAssignContacts(taskCreatedAt) {
     renderContactsForSearch("", taskCreatedAt);
 }
 
+/**
+ * Renders the searched contacts for the editing-taks-overlay-view.
+ * 
+ * @param {string} search - Passes the searched value.
+ * @param {string} taskCreatedAt - Passes a unique long number to identify a specific task.
+ */
 function renderContactsForSearch(search, taskCreatedAt) {
     let contactsDiv = document.getElementById('boardPopUpSelectContacts');
     let task = tasks.find(t => t.createdAt == taskCreatedAt);
@@ -783,12 +835,20 @@ function renderContactsForSearch(search, taskCreatedAt) {
     }
 }
 
+/**
+ * Renders the searched contacts for the editing-taks-overlay-view.
+ * 
+ * @param {string} taskCreatedAt - Passes a unique long number to identify a specific task.
+ */
 function boardEditTaskSearchContacts(taskCreatedAt) {
     let input = document.getElementById('boardPopUpSelectContactsInput');
     let search = input.value.toLowerCase();
     renderContactsForSearch(search, taskCreatedAt);
 }
 
+/**
+ * Closes the dropdown where all contacts are showed. This happens in the editing-task-overlay-view.
+ */
 function closeBoardEditTaskContacts() {
     let input = document.getElementById('boardPopUpSelectContactsInput');
     let contactsDiv = document.getElementById('boardPopUpSelectContacts');
@@ -798,6 +858,15 @@ function closeBoardEditTaskContacts() {
     div.classList.remove('d-none');
 }
 
+/**
+ * Checks if there is an empty search-value.
+ * If so it renders all contacts by also showing which are checked.
+ * If not it renders all searched contacts by also showing which are checked.
+ * 
+ * @param {string} contactCreatedAt - Passes a unique long number to identify a specific contact.
+ * @param {string} taskCreatedAt - Passes a unique long number to identify a specific task.
+ * @param {string} search - Passes the searched value.
+ */
 function boardEditTaskAddOrRemoveContact(contactCreatedAt, taskCreatedAt, search) {
     let checkboxImg = document.getElementById(`boardEditTaskContactsCheckbox${contactCreatedAt}`);
     let task = tasks.find(t => t.createdAt == taskCreatedAt);
@@ -817,6 +886,14 @@ function boardEditTaskAddOrRemoveContact(contactCreatedAt, taskCreatedAt, search
     }
 }
 
+/**
+ * Checks if subtasks are done or not.
+ * If so, the checkbox is checked.
+ * If not, there is an empty checkbox.
+ * 
+ * @param {string} taskCreatedAt - Passes a unique long number to identify a specific task.
+ * @param {number} i - Passes the index of a subtask.
+ */
 async function boardChangeSubtasksDoneOrNot(taskCreatedAt, i) {
     let subtaskCheckboxImg = document.getElementById(`boardPopUpSubtask${taskCreatedAt}${i}`);
     let task = tasks.find(t => t.createdAt == taskCreatedAt);
@@ -833,6 +910,11 @@ async function boardChangeSubtasksDoneOrNot(taskCreatedAt, i) {
     }
 }
 
+/**
+ * Deletes a specific task for the overall-board-view.
+ * 
+ * @param {string} taskCreatedAt - Passes a unique long number to identify a specific task.
+ */
 function boardDeleteTask(taskCreatedAt) {
     let index = tasks.findIndex(t => t.createdAt == taskCreatedAt);
     tasks.splice(index, 1);
@@ -841,6 +923,13 @@ function boardDeleteTask(taskCreatedAt) {
     renderAllTasks();
 }
 
+/**
+ * Checks if the search-input is empty.
+ * If so it focuses on the input.
+ * If not it adds a subtask which has the value of the input.
+ * 
+ * @param {string} taskCreatedAt - Passes a unique long number to identify a specific task.
+ */
 function focusOnInputOrAddSubtask(taskCreatedAt) {
     let input = document.getElementById('boardPopUpInputSubtasks');
     let search = input.value;
@@ -860,6 +949,11 @@ function focusOnInputOrAddSubtask(taskCreatedAt) {
     }
 }
 
+/**
+ * Changes the image from the input to plus.
+ * 
+ * @param {string} taskCreatedAt - Passes a unique long number to identify a specific task.
+ */
 function changeImageOnSubtaskInputToPlus(taskCreatedAt) {
     let boardPopUpInputSubtasks = document.getElementById('boardPopUpInputSubtasks');
     let boardPopUpInputSubtasksImg = document.getElementById('boardPopUpInputSubtasksImg');
@@ -871,6 +965,11 @@ function changeImageOnSubtaskInputToPlus(taskCreatedAt) {
     boardPopUpInputSubtasksImg.innerHTML = /*html*/`<img onclick="focusOnInputOrAddSubtask('${taskCreatedAt}')" class="height10" src="./img/add-2.png" alt="plus">`;
 }
 
+/**
+ * Adds a subtask on the edit-task-overlay-view.
+ * 
+ * @param {string} taskCreatedAt - Passes a unique long number to identify a specific task. 
+ */
 async function boardEditTaskAddSubtask(taskCreatedAt) {
     let boardPopUpInputSubtasks = document.getElementById('boardPopUpInputSubtasks');
     if(boardPopUpInputSubtasks.value !== '') {
@@ -885,6 +984,12 @@ async function boardEditTaskAddSubtask(taskCreatedAt) {
     }
 }
 
+/**
+ * Stores the information of the formular as task-object in the remote storage.
+ * 
+ * @param {string} taskCreatedAt - Passes a unique long number to identify a specific task. 
+ * @param {Event} event - The event object for preventin a reload of the formular.
+ */
 async function saveEditedTask(taskCreatedAt, event) {
     event.preventDefault();
     let task = tasks.find(t => t.createdAt == taskCreatedAt);
@@ -905,11 +1010,21 @@ async function saveEditedTask(taskCreatedAt, event) {
     renderAllTasks();
 }
 
+/**
+ * Removes the animation "rightSlideIn" from an element.
+ * 
+ * @param {string} id - Passes the id from a specific element.
+ */
 function removeAnimationRightSlideIn(id) {
     let element = document.getElementById(id);
     element.classList.remove('animationRightSlideIn');
 }
 
+/**
+ * Shows the delete-image and the edit-image on a specific subtask.
+ * 
+ * @param {number} i - Uses the index of a specific element as parameter.
+ */
 function showImgSubtasksDeleteAndEdit(i) {
     if(editEditSubtaskInputExists(i)) {
         let subtask = document.getElementById(`editTaskSubtask${i}`);
@@ -917,11 +1032,22 @@ function showImgSubtasksDeleteAndEdit(i) {
     }
 }
 
+/**
+ * Checks if the specific input exists.
+ * 
+ * @param {number} i - Uses the index of a specific element as parameter.
+ * @returns {boolean} . Returns "true" if the specific input exists and "false" if it doesn't.
+ */
 function editEditSubtaskInputExists(i) {
     let editEditSubtaskInput = document.getElementById(`editEditSubtaskInput${i}`);
     return !editEditSubtaskInput;
 }
 
+/**
+ * Hides the delete-image and edit-image.
+ * 
+ * @param {number} i - Uses the index of a specific element as parameter.
+ */
 function hideImgSubtasksDeleteAndEdit(i) {
     if(editEditSubtaskInputExists(i)) {
         let subtask = document.getElementById(`editTaskSubtask${i}`);
@@ -929,12 +1055,24 @@ function hideImgSubtasksDeleteAndEdit(i) {
     }
 }
 
+/**
+ * Deletes a specific subtask for the editing-task-overlay-view.
+ * 
+ * @param {number} i - Uses the index of a specific element as parameter.
+ * @param {string} taskCreatedAt - Passes a unique long number to identify a specific task.
+ */
 function deleteEditTaskSubtask(i, taskCreatedAt) {
     let task = tasks.find(t => t.createdAt == taskCreatedAt);
     editTaskSubtasks.splice(i, 1);
     renderBoardPopUpEditSubtasks(task);
 }
 
+/**
+ * Changes specific element to an input where the value of the subtask can be changed.
+ * 
+ * @param {number} i - Uses the index of a specific element as parameter.
+ * @param {string} taskCreatedAt - Passes a unique long number to identify a specific task. 
+ */
 function editEditTaskSubtask(i, taskCreatedAt) {
     let editTaskSubtaskParent = document.getElementById(`editTaskSubtaskParent${i}`);
     editTaskSubtaskParent.classList.remove('hoverGrey');
@@ -942,6 +1080,12 @@ function editEditTaskSubtask(i, taskCreatedAt) {
     editTaskSubtaskParent.innerHTML = HTMLTemplatePopUpBoardEditSubtasksEdit(i, `${taskCreatedAt}`);
 }
 
+/**
+ * Sets the value for a specific subtask.
+ * 
+ * @param {number} i - Uses the index of a specific element as parameter.
+ * @param {string} taskCreatedAt - Passes a unique long number to identify a specific task.
+ */
 function editEditSubtaskInputValue(i, taskCreatedAt) {
     let task = tasks.find(t => t.createdAt == taskCreatedAt);
     let editEditSubtaskInput = document.getElementById(`editEditSubtaskInput${i}`);
@@ -949,22 +1093,43 @@ function editEditSubtaskInputValue(i, taskCreatedAt) {
     renderBoardPopUpEditSubtasks(task);
 }
 
+/**
+ * Deletes a specific subtask.
+ * 
+ * @param {number} i - Uses the index of a specific element as parameter.
+ * @param {string} taskCreatedAt - Passes a unique long number to identify a specific task.
+ */
 function deleteEditTaskSubtask(i, taskCreatedAt) {
     let task = tasks.find(t => t.createdAt == taskCreatedAt);
     editTaskSubtasks.splice(i, 1);
     renderBoardPopUpEditSubtasks(task);
 }
 
+/**
+ * Adds blue border to a specific element.
+ * 
+ * @param {number} i - Uses the index of a specific element as parameter.
+ */
 function setBlueBorderBottom(i) {
     let editTaskSubtaskParent = document.getElementById(`editTaskSubtaskParent${i}`);
     editTaskSubtaskParent.classList.add('blueBorderBottom');
 }
 
+/**
+ * Removes the blue border from a specific element.
+ * 
+ * @param {number} i - Uses the index of a specific element as parameter.
+ */
 function removeBlueBorderBottom(i) {
     let editTaskSubtaskParent = document.getElementById(`editTaskSubtaskParent${i}`);
     editTaskSubtaskParent.classList.remove('blueBorderBottom');
 }
 
+/**
+ * Adds the animation "rightSlideIn" to an specific element.
+ * 
+ * @param {string} id - Passes the id from a specific element.
+ */
 function addAnimationRightSlideIn(id) {
     let element = document.getElementById(id);
     element.classList.add('animationRightSlideIn');
@@ -972,7 +1137,9 @@ function addAnimationRightSlideIn(id) {
 
 /* ---------- OPEN ADD TASK ---------- */
 
-
+/**
+ * Shows an overlay of the openTask-Template.
+ */
 async function openAddTask() {
     let boardTaskOverlay = document.getElementById('boardTaskOverlay');
     boardTaskOverlay.innerHTML = '';
