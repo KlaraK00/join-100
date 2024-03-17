@@ -1148,6 +1148,7 @@ async function openAddTask(status) {
     boardTaskOverlay.innerHTML = '';
     boardTaskOverlay.innerHTML = HTMLTemplateAddTask();
     await includeHTML();
+    await initApp();
     let addTaskOverlay = document.getElementById('addTaskOverlay');
     addTaskOverlay.innerHTML += `<img onclick="closeTask()" class="posAbsolute top45 right47 cursorPointer addTaskOverlayCloseImg" src="./img/Close.png" alt="close">`
 }
