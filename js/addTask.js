@@ -20,7 +20,7 @@ async function initAddTask() {
     await loadTasks();
     await loadContacts();
     await loadUsers();
-    currentStatus = getCurrentStatus();
+    currentStatus = "toDo"
     updateContactsDropdown(contacts);
     highlightActiveSideButton();
     currentUser = getCurrentUser();
@@ -39,15 +39,6 @@ async function tasksExist() {
   return await getItem("tasks");
 }
 
-function getCurrentStatus() {
-    if(currentStatusExists()) {
-        return getLocalStorageItem('currentStatus');
-    }
-  }
-  
-  function currentStatusExists() {
-    return getLocalStorageItem('currentStatus');
-  }
 
 function getInputValue(id) {
   return document.getElementById(id).value;
@@ -127,17 +118,24 @@ function createTask() {
 }
 
 function getPriority() {
-  //access all prio buttons
-  let priorityButtons = document.querySelectorAll(".prio button");
-  //loop through buttons
-  for (let button of priorityButtons) {
-    //check for active class
-    if (button.classList.contains("active")) {
-      return button.textContent.trim();
+    // Define an object mapping the button IDs to their priorities
+    const priorities = {
+      "urgent": "urgent",
+      "medium": "medium",
+      "low": "low"
+    };
+    
+    // Iterate over the priority keys (button IDs)
+    for (let id of Object.keys(priorities)) {
+      let button = document.getElementById(id);
+      // Check if the button's text color is white
+      if (button.style.color === "white") {
+        return priorities[id]; // Return the corresponding priority
+      }
     }
+    return ""; // Return an empty string if no priority is actively white
   }
-  return "";
-}
+  
 
 /**
  * Aktiviert den ausgewählten Button, ändert die Hintergrundfarbe entsprechend der Priorität, setzt den Filter für die Bilder und ändert die Schriftfarbe der Buttons.

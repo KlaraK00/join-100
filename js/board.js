@@ -1151,3 +1151,13 @@ async function openAddTask(status) {
     let addTaskOverlay = document.getElementById('addTaskOverlay');
     addTaskOverlay.innerHTML += `<img onclick="closeTask()" class="posAbsolute top45 right47 cursorPointer addTaskOverlayCloseImg" src="./img/Close.png" alt="close">`
 }
+
+function getCurrentStatus() {
+    if(currentStatusExists()) {
+        return getLocalStorageItem('currentStatus');
+    }
+  }
+  
+  function currentStatusExists() {
+    return getLocalStorageItem('currentStatus');
+  }
