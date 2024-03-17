@@ -28,8 +28,6 @@ async function initApp() {
       
     }
   
-  // Modification to the way you bootstrap your application
-  document.addEventListener('DOMContentLoaded', initApp); // Use initApp to coordinate initialization
   
 
 async function loadTasks() {
@@ -337,6 +335,7 @@ function updateContactsDropdown(contacts) {
             }
         }
     });
+    
     
     
     
