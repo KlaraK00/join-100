@@ -1,5 +1,5 @@
 function HTMLTemplateTask(task) {
-    return /*html*/`<div id="task${task.createdAt}" onclick="openTask(${task.createdAt}), addAnimationRightSlideIn('boardPopUpCard')" draggable="true" ondragstart="startDragging('task${task.createdAt}')" class="card dFlex directionColumn alignStart cursorPointer">
+    return /*html*/`<div id="task${task.createdAt}" onclick="openTask(${task.createdAt}), addAnimationRightSlideIn('boardPopUpCard')" draggable="true" ondragstart="startDragging('task${task.createdAt}')" ontouchstart="startDragging('task${task.createdAt}')" ontouchmove="drag(event)" ontouchend="drop(event)" class="card dFlex directionColumn alignStart cursorPointer dragbox">
             <div id="boardCategory${task.createdAt}">${task.category}</div>
             <div class="fontBold">${task.title}</div>
             <div class="fontGrey" >${task.description}</div>

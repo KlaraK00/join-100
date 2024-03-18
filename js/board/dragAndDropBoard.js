@@ -27,7 +27,12 @@ function allowDrop(event) {
 function showEmptyDiv(id) {
     if(draggingOnce) {
         let element = document.getElementById(id);
-        element.innerHTML += `<div id="${id}EmptyDiv" class="emptyDivForDraggedElement zIndexMinus1"></div>`;
+        let emptyDiv = document.createElement('div');
+        emptyDiv.id = id + 'EmptyDiv';
+        emptyDiv.className = 'emptyDivForDraggedElement zIndexMinus1';
+        emptyDiv.style.width = (document.getElementById(currentDraggedElement).clientWidth - 5) + 'px';    
+        emptyDiv.style.height = (document.getElementById(currentDraggedElement).clientHeight - 5) + 'px';
+        element.appendChild(emptyDiv);
         draggingOnce = false;
     }
 }
@@ -53,15 +58,59 @@ async function moveTo(newStatus) {
 function removeEmptyDiv(id) {
     if(!draggingOnce) {
         let element = document.getElementById(`${id}EmptyDiv`);
-        element.remove();
-        draggingOnce = true;
+        if(element) {
+            element.remove();
+            draggingOnce = true;
+            console.log('removed');
+        }
     }
 }
 
-// function allowMovingElementByTouching(event) {
-//     event.preventDefault();
-//     debugger;
-//     let touch = event.touch.target;
-//     event.target.style.left = touch.pageX + 'px';
-//     event.target.style.top = touch.pageY + 'px';
-// }
+function drag(event) {
+    if(window.innerWidth <= 1100) {
+        event.preventDefault();
+        event.target.style.position = "absolute";
+        event.target.style.zIndex = "2";
+        event.target.style.left = event.touches[0].pageX-event.target.clientWidth/2 + 'px';
+        event.target.style.top = event.touches[0].pageY-event.target.clientHeight/2 + 'px';
+   
+        let toDoRect = document.getElementById('divToDo').getBoundingClientRect();
+        let inProgressRect = document.getElementById('divInProgress').getBoundingClientRect();
+        let awaitFeedbackRect = document.getElementById('divAwaitFeedback').getBoundingClientRect();
+        let doneRect = document.getElementById('divDone').getBoundingClientRect();
+        let targetRect = event.target.getBoundingClientRect();
+
+        if(targetRect.top+targetRect.height/2 < toDoRect.bottom && targetRect.top+targetRect.height/2 > toDoRect.top) {
+            currentDropElement = 'divToDo';
+            showEmptyDiv(currentDropElement);
+        } else if (targetRect.top+targetRect.height/2 < inProgressRect.bottom && targetRect.top+targetRect.height/2 > inProgressRect.top) {
+            currentDropElement = 'divInProgress';
+            showEmptyDiv(currentDropElement);
+        } else if (targetRect.top+targetRect.height/2 < awaitFeedbackRect.bottom && targetRect.top+targetRect.height/2 > awaitFeedbackRect.top) {
+            currentDropElement = 'divAwaitFeedback';
+            showEmptyDiv(currentDropElement);
+        } else if (targetRect.top+targetRect.height/2 < doneRect.bottom && targetRect.top+targetRect.height/2 > doneRect.top) {
+            currentDropElement = 'divDone';
+            showEmptyDiv(currentDropElement);
+        } else {
+            removeEmptyDiv(currentDropElement);
+        }  
+
+        if(event.touches[0].clientY-event.target.clientHeight/2 <= 0) {
+            scroll(0, window.scrollY-15);
+        }
+        if(event.touches[0].clientY+event.target.clientHeight/2 > screen.height && window.scrollY <= (document.body.scrollHeight - screen.height)) {
+            console.log(event.touches[0].pageY+event.target.clientHeight/2)
+            scroll(0, window.scrollY+15);
+        }
+    }
+}
+
+function drop() {
+    if(window.innerWidth <= 1100) {
+        removeEmptyDiv(currentDropElement);
+        let newStatusFirstLetter = currentDropElement.slice(3).charAt(0).toLowerCase(0);
+        let newStatus = newStatusFirstLetter + currentDropElement.slice(4);
+        moveTo(newStatus);
+    }
+}

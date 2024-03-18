@@ -1,4 +1,5 @@
 let currentDraggedElement;
+let currentDropElement;
 let boardCurrentPrio = '';
 let editTaskContacts;
 let editTaskSubtasks;
