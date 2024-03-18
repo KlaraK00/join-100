@@ -143,8 +143,27 @@ function addSubtaskOnEnter(event, taskCreatedAt) {
  * @param {string} taskCreatedAt - Passes a unique long number to identify a specific task. 
  * @param {Event} event - The event object for preventing a reload of the formular.
  */
-async function saveEditedTask(taskCreatedAt, event) {
+async function processEditedTask(taskCreatedAt, event) {
     event.preventDefault();
+    await savingProcessEditedTask(taskCreatedAt);
+    renderProcessEditedTask(taskCreatedAt);
+}
+
+async function savingProcessEditedTask(taskCreatedAt) {
+    disableEditingTaskButton();
+    overwriteTask(taskCreatedAt);
+    await saveTask();
+    showSuccessfulEditing(taskCreatedAt);
+    enableEditingTaskButton();
+}
+
+function renderProcessEditedTask(taskCreatedAt) {
+    openTask(taskCreatedAt);
+    removeAnimationRightSlideIn('boardPopUpCard');
+    renderAllTasks();
+}
+
+function overwriteTask(taskCreatedAt) {
     let task = tasks.find(t => t.createdAt == taskCreatedAt);
     let title = document.getElementById('boardPopUpInputTitle').value;
     let description = document.getElementById('boardPopUpInputDescription').value;
@@ -157,10 +176,32 @@ async function saveEditedTask(taskCreatedAt, event) {
     editTaskContacts = undefined;
     task.subtasks = editTaskSubtasks;
     editTaskSubtasks = undefined;
-    openTask(taskCreatedAt);
-    removeAnimationRightSlideIn('boardPopUpCard');
+}
+
+async function saveTask() {
     await setItem('tasks', tasks);
-    renderAllTasks();
+}
+
+function disableEditingTaskButton() {
+    let button = document.getElementById('editingTaskSaveButton');
+    button.disabled = true;
+    button.classList.remove('darkBtn');
+    button.classList.add('darkBtnWithoutHover');
+}
+
+function enableEditingTaskButton() {
+    let button = document.getElementById('editingTaskSaveButton');
+    button.disabled = false;
+    button.classList.remove('darkBtnWithoutHover');
+    button.classList.add('darkBtn');
+}
+
+function showSuccessfulEditing() {
+    let informOverlay =  document.getElementById('informationOverlayEditingTask');
+    informOverlay.classList.remove('d-none');
+    setTimeout(() => {
+        informOverlay.classList.add('d-none');
+    }, 2000);
 }
 
 /**
@@ -286,4 +327,8 @@ function removeBlueBorderBottom(i) {
 function addAnimationRightSlideIn(id) {
     let element = document.getElementById(id);
     element.classList.add('animationRightSlideIn');
+}
+
+function closeAssignedToDiv() {
+    closeBoardEditTaskContacts();
 }

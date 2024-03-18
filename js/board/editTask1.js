@@ -14,7 +14,7 @@ function boardPopUpEdit(id) {
     renderBoardPopUpEditPrio(task);
     renderBoardPopUpEditContacts(task);
     renderBoardPopUpEditSubtasks(task);
-    startEventListenerBoardEditPopUp();
+    // startEventListenerBoardEditPopUp();
 }
 
 /**
@@ -166,13 +166,13 @@ function renderBoardPopUpEditSubtasks(task) {
 /**
  * Checks if you click outside of the contacts-area to close the contacts.
  */
-function startEventListenerBoardEditPopUp() {
-    document.getElementById('popUpBoardEdit').addEventListener("click", function (event) {
-        if (!document.getElementById('boardPopUpSelectContacts').contains(event.target) && !document.getElementById('boardPopUpSelectContactsToAssignDiv').contains(event.target)) {
-            closeBoardEditTaskContacts();
-        }
-    })
-}
+// function startEventListenerBoardEditPopUp() {
+//     document.getElementById('popUpBoardEdit').addEventListener("click", function (event) {
+//         if (!document.getElementById('boardPopUpSelectContacts').contains(event.target) && !document.getElementById('boardPopUpSelectContactsToAssignDiv').contains(event.target)) {
+//             closeBoardEditTaskContacts();
+//         }
+//     })
+// }
 
 /**
  * Renders the contacts for the editing-task-overlay-view.

@@ -1,5 +1,5 @@
 function HTMLTemplateTask(task) {
-    return /*html*/`<div id="task${task.createdAt}" onclick="openTask(${task.createdAt}), addAnimationRightSlideIn('boardPopUpCard')" draggable="true" ondragstart="startDragging('task${task.createdAt}')" ontouchstart="startDragging('task${task.createdAt}')" ontouchmove="drag(event)" ontouchend="drop(event)" class="card dFlex directionColumn alignStart cursorPointer dragbox">
+    return /*html*/`<div id="task${task.createdAt}" onclick="openTask(${task.createdAt}), addAnimationRightSlideIn('boardPopUpCard')" draggable="true" ondragstart="startDragging('task${task.createdAt}')" ontouchstart="startDragging('task${task.createdAt}')" ontouchmove="drag(event)" ontouchend="drop()" class="card dFlex directionColumn alignStart cursorPointer dragbox">
             <div id="boardCategory${task.createdAt}">${task.category}</div>
             <div class="fontBold">${task.title}</div>
             <div class="fontGrey" >${task.description}</div>
@@ -81,7 +81,7 @@ function HTMLTemplatePopUpPriority(task) {
 
 function HTMLTemplatePopUpBoardEdit(task){
     return /*html*/`<div class="dFlex alignCenter justCenter">
-            <form id="popUpBoardEdit" onsubmit="saveEditedTask('${task.createdAt}', event)" onclick="event.stopPropagation()" class="card posRelative alignStart">
+            <form id="popUpBoardEdit" onsubmit="processEditedTask('${task.createdAt}', event)" onclick="event.stopPropagation(), closeAssignedToDiv()" class="card posRelative alignStart">
                 <img onclick="closeTask()" class="posAbsolute cursorPointer closeImgBoard" src="./img/Close.png" alt="close">
                 <div class="dFlex directionColumn padTop35 width100Perc">
                     <label for="boardPopUpInputTitle" class="padBot5">Title</label>
@@ -108,17 +108,17 @@ function HTMLTemplatePopUpBoardEdit(task){
                 </div>
                 <div class="dFlex directionColumn width100Perc">
                     <div class="padBot5">Assigned to</div>
-                    <div id="boardPopUpSelectContactsToAssignDiv" class="posRelative">
+                    <div onclick="event.stopPropagation()" id="boardPopUpSelectContactsToAssignDiv" class="posRelative">
                         <div onclick="boardEditTaskAssignContacts('${task.createdAt}')" class="inputBoardEdit cursorPointer">Select contacts to assign</div>
                         <img class="posAbsolute top15 right15" src="./img/selectionToOpen.png" alt="close selection">
                     </div>
-                    <div class="marRight28 d-none posRelative">
-                        <input onkeyup="boardEditTaskSearchContacts('${task.createdAt}')" id="boardPopUpSelectContactsInput" class="inputBoardEdit width100Perc focusBlueBorder" type="text">
+                    <div onclick="event.stopPropagation()" class="marRight28 d-none posRelative">
+                        <input onclick="event.stopPropagation()" onclick="closeBoardEditTaskContacts()" onkeyup="boardEditTaskSearchContacts('${task.createdAt}')" id="boardPopUpSelectContactsInput" class="inputBoardEdit width100Perc focusBlueBorder" type="text">
                         <div onclick="closeBoardEditTaskContacts()" class="dFlex justCenter alignCenter posAbsolute top0 rightMinus26 height33 width33 cursorPointer">
                             <img src="./img/selectionToClose.png" alt="open selection">
                         </div>
                     </div>
-                    <div class="dFlex directionColumn padBot5 padTop5 gap1 d-none" id="boardPopUpSelectContacts"></div>
+                    <div onclick="event.stopPropagation()" class="dFlex directionColumn padBot5 padTop5 gap1 d-none" id="boardPopUpSelectContacts"></div>
                     <div class="dFlex padTop5" id="boardPopUpEditColorfulContacts${task.createdAt}"></div>
                 </div>
                 <div class="dFlex directionColumn width100Perc">
@@ -132,7 +132,7 @@ function HTMLTemplatePopUpBoardEdit(task){
                     <div class="dFlex directionColumn gap5 padTop5" id="boardPopUpAllSubtasks"></div>
                 </div>
                 <div class="dFlex justEnd width100Perc">
-                    <button class="darkBtn cursorPointer fontBold">Ok <img class="padLeft2 height10" src="./img/check.png" alt="check"></button>
+                    <button id="editingTaskSaveButton" class="darkBtn cursorPointer fontBold">Ok <img class="padLeft2 height10" src="./img/check.png" alt="check"></button>
                 </div>
             </form>
         </div>
