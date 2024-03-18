@@ -1,8 +1,21 @@
+::selection {
+    background-color: #2a3647;
+    color: white; 
+}
+
+.d-none-header {
+    display: none;
+}
+
 .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     position: fixed;
     top: 0;
     left: 232px;
     width: calc(100% - 232px);
+    min-height: 80px;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
     font-size: 20px;
     font-weight: 400;
@@ -13,6 +26,7 @@
 .header-container {
     display: flex;
     justify-content: space-between;
+    width: 100%;
     align-items: center;
     padding-left: 116px;
     padding-right: 40px;
