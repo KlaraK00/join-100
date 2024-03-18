@@ -125,10 +125,23 @@ async function boardEditTaskAddSubtask(taskCreatedAt) {
 }
 
 /**
+ * Prevents the submitting from the forumlar and adds a subtask if the key "enter" is pressed and the value of the input is not empty.
+ * 
+ * @param {Event} event - The event object representing the key-down-event.
+ * @param {string} taskCreatedAt - An unique long number to identify the correct task.
+ */
+function addSubtaskOnEnter(event, taskCreatedAt) {
+    event.preventDefault();
+    if(event.keyCode == 13) {
+        boardEditTaskAddSubtask(taskCreatedAt);
+    }
+}
+
+/**
  * Stores the information of the formular as task-object in the remote storage.
  * 
  * @param {string} taskCreatedAt - Passes a unique long number to identify a specific task. 
- * @param {Event} event - The event object for preventin a reload of the formular.
+ * @param {Event} event - The event object for preventing a reload of the formular.
  */
 async function saveEditedTask(taskCreatedAt, event) {
     event.preventDefault();
