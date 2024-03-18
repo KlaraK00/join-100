@@ -22,7 +22,8 @@
 }
 
 .savingErrorButton {
-    background-color: #29ABE2;
+    /* background-color: #29ABE2; */
+    background-color: #d3d3d3;
     margin-left: 20px;
     padding: 5px;
 }
