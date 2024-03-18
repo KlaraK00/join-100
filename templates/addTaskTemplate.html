@@ -32,7 +32,7 @@
             </div>
             <div class="assign">
                 <p>Assigned to</p>
-                <input class="assignContact" placeholder="Select contacts to assign">
+                <div class="contactInput"><input class="assignContact" placeholder="Select contacts to assign"><img id="arrow" src="./img/arrow_drop_down.png"></div>
                 <div id="contactsDropdown" class="contacts-dropdown">
                     <!-- Contacts will be dynamically inserted here -->
                 </div>
@@ -64,7 +64,7 @@
             <div class="category">
                 <p>Category<span class="red">*</span></p>
                 <div class="dropdown">
-                    <input class="category-input" onclick="toggleCategoryDropdown()" readonly placeholder="Select a Category">
+                    <div class="categoryInput"> <input class="category-input" onclick="toggleCategoryDropdown()" readonly placeholder="Select a Category"><img id="arrow2" src="./img/arrow_drop_down.png"></div>
                     <div id="categoryDropdown" class="category-dropdown"></div>
                 </div>
             </div>

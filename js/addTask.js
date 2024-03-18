@@ -196,7 +196,14 @@ function clearInput() {
 
 function toggleContactsDropdown() {
   const dropdown = document.getElementById("contactsDropdown");
+  const arrowImage = document.getElementById("arrow");
   dropdown.classList.toggle("show");
+
+  if (dropdown.classList.contains('show')) {
+    arrowImage.classList.add('rotate-180');
+} else {
+    arrowImage.classList.remove('rotate-180');
+}
 }
 
 function updateContactsDropdown(contacts) {
@@ -308,10 +315,13 @@ function updateCategoryDropdown() {
 
 function toggleCategoryDropdown() {
     const dropdown = document.getElementById('categoryDropdown');
+    const arrowImage = document.getElementById('arrow2')
     if (dropdown.style.display === 'none' || !dropdown.style.display) {
         dropdown.style.display = 'block'; 
+        arrowImage.classList.add('rotate-180');
     } else {
         dropdown.style.display = 'none'; 
+        arrowImage.classList.remove('rotate-180');
     }
 }
 
@@ -356,6 +366,15 @@ function attachInputEventListeners() {
     }
   });
 
+  document.querySelector(".contactInput img").addEventListener("click", function(event) {
+    event.stopPropagation(); // Prevent the event from bubbling up to the input
+    toggleContactsDropdown();
+});
+
+document.querySelector(".categoryInput img").addEventListener("click", function(event) {
+    event.stopPropagation(); // Prevent the event from bubbling up to the input
+    toggleCategoryDropdown();
+});
   // Listener for clicks outside the dropdown or input to close the dropdown
   document.getElementById('main-add-task-container').addEventListener("click", function (event) {
     if (
