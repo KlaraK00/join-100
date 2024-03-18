@@ -208,20 +208,11 @@ body {
 .selected-contacts-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 5px; /* Adjust based on design */
-    margin-top: 5px; /* Space between input and this container */
+    gap: 5px; 
+    margin-top: 5px; 
 }
 
-.dropdown select {
-    width: 440px; 
-    height: 48px; 
-    border-radius: 10px;
-    border: 1px solid rgba(209, 209, 209, 1);
-    font-size: 20px;
-    font-weight: 400;
-    padding-left: 10px;
-    cursor: pointer;
-}
+
 
 #category:focus-within {
     border: 1px solid #29abe2;
@@ -336,7 +327,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .subtasks {
     width: 440px; 
-    height: 80px; 
+    min-height: 80px; 
     top: 336px; 
     display: flex;
     flex-direction: column;
@@ -362,6 +353,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     
 
 .subtasks input {
+    width: 100%;
+    height: 48px; 
+    padding: 12px 16px;
     border-radius: 10px;
     border: 1px solid rgba(168, 168, 168, 1);
     color:rgba(209, 209, 209, 1);
@@ -369,12 +363,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     font-size: 20px;
     font-weight: 400;
     color: black;
-    background-image: url('../img/add-2.png'); 
-    background-repeat: no-repeat; 
-    background-position: top 16px right 10px;
-    height: 48px;
-    padding-left: 10px;
     cursor: pointer;
+    box-sizing: border-box;
+    
 }
 
 #subtasks:focus-within {
@@ -492,6 +483,50 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     margin-top: 25px;
     margin-left: 438px;
 }
+
+.dropdown {
+    position: relative;
+    
+}
+.category-dropdown {
+    display:none;
+    position: absolute;
+    top: 100%; 
+    left: 0;
+    border: 1px solid #ccc;
+    border-top: none; 
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    background-color: white;
+    z-index: 1000;
+    max-height: 150px;
+    width: 100%;
+    overflow-y: auto;
+  }
+  
+  .category-dropdown.show {
+    display: block; /* Show dropdown */
+  }
+  
+  .category-option {
+    padding: 10px; /* Your preference */
+    cursor: pointer; /* Indicate clickable options */
+    /* Additional styling here to match the contacts dropdown */
+  }
+  
+  /* Style for the input field */
+  .category-input {
+    height: 48px;
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 20px;
+    border: 1px solid rgba(168, 168, 168, 1);
+    border-radius: 10px;
+    cursor: pointer;
+    box-sizing: border-box; 
+  }
+  
+  
 
 @media(max-width: 1300px) {
     .main-add-task-container {

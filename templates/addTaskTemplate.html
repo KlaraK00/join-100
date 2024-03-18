@@ -44,43 +44,39 @@
         </div>
         <div class="parting-line addTaskTemplateTaskMar25"></div>
         <div class="taskFrame2 addTaskTemplateTaskMar25">
+            <!-- Due Date -->
             <div class="deadline">
-                <div>
-                    <p>Due Date<span class="red">*</span></p>
-                </div>
-                <input required id="due" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}" placeholder="dd/mm/yyyy" class="inputBoardEdit width100PercMinus26Px focusBlueBorder addTaskOverlayDateInput" type="text">
-                        
+              <p>Due Date<span class="red">*</span></p>
+              <input required id="due" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}" placeholder="dd/mm/yyyy" class="inputBoardEdit width100PercMinus26Px focusBlueBorder addTaskOverlayDateInput" type="text">
             </div>
+          
+            <!-- Priority -->
             <div id="priority" class="priority">
-                <p>Prio</p>
-                <div class="prio">
-                    <div><button class="urgent-inactive" type="button" onclick="activateButton('urgent')" id="urgent">urgent <img src="../img/prio alta.png"></button></div>
-                    <div><button type="button" onclick="activateButton('medium')" id="medium">medium <img src="../img/mediumPrio.png"></button></div>
-                    <div><button type="button" onclick="activateButton('low')" id="low">low <img src="../img/Capa 1.png"></button></div>
-                  </div>
+              <p>Prio</p>
+              <div class="prio">
+                <div><button class="urgent-inactive" type="button" onclick="activateButton('urgent')" id="urgent">urgent <img src="../img/prio alta.png"></button></div>
+                <div><button type="button" onclick="activateButton('medium')" id="medium">medium <img src="../img/mediumPrio.png"></button></div>
+                <div><button type="button" onclick="activateButton('low')" id="low">low <img src="../img/Capa 1.png"></button></div>
+              </div>
             </div>
+          
+            <!-- Category -->
             <div class="category">
-                <div>
-                    <p>Category<span class="red">*</span></p>
-                </div>
+                <p>Category<span class="red">*</span></p>
                 <div class="dropdown">
-                    
-                        <select name="category" id="category">
-                          <option class="d-none" value="preview">Select task category</option>
-                          <option value="User Story">User Story</option>
-                          <option value="Technical Task">Technical Task</option>
-                        </select>
-                    
+                    <input class="category-input" onclick="toggleCategoryDropdown()" readonly placeholder="Select a Category">
+                    <div id="categoryDropdown" class="category-dropdown"></div>
                 </div>
             </div>
+          
+            <!-- Subtasks -->
             <div class="subtasks">
-                <div><p>Subtasks</p></div>
-                <input id="subtasks" type="text" placeholder="Add new subtask" onkeypress="addSubtask(event)">
-                </div>
-                <div class="subList"><ul id="subtasksList"></ul></div>
-            
-        </div> 
-        </div>
+              <p>Subtasks</p>
+              <input id="subtasks" type="text" placeholder="Add new subtask" onkeypress="addSubtask(event)">
+              <div class="subList"><ul id="subtasksList"></ul></div>
+            </div>
+            </div>
+          </div>
         <div class="required-create addTaskTemplateRequiredCreate">
             <div class="required">
                 <span class="red">*</span>

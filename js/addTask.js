@@ -25,7 +25,8 @@ async function initAddTask() {
     highlightActiveSideButton();
     currentUser = getCurrentUser();
     showUserNavBar();
-    attachInputEventListeners(); // Attach event listeners so they are called after content is loaded
+    attachInputEventListeners();
+    updateCategoryDropdown() // Attach event listeners so they are called after content is loaded
   } else showLogInError();
 }
 
@@ -190,10 +191,8 @@ function clearInput() {
   document.getElementById("due").value = "";
   document.getElementById("category").selectedIndex = 0;
   document.getElementById("subtasks").value = "";
-  document.querySelectorAll("#priority .prio button").forEach((button) => {
-    button.classList.remove("active");
-  });
 }
+
 
 function toggleContactsDropdown() {
   const dropdown = document.getElementById("contactsDropdown");
@@ -283,7 +282,43 @@ function updateAssignContactInput() {
   });
 }
 
+let selectedCategory = ''; 
+
+function updateCategoryDropdown() {
+  const categoryDropdown = document.getElementById('categoryDropdown');
+  categoryDropdown.innerHTML = ''; 
+
+ 
+  const categories = ['Technical Task', 'User Story'];
+
+  categories.forEach((category) => {
+    const categoryElement = document.createElement('div');
+    categoryElement.classList.add('category-option');
+    categoryElement.textContent = category;
+
+    categoryElement.onclick = function () {
+      selectedCategory = category; // Update the selected category
+      document.querySelector('.category-input').value = category; // Display selected category in the input field
+      toggleCategoryDropdown(); // Hide the dropdown after selection
+    };
+
+    categoryDropdown.appendChild(categoryElement);
+  });
+}
+
+function toggleCategoryDropdown() {
+    const dropdown = document.getElementById('categoryDropdown');
+    if (dropdown.style.display === 'none' || !dropdown.style.display) {
+        dropdown.style.display = 'block'; 
+    } else {
+        dropdown.style.display = 'none'; 
+    }
+}
+
+
 function attachInputEventListeners() {
+   
+    
   const assignContactInput = document.querySelector(".assignContact");
   const dropdown = document.getElementById("contactsDropdown");
 
@@ -372,6 +407,7 @@ function attachInputEventListeners() {
       }
     }
   });
+
 }
 function addSubtask(event) {
   if (event.key === "Enter" || event.keyCode === 13) {
