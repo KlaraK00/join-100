@@ -4,9 +4,10 @@ function HTMLTemplateTask(task) {
             <div class="fontBold">${task.title}</div>
             <div class="fontGrey" >${task.description}</div>
             <div id="subtasksBoardOverDiv${task.createdAt}" class="dFlex justBetween width100Perc">
-                <div class="flex1 posRelative">
+                <div class="flex1 posRelative" onmouseout="hideDetailedProgressInformation(${task.createdAt})" onmouseover="showDetailedProgressInformation(${task.createdAt})">
                     <div class="greyProgressBarBoard posAbsolute" id="greyProgressBar${task.createdAt}"></div>
                     <div class="blueProgressBarBoard posAbsolute" id="blueProgressBar${task.createdAt}"></div>
+                    <div class="moreDetailsProgressInformation d-none" id="moreDetailsProgressInformation${task.createdAt}"></div>
                 </div>
                 <div class="padLeft8 fontSize12" id="subtasksBoard${task.createdAt}"></div>
             </div>

@@ -458,6 +458,13 @@ body {
     padding-bottom: 0;
 }
 
+.moreDetailsProgressInformation {
+    position: absolute;
+    top: 17px;
+    width: 200px;
+    font-size: 14px;
+}
+
 .animationRightSlideOut {
     animation: rightSlideOut 225ms forwards !important;
 }
