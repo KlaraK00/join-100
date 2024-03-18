@@ -89,10 +89,16 @@ function renderSubtasks(task) {
         let subtasksDone = getSubtasksDone(task);
         createNumbersForSubtasks(task, subtasksDone);
         createProgressBarForSubtasks(task, subtasksDone);
+        createMoreDetailsProgressInformation(task, subtasksDone);
     } else {
         let subtaskDiv = document.getElementById(`subtasksBoardOverDiv${task.createdAt}`);
         subtaskDiv.remove();
     }
+}
+function createMoreDetailsProgressInformation(task, subtasksDone) {
+    let moreDetailsProgressInformationDiv = document.getElementById(`moreDetailsProgressInformation${task.createdAt}`);
+    moreDetailsProgressInformationDiv.innerHTML = '';
+    moreDetailsProgressInformationDiv.innerHTML = `${subtasksDone} von ${task.subtasks.length} Subtasks erledigt`;
 }
 
 /**
@@ -260,4 +266,14 @@ function renderDone() {
         divDone.innerHTML = '';
         divDone.innerHTML = /*html*/`<div class="noTasksDiv">No tasks Done</div>`;
     }
+}
+
+function showDetailedProgressInformation(taskCreatedAt) {
+    let moreDetailsProgressInformation = document.getElementById(`moreDetailsProgressInformation${taskCreatedAt}`);
+    moreDetailsProgressInformation.classList.remove('d-none');
+}
+
+function hideDetailedProgressInformation(taskCreatedAt) {
+    let moreDetailsProgressInformation = document.getElementById(`moreDetailsProgressInformation${taskCreatedAt}`);
+    moreDetailsProgressInformation.classList.add('d-none');
 }

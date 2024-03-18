@@ -60,6 +60,10 @@ img {
     cursor: pointer;
 }
 
+.d-none {
+    display: none !important;
+}
+
 @media(max-width: 1100px) {
     .main-help-container {
         margin-top: 120px;

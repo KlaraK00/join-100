@@ -4,9 +4,10 @@ function HTMLTemplateTask(task) {
             <div class="fontBold">${task.title}</div>
             <div class="fontGrey" >${task.description}</div>
             <div id="subtasksBoardOverDiv${task.createdAt}" class="dFlex justBetween width100Perc">
-                <div class="flex1 posRelative">
+                <div class="flex1 posRelative" onmouseout="hideDetailedProgressInformation(${task.createdAt})" onmouseover="showDetailedProgressInformation(${task.createdAt})">
                     <div class="greyProgressBarBoard posAbsolute" id="greyProgressBar${task.createdAt}"></div>
                     <div class="blueProgressBarBoard posAbsolute" id="blueProgressBar${task.createdAt}"></div>
+                    <div class="moreDetailsProgressInformation d-none" id="moreDetailsProgressInformation${task.createdAt}"></div>
                 </div>
                 <div class="padLeft8 fontSize12" id="subtasksBoard${task.createdAt}"></div>
             </div>
@@ -80,7 +81,7 @@ function HTMLTemplatePopUpPriority(task) {
 
 function HTMLTemplatePopUpBoardEdit(task){
     return /*html*/`<div class="dFlex alignCenter justCenter">
-            <form onsubmit="saveEditedTask('${task.createdAt}', event)" onclick="event.stopPropagation()" class="card posRelative alignStart">
+            <form id="popUpBoardEdit" onsubmit="saveEditedTask('${task.createdAt}', event)" onclick="event.stopPropagation()" class="card posRelative alignStart">
                 <img onclick="closeTask()" class="posAbsolute cursorPointer closeImgBoard" src="./img/Close.png" alt="close">
                 <div class="dFlex directionColumn padTop35 width100Perc">
                     <label for="boardPopUpInputTitle" class="padBot5">Title</label>
@@ -123,7 +124,7 @@ function HTMLTemplatePopUpBoardEdit(task){
                 <div class="dFlex directionColumn width100Perc">
                     <label for="boardPopUpInputSubtasks" class="padBot5">Subtasks</label>
                     <div class="posRelative marRight28 cursorPointer">
-                        <input placeholder="Add new subtask" id="boardPopUpInputSubtasks" class="inputBoardEdit width100Perc focusBlueBorder" type="text">
+                        <input placeholder="Add new subtask" id="boardPopUpInputSubtasks" onkeydown="addSubtaskOnEnter(event, ${task.createdAt})" class="inputBoardEdit width100Perc focusBlueBorder" type="text">
                         <div id="boardPopUpInputSubtasksImg" class="posAbsolute dFlex justCenter alignCenter height33 width33 rightMinus26 top0">
                             <img onclick="focusOnInputOrAddSubtask('${task.createdAt}')" class="height10" src="./img/add-2.png" alt="plus">
                         </div>

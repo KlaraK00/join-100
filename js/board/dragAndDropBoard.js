@@ -57,3 +57,11 @@ function removeEmptyDiv(id) {
         draggingOnce = true;
     }
 }
+
+// function allowMovingElementByTouching(event) {
+//     event.preventDefault();
+//     debugger;
+//     let touch = event.touch.target;
+//     event.target.style.left = touch.pageX + 'px';
+//     event.target.style.top = touch.pageY + 'px';
+// }

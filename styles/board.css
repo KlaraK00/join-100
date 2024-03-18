@@ -463,6 +463,13 @@ body {
     padding-bottom: 0;
 }
 
+.moreDetailsProgressInformation {
+    position: absolute;
+    top: 17px;
+    width: 200px;
+    font-size: 14px;
+}
+
 .animationRightSlideOut {
     animation: rightSlideOut 225ms forwards !important;
 }
@@ -539,13 +546,18 @@ body {
         display: none;
     }
 
-    .lineUp {
-        padding: 10px;
-        margin: -10px;
+    #divToDo,
+    #divInProgress,
+    #divAwaitFeedback,
+    #divDone {
         overflow: auto;
+        padding: 10px;
     }
 
-    .lineUp::-webkit-scrollbar {
+    #divToDo::-webkit-scrollbar,
+    #divInProgress::-webkit-scrollbar,
+    #divAwaitFeedback::-webkit-scrollbar,
+    #divDone::-webkit-scrollbar {
         display: none;
     }
 

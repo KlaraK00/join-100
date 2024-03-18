@@ -42,13 +42,17 @@ function renderSearchedToDo(search) {
     let allSearchedTasksToDo = allTasksToDo.filter(task => task.title.toLowerCase().includes(search) || task.description.toLowerCase().includes(search));
     let divToDo = document.getElementById('divToDo');
     divToDo.innerHTML = '';
-    for (let i = 0; i < allSearchedTasksToDo.length; i++) {
-        let task = allSearchedTasksToDo[i];
-        divToDo.innerHTML += HTMLTemplateTask(task);
-        categoryBackground(task, `boardCategory${task.createdAt}`);
-        renderSubtasks(task);
-        renderContactsBoard(task);
-        renderPriorityAtBoard(task);
+    if(allSearchedTasksToDo.length == 0) {
+        divToDo.innerHTML = /*html*/`<div class="noTasksDiv">No results found</div>`;
+    } else {
+        for (let i = 0; i < allSearchedTasksToDo.length; i++) {
+            let task = allSearchedTasksToDo[i];
+            divToDo.innerHTML += HTMLTemplateTask(task);
+            categoryBackground(task, `boardCategory${task.createdAt}`);
+            renderSubtasks(task);
+            renderContactsBoard(task);
+            renderPriorityAtBoard(task);
+        }
     }
 }
 
@@ -62,13 +66,17 @@ function renderSearchedInProgress(search) {
     let allSearchedTasksInProgress = allTasksInProgress.filter(task => task.title.toLowerCase().includes(search) || task.description.toLowerCase().includes(search));
     let divInProgress = document.getElementById('divInProgress');
     divInProgress.innerHTML = '';
-    for (let i = 0; i < allSearchedTasksInProgress.length; i++) {
-        let task = allSearchedTasksInProgress[i];
-        divInProgress.innerHTML += HTMLTemplateTask(task);
-        categoryBackground(task, `boardCategory${task.createdAt}`);
-        renderSubtasks(task);
-        renderContactsBoard(task);
-        renderPriorityAtBoard(task);
+    if(allSearchedTasksInProgress.length == 0) {
+        divInProgress.innerHTML = /*html*/`<div class="noTasksDiv">No results found</div>`;
+    } else {
+        for (let i = 0; i < allSearchedTasksInProgress.length; i++) {
+            let task = allSearchedTasksInProgress[i];
+            divInProgress.innerHTML += HTMLTemplateTask(task);
+            categoryBackground(task, `boardCategory${task.createdAt}`);
+            renderSubtasks(task);
+            renderContactsBoard(task);
+            renderPriorityAtBoard(task);
+        }
     }
 }
 
@@ -82,13 +90,17 @@ function renderSearchedAwaitFeedback(search) {
     let allSearchedTasksAwaitFeedback = allTasksAwaitFeedback.filter(task => task.title.toLowerCase().includes(search) || task.description.toLowerCase().includes(search));
     let divAwaitFeedback = document.getElementById('divAwaitFeedback');
     divAwaitFeedback.innerHTML = '';
-    for (let i = 0; i < allSearchedTasksAwaitFeedback.length; i++) {
-        let task = allSearchedTasksAwaitFeedback[i];
-        divAwaitFeedback.innerHTML += HTMLTemplateTask(task);
-        categoryBackground(task, `boardCategory${task.createdAt}`);
-        renderSubtasks(task);
-        renderContactsBoard(task);
-        renderPriorityAtBoard(task);
+    if(allSearchedTasksAwaitFeedback.length == 0) {
+        divAwaitFeedback.innerHTML = /*html*/`<div class="noTasksDiv">No results found</div>`;
+    } else {
+        for (let i = 0; i < allSearchedTasksAwaitFeedback.length; i++) {
+            let task = allSearchedTasksAwaitFeedback[i];
+            divAwaitFeedback.innerHTML += HTMLTemplateTask(task);
+            categoryBackground(task, `boardCategory${task.createdAt}`);
+            renderSubtasks(task);
+            renderContactsBoard(task);
+            renderPriorityAtBoard(task);
+        }
     }
 }
 
@@ -102,12 +114,16 @@ function rendeSearchedDone(search) {
     let allSearchedTasksDone = allTasksDone.filter(task => task.title.toLowerCase().includes(search) || task.description.toLowerCase().includes(search));
     let divDone = document.getElementById('divDone');
     divDone.innerHTML = '';
-    for (let i = 0; i < allSearchedTasksDone.length; i++) {
-        let task = allSearchedTasksDone[i];
-        divDone.innerHTML += HTMLTemplateTask(task);
-        categoryBackground(task, `boardCategory${task.createdAt}`);
-        renderSubtasks(task);
-        renderContactsBoard(task);
-        renderPriorityAtBoard(task);
+    if(allSearchedTasksDone.length == 0) {
+        divDone.innerHTML = /*html*/`<div class="noTasksDiv">No results found</div>`;
+    } else {
+        for (let i = 0; i < allSearchedTasksDone.length; i++) {
+            let task = allSearchedTasksDone[i];
+            divDone.innerHTML += HTMLTemplateTask(task);
+            categoryBackground(task, `boardCategory${task.createdAt}`);
+            renderSubtasks(task);
+            renderContactsBoard(task);
+            renderPriorityAtBoard(task);
+        }
     }
 }
