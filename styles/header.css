@@ -3,6 +3,10 @@
     color: white; 
 }
 
+.d-none-header {
+    display: none;
+}
+
 .header {
     display: flex;
     justify-content: space-between;
