@@ -191,8 +191,10 @@ function prepareTaskObject(
 function finalizeTaskCreation() {
   clearInput();
   if (window.location.href.includes("board")) {
-    closeTask();
-    renderAllTasks();
+    setTimeout(() => {
+      closeTask();
+      renderAllTasks();
+    }, 2000);
   }
 }
 
@@ -229,13 +231,28 @@ function createTask() {
 
   selectedContacts = [];
   finalizeTaskCreation();
+  clearInput();
+  showSuccessBanner();
+}
 
-  let successBanner = document.getElementById('successBanner');
-  successBanner.classList.add('show-banner');
+function showSuccessBanner() {
+  if(window.location.href.includes("board")) {
+    console.log('showSuccessBoard');
+    let successBanner = document.getElementById('successBannerBoard');
+    successBanner.classList.remove('d-none');
+  
+    setTimeout(function() {
+      successBanner.classList.add('d-none');
+    }, 3000);
+  } else {
+    console.log('showSuccessAddTask');
+    let successBanner = document.getElementById('successBanner');
+    successBanner.classList.remove('d-none');
 
-  setTimeout(function() {
-    successBanner.classList.remove('show-banner');
-  }, 3000);
+    setTimeout(function() {
+      successBanner.classList.add('d-none');
+    }, 3000);
+  }
 }
 
 function getRightPriority() {
@@ -332,7 +349,7 @@ function clearInput() {
   document.getElementById("title").value = "";
   document.getElementById("description").value = "";
   document.getElementById("due").value = "";
-  document.getElementById("category").selectedIndex = 0; // Assumes first option is a placeholder or default selection
+  document.getElementById("category").value = ""; // Assumes first option is a placeholder or default selection
   document.getElementById("subtasks").value = "";
 
   // Optionally, reset any visual feedback on priority selection (not implemented here)
