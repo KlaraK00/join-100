@@ -13,6 +13,7 @@ function openTask(taskCreatedAt) {
     renderContactsPopUpBoard(task);
     renderSubtasksPopUpBoard(task);
     renderPriorityPopUpBoard(task);
+    bodyNotScrollable();
 }
 
 /**
@@ -29,6 +30,9 @@ function closeTask() {
     }
 }
 
+/**
+ * Closes the add-task-overlay and enables scrolling on body.
+ */
 function closeAddTaskOverlay() {
     let addTaskOverlay = document.getElementById('addTaskOverlay');
     addTaskOverlay.classList.add('animationRightSlideOut');
@@ -37,8 +41,19 @@ function closeAddTaskOverlay() {
         boardTaskOverlayAddTask.classList.add('d-none');
         addTaskOverlay.classList.remove('animationRightSlideOut');
     }, 500);
+    bodyScrollable();
 }
 
+/**
+ * Ensables scrolling on body.
+ */
+function bodyScrollable() {
+    document.body.style.overflow = 'auto';
+}
+
+/**
+ * Closes th board-task-overlay and enables scrolling on body.
+ */
 function closeBoardTaskOverlay() {
     let boardTaskOverlayChildElement = document.getElementById('boardTaskOverlay').firstElementChild;
     boardTaskOverlayChildElement.firstElementChild.classList.add('animationRightSlideOut');
@@ -48,6 +63,7 @@ function closeBoardTaskOverlay() {
         editTaskContacts = undefined;
         editTaskSubtasks = undefined;
     }, 500);
+    bodyScrollable();
 }
 
 /**
@@ -164,6 +180,13 @@ function removePopUpPrioDiv(task) {
 }
 
 /**
+ * Disables scrolling on body.
+ */
+function bodyNotScrollable() {
+    document.body.style.overflow = 'hidden';
+}
+
+/**
  * Changes the button "edit" from the task-overlay to blue.
  */
 function changeBoardTaskPopUpEditToBlue() {
@@ -225,6 +248,7 @@ async function loadDataForAddTaskOverlay(status) {
     await initApp();
     currentStatus = status;
     setLocalStorageItem('currentStatus', currentStatus);
+    document.body.style.overflow = 'hidden';
 }
 
 /**

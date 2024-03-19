@@ -14,7 +14,7 @@ body {
 }
 
 .main-help-container {
-    margin-top: 206px;
+    margin-top: 150px;
     margin-left: 328px;
     margin-right: 40px;
 }
@@ -48,7 +48,7 @@ p {
 
 .arrow {
     position: fixed;
-    top: 225px;
+    top: 150px;
     right: 40px;
 }
 

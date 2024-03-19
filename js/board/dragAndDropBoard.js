@@ -71,41 +71,7 @@ function drag(event) {
 
         movingTask(event);
    
-
-        let toDoRect = document.getElementById('divToDo').getBoundingClientRect();
-        let inProgressRect = document.getElementById('divInProgress').getBoundingClientRect();
-        let awaitFeedbackRect = document.getElementById('divAwaitFeedback').getBoundingClientRect();
-        let doneRect = document.getElementById('divDone').getBoundingClientRect();
-        let targetRect = event.target.getBoundingClientRect();
-
-        if(targetRect.top+targetRect.height/2 < toDoRect.bottom && targetRect.top+targetRect.height/2 > toDoRect.top) {
-            currentDropElement = 'divToDo';
-            showEmptyDiv(currentDropElement);
-        } else {
-            removeEmptyDiv(currentDropElement);
-        } 
-
-         if (targetRect.top+targetRect.height/2 < inProgressRect.bottom && targetRect.top+targetRect.height/2 > inProgressRect.top) {
-            currentDropElement = 'divInProgress';
-            showEmptyDiv(currentDropElement);
-        } else {
-            removeEmptyDiv(currentDropElement);
-        } 
-
-        if (targetRect.top+targetRect.height/2 < awaitFeedbackRect.bottom && targetRect.top+targetRect.height/2 > awaitFeedbackRect.top) {
-            currentDropElement = 'divAwaitFeedback';
-            showEmptyDiv(currentDropElement);
-        } else {
-            removeEmptyDiv(currentDropElement);
-        } 
-
-        if (targetRect.top+targetRect.height/2 < doneRect.bottom && targetRect.top+targetRect.height/2 > doneRect.top) {
-            currentDropElement = 'divDone';
-            showEmptyDiv(currentDropElement);
-        } else {
-            removeEmptyDiv(currentDropElement);
-        }  
-
+        showAndRemoveEmptyDiv(event);
         scrollDownOrUpWithTask(event);
     }
 }
@@ -123,6 +89,45 @@ function movingTask(event) {
     event.target.style.zIndex = "2";
     event.target.style.left = event.touches[0].pageX-event.target.clientWidth/2 + 'px';
     event.target.style.top = event.touches[0].pageY-event.target.clientHeight/2 + 'px';
+}
+
+function showAndRemoveEmptyDiv(event) {
+    let toDoRect = document.getElementById('divToDo').getBoundingClientRect();
+    let inProgressRect = document.getElementById('divInProgress').getBoundingClientRect();
+    let awaitFeedbackRect = document.getElementById('divAwaitFeedback').getBoundingClientRect();
+    let doneRect = document.getElementById('divDone').getBoundingClientRect();
+    let targetRect = event.target.getBoundingClientRect();
+    if(targetRect.top+targetRect.height/2 < toDoRect.bottom && targetRect.top+targetRect.height/2 > toDoRect.top) {
+        showEmptyDivInToDoDiv();
+    } else if (targetRect.top+targetRect.height/2 < inProgressRect.bottom && targetRect.top+targetRect.height/2 > inProgressRect.top) {
+        showEmptyDivInProgressDiv();
+    } else if (targetRect.top+targetRect.height/2 < awaitFeedbackRect.bottom && targetRect.top+targetRect.height/2 > awaitFeedbackRect.top) {
+        showEmptyDivInAwaitFeedbackDiv();
+    } else if (targetRect.top+targetRect.height/2 < doneRect.bottom && targetRect.top+targetRect.height/2 > doneRect.top) {
+        showEmptyDivInDoneDiv();
+    } else {
+        removeEmptyDiv(currentDropElement);
+    }  
+}
+
+function showEmptyDivInToDoDiv() {
+    currentDropElement = 'divToDo';
+    showEmptyDiv(currentDropElement);
+}
+
+function showEmptyDivInProgressDiv() {
+    currentDropElement = 'divInProgress';
+    showEmptyDiv(currentDropElement);
+}
+
+function showEmptyDivInAwaitFeedbackDiv() {
+    currentDropElement = 'divAwaitFeedback';
+    showEmptyDiv(currentDropElement);
+}
+
+function showEmptyDivInDoneDiv() {
+    currentDropElement = 'divDone';
+    showEmptyDiv(currentDropElement);
 }
 
 function scrollDownOrUpWithTask(event) {
