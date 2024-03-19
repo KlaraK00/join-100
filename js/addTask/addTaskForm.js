@@ -2,7 +2,7 @@
  * Creates a checkbox image for a contact element.
  * @param {Object} contact - The contact object to determine if it is selected.
  * @returns {HTMLElement} - The checkbox image element.
- */
+*/
 function createCheckboxImage(contact) {
   const checkboxImg = document.createElement("img");
   checkboxImg.setAttribute(
@@ -19,7 +19,7 @@ function createCheckboxImage(contact) {
   * Attaches an event listener to a contact element for selection handling.
   * @param {HTMLElement} contactElement - The contact element to attach the listener to.
   * @param {Object} contact - The contact object related to the element.
-  */
+*/
 function attachEventListenerToContactElement(contactElement, contact) {
   contactElement.onclick = function () {
     const index = selectedContacts.indexOf(contact.createdAt);
@@ -42,10 +42,10 @@ function attachEventListenerToContactElement(contactElement, contact) {
   };
 }
   
-  /**
-   * Updates the contacts dropdown with the provided contacts.
-   * @param {Array} contacts - The array of contact objects to display in the dropdown.
-   */
+/**
+  * Updates the contacts dropdown with the provided contacts.
+  * @param {Array} contacts - The array of contact objects to display in the dropdown.
+*/
 function updateContactsDropdown(contacts) {
     const contactsDropdown = document.getElementById("contactsDropdown");
     if (contactsDropdown) {
@@ -64,7 +64,7 @@ function updateContactsDropdown(contacts) {
 
 /**
   * Clears the content of the selected contacts container.
-  */
+*/
 function clearSelectedContactsContainer() {
   const selectedContactsContainer = document.getElementById(
     "selectedContactsContainer"
@@ -76,19 +76,19 @@ function clearSelectedContactsContainer() {
   * Creates and returns a div element displaying the contact's initials with a background color.
   * @param {Object} contact - The contact object.
   * @returns {HTMLElement} A div element displaying the contact's initials.
-  */
+*/
 function createContactDisplayElement(contact) {
-    const initialsDiv = document.createElement("div");
-    initialsDiv.className = "contact-initials";
-    initialsDiv.textContent = contact.initials;
-    initialsDiv.style.backgroundColor = contact.color; // Use the contact's specified color
-    return initialsDiv;
+  const initialsDiv = document.createElement("div");
+  initialsDiv.className = "contact-initials";
+  initialsDiv.textContent = contact.initials;
+  initialsDiv.style.backgroundColor = contact.color; // Use the contact's specified color
+  return initialsDiv;
 }
   
 /**
   * Updates the display of selected contacts in the container.
   * Each selected contact's initials are displayed with their specific color.
-  */
+*/
 function updateAssignContactInput() {
   clearSelectedContactsContainer(); // First, clear the container
   
@@ -110,7 +110,7 @@ let selectedCategory = "";
 /**
   * Populates the category dropdown with predefined categories and sets up event listeners for each option.
   * Upon selecting a category, it updates the visible input field with the chosen category and closes the dropdown.
-  */
+*/
 function updateCategoryDropdown() {
   // Get the dropdown element from the DOM.
   const categoryDropdown = document.getElementById("categoryDropdown");
@@ -145,7 +145,7 @@ function updateCategoryDropdown() {
   * Toggles the visibility of the category dropdown and rotates the arrow icon accordingly.
   * When the dropdown is opened, the arrow icon is rotated 180 degrees to indicate the open state.
   * When closed, the arrow is returned to its original position.
-  */
+*/
 function toggleCategoryDropdown() {
   // Reference to the dropdown and arrow icon elements.
   const dropdown = document.getElementById("categoryDropdown");
@@ -165,7 +165,7 @@ function toggleCategoryDropdown() {
   
 /**
   * Initializes contact-related event listeners including input filtering, focus, and dropdown toggling.
-  */
+*/
 function attachContactEventListeners() {
   const assignContactInput = document.querySelector(".assignContact");
   const dropdown = document.getElementById("contactsDropdown");
@@ -208,7 +208,7 @@ function toggleDropdownOpen(dropdown, open = null) {
 /**
   * Filters contact options based on the input value.
   * @param {Event} event - The input event triggering the filter.
-  */
+*/
 function filterContactOptions(event) {
   const searchTerm = event.target.value.toLowerCase();
   document.querySelectorAll(".contact-option").forEach((option) => {
@@ -271,7 +271,7 @@ function toggleDropdownFocus(dropdown) {
   * Stops event propagation and executes a given toggle function.
   * @param {Function} toggleFunction - The function to execute for toggling.
   * @param {Event} event - The triggering event.
-  */
+*/
 function stopPropagationAndToggle(toggleFunction, event) {
   event.stopPropagation();
   toggleFunction();
@@ -280,7 +280,7 @@ function stopPropagationAndToggle(toggleFunction, event) {
 /**
   * Handles the click event for adding a subtask.
   * @param {Event} event - The triggering event.
-  */
+*/
 function handleAddSubtaskClick(event) {
   event.stopPropagation();
   handleAddSubtask();
@@ -289,7 +289,7 @@ function handleAddSubtaskClick(event) {
 /**
   * Handles the keypress event for adding a subtask, specifically on Enter key press.
   * @param {Event} event - The triggering event.
-  */
+*/
 function handleAddSubtaskKeypress(event) {
   if (event.key === "Enter" || event.keyCode === 13) {
     event.preventDefault();
@@ -298,9 +298,8 @@ function handleAddSubtaskKeypress(event) {
 }
   
 /**
-/**
   * Automatically formats the date input field value upon losing focus and validates it.
-  */
+*/
 function autoFormatDate(event) {
   // Auto-formatting logic as before
   let value = event.target.value.replace(/[\.\-\/]/g, "");
