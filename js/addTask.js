@@ -105,7 +105,7 @@ function createTaskObject(
     category,
     subtasks,
     status
-    };
+  };
 }
 
 /**
@@ -213,6 +213,7 @@ function createTask() {
   let prio = getPriority();
   let category = getInputValue("category");
   let subtasks = collectSubtasks();
+
   let task = prepareTaskObject(
     title,
     description,

@@ -188,6 +188,7 @@ function renderPriorityAtBoard(task) {
     let div = document.getElementById(`priority${task.createdAt}`);
     div.innerHTML = '';
     if (priorityExistsAtBoard(task)) {
+        debugger;
         let priority = task.prio;
         div.innerHTML = /*html*/`<img src="./img/${priority}Prio.png">`;
     }
