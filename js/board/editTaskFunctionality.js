@@ -192,6 +192,12 @@ function overwriteTask(taskCreatedAt) {
     editTaskSubtasks = undefined;
 }
 
+/**
+ * Returns a date string with in an dd/mm/yyyy-format.
+ * 
+ * @param {string} date - Uses the edited date as parameter.
+ * @returns {string} - Returns the formatted date if the parameter includes a format with '/'.
+ */
 function getDateWithHyphen(date) {
     if(date.includes('/')) {
         let dateArray = date.split('/');
