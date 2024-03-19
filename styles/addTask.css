@@ -707,6 +707,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         align-items: center;
     }
 
+    .addTaskSubtasksInput {
+        width: 396px;
+    }
+
     .dropdown select {
         font-size: 16px;
     }
@@ -881,6 +885,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     }
 
     .taskTitle {
+        width: 300px;
+    }
+
+    .addTaskSubtasksInput {
         width: 300px;
     }
 
