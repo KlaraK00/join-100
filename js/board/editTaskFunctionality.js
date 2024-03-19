@@ -184,12 +184,25 @@ function overwriteTask(taskCreatedAt) {
     let date = document.getElementById('boardPopUpInputDate').value;
     task.title = title;
     task.description = description;
-    task.date = date;
+    task.date = getDateWithHyphen(date);
     task.prio = boardCurrentPrio;
     task.contacts = editTaskContacts;
     editTaskContacts = undefined;
     task.subtasks = editTaskSubtasks;
     editTaskSubtasks = undefined;
+}
+
+function getDateWithHyphen(date) {
+    if(date.includes('/')) {
+        let dateArray = date.split('/');
+        let day = dateArray[0];
+        let month = dateArray[1];
+        let year = dateArray[2];
+        let formattedDate = year + '-' + month + '-' + day;
+        return formattedDate;
+    } else {
+        return date;
+    }
 }
 
 /**
