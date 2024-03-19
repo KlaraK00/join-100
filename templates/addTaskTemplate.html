@@ -64,7 +64,7 @@
             <div class="category">
                 <p>Category<span class="red">*</span></p>
                 <div class="dropdown">
-                    <div class="categoryInput"> <input class="category-input" onclick="toggleCategoryDropdown()" readonly placeholder="Select a Category"><img id="arrow2" src="./img/arrow_drop_down.png"></div>
+                    <div class="categoryInput"> <input id="category" class="category-input" onclick="toggleCategoryDropdown()" readonly placeholder="Select a Category"><img id="arrow2" src="./img/arrow_drop_down.png"></div>
                     <div id="categoryDropdown" class="category-dropdown"></div>
                 </div>
             </div>
@@ -72,7 +72,7 @@
             <!-- Subtasks -->
             <div class="subtasks">
               <p>Subtasks</p>
-              <input id="subtasks" type="text" placeholder="Add new subtask" onkeypress="addSubtask(event)">
+              <div class="subtasksInput"><input id="subtasks" type="text" placeholder="Add new subtask"><img id="plus" src="./img/add-2.png"></div>
               <div class="subList"><ul id="subtasksList"></ul></div>
             </div>
             </div>

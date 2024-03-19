@@ -149,6 +149,18 @@ body {
     align-items: center;
 }
 
+.subtasksInput {
+    display: flex; 
+    align-items: center;
+}
+
+#plus {
+    
+    object-fit: cover;
+    margin-left: -25px;
+    cursor:pointer;
+}
+
 .categoryInput img{
     height: 6px;
     object-fit: cover;
@@ -393,10 +405,27 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     
 }
 
+.subtask-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 #subtasks:focus-within {
     border: 1px solid #29abe2;
     outline: none;
 }
+.subtask-wrapper:not(.editing):hover .subtask-actions {
+    display: flex; /* or remove 'd-none' class */
+  }
+  
+
+.edit-action, .delete-action {
+    cursor: pointer; 
+}
+
+
+
 
 .edit-input {
     flex-grow: 1; 
