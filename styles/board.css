@@ -182,6 +182,11 @@ body {
 }
 .lineUp {
     min-width: 244px;
+    height: 100%;
+}
+
+.lineUpHeight {
+    min-height: 300% !important;
 }
 
 .toDoColumn {
