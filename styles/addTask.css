@@ -565,6 +565,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     position: relative;
     
 }
+
 .category-dropdown {
     display:none;
     position: absolute;
@@ -579,24 +580,24 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     max-height: 150px;
     width: 100%;
     overflow-y: auto;
-  }
+}
   
-  .category-dropdown.show {
+.category-dropdown.show {
     display: block; /* Show dropdown */
-  }
+}
   
-  .category-option {
+.category-option {
     padding: 10px; /* Your preference */
     cursor: pointer; /* Indicate clickable options */
     /* Additional styling here to match the contacts dropdown */
-  }
+}
 
-  .category-option:hover {
+.category-option:hover {
     background-color: rgb(0, 0, 0, 0.1);
-  }
+}
   
   /* Style for the input field */
-  .category-input {
+.category-input {
     height: 48px;
     width: 100%;
     padding: 12px 16px;
@@ -605,9 +606,29 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     border-radius: 10px;
     cursor: pointer;
     box-sizing: border-box; 
-  }
-  
-  
+}
+
+.successfully-added {
+    position: fixed;
+    bottom: -50%;
+    left: 60%;
+    transform: translateX(-50%);
+    background-color: #2a3647;
+    color: white; 
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: bottom 0.5s ease;
+    border-radius: 20px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 300px;
+}
+
+.show-banner {
+    bottom: 50%;
+}
 
 @media(max-width: 1300px) {
     .main-add-task-container {

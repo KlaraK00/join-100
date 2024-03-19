@@ -228,6 +228,13 @@ function createTask() {
 
   selectedContacts = [];
   finalizeTaskCreation();
+
+  let successBanner = document.getElementById('successBanner');
+  successBanner.classList.add('show-banner');
+
+  setTimeout(function() {
+    successBanner.classList.remove('show-banner');
+  }, 3000);
 }
 
 /**
