@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AddTask</title>
+    <link rel="stylesheet" href="./styles/index.css">
     <link rel="stylesheet" href="../styles/addTask.css" />
     <link rel="stylesheet" href="../styles/style.css" />
     <link rel="stylesheet" href="../styles/summary.css" />
@@ -35,6 +36,9 @@
     <p>An error occurred because you are not logged in.</p>
     <p>Please log in and try again.</p>
     <div class="login-button-div"><a href="index.html" class="login-button">Login</a></div>
+  </div>
+  <div class="posAbsolute width100Perc height100Vh dFlex justCenter alignCenter bottomSlideInAndOut d-none zIndex101" id="successBanner">
+    <div class="darkBtnWithoutHover dFlex alignCenter justCenter gap20">Task added to board <img src="../img/board_icon.png" alt=""></div>
   </div>
   <form onsubmit="createTask(), event.preventDefault()"  id="taskForm"><div w3-include-html="/templates/addTaskTemplate.html"></div></form>
 </body>
