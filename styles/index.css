@@ -23,6 +23,10 @@ h1 {
     height: 13px;
 }
 
+.height14 {
+    height: 14px;
+}
+
 .height15 {
     height: 15px;
 }
@@ -43,6 +47,10 @@ h1 {
     height: 33px;
 }
 
+.height48 {
+    height: 48px;
+}
+
 .height100Vh {
     height: 100vh;
 }
@@ -57,6 +65,10 @@ h1 {
 
 .width33 {
     width: 33px;
+}
+
+.width48 {
+    width: 48px;
 }
 
 .width50 {

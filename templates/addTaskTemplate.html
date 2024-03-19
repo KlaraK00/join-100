@@ -71,11 +71,23 @@
             </div>
           
             <!-- Subtasks -->
-            <div class="subtasks">
+            <!-- <div class="subtasks">
               <p>Subtasks</p>
               <div class="subtasksInput"><input id="subtasks" type="text" placeholder="Add new subtask"><img id="plus" src="./img/add-2.png"></div>
               <div class="subList"><ul id="subtasksList"></ul></div>
+            </div> -->
+
+            <div class="dFlex directionColumn width100Perc addTaskSubtasksOverDiv">
+                <label for="addTaskPopUpInputSubtasks" class="padBot5">Subtasks</label>
+                <div class="posRelative cursorPointer">
+                    <input placeholder="Add new subtask" id="addTaskPopUpInputSubtasks" onkeydown="addTaskaddSubtaskOnEnter(event)" class="addTaskSubtasksInput inputBoardEdit width100Perc focusBlueBorder" type="text">
+                    <div id="addTaskPopUpInputSubtasksImg" class="posAbsolute dFlex justCenter alignCenter height48 width48 rightMinus26 top0 right0">
+                        <img onclick="addTaskfocusOnInputOrAddSubtask('${task.createdAt}')" class="height16" src="./img/add-2.png" alt="plus">
+                    </div>
+                </div>
+                <div class="dFlex directionColumn gap5 padTop5" id="boardPopUpAllSubtasks"></div>
             </div>
+
             </div>
           </div>
         <div class="required-create addTaskTemplateRequiredCreate">

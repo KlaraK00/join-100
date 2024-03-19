@@ -35,6 +35,26 @@ async function loadingBoard() {
 }
 
 /**
+ * Gets the currentStatus-variable to set the status of an added task right.
+ * 
+ * @returns {string} - Returns the value of the key "currentStatus".
+ */
+function getCurrentStatus() {
+    if(currentStatusExists()) {
+        return getLocalStorageItem('currentStatus');
+    }
+}
+  
+/**
+ * Checks if there exists a local-storage-key named "currentStatus".
+ * 
+ * @returns {null || string} - Returns null if there is no key "currentStatus" in the local storage and returns the value a string if the key is found.
+ */
+function currentStatusExists() {
+    return getLocalStorageItem('currentStatus');
+}
+
+/**
  * Initializes to render all tasks from the remote storage.
  */
 function renderAllTasks() {

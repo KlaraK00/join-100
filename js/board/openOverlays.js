@@ -22,16 +22,28 @@ function closeTask() {
     let addTaskOverlay = document.getElementById('addTaskOverlay');
     let boardTaskOverlayChildElement = document.getElementById('boardTaskOverlay').firstElementChild;
     if(addTaskOverlay) {
-        addTaskOverlay.classList.add('animationRightSlideOut');
+        closeAddTaskOverlay();
     }
     if(boardTaskOverlayChildElement) {
-        boardTaskOverlayChildElement.firstElementChild.classList.add('animationRightSlideOut');
+        closeBoardTaskOverlay();
     }
+}
+
+function closeAddTaskOverlay() {
+    let addTaskOverlay = document.getElementById('addTaskOverlay');
+    addTaskOverlay.classList.add('animationRightSlideOut');
     setTimeout(() => {
-        let boardTaskOverlay = document.getElementById('boardTaskOverlay');
         let boardTaskOverlayAddTask = document.getElementById('boardTaskOverlayAddTask');
         boardTaskOverlayAddTask.classList.add('d-none');
         addTaskOverlay.classList.remove('animationRightSlideOut');
+    }, 500);
+}
+
+function closeBoardTaskOverlay() {
+    let boardTaskOverlayChildElement = document.getElementById('boardTaskOverlay').firstElementChild;
+    boardTaskOverlayChildElement.firstElementChild.classList.add('animationRightSlideOut');
+    setTimeout(() => {
+        let boardTaskOverlay = document.getElementById('boardTaskOverlay');
         boardTaskOverlay.innerHTML = '';
         editTaskContacts = undefined;
         editTaskSubtasks = undefined;
@@ -199,27 +211,36 @@ function changeBoardTaskPopUpDeleteToBlack() {
  * Shows an overlay of the openTask-Template.
  */
 async function openAddTask(status) {
-    currentStatus = status;
-    setLocalStorageItem('currentStatus', currentStatus);
-    let boardTaskOverlayAddTask = document.getElementById('boardTaskOverlayAddTask');
-    // boardTaskOverlay.classList.add('d-none');
-    // boardTaskOverlay.innerHTML = '';
-    // boardTaskOverlay.innerHTML = HTMLTemplateAddTask();
-    // await initApp();
-    // await includeHTML();
-    let addTaskOverlay = document.getElementById('addTaskOverlay');
-    addTaskOverlay.innerHTML += `<img onclick="closeTask(), clearInput()" class="posAbsolute top45 right47 cursorPointer addTaskOverlayCloseImg" src="./img/Close.png" alt="close">`
-    setTimeout(() => {
-        boardTaskOverlayAddTask.classList.remove('d-none');
-    }, 1000);
+    await loadDataForAddTaskOverlay(status);
+    addCloseImageOnAddTaskOverlay();
+    openAddTaskOverlay();
 }
 
-function getCurrentStatus() {
-    if(currentStatusExists()) {
-        return getLocalStorageItem('currentStatus');
-    }
-  }
-  
-  function currentStatusExists() {
-    return getLocalStorageItem('currentStatus');
-  }
+/**
+ * Loads all the data needed to open the overlay without errors.
+ * 
+ * @param {string} status - Uses the current status of a task as parameter.
+ */
+async function loadDataForAddTaskOverlay(status) {
+    await initApp();
+    currentStatus = status;
+    setLocalStorageItem('currentStatus', currentStatus);
+}
+
+/**
+ * Adds a close-image on the add-task-overlay so you can close it.
+ */
+function addCloseImageOnAddTaskOverlay() {
+    let addTaskOverlay = document.getElementById('addTaskOverlay');
+    addTaskOverlay.innerHTML += `<img onclick="closeTask(), clearInput()" class="posAbsolute top45 right47 cursorPointer addTaskOverlayCloseImg" src="./img/Close.png" alt="close">`;
+}
+
+/**
+ * Opens the task after 100 milliseconds.
+ */
+function openAddTaskOverlay() {
+    setTimeout(() => {
+        let boardTaskOverlayAddTask = document.getElementById('boardTaskOverlayAddTask');
+        boardTaskOverlayAddTask.classList.remove('d-none');
+    }, 100);
+}

@@ -644,12 +644,14 @@ function attachCategoryEventListeners() {
  * Initializes subtask addition event listeners for both click and keypress events.
  */
 function attachSubtaskEventListeners() {
-  document
-    .getElementById("plus")
-    .addEventListener("click", handleAddSubtaskClick);
-  document
-    .getElementById("subtasks")
-    .addEventListener("keypress", handleAddSubtaskKeypress);
+  let plus = document.getElementById("plus");
+  if(plus) {
+    plus.addEventListener("click", handleAddSubtaskClick);
+  }
+  let subtasks = document.getElementById("subtasks");
+  if(subtasks) {
+    subtasks.addEventListener("keypress", handleAddSubtaskKeypress);
+  }
 }
 
 /**
