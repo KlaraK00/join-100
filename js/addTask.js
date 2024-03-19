@@ -166,7 +166,7 @@ function prepareTaskObject(
   description,
   contacts,
   dueDate,
-  priority,
+  prio,
   category,
   subtasks
 ) {
@@ -178,7 +178,7 @@ function prepareTaskObject(
     description,
     contacts,
     dueDate,
-    priority,
+    prio,
     category,
     subtasks,
     status
@@ -210,7 +210,7 @@ function createTask() {
 
   let description = getInputValue("description");
   let contacts = selectedContacts;
-  let priority = getPriority();
+  let prio = getPriority();
   let category = getInputValue("category");
   let subtasks = collectSubtasks();
   let task = prepareTaskObject(
@@ -218,7 +218,7 @@ function createTask() {
     description,
     contacts,
     dueDate,
-    priority,
+    prio,
     category,
     subtasks
   );
