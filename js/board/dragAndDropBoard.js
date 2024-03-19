@@ -61,7 +61,6 @@ function removeEmptyDiv(id) {
         if(element) {
             element.remove();
             draggingOnce = true;
-            console.log('removed');
         }
     }
 }
@@ -108,9 +107,11 @@ function drag(event) {
 
 function drop() {
     if(window.innerWidth <= 1100) {
-        removeEmptyDiv(currentDropElement);
-        let newStatusFirstLetter = currentDropElement.slice(3).charAt(0).toLowerCase(0);
-        let newStatus = newStatusFirstLetter + currentDropElement.slice(4);
-        moveTo(newStatus);
+        if(currentDropElement) {
+            removeEmptyDiv(currentDropElement);
+            let newStatusFirstLetter = currentDropElement.slice(3).charAt(0).toLowerCase(0);
+            let newStatus = newStatusFirstLetter + currentDropElement.slice(4);
+            moveTo(newStatus);
+        }
     }
 }
