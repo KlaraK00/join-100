@@ -341,7 +341,7 @@ a {
     background-color: #2A3647;
     color: #fff;
     height: 100vh;
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: center;
 }

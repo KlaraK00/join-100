@@ -171,7 +171,7 @@ function addUpcomingDeadlineToSummary() {
  */
 function showLogInError() {
   var logInError = document.querySelector('.error-container');
-  logInError.classList.remove('d-none');
+  logInError.style.display = 'flex';
   document.getElementById('summaryContainerWrapper').classList.add('d-none');
 }
 
