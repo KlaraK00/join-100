@@ -256,6 +256,10 @@ h1 {
     font-size: 16px;
 }
 
+.fontSize20 {
+    font-size: 20px;
+}
+
 .hoverBlueUnderline:hover {
     text-decoration: underline;
     text-decoration-color: #29ABE2;

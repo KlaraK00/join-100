@@ -6,8 +6,8 @@ let TaskStatus = {
   AWAIT_FEEDBACK: "awaitFeedback",
   DONE: "done",
 };
-
 let currentStatus = "toDo";
+let addTasksSubtasks = [];
 
 /**
  * Initializes the application by loading HTML templates and then setting up tasks.
@@ -31,6 +31,7 @@ async function initAddTask() {
     await loadContacts();
     await loadUsers();
     currentStatus = "toDo"; // Default status for new tasks
+    addTasksSubtasks = [];
     updateContactsDropdown(contacts); // Update contacts dropdown UI
     highlightActiveSideButton(); // Highlight the active sidebar button
     currentUser = getCurrentUser(); // Get current user information
@@ -138,17 +139,17 @@ function convertDueDateFormat(dueDateOriginalFormat) {
   return `${dueDateParts[2]}-${dueDateParts[1]}-${dueDateParts[0]}`;
 }
 
-/**
- * Collects subtasks from the UI list and prepares them for inclusion in the task object.
- * @returns {Array} An array of subtask objects, each containing the subtask text and a done flag.
- */
-function collectSubtasks() {
-  let subtasksListElement = document.getElementById("subtasksList");
-  return Array.from(subtasksListElement.querySelectorAll("li")).map((li) => ({
-    subtask: li.textContent.trim(),
-    done: false,
-  }));
-}
+// /**
+//  * Collects subtasks from the UI list and prepares them for inclusion in the task object.
+//  * @returns {Array} An array of subtask objects, each containing the subtask text and a done flag.
+//  */
+// function collectSubtasks() {
+//   let subtasksListElement = document.getElementById("subtasksList");
+//   return Array.from(subtasksListElement.querySelectorAll("li")).map((li) => ({
+//     subtask: li.textContent.trim(),
+//     done: false,
+//   }));
+// }
 
 /**
  * Prepares the task object with all the necessary data.
@@ -214,7 +215,7 @@ function createTask() {
   let contacts = selectedContacts;
   let prio = getRightPriority();
   let category = getInputValue("category");
-  let subtasks = collectSubtasks();
+  let subtasks = addTasksSubtasks;
 
   let task = prepareTaskObject(
     title,
@@ -237,7 +238,6 @@ function createTask() {
 
 function showSuccessBanner() {
   if(window.location.href.includes("board")) {
-    console.log('showSuccessBoard');
     let successBanner = document.getElementById('successBannerBoard');
     successBanner.classList.remove('d-none');
   
@@ -245,7 +245,6 @@ function showSuccessBanner() {
       successBanner.classList.add('d-none');
     }, 3000);
   } else {
-    console.log('showSuccessAddTask');
     let successBanner = document.getElementById('successBanner');
     successBanner.classList.remove('d-none');
 
@@ -343,14 +342,15 @@ function clearInput() {
   updateContactsDropdown(contacts);
 
   // Clear the list of subtasks
-  document.getElementById("subtasksList").innerHTML = "";
+  addTasksSubtasks = [];
+  renderAddTaskEditSubtasks();
 
   // Clear all other input fields
   document.getElementById("title").value = "";
   document.getElementById("description").value = "";
   document.getElementById("due").value = "";
   document.getElementById("category").value = ""; // Assumes first option is a placeholder or default selection
-  document.getElementById("subtasks").value = "";
+  document.getElementById("addTaskInputSubtasks").value = "";
 
   // Optionally, reset any visual feedback on priority selection (not implemented here)
 }
@@ -968,4 +968,109 @@ function isValidDateInput(event) {
 function hideActionButtons() {
     const actionsDiv = document.querySelector(".subtask-actions");
     actionsDiv.classList.add("d-none");
+}
+
+/* ---------- Klara ---------- */
+
+function addTaskfocusOnInputOrAddSubtask() {
+  let input = document.getElementById('addTaskInputSubtasks');
+  let search = input.value;
+  if(search == '') {
+    let addTaskInputSubtasksImg = document.getElementById('addTaskInputSubtasksImg');
+    addTaskInputSubtasksImg.style.width = "40px";
+    addTaskInputSubtasksImg.style.justifyContent = "space-between";
+    addTaskInputSubtasksImg.style.paddingRight = "16px";
+    addTaskInputSubtasksImg.innerHTML = '';
+    addTaskInputSubtasksImg.innerHTML = /*html*/`<img onclick="addTaskChangeImageOnSubtaskInputToPlus()" class="width12" src="./img/boardClose.png" alt="close">
+        <img onclick="addTaskEditTaskAddSubtask()" class="width14" src="./img/checkBlack.png" alt="check">
+    `;
+    focusOn('addTaskInputSubtasks');
+  } else {
+    addTaskEditTaskAddSubtask();
+  }
+}
+
+function addTaskEditTaskAddSubtask() {
+  let addTaskInputSubtasks = document.getElementById('addTaskInputSubtasks');
+    if(addTaskInputSubtasks.value !== '') {
+      addTasksSubtasks.push({
+          subtask: addTaskInputSubtasks.value,
+          done: false
+      });
+      addTaskInputSubtasks.value = '';
+      // addTaskchangeImageOnSubtaskInputToPlus();
+      renderAddTaskEditSubtasks();
+    }
+}
+
+function renderAddTaskEditSubtasks() {
+  let div = document.getElementById(`addTaskAllSubtasks`);
+  div.innerHTML = '';
+  for (let i = 0; i < addTasksSubtasks.length; i++) {
+      let subtask = addTasksSubtasks[i];
+      div.innerHTML += HTMLTemplateAddTaskEditSubtasks(i, subtask);
+  }
+}
+
+function addTaskChangeImageOnSubtaskInputToPlus() {
+  let addTaskInputSubtasks = document.getElementById('addTaskInputSubtasks');
+    let addTaskInputSubtasksImg = document.getElementById('addTaskInputSubtasksImg');
+    addTaskInputSubtasks.value = '';
+    addTaskInputSubtasksImg.style.width = "48px";
+    addTaskInputSubtasksImg.style.height = "48px";
+    addTaskInputSubtasksImg.style.justifyContent = "center";
+    addTaskInputSubtasksImg.style.paddingRight = "0";
+    addTaskInputSubtasksImg.style.top = "0";
+    addTaskInputSubtasksImg.style.right = "0";
+    addTaskInputSubtasksImg.innerHTML = '';
+    addTaskInputSubtasksImg.innerHTML = /*html*/`<img onclick="addTaskfocusOnInputOrAddSubtask()" class="height16" src="./img/add-2.png" alt="plus">`;
+}
+
+function addTaskEditTaskSubtask(i) {
+  let addTaskSubtaskParent = document.getElementById(`addTaskSubtaskParent${i}`);
+  addTaskSubtaskParent.classList.remove('hoverGrey');
+  addTaskSubtaskParent.innerHTML = '';
+  addTaskSubtaskParent.innerHTML = HTMLTemplateAddTaskEditSubtasksEdit(i);
+}
+
+function addTaskaddSubtaskOnEnter(event) {
+  if(event.keyCode == 13) {
+    event.preventDefault();
+    addTaskEditTaskAddSubtask();
+  }
+}
+
+/**
+ * Adds blue border to a specific element.
+ * 
+ * @param {number} i - Uses the index of a specific element as parameter.
+ */
+function addTaskSetBlueBorderBottom(i) {
+  let addTaskSubtaskParent = document.getElementById(`addTaskSubtaskParent${i}`);
+  addTaskSubtaskParent.classList.add('blueBorderBottom');
+}
+
+/**
+ * Removes the blue border from a specific element.
+ * 
+ * @param {number} i - Uses the index of a specific element as parameter.
+ */
+function addTaskRemoveBlueBorderBottom(i) {
+  let addTaskSubtaskParent = document.getElementById(`addTaskSubtaskParent${i}`);
+  addTaskSubtaskParent.classList.remove('blueBorderBottom');
+}
+
+function addTaskEditSubtaskInputValue(i) {
+
+}
+
+/**
+ * Sets the value for a specific subtask.
+ * 
+ * @param {number} i - Uses the index of a specific element as parameter.
+ */
+function addTaskEditSubtaskInputValue(i) {
+  let editEditSubtaskInput = document.getElementById(`editEditSubtaskInput${i}`);
+  addTasksSubtasks[i].subtask = editEditSubtaskInput.value;
+  renderAddTaskEditSubtasks();
 }

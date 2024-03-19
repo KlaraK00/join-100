@@ -483,7 +483,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     right: 8px; 
 }
 .required-create {
-    margin-top: 20px;
+    margin-top: 50px;
     margin-left: 328px;
     margin-right: 40px;
     display: flex;
@@ -633,7 +633,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .addTaskSubtasksOverDiv {
     width: 440px;
-    height: 80px;
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -653,6 +652,53 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .addTaskSubtasksInput:focus {
     border: 1px solid #29abe2;
+}
+
+.addTaskEditSubtaskInput {
+    border:none;
+    outline: none;
+    height: 100%;
+    width: 100%;
+    background-color: transparent;
+}
+
+.hoverGrey {
+    transition: all 125ms ease-in-out;
+    cursor: pointer;
+}
+
+.hoverGrey:hover {
+    background-color: #eeeeee;
+}
+
+.borderRadius10 {
+    border-radius: 10px;
+}
+
+.greyVerticalLineSubtasks17 {
+    width: 1px;
+    background-color: lightgrey;
+    height: 17px;
+}
+
+.blueBorderBottom{    
+    border-bottom: 1px solid #29ABE2;
+    border-radius: 0;
+}
+
+.editEditSubtaskInput {
+    border:none;
+    outline: none;
+    height: 100%;
+    width: 100%;
+}
+
+.overflowY {
+    overflow-y: auto;
+}
+
+.maxHeight90 {
+    max-height: 90px;
 }
 
 @media(max-width: 1300px) {
