@@ -525,6 +525,9 @@ body {
         justify-content: space-between !important;
         width: 100% !important;
     }
+    #addTaskInputSubtasksParent {
+        width: 90.5% !important;
+    } 
 }
 
 @media(max-width: 1100px) {
@@ -605,6 +608,9 @@ body {
     .addTaskTemplateTaskMar25 {
         margin-left: 0;
     }
+    .required-create {
+        width: 85% !important;
+    }
 }
 
 @media(max-width: 570px) {
@@ -616,7 +622,7 @@ body {
         max-height: 100vh!important;
     }
     .required-create {
-        width: unset !important;
+        width: 395px !important;
         padding-bottom: 20px;
     }
     .create {
@@ -652,6 +658,12 @@ body {
     div:has(#boardPopUpEditMediumBtn),
     div:has(#boardPopUpEditUrgentBtn) {
         justify-content: center;
+    }
+    #addTaskInputSubtasksParent {
+        width: 68.5% !important;
+    } 
+    .required-create {
+        width: 295px !important;
     }
 }
 
