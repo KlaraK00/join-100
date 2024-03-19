@@ -24,6 +24,7 @@ function initBoard() {
  */
 async function loadingBoard() {
     await includeHTML();
+    await initApp();
     await loadContacts();
     await loadTasks();
     currentStatus = getCurrentStatus();

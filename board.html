@@ -33,6 +33,11 @@
 <body class="boardBody" onload="initBoard()">
     <div w3-include-html="/templates/navBar.html"></div>
     <div w3-include-html="/templates/header.html"></div>
+    <div onclick="closeTask()" class="boardTaskOverlay d-none" id="boardTaskOverlayAddTask">
+        <div class="dFlex alignCenter justCenter">
+            <form w3-include-html="/templates/addTaskTemplate.html" onsubmit="createTask(), event.preventDefault()" onclick="event.stopPropagation()" id="addTaskOverlay" class="addTaskOverlay animationRightSlideIn posRelative"></form>
+        </div>
+    </div>
     <div class="savingError d-none"><div class="savingError1">Sorry for saving error! <button onclick="closeSavingError()" class="savingErrorButton">OK</button></div></div>
     <div class="loadingError d-none"><div class="loadingError1">Sorry for loading error! <button onclick="closeLoadingError()" class="loadingErrorButton">OK</button></div></div>
     <div class="error-container d-none">

@@ -19,10 +19,19 @@ function openTask(taskCreatedAt) {
  * Closes the task by hiding the overlay of the task.
  */
 function closeTask() {
+    let addTaskOverlay = document.getElementById('addTaskOverlay');
     let boardTaskOverlayChildElement = document.getElementById('boardTaskOverlay').firstElementChild;
-    boardTaskOverlayChildElement.firstElementChild.classList.add('animationRightSlideOut');
+    if(addTaskOverlay) {
+        addTaskOverlay.classList.add('animationRightSlideOut');
+    }
+    if(boardTaskOverlayChildElement) {
+        boardTaskOverlayChildElement.firstElementChild.classList.add('animationRightSlideOut');
+    }
     setTimeout(() => {
         let boardTaskOverlay = document.getElementById('boardTaskOverlay');
+        let boardTaskOverlayAddTask = document.getElementById('boardTaskOverlayAddTask');
+        boardTaskOverlayAddTask.classList.add('d-none');
+        addTaskOverlay.classList.remove('animationRightSlideOut');
         boardTaskOverlay.innerHTML = '';
         editTaskContacts = undefined;
         editTaskSubtasks = undefined;
@@ -192,13 +201,17 @@ function changeBoardTaskPopUpDeleteToBlack() {
 async function openAddTask(status) {
     currentStatus = status;
     setLocalStorageItem('currentStatus', currentStatus);
-    let boardTaskOverlay = document.getElementById('boardTaskOverlay');
-    boardTaskOverlay.innerHTML = '';
-    boardTaskOverlay.innerHTML = HTMLTemplateAddTask();
-    await initApp();
-    await includeHTML();
+    let boardTaskOverlayAddTask = document.getElementById('boardTaskOverlayAddTask');
+    // boardTaskOverlay.classList.add('d-none');
+    // boardTaskOverlay.innerHTML = '';
+    // boardTaskOverlay.innerHTML = HTMLTemplateAddTask();
+    // await initApp();
+    // await includeHTML();
     let addTaskOverlay = document.getElementById('addTaskOverlay');
     addTaskOverlay.innerHTML += `<img onclick="closeTask(), clearInput()" class="posAbsolute top45 right47 cursorPointer addTaskOverlayCloseImg" src="./img/Close.png" alt="close">`
+    setTimeout(() => {
+        boardTaskOverlayAddTask.classList.remove('d-none');
+    }, 1000);
 }
 
 function getCurrentStatus() {

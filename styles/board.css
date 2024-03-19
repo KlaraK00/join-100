@@ -274,6 +274,7 @@ body {
     justify-content: center;
 }
 
+.boardTaskOverlay>div,
 #boardTaskOverlay>div {
     position: fixed;
     top: 0;
@@ -284,6 +285,8 @@ body {
     z-index: 100;
 }
 
+.boardTaskOverlay>div>div,
+.boardTaskOverlay>div>form,
 #boardTaskOverlay>div>div,
 #boardTaskOverlay>div>form {
     width: 410px;
@@ -635,6 +638,8 @@ body {
 }
 
 @media(max-width: 420px) {
+    .boardTaskOverlay>div>div,
+    .boardTaskOverlay>div>form,
     #boardTaskOverlay>div>div,
     #boardTaskOverlay>div>form {
         width: calc(100% - 10px);
