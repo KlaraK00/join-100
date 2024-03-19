@@ -537,7 +537,7 @@ h1 {
 }
 
 @media (max-width: 740px) { 
-    @media (max-height: 380px) {
+    @media (max-height: 740px) {
         .registerJoinLogo {
             width: 38px;
             left: 30px;
