@@ -210,7 +210,7 @@ function createTask() {
 
   let description = getInputValue("description");
   let contacts = selectedContacts;
-  let prio = getPriority();
+  let prio = getRightPriority();
   let category = getInputValue("category");
   let subtasks = collectSubtasks();
 
@@ -236,6 +236,14 @@ function createTask() {
   setTimeout(function() {
     successBanner.classList.remove('show-banner');
   }, 3000);
+}
+
+function getRightPriority() {
+  if (getPriority() == '') {
+    return 'medium';
+  } else {
+    return getPriority();
+  }
 }
 
 /**
