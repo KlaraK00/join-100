@@ -68,22 +68,35 @@ function removeEmptyDiv(id) {
 function drag(event) {
     if(screenMobile()) {
         preventReload(event);
-
         movingTask(event);
-   
         showAndRemoveEmptyDiv(event);
         scrollDownOrUpWithTask(event);
     }
 }
 
+/**
+ * Checks if the screen is on mobile-mood.
+ * 
+ * @returns 
+ */
 function screenMobile() {
     return window.innerWidth <= 1100;
 }
 
+/**
+ * Prevents the reload of the formular.
+ * 
+ * @param {Event} event - Passes an event object to prevent it's default behaviour.
+ */
 function preventReload(event) {
     event.preventDefault();
 }
 
+/**
+ * Moves the task over the screen.
+ * 
+ * @param {Event} event - Passes an event object for navigating the task-coordinates.
+ */
 function movingTask(event) {
     event.target.style.position = "absolute";
     event.target.style.zIndex = "2";
@@ -110,21 +123,33 @@ function showAndRemoveEmptyDiv(event) {
     }  
 }
 
+/**
+ * Shows an empty task in the to-do-column.
+ */
 function showEmptyDivInToDoDiv() {
     currentDropElement = 'divToDo';
     showEmptyDiv(currentDropElement);
 }
 
+/**
+ * Shows an empty task in the in-progress-column.
+ */
 function showEmptyDivInProgressDiv() {
     currentDropElement = 'divInProgress';
     showEmptyDiv(currentDropElement);
 }
 
+/**
+ * Shows an empty task in the await-feedback-column.
+ */
 function showEmptyDivInAwaitFeedbackDiv() {
     currentDropElement = 'divAwaitFeedback';
     showEmptyDiv(currentDropElement);
 }
 
+/**
+ * Shows an empty task in the done-column.
+ */
 function showEmptyDivInDoneDiv() {
     currentDropElement = 'divDone';
     showEmptyDiv(currentDropElement);
@@ -148,8 +173,11 @@ function scrollDownWithTask(event) {
     }
 }
 
+/**
+ * The drop of task removes the empty div and sets the right status for the task.
+ */
 function drop() {
-    if(window.innerWidth <= 1100) {
+    if(screenMobile()) {
         if(currentDropElement) {
             removeEmptyDiv(currentDropElement);
             let newStatusFirstLetter = currentDropElement.slice(3).charAt(0).toLowerCase(0);
