@@ -225,6 +225,12 @@ body {
     border: 1px solid rgba(168, 168, 168, 1)
 }
 
+
+.task-description-text {
+    height: 50px;
+    overflow: hidden;
+}
+
 .cardInsideFrame {
     display: flex; 
     width: 220px; 

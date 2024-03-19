@@ -2,7 +2,7 @@ function HTMLTemplateTask(task) {
     return /*html*/`<div id="task${task.createdAt}" onclick="openTask(${task.createdAt}), addAnimationRightSlideIn('boardPopUpCard')" draggable="true" ondragstart="startDragging('task${task.createdAt}')" ontouchstart="startDragging('task${task.createdAt}')" ontouchmove="drag(event)" ontouchend="drop()" class="card dFlex directionColumn alignStart cursorPointer dragbox">
             <div id="boardCategory${task.createdAt}">${task.category}</div>
             <div class="fontBold">${task.title}</div>
-            <div class="fontGrey" >${task.description}</div>
+            <div class="fontGrey task-description-text" >${task.description}</div>
             <div id="subtasksBoardOverDiv${task.createdAt}" class="dFlex justBetween width100Perc">
                 <div class="flex1 posRelative" onmouseout="hideDetailedProgressInformation(${task.createdAt})" onmouseover="showDetailedProgressInformation(${task.createdAt})">
                     <div class="greyProgressBarBoard posAbsolute" id="greyProgressBar${task.createdAt}"></div>
