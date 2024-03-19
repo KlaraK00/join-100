@@ -123,9 +123,9 @@ function pushTask(task) {
  * @param {string} dueDate - The due date of the task.
  * @returns {boolean} True if both title and due date are not empty, false otherwise.
  */
-function validateTaskData(title, dueDate) {
+function validateTaskData(title, date) {
   // Validation logic
-  return title.trim() && dueDate.trim();
+  return title.trim() && date.trim();
 }
 
 /**
@@ -165,7 +165,7 @@ function prepareTaskObject(
   title,
   description,
   contacts,
-  dueDate,
+  date,
   prio,
   category,
   subtasks
@@ -177,7 +177,7 @@ function prepareTaskObject(
     title,
     description,
     contacts,
-    dueDate,
+    date,
     prio,
     category,
     subtasks,
@@ -204,9 +204,9 @@ function finalizeTaskCreation() {
 function createTask() {
   let title = getInputValue("title");
   let dueDateOriginalFormat = getInputValue("due");
-  let dueDate = convertDueDateFormat(dueDateOriginalFormat);
+  let date = convertDueDateFormat(dueDateOriginalFormat);
 
-  if (!validateTaskData(title, dueDate)) {
+  if (!validateTaskData(title, date)) {
     return; // Early return if validation fails
   }
 
@@ -220,7 +220,7 @@ function createTask() {
     title,
     description,
     contacts,
-    dueDate,
+    date,
     prio,
     category,
     subtasks
