@@ -184,12 +184,31 @@ function overwriteTask(taskCreatedAt) {
     let date = document.getElementById('boardPopUpInputDate').value;
     task.title = title;
     task.description = description;
-    task.date = date;
+    task.date = getDateWithHyphen(date);
     task.prio = boardCurrentPrio;
     task.contacts = editTaskContacts;
     editTaskContacts = undefined;
     task.subtasks = editTaskSubtasks;
     editTaskSubtasks = undefined;
+}
+
+/**
+ * Returns a date string with in an dd/mm/yyyy-format.
+ * 
+ * @param {string} date - Uses the edited date as parameter.
+ * @returns {string} - Returns the formatted date if the parameter includes a format with '/'.
+ */
+function getDateWithHyphen(date) {
+    if(date.includes('/')) {
+        let dateArray = date.split('/');
+        let day = dateArray[0];
+        let month = dateArray[1];
+        let year = dateArray[2];
+        let formattedDate = year + '-' + month + '-' + day;
+        return formattedDate;
+    } else {
+        return date;
+    }
 }
 
 /**

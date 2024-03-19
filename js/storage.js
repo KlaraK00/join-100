@@ -38,7 +38,7 @@ async function tryToSetItem(payload) {
  */
 function showSavingError() {
     var savingErrorDiv = document.querySelector('.savingError');
-    savingErrorDiv.classList.remove('d-none');
+    savingErrorDiv.style.display = 'flex';
 }
 
 /**
