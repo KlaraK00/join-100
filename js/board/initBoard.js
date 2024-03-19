@@ -269,11 +269,23 @@ function renderDone() {
     }
 }
 
+/**
+ * When you hover on the progressbar, it shows you a detailed information about how much is done.
+ * This information in specific shows this information when the mouse enters the specific space (progressbar).
+ * 
+ * @param {string} taskCreatedAt - Passes a unique long number to identify a specific task.
+ */
 function showDetailedProgressInformation(taskCreatedAt) {
     let moreDetailsProgressInformation = document.getElementById(`moreDetailsProgressInformation${taskCreatedAt}`);
     moreDetailsProgressInformation.classList.remove('d-none');
 }
 
+/**
+ * When you hover on the progressbar, it shows you a detailed information about how much is done.
+ * This function in specific hides this information when the mouse leaves the specific space.
+ * 
+ * @param {string} taskCreatedAt - Passes a unique long number to identify a specific task (progressbar).
+ */
 function hideDetailedProgressInformation(taskCreatedAt) {
     let moreDetailsProgressInformation = document.getElementById(`moreDetailsProgressInformation${taskCreatedAt}`);
     moreDetailsProgressInformation.classList.add('d-none');

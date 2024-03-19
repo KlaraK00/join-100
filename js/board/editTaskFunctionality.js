@@ -138,7 +138,7 @@ function addSubtaskOnEnter(event, taskCreatedAt) {
 }
 
 /**
- * Stores the information of the formular as task-object in the remote storage.
+ * Stores the information of the formular as task-object in the remote storage and also informs the user of the successful editing.
  * 
  * @param {string} taskCreatedAt - Passes a unique long number to identify a specific task. 
  * @param {Event} event - The event object for preventing a reload of the formular.
@@ -149,6 +149,11 @@ async function processEditedTask(taskCreatedAt, event) {
     renderProcessEditedTask(taskCreatedAt);
 }
 
+/**
+ * Presents the saving-process of the edited task.
+ * 
+ * @param {string} taskCreatedAt - Passes a unique long number to identify a specific task.
+ */
 async function savingProcessEditedTask(taskCreatedAt) {
     disableEditingTaskButton();
     overwriteTask(taskCreatedAt);
@@ -157,12 +162,21 @@ async function savingProcessEditedTask(taskCreatedAt) {
     enableEditingTaskButton();
 }
 
-function renderProcessEditedTask(taskCreatedAt) {
-    openTask(taskCreatedAt);
-    removeAnimationRightSlideIn('boardPopUpCard');
-    renderAllTasks();
+/**
+ * Disables the editing-button and also removes the hover-effect.
+ */
+function disableEditingTaskButton() {
+    let button = document.getElementById('editingTaskSaveButton');
+    button.disabled = true;
+    button.classList.remove('darkBtn');
+    button.classList.add('darkBtnWithoutHover');
 }
 
+/**
+ * Overwrites the value of the current task with the edited values from the inputs from the edit-task-overlay.
+ * 
+ * @param {string} taskCreatedAt - Passes a unique long number to identify a specific task. 
+ */
 function overwriteTask(taskCreatedAt) {
     let task = tasks.find(t => t.createdAt == taskCreatedAt);
     let title = document.getElementById('boardPopUpInputTitle').value;
@@ -178,17 +192,27 @@ function overwriteTask(taskCreatedAt) {
     editTaskSubtasks = undefined;
 }
 
+/**
+ * Stores the array "tasks" under the key "tasks" in the remote storage.
+ */
 async function saveTask() {
     await setItem('tasks', tasks);
 }
 
-function disableEditingTaskButton() {
-    let button = document.getElementById('editingTaskSaveButton');
-    button.disabled = true;
-    button.classList.remove('darkBtn');
-    button.classList.add('darkBtnWithoutHover');
+/**
+ * Shows that the editing was successful by displaying a notification for a small amount of time.
+ */
+function showSuccessfulEditing() {
+    let informOverlay =  document.getElementById('informationOverlayEditingTask');
+    informOverlay.classList.remove('d-none');
+    setTimeout(() => {
+        informOverlay.classList.add('d-none');
+    }, 2000);
 }
 
+/**
+ * Enables the editing-task-button and adds hover-effect.
+ */
 function enableEditingTaskButton() {
     let button = document.getElementById('editingTaskSaveButton');
     button.disabled = false;
@@ -196,12 +220,16 @@ function enableEditingTaskButton() {
     button.classList.add('darkBtn');
 }
 
-function showSuccessfulEditing() {
-    let informOverlay =  document.getElementById('informationOverlayEditingTask');
-    informOverlay.classList.remove('d-none');
-    setTimeout(() => {
-        informOverlay.classList.add('d-none');
-    }, 2000);
+/**
+ * Closes the edit-task-overview and opens the open-task-overview.
+ * It also renders all tasks in the background.
+ * 
+ * @param {string} taskCreatedAt - Passes a unique long number to identify a specific task.
+ */
+function renderProcessEditedTask(taskCreatedAt) {
+    openTask(taskCreatedAt);
+    removeAnimationRightSlideIn('boardPopUpCard');
+    renderAllTasks();
 }
 
 /**
@@ -329,6 +357,9 @@ function addAnimationRightSlideIn(id) {
     element.classList.add('animationRightSlideIn');
 }
 
+/**
+ * Closes the specific assinged-to-content.
+ */
 function closeAssignedToDiv() {
     closeBoardEditTaskContacts();
 }
