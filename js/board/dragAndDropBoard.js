@@ -66,13 +66,12 @@ function removeEmptyDiv(id) {
 }
 
 function drag(event) {
-    if(window.innerWidth <= 1100) {
-        event.preventDefault();
-        event.target.style.position = "absolute";
-        event.target.style.zIndex = "2";
-        event.target.style.left = event.touches[0].pageX-event.target.clientWidth/2 + 'px';
-        event.target.style.top = event.touches[0].pageY-event.target.clientHeight/2 + 'px';
+    if(screenMobile()) {
+        preventReload(event);
+
+        movingTask(event);
    
+
         let toDoRect = document.getElementById('divToDo').getBoundingClientRect();
         let inProgressRect = document.getElementById('divInProgress').getBoundingClientRect();
         let awaitFeedbackRect = document.getElementById('divAwaitFeedback').getBoundingClientRect();
@@ -82,26 +81,65 @@ function drag(event) {
         if(targetRect.top+targetRect.height/2 < toDoRect.bottom && targetRect.top+targetRect.height/2 > toDoRect.top) {
             currentDropElement = 'divToDo';
             showEmptyDiv(currentDropElement);
-        } else if (targetRect.top+targetRect.height/2 < inProgressRect.bottom && targetRect.top+targetRect.height/2 > inProgressRect.top) {
+        } else {
+            removeEmptyDiv(currentDropElement);
+        } 
+
+         if (targetRect.top+targetRect.height/2 < inProgressRect.bottom && targetRect.top+targetRect.height/2 > inProgressRect.top) {
             currentDropElement = 'divInProgress';
             showEmptyDiv(currentDropElement);
-        } else if (targetRect.top+targetRect.height/2 < awaitFeedbackRect.bottom && targetRect.top+targetRect.height/2 > awaitFeedbackRect.top) {
+        } else {
+            removeEmptyDiv(currentDropElement);
+        } 
+
+        if (targetRect.top+targetRect.height/2 < awaitFeedbackRect.bottom && targetRect.top+targetRect.height/2 > awaitFeedbackRect.top) {
             currentDropElement = 'divAwaitFeedback';
             showEmptyDiv(currentDropElement);
-        } else if (targetRect.top+targetRect.height/2 < doneRect.bottom && targetRect.top+targetRect.height/2 > doneRect.top) {
+        } else {
+            removeEmptyDiv(currentDropElement);
+        } 
+
+        if (targetRect.top+targetRect.height/2 < doneRect.bottom && targetRect.top+targetRect.height/2 > doneRect.top) {
             currentDropElement = 'divDone';
             showEmptyDiv(currentDropElement);
         } else {
             removeEmptyDiv(currentDropElement);
         }  
 
-        if(event.touches[0].clientY-event.target.clientHeight/2 <= 0) {
-            scroll(0, window.scrollY-15);
-        }
-        if(event.touches[0].clientY+event.target.clientHeight/2 > screen.height && window.scrollY <= (document.body.scrollHeight - screen.height)) {
-            console.log(event.touches[0].pageY+event.target.clientHeight/2)
-            scroll(0, window.scrollY+15);
-        }
+        scrollDownOrUpWithTask(event);
+    }
+}
+
+function screenMobile() {
+    return window.innerWidth <= 1100;
+}
+
+function preventReload(event) {
+    event.preventDefault();
+}
+
+function movingTask(event) {
+    event.target.style.position = "absolute";
+    event.target.style.zIndex = "2";
+    event.target.style.left = event.touches[0].pageX-event.target.clientWidth/2 + 'px';
+    event.target.style.top = event.touches[0].pageY-event.target.clientHeight/2 + 'px';
+}
+
+function scrollDownOrUpWithTask(event) {
+    scrollUpWithTask(event);
+    scrollDownWithTask(event);
+}
+
+function scrollUpWithTask(event) {
+    if(event.touches[0].clientY-event.target.clientHeight/2 <= 0) {
+        scroll(0, window.scrollY-15);
+    }
+}
+
+function scrollDownWithTask(event) {
+    if(event.touches[0].clientY+event.target.clientHeight/2 > screen.height && window.scrollY <= (document.body.scrollHeight - screen.height)) {
+        console.log(event.touches[0].pageY+event.target.clientHeight/2)
+        scroll(0, window.scrollY+15);
     }
 }
 
