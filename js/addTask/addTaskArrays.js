@@ -125,7 +125,6 @@ function pushTask(task) {
  * @returns {boolean} True if both title and due date are not empty, false otherwise.
  */
 function validateTaskData(title, date) {
-  // Validation logic
   return title.trim() && date.trim();
 }
 

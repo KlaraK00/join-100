@@ -1,5 +1,5 @@
 function HTMLTemplateTask(task) {
-    return /*html*/`<div id="task${task.createdAt}" onclick="openTask(${task.createdAt}), addAnimationRightSlideIn('boardPopUpCard')" draggable="true" ondragstart="startDragging('task${task.createdAt}')" ontouchstart="startDragging('task${task.createdAt}')" ontouchmove="drag(event)" ontouchend="drop()" class="card dFlex directionColumn alignStart cursorPointer dragbox">
+    return /*html*/`<div id="task${task.createdAt}" onclick="openTask(${task.createdAt}), addAnimationRightSlideIn('boardPopUpCard')" draggable="true" ondragstart="startDragging('task${task.createdAt}')" ontouchstart="startDragging('task${task.createdAt}')" ontouchmove="drag(event)" ontouchend="drop()" class="card width250 dFlex directionColumn alignStart cursorPointer dragbox">
             <div id="boardCategory${task.createdAt}">${task.category}</div>
             <div class="fontBold">${task.title}</div>
             <div class="fontGrey task-description-text" >${task.description}</div>
@@ -24,7 +24,7 @@ function HTMLTemplatePopUpTask(task) {
             <div class="card posRelative alignStart" id="boardPopUpCard" onclick="event.stopPropagation()">
                 <img onclick="closeTask()" class="posAbsolute cursorPointer closeImgBoard" src="./img/Close.png" alt="close">
                 <div id="boardPopUpCategory${task.createdAt}">${task.category}</div>
-                <div class="headline-board">${task.title}</div>
+                <div class="headline-board wordBreakBreakAll">${task.title}</div>
                 <div>${task.description}</div>
                 <div class="dFlex">
                     <span class="width100Px">Due date:</span>

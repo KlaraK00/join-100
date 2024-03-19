@@ -487,6 +487,10 @@ body {
     font-size: 14px;
 }
 
+.wordBreakBreakAll {
+    word-break: break-all;
+}
+
 .animationRightSlideOut {
     animation: rightSlideOut 225ms forwards !important;
 }
