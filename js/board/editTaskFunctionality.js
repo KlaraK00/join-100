@@ -131,8 +131,8 @@ async function boardEditTaskAddSubtask(taskCreatedAt) {
  * @param {string} taskCreatedAt - An unique long number to identify the correct task.
  */
 function addSubtaskOnEnter(event, taskCreatedAt) {
-    event.preventDefault();
     if(event.keyCode == 13) {
+        event.preventDefault();
         boardEditTaskAddSubtask(taskCreatedAt);
     }
 }
