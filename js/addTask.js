@@ -266,9 +266,9 @@ function getPriority() {
 }
 
 /**
- * Aktiviert den ausgewählten Button, ändert die Hintergrundfarbe entsprechend der Priorität, setzt den Filter für die Bilder und ändert die Schriftfarbe der Buttons.
- * @param {string} priority - Die Priorität des ausgewählten Buttons ('urgent', 'medium' oder 'low').
- */
+Activates the selected button, changes the background color according to the priority, sets the filter for the images, and modifies the font color of the buttons.
+@param {string} priority - The priority of the selected button ('urgent', 'medium', or 'low').
+*/
 function activateButton(priority) {
   document.getElementById("urgent").style.backgroundColor = "white";
   document.getElementById("medium").style.backgroundColor = "white";
@@ -374,6 +374,7 @@ function createContactElement(contact) {
 
   return contactElement;
 }
+
 /**
  * Creates a checkbox image for a contact element.
  * @param {Object} contact - The contact object to determine if it is selected.
@@ -566,8 +567,6 @@ function attachContactEventListeners() {
   });
 }
 
-
-
 function toggleDropdownOpen(dropdown, open = null) {
   const arrowId = "arrow";
   // If 'open' is explicitly set, use it to show/hide the dropdown
@@ -714,7 +713,6 @@ function handleAddSubtask() {
     }
   }
   
-
 /**
  * Creates a wrapper div for a subtask with the given text.
  * @param {string} subtaskText - The text content of the subtask.
@@ -745,11 +743,11 @@ function createSubtaskWrapper(subtaskText) {
  * Creates a div element for the subtask actions.
  * @returns {HTMLDivElement} The created subtask actions div element.
  */
-  function createSubtaskActionsDiv() {
+function createSubtaskActionsDiv() {
     const actionsDiv = document.createElement("div");
     actionsDiv.classList.add("subtask-actions", "d-none");
     return actionsDiv;
-  }
+}
   
   /**
  * Adds edit and delete action buttons to the given actions div, with associated click handlers.
@@ -839,7 +837,6 @@ function createSubtaskWrapper(subtaskText) {
         openEditField(li);
       });
   }
-  
 
 /**
  * Add 'editing' class to the subtask wrapper and create an edit field with options.
