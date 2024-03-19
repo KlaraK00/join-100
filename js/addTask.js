@@ -104,8 +104,8 @@ function createTaskObject(
     prio,
     category,
     subtasks,
-    status,
-  };
+    status
+    };
 }
 
 /**
@@ -171,6 +171,7 @@ function prepareTaskObject(
   subtasks
 ) {
   let createdAt = new Date().getTime();
+  let status = currentStatus;
   return {
     createdAt,
     title,
@@ -180,7 +181,7 @@ function prepareTaskObject(
     priority,
     category,
     subtasks,
-    status: TaskStatus[currentStatus],
+    status
   };
 }
 
@@ -212,7 +213,6 @@ function createTask() {
   let priority = getPriority();
   let category = getInputValue("category");
   let subtasks = collectSubtasks();
-
   let task = prepareTaskObject(
     title,
     description,
