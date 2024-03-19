@@ -358,3 +358,33 @@ function deleteAddTaskSubtask(i) {
   addTasksSubtasks.splice(i, 1);
   renderAddTaskEditSubtasks();
 }
+
+/**
+ * Gets activated on resize of the document. It resizes the widht of an subtask-element.
+ */
+window.addEventListener('resize', widthSubtasks);
+
+/**
+ * Sets the right width for the subtask-element. It depends on the windows-width-size.
+ */
+function widthSubtasks() {
+  if(youAreOnAddTaskSite()) {
+    let addTaskInputSubtasksParent = document.getElementById('addTaskInputSubtasksParent');
+    if(window.innerWidth <= 450) {
+      addTaskInputSubtasksParent.style.width = "68%";
+    } else if(window.innerWidth <= 1300) {
+      addTaskInputSubtasksParent.style.width = "90%";
+    } else {
+      addTaskInputSubtasksParent.style.width = "100%";
+    }
+  }
+}
+
+/**
+ * Checks if you are on the addTask-Site.
+ * 
+ * @returns {boolean} - Returns true if you are on the addTask-Site.
+ */
+function youAreOnAddTaskSite() {
+  return window.location.href.includes("addTask");
+}

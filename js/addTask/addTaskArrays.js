@@ -38,6 +38,7 @@ async function initAddTask() {
     showUserNavBar(); // Show the user-specific navigation bar
     initializeEventListeners(); // Attach necessary event listeners
     updateCategoryDropdown(); // Update the category dropdown UI
+    widthSubtasks();
   } else {
     showLogInError(); // Show an error if login validation fails
   }
