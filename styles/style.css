@@ -24,6 +24,10 @@ body {
     position: relative;
 }
 
+.overflowHidden {
+    overflow: hidden;
+}
+
 /* ---------- DISPLAY ---------- */
 
 .d-none {

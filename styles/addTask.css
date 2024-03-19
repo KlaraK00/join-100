@@ -691,6 +691,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     outline: none;
     height: 100%;
     width: 100%;
+    background-color: transparent;
 }
 
 .overflowY {

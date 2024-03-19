@@ -319,6 +319,8 @@ function editEditTaskSubtask(i, taskCreatedAt) {
     editTaskSubtaskParent.classList.remove('hoverGrey');
     editTaskSubtaskParent.innerHTML = '';
     editTaskSubtaskParent.innerHTML = HTMLTemplatePopUpBoardEditSubtasksEdit(i, `${taskCreatedAt}`);
+    let editEditSubtaskInput = document.getElementById(`editEditSubtaskInput${i}`);
+    editEditSubtaskInput.focus();
 }
 
 /**

@@ -1031,6 +1031,8 @@ function addTaskEditTaskSubtask(i) {
   addTaskSubtaskParent.classList.remove('hoverGrey');
   addTaskSubtaskParent.innerHTML = '';
   addTaskSubtaskParent.innerHTML = HTMLTemplateAddTaskEditSubtasksEdit(i);
+  let addTaskEditSubtaskInput = document.getElementById(`editEditSubtaskInput${i}`);
+  addTaskEditSubtaskInput.focus();
 }
 
 function addTaskaddSubtaskOnEnter(event) {
@@ -1072,5 +1074,16 @@ function addTaskEditSubtaskInputValue(i) {
 function addTaskEditSubtaskInputValue(i) {
   let editEditSubtaskInput = document.getElementById(`editEditSubtaskInput${i}`);
   addTasksSubtasks[i].subtask = editEditSubtaskInput.value;
+  renderAddTaskEditSubtasks();
+}
+
+/**
+ * Deletes a specific subtask.
+ * 
+ * @param {number} i - Uses the index of a specific element as parameter.
+ * @param {string} taskCreatedAt - Passes a unique long number to identify a specific task.
+ */
+function deleteAddTaskSubtask(i) {
+  addTasksSubtasks.splice(i, 1);
   renderAddTaskEditSubtasks();
 }
