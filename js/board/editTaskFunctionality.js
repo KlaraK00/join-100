@@ -384,3 +384,33 @@ function addAnimationRightSlideIn(id) {
 function closeAssignedToDiv() {
     closeBoardEditTaskContacts();
 }
+
+/**
+ * Gets activated on resize of the document. It resizes the widht of an subtask-element.
+ */
+window.addEventListener('resize', widthSubtasksBoard);
+
+/**
+ * Sets the right width for the subtask-element. It depends on the windows-width-size.
+ */
+function widthSubtasksBoard() {
+    if(youAreOnTheBoardSite()) {
+        let addTaskAllSubtasks = document.getElementById('addTaskAllSubtasks');
+        if(window.innerWidth <= 430) {
+            addTaskAllSubtasks.style.width = "68%";
+        } else if(window.innerWidth <= 1300) {
+            addTaskAllSubtasks.style.width = "90%";
+        } else {
+            addTaskAllSubtasks.style.width = "100%";
+        }
+    }
+}
+
+/**
+ * Checks if you are on the addTask-Site.
+ * 
+ * @returns {boolean} - Returns true if you are on the addTask-Site.
+ */
+function youAreOnTheBoardSite() {
+    return window.location.href.includes("board");
+  }

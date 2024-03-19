@@ -32,6 +32,7 @@ async function loadingBoard() {
     currentUser = getCurrentUser();
     showUserNavBar();
     renderAllTasks();
+    widthSubtasksBoard();
 }
 
 /**

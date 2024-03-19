@@ -369,12 +369,16 @@ window.addEventListener('resize', widthSubtasks);
  */
 function widthSubtasks() {
   if(youAreOnAddTaskSite()) {
+    let addTaskAllSubtasks = document.getElementById('addTaskAllSubtasks');
     let addTaskInputSubtasksParent = document.getElementById('addTaskInputSubtasksParent');
     if(window.innerWidth <= 450) {
+      addTaskAllSubtasks.style.width = "68%";
       addTaskInputSubtasksParent.style.width = "68%";
     } else if(window.innerWidth <= 1300) {
+      addTaskAllSubtasks.style.width = "90%";
       addTaskInputSubtasksParent.style.width = "90%";
     } else {
+      addTaskAllSubtasks.style.width = "100%";
       addTaskInputSubtasksParent.style.width = "100%";
     }
   }
