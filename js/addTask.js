@@ -363,9 +363,9 @@ function toggleContactsDropdown() {
 }
 function rotateArrow(arrowId, isOpen) {
   const arrowImage = document.getElementById(arrowId);
-  if (isOpen) {
+  if (isOpen && arrowImage) {
     arrowImage.classList.add("rotate-180");
-  } else {
+  } else if (arrowImage) {
     arrowImage.classList.remove("rotate-180");
   }
 }
@@ -451,7 +451,9 @@ function attachEventListenerToContactElement(contactElement, contact) {
  */
 function updateContactsDropdown(contacts) {
   const contactsDropdown = document.getElementById("contactsDropdown");
-  contactsDropdown.innerHTML = "";
+  if (contactsDropdown) {
+    contactsDropdown.innerHTML = "";
+  }
 
   contacts.forEach((contact) => {
     const contactElement = createContactElement(contact);
