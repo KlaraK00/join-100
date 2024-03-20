@@ -56,6 +56,10 @@ body {
     height: 376px;
 }
 
+.custom-date-input::-webkit-calendar-picker-indicator {
+    opacity: 0; /* Transparenz auf 0 setzen */
+}
+
 .taskTitle {
     display: flex; 
     flex-direction: column;

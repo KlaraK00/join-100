@@ -252,12 +252,12 @@ function attachSubtaskEventListeners() {
   }
 }
   
-/**
-  * Initializes date input related event listeners for validation and auto-formatting.
-  */
-function attachDateEventListeners() {
-  document.getElementById("due").addEventListener("blur", autoFormatDate);
-}
+// /**
+//   * Initializes date input related event listeners for validation and auto-formatting.
+//   */
+// function attachDateEventListeners() {
+//   document.getElementById("due").addEventListener("blur", autoFormatDate);
+// }
   
 /**
   * Toggles the display of a dropdown based on focus.
@@ -297,28 +297,28 @@ function handleAddSubtaskKeypress(event) {
   }
 }
   
-/**
-  * Automatically formats the date input field value upon losing focus and validates it.
-*/
-function autoFormatDate(event) {
-  // Auto-formatting logic as before
-  let value = event.target.value.replace(/[\.\-\/]/g, "");
+// /**
+//   * Automatically formats the date input field value upon losing focus and validates it.
+// */
+// function autoFormatDate(event) {
+//   // Auto-formatting logic as before
+//   let value = event.target.value.replace(/[\.\-\/]/g, "");
   
-  if (value.length > 2 && value.length <= 4)
-    value = value.slice(0, 2) + "/" + value.slice(2);
-  if (value.length > 4)
-    value =
-      value.slice(0, 2) + "/" + value.slice(2, 4) + "/" + value.slice(4, 8);
+//   if (value.length > 2 && value.length <= 4)
+//     value = value.slice(0, 2) + "/" + value.slice(2);
+//   if (value.length > 4)
+//     value =
+//       value.slice(0, 2) + "/" + value.slice(2, 4) + "/" + value.slice(4, 8);
   
-  event.target.value = value;
+//   event.target.value = value;
   
-  // Trigger validation after formatting
-  isValidDateInput(event);
-}
+//   // Trigger validation after formatting
+//   isValidDateInput(event);
+// }
   
 function initializeEventListeners() {
   attachContactEventListeners();
   attachCategoryEventListeners();
   attachSubtaskEventListeners();
-  attachDateEventListeners();
+  // attachDateEventListeners();
 }
