@@ -200,7 +200,14 @@ function renderContactsBoard(task) {
         renderAllContacts(task, div);
     }
 }
-
+/**
+ * Renders a limited number of contacts on the board view.
+ * If there are more than 4 contacts, it renders only the first 4 contacts
+ * and displays the count of remaining contacts.
+ * 
+ * @param {object} task - The task object containing contact information.
+ * @param {HTMLElement} div - The HTML element to which contacts will be rendered.
+ */
 function renderLimitedContacts(task, div) {
     for (let i = 0; i < 4; i++) {
         let contact = contacts.find(c => c.createdAt == task.contacts[i]);
@@ -212,6 +219,12 @@ function renderLimitedContacts(task, div) {
     div.innerHTML += `<div class="more-contacts-remaining"><b>+${remainingCount}</b></div>`;
 }
 
+/**
+ * Renders all contacts on the board view.
+ * 
+ * @param {object} task - The task object containing contact information.
+ * @param {HTMLElement} div - The HTML element to which contacts will be rendered.
+ */
 function renderAllContacts(task, div) {
     for (let i = 0; i < task.contacts.length; i++) {
         let contact = contacts.find(c => c.createdAt == task.contacts[i]);
