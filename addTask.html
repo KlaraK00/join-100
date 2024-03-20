@@ -43,5 +43,5 @@
   <div class="posAbsolute width100Perc height100Vh dFlex justCenter alignCenter bottomSlideInAndOut d-none zIndex101" id="successBanner">
     <div class="darkBtnWithoutHover dFlex alignCenter justCenter gap20">Task added to board <img src="../img/board_icon.png" alt=""></div>
   </div>
-  <form onsubmit="createTask(), event.preventDefault()"  id="taskForm"><div w3-include-html="/templates/addTaskTemplate.html"></div></form>
+  <form onsubmit="createTask(), event.preventDefault()" onclick="closeCategoryField()"  id="taskForm"><div w3-include-html="/templates/addTaskTemplate.html"></div></form>
 </body>

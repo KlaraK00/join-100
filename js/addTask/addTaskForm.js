@@ -322,3 +322,10 @@ function initializeEventListeners() {
   attachSubtaskEventListeners();
   // attachDateEventListeners();
 }
+
+function closeCategoryField() {
+  let dropdown = document.getElementById("categoryDropdown");
+  let arrowImage = document.getElementById("arrow2");
+  dropdown.style.display = "none";
+  arrowImage.classList.remove("rotate-180");
+}

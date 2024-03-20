@@ -1,9 +1,13 @@
+let touchEventStartTime = 0;
+let currentTime = 0;
 /**
  * Initializes the dragging-process by setting the "draggingOnce"-variable to true and transforming the look of the current dragged element.
  * 
  * @param {string} id - Passes the id from the current dragged element.
  */
 function startDragging(id) {
+    currentTime = 0;
+    touchEventStartTime = new Date().getTime();
     draggingOnce = true;
     currentDraggedElement = id;
     let element = document.getElementById(id);
@@ -68,9 +72,11 @@ function removeEmptyDiv(id) {
 function drag(event) {
     if(screenMobile()) {
         preventReload(event);
-        movingTask(event);
-        showAndRemoveEmptyDiv(event);
-        scrollDownOrUpWithTask(event);
+        if(touchEventLastsOverOneSecond()) {
+            movingTask(event);
+            showAndRemoveEmptyDiv(event);
+            scrollDownOrUpWithTask(event);
+        }
     }
 }
 
@@ -81,6 +87,13 @@ function drag(event) {
  */
 function screenMobile() {
     return window.innerWidth <= 1100;
+}
+
+function touchEventLastsOverOneSecond() {
+    currentTime = new Date().getTime();
+    let duration = currentTime - touchEventStartTime;
+    console.log(duration);
+    return duration >= 1500;
 }
 
 /**

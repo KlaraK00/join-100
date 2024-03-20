@@ -35,7 +35,7 @@
             </div>
             <div class="assign">
                 <p>Assigned to</p>
-                <div class="contactInput"><input class="assignContact" placeholder="Select contacts to assign"><img id="arrow" src="./img/arrow_drop_down.png"></div>
+                <div class="contactInput" onclick="event.stopPropagation()"><input class="assignContact" placeholder="Select contacts to assign"><img id="arrow" src="./img/arrow_drop_down.png"></div>
                 <div id="contactsDropdown" class="contacts-dropdown">
                     <!-- Contacts will be dynamically inserted here -->
                 </div>
@@ -67,8 +67,8 @@
             <div class="category">
                 <p>Category<span class="red">*</span></p>
                 <div class="dropdown">
-                    <div class="categoryInput"> <input id="category" class="category-input" onclick="toggleCategoryDropdown()" readonly placeholder="Select a Category"><img id="arrow2" src="./img/arrow_drop_down.png"></div>
-                    <div id="categoryDropdown" class="category-dropdown"></div>
+                    <div class="categoryInput"> <input id="category" class="category-input" onclick="event.stopPropagation(), toggleCategoryDropdown()" readonly placeholder="Select a Category"><img id="arrow2" src="./img/arrow_drop_down.png"></div>
+                    <div onclick="event.stopPropagation()" id="categoryDropdown" class="category-dropdown"></div>
                 </div>
             </div>
             <div class="dFlex directionColumn width100Perc addTaskSubtasksOverDiv">
