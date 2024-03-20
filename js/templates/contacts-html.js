@@ -67,7 +67,7 @@ function createNewContactHTML() {
                 <div class="input-fields">
                     <input id="contactName" class="input background-img-profile" placeholder="Name" required>
                     <input id="contactMail" class="input background-img-mail" placeholder="Email" type="email" required>
-                    <input id="contactNumber" class="input background-img-phone" placeholder="Phone" required>
+                    <input type="tel" pattern="[0-9]*" id="contactNumber" class="input background-img-phone" placeholder="Phone" required>
                 </div>
                 <div class="add-contact-button">
                     <button type="button" onclick="closeNewContactWindow()" class="button2">Cancel <img class="cross" src="/img/cancel-button.png"</button>
@@ -98,7 +98,7 @@ function createEditContactHTML(i) {
                 <div class="input-fields">
                     <input id="editName" class="input background-img-profile" value="${contacts[i]['firstName']} ${contacts[i]['lastName']}" required>
                     <input id="editMail" class="input background-img-mail" value="${contacts[i]['mail']}" type="email" required>
-                    <input id="editNumber" class="input background-img-phone" value="${contacts[i]['number']}" required>
+                    <input type="tel" pattern="[0-9]*" id="editNumber" class="input background-img-phone" value="${contacts[i]['number']}" required>
                 </div>
                 <div class="add-contact-button">
                     <button onclick="deleteEditContact(${i})" type="button" class="button4">Delete</button>
