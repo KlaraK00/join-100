@@ -323,7 +323,8 @@ function activateButton(priority) {
  * wishes to reset the form to its initial state.
  */
 function clearInput() {
-  updateAssignContactInput();
+  clearSelectedContactsContainer();
+  document.getElementById('selectedContactsContainer').innerHTML = '';
   selectedContacts = [];
   updateContactsDropdown(contacts);
 
