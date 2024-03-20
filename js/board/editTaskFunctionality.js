@@ -55,11 +55,12 @@ async function boardChangeSubtasksDoneOrNot(taskCreatedAt, i) {
  * 
  * @param {string} taskCreatedAt - Passes a unique long number to identify a specific task.
  */
-function boardDeleteTask(taskCreatedAt) {
+async function boardDeleteTask(taskCreatedAt) {
     let index = tasks.findIndex(t => t.createdAt == taskCreatedAt);
     tasks.splice(index, 1);
     let boardTaskOverlay = document.getElementById('boardTaskOverlay');
     boardTaskOverlay.innerHTML = '';
+    await setItem('tasks', tasks);
     renderAllTasks();
 }
 
