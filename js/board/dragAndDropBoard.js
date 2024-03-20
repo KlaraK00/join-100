@@ -1,5 +1,6 @@
 let touchEventStartTime = 0;
 let currentTime = 0;
+
 /**
  * Initializes the dragging-process by setting the "draggingOnce"-variable to true and transforming the look of the current dragged element.
  * 
@@ -71,12 +72,10 @@ function removeEmptyDiv(id) {
 
 function drag(event) {
     if(screenMobile()) {
-        preventReload(event);
-        if(touchEventLastsOverOneSecond()) {
-            movingTask(event);
-            showAndRemoveEmptyDiv(event);
-            scrollDownOrUpWithTask(event);
-        }
+        event.preventDefault();
+        movingTask(event);
+        showAndRemoveEmptyDiv(event);
+        scrollDownOrUpWithTask(event);
     }
 }
 
@@ -89,21 +88,12 @@ function screenMobile() {
     return window.innerWidth <= 1100;
 }
 
-function touchEventLastsOverOneSecond() {
-    currentTime = new Date().getTime();
-    let duration = currentTime - touchEventStartTime;
-    console.log(duration);
-    return duration >= 1500;
-}
-
-/**
- * Prevents the reload of the formular.
- * 
- * @param {Event} event - Passes an event object to prevent it's default behaviour.
- */
-function preventReload(event) {
-    event.preventDefault();
-}
+// function touchEventLastsOverOneSecond() {
+//     currentTime = new Date().getTime();
+//     let duration = currentTime - touchEventStartTime;
+//     console.log(duration);
+//     return duration >= 1250;
+// }
 
 /**
  * Moves the task over the screen.

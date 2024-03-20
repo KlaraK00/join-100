@@ -1,8 +1,8 @@
 function HTMLTemplateTask(task) {
     return /*html*/`<div id="task${task.createdAt}" onclick="openTask(${task.createdAt}), addAnimationRightSlideIn('boardPopUpCard')" draggable="true" ondragstart="startDragging('task${task.createdAt}')" ontouchstart="startDragging('task${task.createdAt}')" ontouchmove="drag(event)" ontouchend="drop()" class="card width250 dFlex directionColumn alignStart cursorPointer dragbox">
-            <div id="boardCategory${task.createdAt}">${task.category}</div>
-            <div class="fontBold">${task.title}</div>
-            <div class="fontGrey task-description-text" >${task.description}</div>
+            <div class="pointerEventsNone" id="boardCategory${task.createdAt}">${task.category}</div>
+            <div class="fontBold pointerEventsNone">${task.title}</div>
+            <div class="fontGrey task-description-text pointerEventsNone" >${task.description}</div>
             <div id="subtasksBoardOverDiv${task.createdAt}" class="dFlex justBetween width100Perc">
                 <div class="flex1 posRelative" onmouseout="hideDetailedProgressInformation(${task.createdAt})" onmouseover="showDetailedProgressInformation(${task.createdAt})">
                     <div class="greyProgressBarBoard posAbsolute" id="greyProgressBar${task.createdAt}"></div>
@@ -11,7 +11,7 @@ function HTMLTemplateTask(task) {
                 </div>
                 <div class="padLeft8 fontSize12" id="subtasksBoard${task.createdAt}"></div>
             </div>
-            <div class="dFlex justBetween width100Perc alignCenter">
+            <div class="dFlex justBetween width100Perc alignCenter pointerEventsNone">
                 <div class="dFlex" id="contacts${task.createdAt}"></div>
                 <div id="priority${task.createdAt}"></div>
             </div>

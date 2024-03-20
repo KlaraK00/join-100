@@ -28,6 +28,10 @@ body {
     overflow: hidden;
 }
 
+.pointerEventsNone {
+    pointer-events: none;
+}
+
 /* ---------- DISPLAY ---------- */
 
 .d-none {
