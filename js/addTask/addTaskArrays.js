@@ -233,11 +233,13 @@ function showSuccessBanner() {
       successBanner.classList.add('d-none');
     }, 3000);
   } else {
+    document.body.classList.add('overflowHidden');
     let successBanner = document.getElementById('successBanner');
     successBanner.classList.remove('d-none');
 
     setTimeout(function() {
       successBanner.classList.add('d-none');
+      document.body.classList.remove('overflowHidden');
     }, 3000);
   }
 }
