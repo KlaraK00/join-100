@@ -4,7 +4,7 @@ html {
 
 ::selection {
     background-color: #2a3647;
-    color: white; 
+    color: white;
 }
 
 body {
@@ -42,7 +42,7 @@ body {
 .headline-board {
     display: flex;
     align-items: center;
-    gap: 1px; 
+    gap: 1px;
     font-size: 61px;
     font-weight: 700;
 }
@@ -62,7 +62,7 @@ body {
     align-items: center;
     background-color: white;
     border: 1px solid #a8a8a8;
-    border-radius: 10px; 
+    border-radius: 10px;
     width: 312px;
     position: relative;
 }
@@ -115,14 +115,14 @@ body {
     width: 160px;
     border-radius: 10px;
     background-color: #2A3647;
-    color:white;
+    color: white;
     border: 1px;
-    border-color:#2A3647;
+    border-color: #2A3647;
     cursor: pointer;
 }
 
 .menubar button:hover {
-    background-color: rgb(41,171,226);
+    background-color: rgb(41, 171, 226);
 }
 
 .searchAdd {
@@ -133,8 +133,8 @@ body {
 
 .progressBar {
     width: calc(100vw - 360px);
-    display: flex; 
-    justify-content: space-between; 
+    display: flex;
+    justify-content: space-between;
     max-width: 1440px;
     gap: 26px;
     height: calc(100vh - 285.5px);
@@ -145,7 +145,7 @@ body {
 }
 
 .progressHead {
-    display: flex; 
+    display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
@@ -168,18 +168,19 @@ body {
 }
 
 .plus:hover {
-    border-color: rgb(41,171,226);
-    color: rgb(41,171,226);
+    border-color: rgb(41, 171, 226);
+    color: rgb(41, 171, 226);
 }
 
 .progressDone {
-    display: flex; 
+    display: flex;
     align-items: center;
-    width: 100%; 
-    height: 28px; 
+    width: 100%;
+    height: 28px;
     gap: 35px;
     margin-bottom: 20px;
 }
+
 .lineUp {
     min-width: 244px;
     height: 100%;
@@ -189,43 +190,51 @@ body {
     min-height: 300% !important;
 }
 
+.more-contacts-remaining {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(42, 54, 71);
+    padding-left: 10px;
+}
+
 .toDoColumn {
-    display: flex; 
+    display: flex;
     flex-direction: column;
-    gap: 24px; 
-    width: 246px; 
-    height: 688px; 
+    gap: 24px;
+    width: 246px;
+    height: 688px;
 }
 
 .column {
-    display: flex; 
+    display: flex;
     flex-direction: column;
     gap: 16px;
     height: fit-content;
 }
 
 .card {
-    display: flex; 
+    display: flex;
     flex-direction: column;
-    min-width: 246px; 
+    min-width: 246px;
     height: fit-content;
-    border-radius: 24px; 
+    border-radius: 24px;
     padding: 24px;
     box-sizing: border-box;
     gap: 20px;
     background-color: #FFFFFF;
-    box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.08);
+    box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
 }
 
 .noTask {
-    display:flex; 
+    display: flex;
     align-items: center;
     justify-content: center;
-    width: 246px; 
-    height: 48px; 
+    width: 246px;
+    height: 48px;
     border-radius: 10px;
-    gap: 10px; 
-    box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.16); 
+    gap: 10px;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.16);
     color: #A8A8A8;
     border: 1px solid rgba(168, 168, 168, 1)
 }
@@ -237,9 +246,9 @@ body {
 }
 
 .cardInsideFrame {
-    display: flex; 
-    width: 220px; 
-    height: 231px; 
+    display: flex;
+    width: 220px;
+    height: 231px;
     gap: 24px;
 }
 
@@ -292,7 +301,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0,0,0,0.3); 
+    background-color: rgba(0, 0, 0, 0.3);
     z-index: 100;
 }
 
@@ -431,20 +440,20 @@ body {
 }
 
 .editEditSubtaskInput {
-    border:none;
+    border: none;
     outline: none;
     height: 100%;
     width: 100%;
 }
 
-.blueBorderBottom{    
+.blueBorderBottom {
     border-bottom: 1px solid #29ABE2;
     border-radius: 0;
 }
 
 .addTaskOverlay {
     background-color: #FFFFFF;
-    box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.08);
+    box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
     width: fit-content !important;
     margin: 0;
     padding: 50px;
@@ -508,6 +517,7 @@ body {
     from {
         transform: translateX(0);
     }
+
     to {
         transform: translateX(100vw);
     }
@@ -517,6 +527,7 @@ body {
     from {
         transform: translateX(100vw);
     }
+
     to {
         transform: translateX(0);
     }
@@ -527,22 +538,27 @@ body {
         overflow: unset !important;
         flex-direction: row !important;
     }
+
     .parting-line {
         display: block !important;
     }
+
     .main-add-task-container {
         height: fit-content !important;
     }
+
     .deadline input {
         width: unset !important;
     }
+
     .required-create {
         justify-content: space-between !important;
         width: 100% !important;
     }
+
     #addTaskInputSubtasksParent {
         width: 90.5% !important;
-    } 
+    }
 }
 
 @media(max-width: 1100px) {
@@ -617,12 +633,15 @@ body {
         display: flex;
         flex-direction: column !important;
     }
+
     .parting-line {
         display: none !important;
     }
+
     .addTaskTemplateTaskMar25 {
         margin-left: 0;
     }
+
     .required-create {
         width: 85% !important;
     }
@@ -632,29 +651,34 @@ body {
     .addTaskOverlay {
         padding: 0;
         border-radius: 0;
-        height: 100vh!important;
-        width: 100%!important;
-        max-height: 100vh!important;
+        height: 100vh !important;
+        width: 100% !important;
+        max-height: 100vh !important;
     }
+
     .required-create {
         width: 395px !important;
         padding-bottom: 20px;
     }
+
     .create {
         width: unset !important;
         height: unset !important;
         min-width: unset !important;
     }
+
     #addTaskTemplateH1 {
         padding-top: 20px;
         font-size: 32px;
     }
+
     .createTask {
         height: unset !important;
         width: unset !important;
         padding: 10px !important;
         font-size: 16px !important;
     }
+
     .addTaskOverlayCloseImg {
         top: 16px !important;
         right: 16px !important;
@@ -662,6 +686,7 @@ body {
 }
 
 @media(max-width: 420px) {
+
     .boardTaskOverlay>div>div,
     .boardTaskOverlay>div>form,
     #boardTaskOverlay>div>div,
@@ -674,15 +699,18 @@ body {
     div:has(#boardPopUpEditUrgentBtn) {
         justify-content: center;
     }
+
     #addTaskInputSubtasksParent {
         width: 68.5% !important;
-    } 
+    }
+
     .required-create {
         width: 295px !important;
     }
 }
 
 @media(max-width: 350px) {
+
     #boardPopUpEditLowBtn,
     #boardPopUpEditMediumBtn,
     #boardPopUpEditUrgentBtn {
@@ -717,6 +745,7 @@ body {
 }
 
 @media(max-width: 300px) {
+
     #boardPopUpEditLowBtn,
     #boardPopUpEditMediumBtn,
     #boardPopUpEditUrgentBtn {

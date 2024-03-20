@@ -193,13 +193,31 @@ function removeContactsAndPriorityDiv(task) {
 function renderContactsBoard(task) {
     let div = document.getElementById(`contacts${task.createdAt}`);
     div.innerHTML = '';
-    for (let i = 0; i < task.contacts.length; i++) {
-        if(contacts.find(c => c.createdAt == task.contacts[i])){
+    
+    // Check if there are more than 4 contacts
+    if (task.contacts.length > 4) {
+        // Display only 4 contacts
+        for (let i = 0; i < 4; i++) {
             let contact = contacts.find(c => c.createdAt == task.contacts[i]);
-            div.innerHTML += /*html*/`<div class="initialsBoard" style="background-color:${contact.color}">${contact.initials}</div>`;
+            if (contact) {
+                div.innerHTML += `<div class="initialsBoard" style="background-color:${contact.color}">${contact.initials}</div>`;
+            }
+        }
+        
+        // Display the remaining count
+        let remainingCount = task.contacts.length - 4;
+        div.innerHTML += `<div class="more-contacts-remaining"><b>+${remainingCount}</b></div>`;
+    } else {
+        // Display all contacts if there are 4 or fewer
+        for (let i = 0; i < task.contacts.length; i++) {
+            let contact = contacts.find(c => c.createdAt == task.contacts[i]);
+            if (contact) {
+                div.innerHTML += `<div class="initialsBoard" style="background-color:${contact.color}">${contact.initials}</div>`;
+            }
         }
     }
 }
+
 
 /**
  * Starts to render the priority for the overall board-view.
