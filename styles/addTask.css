@@ -311,11 +311,6 @@ body {
     outline: none;
 }
 
-input[type="date"]::-webkit-inner-spin-button,
-input[type="date"]::-webkit-calendar-picker-indicator {
-  filter: invert(1);
-}
-
 .priority {
     display: flex; 
     flex-direction: column;
@@ -406,8 +401,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         padding: 6px 16px;
     }
 
-    
-
 .subtasks input {
     width: 100%;
     height: 48px; 
@@ -441,15 +434,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 .subtask-wrapper:not(.editing):hover .subtask-actions {
     display: flex; /* or remove 'd-none' class */
-  }
+}
   
-
 .edit-action, .delete-action {
     cursor: pointer; 
 }
-
-
-
 
 .edit-input {
     flex-grow: 1; 
@@ -564,7 +553,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .dropdown {
     position: relative;
-    
 }
 
 .category-dropdown {
