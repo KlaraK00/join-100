@@ -129,15 +129,6 @@ function validateTaskData(title, date) {
   return title.trim() && date.trim();
 }
 
-/**
- * Converts the due date format from dd/mm/yyyy to yyyy-mm-dd.
- * @param {string} dueDateOriginalFormat - The original due date string in dd/mm/yyyy format.
- * @returns {string} The due date in yyyy-mm-dd format.
- */
-function convertDueDateFormat(dueDateOriginalFormat) {
-  let dueDateParts = dueDateOriginalFormat.split("/");
-  return `${dueDateParts[2]}-${dueDateParts[1]}-${dueDateParts[0]}`;
-}
 
 /**
  * Prepares the task object with all the necessary data.
@@ -193,7 +184,7 @@ function finalizeTaskCreation() {
 function createTask() {
   let title = getInputValue("title");
   let dueDateOriginalFormat = getInputValue("due");
-  let date = convertDueDateFormat(dueDateOriginalFormat);
+  let date = dueDateOriginalFormat;
 
   if (!validateTaskData(title, date)) {
     return;
