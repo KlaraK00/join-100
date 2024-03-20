@@ -58,6 +58,7 @@ body {
 
 .custom-date-input::-webkit-calendar-picker-indicator {
     opacity: 0; /* Transparenz auf 0 setzen */
+    cursor: pointer;
 }
 
 .taskTitle {
