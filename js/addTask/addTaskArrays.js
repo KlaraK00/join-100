@@ -222,6 +222,9 @@ function createTask() {
   finalizeTaskCreation();
   clearInput();
   showSuccessBanner();
+  setTimeout(function() {
+    window.location.href = "board.html";
+  }, 2000);
 }
 
 function showSuccessBanner() {
