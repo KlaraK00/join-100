@@ -1,14 +1,9 @@
-let touchEventStartTime = 0;
-let currentTime = 0;
-
 /**
  * Initializes the dragging-process by setting the "draggingOnce"-variable to true and transforming the look of the current dragged element.
  * 
  * @param {string} id - Passes the id from the current dragged element.
  */
 function startDragging(id) {
-    currentTime = 0;
-    touchEventStartTime = new Date().getTime();
     draggingOnce = true;
     currentDraggedElement = id;
     let element = document.getElementById(id);
@@ -25,7 +20,90 @@ function allowDrop(event) {
 }
 
 /**
- * Shows an empty div.
+ * Changes the value of the key "status" from a specific task and stores the edited data in the remote storage.
+ * 
+ * @param {string} newStatus 
+ */
+async function moveTo(newStatus) { 
+    let id = currentDraggedElement.slice(currentDraggedElement.length -13);
+    let element = tasks.find(task => task.createdAt == id);
+    element.status = newStatus;
+    await setItem('tasks', tasks);
+    renderAllTasks();
+}
+
+/**
+ * On the mobile-version this function starts the touch-drag-and-drop-process.
+ * It moves the task and shows and removes empty elements for a great user experience.
+ * Also you are able to scroll with the task up and down.
+ * 
+ * @param {Event} event - The event object representing the touch-event.
+ */
+function drag(event) {
+    if(screenMobile()) {
+        event.preventDefault();
+        movingTask(event);
+        showAndRemoveEmptyDiv(event);
+        scrollDownOrUpWithTask(event);
+    }
+}
+
+/**
+ * Checks if the screen is on mobile-version.
+ * 
+ * @returns {boolean} - Returns true when the width is equal or less than 1100.
+ */
+function screenMobile() {
+    return window.innerWidth <= 1100;
+}
+
+/**
+ * Moves the task over the screen relating to the touch-event.
+ * 
+ * @param {Event} event - Passes an event object for navigating the task-coordinates.
+ */
+function movingTask(event) {
+    event.target.style.position = "absolute";
+    event.target.style.zIndex = "2";
+    event.target.style.left = event.touches[0].pageX-event.target.clientWidth/2 + 'px';
+    event.target.style.top = event.touches[0].pageY-event.target.clientHeight/2 + 'px';
+}
+
+/**
+ * The variable currentDropElement changes to the id of the specific status-row the task-object hovers on.
+ * On the same time it shows an empty task on this exactly status-row and removes the empty task, if the moving task-object hovers on no status-row.
+ * 
+ * @param {Event} event - The event object representing the touch-event.
+ */
+function showAndRemoveEmptyDiv(event) {
+    let toDoRect = document.getElementById('divToDo').getBoundingClientRect();
+    let inProgressRect = document.getElementById('divInProgress').getBoundingClientRect();
+    let awaitFeedbackRect = document.getElementById('divAwaitFeedback').getBoundingClientRect();
+    let doneRect = document.getElementById('divDone').getBoundingClientRect();
+    let targetRect = event.target.getBoundingClientRect();
+    if(targetRect.top+targetRect.height/2 < toDoRect.bottom && targetRect.top+targetRect.height/2 > toDoRect.top) {
+        showEmptyDivInDiv('divToDo');
+    } else if (targetRect.top+targetRect.height/2 < inProgressRect.bottom && targetRect.top+targetRect.height/2 > inProgressRect.top) {
+        showEmptyDivInDiv('divInProgress');
+    } else if (targetRect.top+targetRect.height/2 < awaitFeedbackRect.bottom && targetRect.top+targetRect.height/2 > awaitFeedbackRect.top) {
+        showEmptyDivInDiv('divAwaitFeedback');
+    } else if (targetRect.top+targetRect.height/2 < doneRect.bottom && targetRect.top+targetRect.height/2 > doneRect.top) {
+        showEmptyDivInDiv('divDone');
+    } else {
+        removeEmptyDiv(currentDropElement);
+    }  
+}
+
+/**
+ * Shows an empty task in the specific status-row.
+ */
+function showEmptyDivInDiv(id) {
+    currentDropElement = id;
+    showEmptyDiv(currentDropElement);
+}
+
+/**
+ * Shows an empty div. It lets you see the exact height and width of the current dragged element.
  * 
  * @param {string} id - Uses the id of a specific element as parameter.
  */
@@ -43,20 +121,7 @@ function showEmptyDiv(id) {
 }
 
 /**
- * Changes the value of the key "status" from a specific task and stores the edited data in the remote storage.
- * 
- * @param {string} newStatus 
- */
-async function moveTo(newStatus) { 
-    let id = currentDraggedElement.slice(currentDraggedElement.length -13);
-    let element = tasks.find(task => task.createdAt == id);
-    element.status = newStatus;
-    await setItem('tasks', tasks);
-    renderAllTasks();
-}
-
-/**
- * Hides an empty div.
+ * Removes an empty div.
  * 
  * @param {string} id - Uses the id of a specific element as parameter.
  */
@@ -70,105 +135,32 @@ function removeEmptyDiv(id) {
     }
 }
 
-function drag(event) {
-    if(screenMobile()) {
-        event.preventDefault();
-        movingTask(event);
-        showAndRemoveEmptyDiv(event);
-        scrollDownOrUpWithTask(event);
-    }
-}
-
 /**
- * Checks if the screen is on mobile-mood.
+ * Scrolls up or down while touching and moving the task-object.
  * 
- * @returns 
+ * @param {Event} event - The event object representing the touch-event.
  */
-function screenMobile() {
-    return window.innerWidth <= 1100;
-}
-
-// function touchEventLastsOverOneSecond() {
-//     currentTime = new Date().getTime();
-//     let duration = currentTime - touchEventStartTime;
-//     console.log(duration);
-//     return duration >= 1250;
-// }
-
-/**
- * Moves the task over the screen.
- * 
- * @param {Event} event - Passes an event object for navigating the task-coordinates.
- */
-function movingTask(event) {
-    event.target.style.position = "absolute";
-    event.target.style.zIndex = "2";
-    event.target.style.left = event.touches[0].pageX-event.target.clientWidth/2 + 'px';
-    event.target.style.top = event.touches[0].pageY-event.target.clientHeight/2 + 'px';
-}
-
-function showAndRemoveEmptyDiv(event) {
-    let toDoRect = document.getElementById('divToDo').getBoundingClientRect();
-    let inProgressRect = document.getElementById('divInProgress').getBoundingClientRect();
-    let awaitFeedbackRect = document.getElementById('divAwaitFeedback').getBoundingClientRect();
-    let doneRect = document.getElementById('divDone').getBoundingClientRect();
-    let targetRect = event.target.getBoundingClientRect();
-    if(targetRect.top+targetRect.height/2 < toDoRect.bottom && targetRect.top+targetRect.height/2 > toDoRect.top) {
-        showEmptyDivInToDoDiv();
-    } else if (targetRect.top+targetRect.height/2 < inProgressRect.bottom && targetRect.top+targetRect.height/2 > inProgressRect.top) {
-        showEmptyDivInProgressDiv();
-    } else if (targetRect.top+targetRect.height/2 < awaitFeedbackRect.bottom && targetRect.top+targetRect.height/2 > awaitFeedbackRect.top) {
-        showEmptyDivInAwaitFeedbackDiv();
-    } else if (targetRect.top+targetRect.height/2 < doneRect.bottom && targetRect.top+targetRect.height/2 > doneRect.top) {
-        showEmptyDivInDoneDiv();
-    } else {
-        removeEmptyDiv(currentDropElement);
-    }  
-}
-
-/**
- * Shows an empty task in the to-do-column.
- */
-function showEmptyDivInToDoDiv() {
-    currentDropElement = 'divToDo';
-    showEmptyDiv(currentDropElement);
-}
-
-/**
- * Shows an empty task in the in-progress-column.
- */
-function showEmptyDivInProgressDiv() {
-    currentDropElement = 'divInProgress';
-    showEmptyDiv(currentDropElement);
-}
-
-/**
- * Shows an empty task in the await-feedback-column.
- */
-function showEmptyDivInAwaitFeedbackDiv() {
-    currentDropElement = 'divAwaitFeedback';
-    showEmptyDiv(currentDropElement);
-}
-
-/**
- * Shows an empty task in the done-column.
- */
-function showEmptyDivInDoneDiv() {
-    currentDropElement = 'divDone';
-    showEmptyDiv(currentDropElement);
-}
-
 function scrollDownOrUpWithTask(event) {
     scrollUpWithTask(event);
     scrollDownWithTask(event);
 }
 
+/**
+ * While the dragging task touches the top of the document, you are scrolling up until reaching the absolute top.
+ * 
+ * @param {Event} event - The event object representing the touch-event.
+ */
 function scrollUpWithTask(event) {
     if(event.touches[0].clientY-event.target.clientHeight/2 <= 0) {
         scroll(0, window.scrollY-15);
     }
 }
 
+/**
+ * While the dragging task touches the bottom of the document, you are scrolling down until reaching the absolute bottom.
+ * 
+ * @param {Event} event - The event object representing the touch-event.
+ */
 function scrollDownWithTask(event) {
     if(event.touches[0].clientY+event.target.clientHeight/2 > screen.height && window.scrollY <= (document.body.scrollHeight - screen.height)) {
         console.log(event.touches[0].pageY+event.target.clientHeight/2)
@@ -177,7 +169,7 @@ function scrollDownWithTask(event) {
 }
 
 /**
- * The drop of task removes the empty div and sets the right status for the task.
+ * The drop of the task removes all empty task-elements and sets the right status for the dropping task.
  */
 function drop() {
     if(screenMobile()) {
